@@ -2,8 +2,9 @@
 layout: post
 title:  "New Title"
 date:   2024-05-20 14:16:40 +0000
-categories: jekyll update  #instead of update.
+categories: jekyll  #update  #instead of update.
 author: "Jeremie N"
+permalink: "/firstpost/" ## use this to set the for the page You can also use "/:categories/:title.html
 ---
 This is a initial blog from jekyll.
 

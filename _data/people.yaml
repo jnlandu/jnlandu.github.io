@@ -1,0 +1,14 @@
+#  Yiu can also use ,.csv or json
+
+- name: "Jeremie"
+  occupation: "student"
+- name: :"Jean"
+  occupation: "Lecturer"
+
+- name: :"Mabundi"
+  occupation: "Web developer"
+
+#  This data can be accessed as follow: {{ site.data.people}}
+#  Make a loop as {% for person in site.data.people %}
+#  {{ person.name}}, {{ person.occupation}}
+# {%endfor %}

@@ -27,14 +27,38 @@ description: >- # this means to ignore newlines until "baseurl:"
 #   line in _config.yml. It will appear in your document head meta (for
 #   Google search results) and in your feed.xml site description.
 # baseurl: "" # the subpath of your site, e.g. /blog
+footer_text:
+    Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
+    Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+    Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
 # Build settings
-theme: minima
+
+##--------------------
+# Theme
+
+##-----------
+# repo color theme
+repo_theme_light: default # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
+repo_theme_dark: dark # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
+repo_trophies:
+  enabled: true
+  theme_light: flat # https://github.com/ryo-ma/github-profile-trophy
+  theme_dark: gitdimmed # https://github.com/ryo-ma/github-profile-trophy
+theme: minima # ßjekyll-theme-hacker #minima
 plugins:
   - jekyll-feed
+
+# defaults:
+#   -
+#       scope:
+#         path: "_posts"  ## this front matter will only apply to the _posts
+#         type: "posts"
+#       values:
+#         layout: post.html
 
 # Exclude from processing.
 # The following items will not be processed, by default.
