@@ -26,11 +26,12 @@
   </title>
 
  
-  <!--  render math with katex -->
+
   {%- feed_meta -%}
-  {%- if jekyll.environment == 'production' and site.google_analytics -%}
+  {%- if jekyll.environment == 'production' or site.google_analytics -%}
     {%- include google-analytics.html -%}
   {%- endif -%}
+    <!--  render math with katex -->
   {% include katex.html %}
 
 </head>
