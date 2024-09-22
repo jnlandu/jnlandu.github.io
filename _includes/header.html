@@ -11,7 +11,7 @@
                 {%- if navpage.url == page.url -%}
                   <a class="page-link active" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
                 {% else %}
-                  <a class="page-link disabled" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
+                  <a class="page-link text-white disabled" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
                 {% endif %}
               {%- endfor -%}
             </div>

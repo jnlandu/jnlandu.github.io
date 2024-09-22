@@ -8,6 +8,7 @@
   --spacing-unit: 20px;   /* Example value */
   --brand-color: #2a7ae2; 
   --bs-emphasis-color-rgb: rgb(255, 255, 255);
+  --test-white: white;
 }
 
 
@@ -15,6 +16,9 @@
 
 
 /* Dark mode colors */
+.text-white {
+  color: var(--test-white) !important;
+}
 .dark-mode {
   background-color: var(--bg-black);
 }
@@ -78,6 +82,8 @@
   padding-left: calc(var(--spacing-unit) / 2);
   z-index: 0; */
   width: calc(var(--content-width) - 70px);
+  z-index: -100 !important;
+
 
 }
 

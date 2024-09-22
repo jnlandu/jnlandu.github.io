@@ -9,7 +9,9 @@
     <!-- <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
     </button> -->
     <!-- Site Header -->
+     
      <header class="site-header">
+      
       {%- include header.html -%}
      </header>
     
@@ -17,11 +19,12 @@
     <!-- Main Content goes here -->
     <!-- <div class="main-wrapper" role="main"> -->
     {% if page.title =='Home' %}
-      <div class="about-wrapper">
+      <div class=" about-wrapper">
           {% include about-me.html %}
       </div>
 
     {% else %}
+
      <div class="row main-wrapper">
         <aside class="col-md-3 sidebar-left">
           {% include sidebar-left.html %}
