@@ -1,0 +1,44 @@
+---
+layout: page
+title: ""
+permalink: /about/
+---
+
+<div class="row d-flex header-other-device mobile-margins">
+    
+      <div class=" col-md-4 mobile-h-rule">
+        <!--  Logo image  and profile  -->
+          <div   class="img-profile  mx-auto my-auto logo  border-dark ">
+            <img src="{{ '/assets/static/img/jeremie-apic-1.jpeg' | relative_url }}" class="card-img-top  rounded-circle" alt="profile">
+          </div>
+          <div class=""> 
+            <h1 class="h3 text-white text-center"> {{ site.firstName }} <span class="yellow"> {{ site.lastName }} </span></h1>
+            <p class=" text-center"> Student in Artifical Intelligence
+              <br>
+              <a class="yellow mx-2 rs-click" href="https://x.com/ValentinMabiala"><svg  width="24" height="24" fill="#D9D9D9"><use xlink:href="#location"></use></svg>AIMS Senegal</a> 
+
+
+            </p>
+           
+            <div class="d-flex justify-content-center">
+              <a class="mx-2 rs-click" href="https://x.com/ValentinMabiala"><svg  width="24" height="24" fill="#F90"><use xlink:href="#email"></use></svg></a>
+            <a class="mx-2 rs-click" href="https://x.com/ValentinMabiala"><svg  width="24" height="24" fill="#F90"><use xlink:href="#twitter"></use></svg></a>
+            <a class="mx-2 rs-click" href="https://www.linkedin.com/in/jnlandu00a/"><svg  width="24" height="24" fill="#F90"><use xlink:href="#linkedin"></use></svg></a>
+            <a class="mx-2 rs-click" href="https://x.com/ValentinMabiala"><svg  width="24" height="24" fill="#F90"><use xlink:href="#facebook"></use></svg></a>
+            <a class="mx-2 rs-click" href="https://www.github.com/jnlandu"><svg  width="24" height="24" fill="#F90"><use xlink:href="#github"></use></svg> </a>      
+            </div>
+          </div>
+      </div>
+      
+      <div class="bio-div bio-container col-md-8 mobile-top">
+          <h1> About Me </h1>
+          <p class="justified-text">
+          <span class="yellow"> Welcome!</span> 
+            {% include bio.html %}
+          </p>
+        </div>
+        <p style="color: red;"> This site is  currently being updated (and modified). Feel free to 
+          contact me, jeremie at aims.ac.za. Sorry, still working on the other devices layout. It only suits for mobile right now.</p>
+   
+   
+</div>

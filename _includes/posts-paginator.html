@@ -1,0 +1,17 @@
+
+    {% if page.previous %}
+      <a  href="{{ page.previous.url | relative_url }}" style="margin-left: 10px;">
+        <span>
+          <i class="fas fa-arrow-left"></i> {{ page.previous.title | markdownify | strip_html }}
+        </span>
+      </a>
+    {% endif %}
+    {% if page.next %}
+      <a  href="{{ page.next.url | relative_url }}" style="margin-right: 10px;">
+        <span>
+          {{ page.next.title | markdownify | strip_html }}
+           <i class="fas fa-arrow-right"></i>
+        </span>
+      </a>
+    {% endif %}
+

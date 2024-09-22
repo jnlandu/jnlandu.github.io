@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+
+
+  <body>
+    <!-- <div class="main-wrapper"> -->
+      {% include  back-to-top-btn.html  %}
+      <div class="site-header" role="banner">
+        {%- include header.html -%}
+      </div>
+    <div class="row ">
+    
+        <aside class="col-md-3 sidebar-left">
+          {% include sidebar-left.html %}
+        </aside>
+        <!-- <div class="col-md-8 row d-flex flex-column">aria-label="Content"> -->
+          <div class="col-md-6  main-content">
+      
+                {{ content }}
+         </div>
+        {%- if page.layout == 'post' and page.toc -%}
+        <aside class="col-md-2 sidebar-right">
+            {% include toc.html html=content %}
+           
+        </aside>
+        {%- endif -%}
+  
+
+  </div>
+  <!-- </div> -->
+    
+  </body>
+  {%- include footer.html -%}
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script type="text/javascript" src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
+
+</html>

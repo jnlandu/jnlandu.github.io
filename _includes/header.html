@@ -1,0 +1,19 @@
+  <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
+  </button>
+    
+    <div class="site-nav-wrapper">
+    {%- assign sorted_pages = site.pages | map: "path"  -%}
+    {%- assign page_paths = site.header_pages | default: sorted_pages -%}
+    <a class="site-title" rel="author" href="{{ '/' | relative_url }}">{{ site.firstName | escape }} {{ site.lastName}} </a>
+    {%- if page_paths -%}
+      <nav class="site-nav">
+        <div class="trigger">
+          {% for page in site.pages %}
+          <a class="page-link"  href="{{ page.url  | relative_url }}">{{ page.title | escape}}</a> 
+          {%- endfor -%}
+        </div>
+      </nav>
+    {%- endif -%}
+    </div>
+  
+
