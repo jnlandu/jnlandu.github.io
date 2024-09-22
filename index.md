@@ -4,6 +4,7 @@
 
 layout: home
 title: Home
+url: /
 pagination: 
   enabled: true
 ---

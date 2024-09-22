@@ -2,18 +2,22 @@
   </button>
     
     <div class="site-nav-wrapper">
-    {%- assign sorted_pages = site.pages | map: "path"  -%}
-    {%- assign page_paths = site.header_pages | default: sorted_pages -%}
-    <a class="site-title" rel="author" href="{{ '/' | relative_url }}">{{ site.firstName | escape }} {{ site.lastName}} </a>
-    {%- if page_paths -%}
-      <nav class="site-nav">
-        <div class="trigger">
-          {% for page in site.pages %}
-          <a class="page-link"  href="{{ page.url  | relative_url }}">{{ page.title | escape}}</a> 
-          {%- endfor -%}
-        </div>
-      </nav>
-    {%- endif -%}
+        <a class="site-title me-4" rel="author" href="{{ '/' | relative_url }}">{{ site.firstName | escape }} {{ site.lastName}} </a>
+        {% if site.data.navigation %}
+        {%- assign navpages = site.data.navigation -%}
+          <nav class="site-nav">
+            <div class="trigger">
+              {% for navpage in navpages %}
+                {%- if navpage.url == page.url -%}
+                  <a class="page-link active" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
+                {% else %}
+                  <a class="page-link disabled" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
+                {% endif %}
+              {%- endfor -%}
+            </div>
+          </nav>
+        {% endif %} 
+      
     </div>
   
 

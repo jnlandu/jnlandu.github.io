@@ -32,6 +32,11 @@ location:
   - African Institute for Mathematical Sciences
   - https://aims-senegal.org/
   - fa-solid fa-location-dot
+
+header_pages:
+  - index.md
+  - about.md
+  - contact.md
  
 
 description: >- # this means to ignore newlines until "baseurl:"
