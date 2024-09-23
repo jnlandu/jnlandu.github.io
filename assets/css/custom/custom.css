@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+/* body {
+  font-family: 'Lobster','Nunito', sans-serif;
+} */
+
+
+
 :root {
   /* Light mode colors */
   --bg-black: #000000;
@@ -38,8 +46,12 @@
   --on-large-desktop: 1200px ;
 }
 
-
-
+ 
+/*  Site-tile font style */
+.site-title {
+  font-family: 'Lobster', sans-serif !important;
+  font-size: 2rem;
+}
 
 
 /* Dark mode colors */
@@ -85,7 +97,7 @@
 }
 
 .about-wrapper {
-  margin-top: 100px;
+  margin-top: 50px;
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   width: calc(var(--content-width) - 70px);
@@ -105,21 +117,19 @@
     display: none;
   }
   .nav-toggle-btn{
+    display: block !important;
+    cursor: pointer !important;
     position: fixed;
     top: 20px;
-    right: calc(var(--spacing-unit));
+    right: calc(var(--spacing-unit) );
     padding: 10px 20px;
-
-    
+    margin-right: 50px !important;
     background-color: var(--link-color);
     color: var(--bg-color);
-    display: block !important;
-    margin-right: 50px !important;
-    border: calc(var(--bs-border-width)/3) solid var(--brand-color);
-    border-radius: var(--bs-navbar-toggler-border-radius);
-    transition: var(--bs-navbar-toggler-transition);
-
+    border: none !important;
     cursor: pointer !important;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
     
   }
 
