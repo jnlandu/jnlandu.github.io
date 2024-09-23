@@ -4,12 +4,27 @@
   --bg-color: #ffffff;
   --text-color: #000000;
   --link-color: #1a73e8;
-  /* --content-width: 100%;  */
-  --spacing-unit: 20px;   /* Example value */
   --brand-color: #2a7ae2; 
   --bs-emphasis-color-rgb: rgb(255, 255, 255);
   --test-white: white;
   --bg-light-black: #1a1a1a;
+
+  /* --content-width: 100%;  */
+  --spacing-unit: 20px;  
+  --bs-border-width: 1px;
+  --bs-navbar-padding-x: 0;
+  --bs-navbar-nav-link-padding-x: 0.5rem;
+  --bs-navbar-toggler-padding-y: 0.25rem;
+  --bs-navbar-toggler-padding-x: 0.75rem;
+  --bs-navbar-toggler-font-size: 1.25rem;
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  --bs-navbar-toggler-border-color: rgba(var(--bs-emphasis-color-rgb), 0.15);
+  --bs-navbar-toggler-border-radius: var(--bs-border-radius);
+  --bs-navbar-toggler-focus-width: 0.25rem;
+  --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
+
+
+ 
 
 
 
@@ -85,6 +100,28 @@
     margin-right: 30px !important;
     margin-left: 30px !important
   }
+  .site-nav{
+    display: none;
+  }
+  .nav-toggle-btn{
+    position: fixed;
+    top: 20px;
+    right: calc(var(--spacing-unit));
+    padding: 10px 20px;
+
+    
+    background-color: var(--link-color);
+    color: var(--bg-color);
+    display: block !important;
+    margin-right: 50px !important;
+    border: calc(var(--bs-border-width)/2) solid var(--brand-color);
+    border-radius: var(--bs-navbar-toggler-border-radius);
+    transition: var(--bs-navbar-toggler-transition);
+
+    cursor: pointer !important;
+    
+  }
+
   .about{
     text-align: center;
   }
@@ -129,7 +166,9 @@
   
 } */
 
-
+.nav-toggle-btn {
+  display: none;
+}
 .img-profile {
   max-width: 100%;
   /* width: 20lvw !important; */
@@ -194,26 +233,6 @@
 .sticky + .about-wrapper {
   margin-top: 20px; /* Create space for content below the nav */
 }
-
-/* .site-header { */
-  /* Replace $background-color with actual value */
-  /* background-color: #f0f0f0; */
-
-  /* border-top: 5px solid var(--brand-color); 
-  border-bottom: 1px solid #your-grey-color-light;
-  min-height: calc(1.865 * 16px); 
-  margin-bottom: 0px !important; */
-
-  /* Positioning context for the mobile navigation icon */
-  /* position: -webkit-sticky !important;
-  position: sticky !important;
-  top: 0px !important;
-  z-index: 1020 !important; */
-  /* Smooth shadow transition */
-  /* transition: box-shadow 0.3s ease; */
-/* } */
-
-
 
 .navbar-toggler {
   padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);

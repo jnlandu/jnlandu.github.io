@@ -102,3 +102,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const navToggleBtn = document.querySelector('.nav-toggle-btn');
+  const nav = document.getElementById('site-nav');
+  navToggleBtn.addEventListener('click', function () {
+    // nav.classList.toggle('active');
+    nav.style.display = 'block !important';
+  });
+});

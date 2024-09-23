@@ -1,7 +1,14 @@
   <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
   </button>
-    
-        <a class="site-title me-4" rel="author" href="{{ '/' | relative_url }}">{{ site.firstName | escape }} {{ site.lastName}} </a>
+       {% if site.firstName and site.lastName  %}
+        <a class="site-title me-4" rel="author" href="{{ '/' | relative_url }}">
+          {{ site.firstName | escape }} {{ site.lastName}} 
+        </a>
+        {% endif %}
+        <button class="nav-toggle-btn" aria-label="Toggle Menu">
+          <i class="fa-sharp fa-solid fa-bars"></i>
+        </button>
+
         {% if site.data.navigation %}
         {%- assign navpages = site.data.navigation -%}
           <nav class="site-nav">
