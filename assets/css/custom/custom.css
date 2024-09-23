@@ -91,6 +91,7 @@
   width: calc(var(--content-width) - 70px);
   /* transition: opacity 0.3s ease;  */
   transition: margin-top 0.3s ease; /* Smooth margin transition */
+  z-index: 1 !important;
 }
 
 @media screen and (min-width: 100px) and ( max-width: 768px) {
@@ -114,7 +115,7 @@
     color: var(--bg-color);
     display: block !important;
     margin-right: 50px !important;
-    border: calc(var(--bs-border-width)/2) solid var(--brand-color);
+    border: calc(var(--bs-border-width)/3) solid var(--brand-color);
     border-radius: var(--bs-navbar-toggler-border-radius);
     transition: var(--bs-navbar-toggler-transition);
 
@@ -130,6 +131,7 @@
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
+    z-index: 1 !important;
   }
   
 
