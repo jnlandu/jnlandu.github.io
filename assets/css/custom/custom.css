@@ -73,12 +73,13 @@
 
 .about-wrapper {
   /* width: 200px; */
-  margin-top: 100px;
+  margin-top: 50px;
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   width: calc(var(--content-width) - 70px);
   /* z-index: -100 !important; */
-  transition: opacity 0.3s ease; /* Same transition for content */
+  /* transition: opacity 0.3s ease;  */
+  transition: margin-top 0.3s ease; /* Smooth margin transition */
 }
 
 /* .site-nav-wrapper{
@@ -132,4 +133,12 @@
   /* color: #ccc !important; */
   color: rgba(var(--bs-emphasis-color-rgb), 0.3);
   pointer-events: none;
+}
+
+.sticky {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow when sticky */
+}
+
+.sticky + .about-wrapper {
+  margin-top: 20px; /* Create space for content below the nav */
 }

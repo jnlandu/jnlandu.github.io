@@ -1,7 +1,6 @@
   <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
   </button>
     
-    <div class="site-nav-wrapper">
         <a class="site-title me-4" rel="author" href="{{ '/' | relative_url }}">{{ site.firstName | escape }} {{ site.lastName}} </a>
         {% if site.data.navigation %}
         {%- assign navpages = site.data.navigation -%}
@@ -18,6 +17,5 @@
           </nav>
         {% endif %} 
       
-    </div>
   
 

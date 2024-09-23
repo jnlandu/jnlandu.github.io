@@ -68,6 +68,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+// document.addEventListener('DOMContentLoaded', function() {
+//   const nav = document.querySelector('.site-header');
+  
+//   window.addEventListener('scroll', function() {
+//       const navHeight = nav.offsetHeight; // Get the height of the nav
+//       const scrollPosition = window.scrollY; // Current scroll position
+
+//       if (scrollPosition > navHeight) {
+//           nav.classList.add('sticky');
+//       } else {
+//           nav.classList.remove('sticky');
+//       }
+//   });
+// });
+
+
 document.addEventListener('DOMContentLoaded', function() {
   const nav = document.querySelector('.site-header');
   const content = document.querySelector('.about-wrapper');
@@ -82,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
           content.style.opacity = 1 - (scrollPosition / navHeight);
       } else {
           // Hide content completely after nav is reached
-          content.style.opacity = 0;
+          content.style.opacity = .1;
       }
   });
 });
