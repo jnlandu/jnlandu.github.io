@@ -69,31 +69,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   const nav = document.querySelector('.site-header');
-  const content = document.querySelector('.about-wrapper');
-
+  
   window.addEventListener('scroll', function() {
       const navHeight = nav.offsetHeight; // Get the height of the nav
       const scrollPosition = window.scrollY; // Current scroll position
 
-      for (let i = 0; i < content.children.length; i++) {
-        const child = content.children[i];
-        const childOffsetTop = child.offsetTop; // Distance of child from top of content
-
-        // Calculate the distance the user has scrolled relative to the child's position
-        const distanceFromTop = scrollPosition - childOffsetTop + navHeight;
-
-        // Only start fading out the child if it is within view
-        if (distanceFromTop > 0 && distanceFromTop < navHeight) {
-          const opacity = 1 - (distanceFromTop / navHeight); // Gradually reduce opacity
-          child.style.opacity = opacity;
-        } else if (distanceFromTop >= navHeight) {
-          child.style.opacity = 0; // Fully hide the content after it scrolls past
-        } else {
-          child.style.opacity = 1; // Fully show the content when it is above the scroll
-        }
+      // Ensure the nav stays sticky without affecting content opacity
+      if (scrollPosition > navHeight) {
+        nav.classList.add('sticky-nav'); // Add class for styling when scrolled past the nav height
+      } else {
+        nav.classList.remove('sticky-nav'); // Remove class when above the nav height
       }
   });
 });
+
 
 
 
