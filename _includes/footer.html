@@ -12,6 +12,17 @@
     {% endif %}
     <br>
     Powered by <a class="yellow" href="https://jekyllrb.com/">Jekyll</a> and hosted by <a class="yellow" href="hhttps://pages.github.com/">github pages</a>.
-     {{ site.description | escape }}
+     {{ site.description | escape }} 
+     {% if site.github_repo %}
+     Feel free to 
+     <a class="text-brand" href="{{ site.github_repo }}"> 
+      steal it 
+    </a> 
+    and make it your own. Please,  don't forget to star the 
+    <a href="{{ site.github_repo }}">
+      repo 
+    </a> 
+    if you like it.
+    {% endif %}
   </p>
 </div>

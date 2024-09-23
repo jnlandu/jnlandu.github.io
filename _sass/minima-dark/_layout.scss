@@ -8,7 +8,7 @@
   border-top: 5px solid $brand-color;
   border-bottom: 1px solid $grey-color-light;
   min-height: $spacing-unit * 1.865;
-  margin-bottom: 0px !important;
+  // margin-bottom: 10px !important;
 
 //  Positioning context for the mobile navigation icon
     position: -webkit-sticky !important;
@@ -17,6 +17,7 @@
     z-index: 1020 !important;
     // transition: opacity 0.3s ease; /* Smooth transition for visibility */
     transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+
 }
 
 .site-title {

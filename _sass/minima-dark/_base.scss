@@ -33,8 +33,10 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  margin-left: 200px !important;
-  margin-right:200px !important;
+  margin-left:  15lvw !important;
+  margin-right: 15lvw !important;
+  // margin-left: 200px !important;
+  // margin-right: 200px !important;
 }
 
 // body {
@@ -46,12 +48,6 @@ body {
 //   margin-left: 50px;
 //   margin-right:50px;
 // }
-header{
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 1020
-}
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
@@ -82,18 +78,7 @@ main {
 //   vertical-align: middle;xp
 // }
 
-img {
-  max-width: 100%;
-  // width: 20lvw !important;
-  // height: 20lvw !important;
-  vertical-align:-webkit-baseline-middle;
-  margin-top: 35px;
- 
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
-  border-top-right-radius: 25px;
-}
+
 
 
 /**

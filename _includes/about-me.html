@@ -1,15 +1,24 @@
 
 
-<div class=" col-md-4">
+<div class="col-4">
+    <div class="img-wrapper">
     {% if  site.profile_image   %}
         <img 
          src="{{ site.profile_image | relative_url }}" 
          alt="{{ profile_alt }}"
-         class="my-3"
+         class="img-profile my-3"
          >
     {% endif %}
-
-        <h1 class="h3 text-center"> <span class="text-white"> {{ site.firstName }} </span> <span class="text-brand"> {{ site.lastName }} </span></h1>
+    </div>
+    <div class="profile-img-caption">
+        <h1 class="h3 text-center"> 
+            <span class="text-white">
+                {{ site.firstName }} 
+            </span> 
+            <span class="text-brand">
+                 {{ site.lastName }} 
+                </span>
+         </h1>
         <p class=" text-center"> 
             Student in Artifical Intelligence
             <br>
@@ -40,11 +49,12 @@
             {% endfor %}
              </div>
          {% endif %}
+    </div>
 </div>
       
-<div class="col-md-8">
+<div class="col-8">
     
-          <h1 class="text-white"> About Me </h1>
+          <h1 class="text-white about"> About Me </h1>
           <p class="text-justified">
           <span class="text-brand"> Welcome!</span> 
             {% include bio.html %}

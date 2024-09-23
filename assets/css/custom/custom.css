@@ -4,12 +4,23 @@
   --bg-color: #ffffff;
   --text-color: #000000;
   --link-color: #1a73e8;
-  --content-width: 100%;  /* Example value */
+  /* --content-width: 100%;  */
   --spacing-unit: 20px;   /* Example value */
   --brand-color: #2a7ae2; 
   --bs-emphasis-color-rgb: rgb(255, 255, 255);
   --test-white: white;
   --bg-light-black: #1a1a1a;
+
+
+
+  /*  meedia breakpoints */
+  --content-width: 100%;  /* Example value */
+
+
+  --on-mobile: 576px;
+  --on-tablet: 768px;
+  --on-desktop: 992px;
+  --on-large-desktop: 1200px ;
 }
 
 
@@ -28,7 +39,7 @@
 .theme-toggle-btn {
   position: fixed;
   top: 20px;
-  right: 200px;
+  right: calc(var(--spacing-unit) );
   padding: 10px 20px;
   background-color: var(--link-color);
   color: var(--bg-color);
@@ -53,42 +64,83 @@
 }
 
 
-/* Specific icon styles */
-/* .sun-icon {
-  display: none;
-} */
-/* 
-.dark-mode .moon-icon {
-  display: none;
-} */
-
-/* .dark-mode .sun-icon {
-  display: inline;
-} */
-
 .dark-mode .theme-toggle-icon {
   background-color: var(--link-color);
   color: var(--bg-color);
 }
 
 .about-wrapper {
-  /* width: 200px; */
   margin-top: 100px;
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   width: calc(var(--content-width) - 70px);
-  /* z-index: -100 !important; */
   /* transition: opacity 0.3s ease;  */
   transition: margin-top 0.3s ease; /* Smooth margin transition */
 }
 
-/* .site-nav-wrapper{
-  float: right;
+@media screen and (min-width: 100px) and ( max-width: 768px) {
+  body{
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px !important;
+    margin-left: 30px !important
+  }
+  .about{
+    text-align: center;
+  }
+  .about-wrapper {
+    width: auto;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  
+
+.img-profile {
+  margin-left: calc(.5*var(--content-width) - 20lvw) !important;
+  width: 50% !important;
+  height: 50% !important;
+  vertical-align:-webkit-baseline-middle;
+  /* margin-top: 35px; */
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+}
+.col-4, .col-8{
+  align-items: center !important;
+  max-width: 100% !important;
+}
+.img-profile-caption{
+  width: 20% !important;
+
+}
+
+
+}
+
+
+/* @media screen and (min-width: 768px) {
+  .about-wrapper {
+    width: calc(var(--content-width) - 70px);
+    display: flex !important;
+    flex-direction: row !important;
+  }
+  
 } */
 
 
-
-/*  sidebar left styles */
+.img-profile {
+  max-width: 100%;
+  /* width: 20lvw !important; */
+  /* height: 20lvw !important; */
+ vertical-align:-webkit-baseline-middle;
+ margin-top: 35px;
+ border-top-left-radius: 25px;
+ border-bottom-left-radius: 25px;
+ border-bottom-right-radius: 25px;
+ border-top-right-radius: 25px;
+}
 
 /* Right side column */
 .sidebar-right {
@@ -141,4 +193,59 @@
 
 .sticky + .about-wrapper {
   margin-top: 20px; /* Create space for content below the nav */
+}
+
+/* .site-header { */
+  /* Replace $background-color with actual value */
+  /* background-color: #f0f0f0; */
+
+  /* border-top: 5px solid var(--brand-color); 
+  border-bottom: 1px solid #your-grey-color-light;
+  min-height: calc(1.865 * 16px); 
+  margin-bottom: 0px !important; */
+
+  /* Positioning context for the mobile navigation icon */
+  /* position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0px !important;
+  z-index: 1020 !important; */
+  /* Smooth shadow transition */
+  /* transition: box-shadow 0.3s ease; */
+/* } */
+
+
+
+.navbar-toggler {
+  padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);
+  font-size: var(--bs-navbar-toggler-font-size);
+  line-height: 1;
+  color: var(--bs-navbar-color);
+  background-color: transparent;
+  border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
+  border-radius: var(--bs-navbar-toggler-border-radius);
+  transition: var(--bs-navbar-toggler-transition);
+}
+@media (prefers-reduced-motion: reduce) {
+  .navbar-toggler {
+    transition: none;
+  }
+}
+.navbar-toggler:hover {
+  text-decoration: none;
+}
+.navbar-toggler:focus {
+  text-decoration: none;
+  outline: 0;
+  box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width);
+}
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-image: var(--bs-navbar-toggler-icon-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
 }
