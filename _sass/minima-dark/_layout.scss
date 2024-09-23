@@ -16,7 +16,7 @@
     top: 0px !important;
     z-index: 1020 !important;
     // transition: opacity 0.3s ease; /* Smooth transition for visibility */
-    transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+    // transition: border-bottom 0.1s ease; /* Smooth shadow transition */
 
 }
 
@@ -27,6 +27,8 @@
   letter-spacing: -1px;
   margin-bottom: 0;
   float: left;
+  background-color: var(--bg-light-black); 
+  z-index: 1020 !important;
   &,
   &:visited {
     color: $brand-color;
@@ -42,6 +44,7 @@
   z-index: 1020;
   float: right;
   margin-right: 70px;
+  background-color: var(--bg-light-black);
  
   
 

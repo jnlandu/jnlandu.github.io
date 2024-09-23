@@ -102,8 +102,8 @@
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   width: calc(var(--content-width) - 70px);
-  /* transition: opacity 0.3s ease;  */
-  transition: margin-top 0.3s ease; /* Smooth margin transition */
+  transition: opacity 0.3s ease; 
+  /* transition: margin-top 0.1s ease;  */
   z-index: -1 !important;
 }
 
@@ -171,7 +171,11 @@
 
 
 }
-
+@media screen and (min-width: 769px) {
+  .sticky-nav {
+    background-color: var(--bg-light-black);
+  }
+}
 
 /* @media screen and (min-width: 768px) {
   .about-wrapper {

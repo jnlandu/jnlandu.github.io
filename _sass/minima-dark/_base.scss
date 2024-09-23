@@ -23,7 +23,6 @@ dl, dd, ol, ul, figure {
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   color: $text-color;
-  // background-color: $background-color !important;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
      -moz-font-feature-settings: "kern" 1;
@@ -35,8 +34,7 @@ body {
   flex-direction: column;
   margin-left:  15lvw !important;
   margin-right: 15lvw !important;
-  // margin-left: 200px !important;
-  // margin-right: 200px !important;
+
 }
 
 /**

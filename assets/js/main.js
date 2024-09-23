@@ -69,17 +69,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   const nav = document.querySelector('.site-header');
+  const aboutWrapper = document.querySelector('.about-wrapper');
   
   window.addEventListener('scroll', function() {
       const navHeight = nav.offsetHeight; // Get the height of the nav
       const scrollPosition = window.scrollY; // Current scroll position
+        // Ensure the nav stays sticky without affecting content opacity
+        if (scrollPosition > navHeight) {
+          nav.classList.add('sticky-nav'); // Add class for styling when scrolled past the nav height
+          // aboutWrapper.style.opacity = 0.8;
+          // aboutWrapper.style.transition = 'opacity 0.5s';
+        } else {
+          nav.classList.remove('sticky-nav'); // Remove class when above the nav height
+          // aboutWrapper.style.opacity = 1;
+          
+        }
 
-      // Ensure the nav stays sticky without affecting content opacity
-      if (scrollPosition > navHeight) {
-        nav.classList.add('sticky-nav'); // Add class for styling when scrolled past the nav height
-      } else {
-        nav.classList.remove('sticky-nav'); // Remove class when above the nav height
-      }
+      
   });
 });
 
