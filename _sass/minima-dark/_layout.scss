@@ -8,13 +8,14 @@
   border-top: 5px solid $brand-color;
   border-bottom: 1px solid $grey-color-light;
   min-height: $spacing-unit * 1.865;
-  // width: 100% !important;
+  margin-bottom: 0px !important;
 
 //  Positioning context for the mobile navigation icon
     position: -webkit-sticky !important;
     position: sticky !important; 
     top: 0px !important;
     z-index: 1020 !important;
+    transition: opacity 0.3s ease; /* Smooth transition for visibility */
   
 }
 
@@ -119,7 +120,8 @@
  * Site footer
  */
 .site-footer {
-  background-color: $background-color;
+  // background-color: $background-color;
+  margin-top: 5lvh !important;
   border-top: 1px solid $grey-color-light;
   padding: $spacing-unit 0;
 }

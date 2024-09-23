@@ -40,8 +40,10 @@ header_pages:
  
 
 description: >- # this means to ignore newlines until "baseurl:"
-  This is my personal blog where I share my thoughts and experiences on various topics. 
-  I am a mathematician and a data scientist. Feel free to steal it and make it your own.
+  This is my personal blog where I share my 
+  thoughts and experiences on various topics,in particular, AI, Machine Learning, Data Science. 
+  Please feel free to steal it and make it your own.
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb

@@ -65,3 +65,24 @@ document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.scrollTop = 0;  // For Chrome, Firefox, IE, and Opera
   }
 });
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const nav = document.querySelector('.site-header');
+  const content = document.querySelector('.about-wrapper');
+
+  window.addEventListener('scroll', function() {
+      const navHeight = nav.offsetHeight; // Get the height of the nav
+      const scrollPosition = window.scrollY; // Current scroll position
+
+      // Adjust content opacity based on scroll position
+      if (scrollPosition < navHeight) {
+          // As you scroll up, show content
+          content.style.opacity = 1 - (scrollPosition / navHeight);
+      } else {
+          // Hide content completely after nav is reached
+          content.style.opacity = 0;
+      }
+  });
+});

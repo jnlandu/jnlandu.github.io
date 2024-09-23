@@ -9,6 +9,7 @@
   --brand-color: #2a7ae2; 
   --bs-emphasis-color-rgb: rgb(255, 255, 255);
   --test-white: white;
+  --bg-light-black: #1a1a1a;
 }
 
 
@@ -20,7 +21,7 @@
   color: var(--test-white) !important;
 }
 .dark-mode {
-  background-color: var(--bg-black);
+  background-color: var(--bg-light-black);
 }
 
 /* Style for the toggle button */
@@ -75,16 +76,9 @@
   margin-top: 100px;
   display: -webkit-box !important;
   display: -ms-flexbox !important;
-  /* max-width: calc(var(--content-width) - var(--spacing-unit));
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: calc(var(--spacing-unit) / 2);
-  padding-left: calc(var(--spacing-unit) / 2);
-  z-index: 0; */
   width: calc(var(--content-width) - 70px);
-  z-index: -100 !important;
-
-
+  /* z-index: -100 !important; */
+  transition: opacity 0.3s ease; /* Same transition for content */
 }
 
 /* .site-nav-wrapper{
