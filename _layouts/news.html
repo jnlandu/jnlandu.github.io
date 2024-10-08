@@ -1,0 +1,47 @@
+---
+layout: default
+---
+{% if site.events != nil %} 
+{% assign events = site.events %} 
+{% for event in events limit:5 %}
+<article class="post card mb-3">
+	
+	<header class="post-header">
+    {% if event.title %}
+    <h3 class="event-title mb-0"> 
+       
+        <a href="{{ event.url | escape }}">
+            {% if event.graduation %}
+            <i class="fas fa-graduation-cap"></i>
+            {{ event.title | escape }}
+            {% else if event.start %}
+            <i class="fa-solid fa-flag"></i>
+              {{ event.title | escape }}
+            {% else %}
+            {{ event.title | escape }}
+            {% endif %}
+        </a>
+    </h3>
+    {% endif %}
+    {% if event.date and event.site %}
+    <span>
+        <small class="text-muted mt-0 me-2">{{ event.date | date: "%b %d, %Y" }}</small> 
+        <small class="text-muted mt-0 me-2"> 
+            <a class="mx-2" href="{{ site.location[0] }}"> 
+                <i class="{{ site.location[2] }}"></i>  {{ event.site }}
+            </a>  
+       </small> 
+    {% endif %}
+  </header>
+	{% if event.description %}
+	<div class="event-content">
+		{{ event.description }} <small class="read-more"><a href="{{ event.url | escape }}">Read more</a></small>
+	</div>
+	{% endif %} 
+    
+</article>
+{% endfor %}
+<div class="view-more">
+    <a href="{{ site.baseurl }}/events" class="btn btn-primary">More events</a>
+</div>
+{% endif %}

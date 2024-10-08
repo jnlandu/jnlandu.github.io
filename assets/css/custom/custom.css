@@ -14,7 +14,7 @@
   --link-color: #1a73e8;
   --brand-color: #2a7ae2; 
   --bs-emphasis-color-rgb: rgb(255, 255, 255);
-  --test-white: white;
+  --text-white: white;
   --bg-light-black: #1a1a1a;
 
   /* --content-width: 100%;  */
@@ -105,6 +105,7 @@
   transition: opacity 0.3s ease; 
   /* transition: margin-top 0.1s ease;  */
   z-index: -1 !important;
+  
 }
 
 @media screen and (min-width: 100px) and ( max-width: 768px) {
@@ -177,14 +178,11 @@
   }
 }
 
-/* @media screen and (min-width: 768px) {
-  .about-wrapper {
-    width: calc(var(--content-width) - 70px);
-    display: flex !important;
-    flex-direction: row !important;
-  }
-  
-} */
+.post-title {
+  color: var(--text-color); /* Fallback for browsers that do not support color modification */
+  color: color(var(--text-color) lightness(+20%));
+}
+
 
 .nav-toggle-btn {
   display: none;
@@ -217,16 +215,17 @@
 
 /* Left side column */
 .sidebar-left {
-  width: 25% !important; /* Adjust as needed */
-  /* background-color: #f0f0f0; Replace with actual background color  */
-  overflow-x: auto; /* Allows horizontal scrolling */
-  position: -webkit-sticky; /* For Safari */
-  position: sticky;
-  /* float: left; */
+  width: 18% !important; /* Adjust as needed */
   top: 0px; /* Stick to the top of the viewport */
   height: 100vh; /* Full viewport height */
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  
+  position: fixed !important;
+  overflow-x: hidden !important;
+  top: 0px !important;
+  z-index: 0 !important;
+  margin-top: 100px !important;
 }
 
 .text-justified {
@@ -287,4 +286,13 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
+}
+.main-content {
+  width: 50% !important;
+  margin-top: 50px !important;
+  margin-left: 30% !important;
+}
+
+.tag{
+  color: tomato !important;
 }

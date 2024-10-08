@@ -1,62 +1,55 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+    {%- include head.html -%}
 
-  {%- include head.html -%}
-
-<body>
-    <!-- Back to Top button -->
-    {% include back-to-top-btn.html %}
-    <!-- <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
+    <body>
+        <!-- Back to Top button -->
+        {% include back-to-top-btn.html %}
+        <!-- <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
     </button> -->
-    <!-- Site Header -->
-     
-     <header class="site-header">
-      {%- include header.html -%}
-     </header>
-    
-    {% if page.title =='Home' %}
-      <div class="about-wrapper">
-          {% include about-me.html %}
-      </div>
+        <!-- Site Header -->
 
-    {% else %}
+        <header class="site-header">
+            {%- include header.html -%}
+        </header>
 
-     <div class="row main-wrapper">
-        <aside class="col-md-3 sidebar-left">
-          {% include sidebar-left.html %}
-        </aside>
-        <div class="col-md-6">
-            {{ content }}
+        {% if page.title =='Home' %}
+        <div class="about-wrapper">
+            {% include about-me.html %}
         </div>
-        {%- if page.layout == 'post' and page.toc -%}
-        <aside class="col-md-2 sidebar-right">
-            {% include toc.html html=content %}
-        </aside>
-        {%- endif -%}
-    </div>
-    {% endif %}
-  <!-- </div> -->
+      
+        {% else %}
+        <div class="row main-wrapper">
+            <aside class="col-md-3 sidebar-left">
+                {% include sidebar-left.html %}
+            </aside>
+            <div class="col-md-6 main-content">
+                {{ content }}
+            </div>
+            {%- if page.layout == 'post' and page.toc -%}
+            <aside class="col-md-1 sidebar-right">
+                {% include toc.html html=content %}
+            </aside>
+            {%- endif -%}
+        </div>
+        {% endif %}
+        <!-- </div> -->
 
-    <!-- Scripts -->
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+        <!-- Scripts -->
+        <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 
-
-    <!-- Footer is commented out -->
- <!-- <footer class="site-footer">
+        <!-- Footer is commented out -->
+        <!-- <footer class="site-footer">
     {%- include footer.html -%}
 
   
   </footer> -->
 
- <!--  include icons  -->
- {% include icons.html %}
+        <!--  include icons  -->
+        {% include icons.html %}
 
-  <footer class="mt-4 justify-content-center">
-  {% include footer.html %}
-</footer>
-
-</body>
-
-
-
+        <footer class="mt-4 justify-content-center">
+            {% include footer.html %}
+        </footer>
+    </body>
 </html>
