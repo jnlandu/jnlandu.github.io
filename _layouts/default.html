@@ -6,7 +6,7 @@
         <!-- Back to Top button -->
         {% include back-to-top-btn.html %}
         <!-- <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
-    </button> -->
+        </button> -->
         <!-- Site Header -->
 
         <header class="site-header">
@@ -20,10 +20,10 @@
       
         {% else %}
         <div class="row main-wrapper">
-            <aside class="col-md-3 sidebar-left">
+            <aside class="sidebar-left">
                 {% include sidebar-left.html %}
             </aside>
-            <div class="col-md-6 main-content">
+            <div class="main-content">
                 {{ content }}
             </div>
             {%- if page.layout == 'post' and page.toc -%}
@@ -34,7 +34,7 @@
         </div>
         {% endif %}
         <!-- </div> -->
-
+  
         <!-- Scripts -->
         <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 

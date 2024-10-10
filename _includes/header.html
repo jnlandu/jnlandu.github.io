@@ -1,28 +1,25 @@
-  <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
-  </button>
-       {% if site.firstName and site.lastName  %}
-        <a class="site-title me-4" rel="author" href="{{ '/' | relative_url }}">
-          {{ site.firstName | escape }} {{ site.lastName}} 
-        </a>
-        {% endif %}
-        <button class="nav-toggle-btn" aria-label="Toggle Menu">
-          <i class="fa-sharp fa-solid fa-bars"></i>
-        </button>
+<button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
+</button>
+     {% if site.firstName and site.lastName  %}
+      <a class="site-title me-4" rel="author" href="{{ '/' | relative_url }}">
+        {{ site.firstName | escape }} {{ site.lastName}} 
+      </a>
+      {% endif %}
+      <button class="nav-toggle-btn" aria-label="Toggle Menu">
+        <i class="fa-sharp fa-solid fa-bars"></i>
+      </button>
 
-        {% if site.data.navigation %}
-        {%- assign navpages = site.data.nav -%}
-          <nav class="site-nav">
-            <div class="trigger">
-              {% for navpage in navpages %}
-                  {%- if navpage.url == page.url  -%}
-                  <a class="page-link active" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
-                  {% else %}
-                  <a class="page-link text-white " href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
-                 {% endif %}
-              {%- endfor -%}
-            </div>
-          </nav>
-        {% endif %} 
-      
-  
-
+      {% if site.data.navigation %}
+      {%- assign navpages = site.data.nav -%}
+        <nav class="site-nav">
+          <div class="trigger">
+            {% for navpage in navpages %}
+                {%- if navpage.url == page.url  -%}
+                <a class="page-link active" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
+                {% else %}
+                <a class="page-link text-white " href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
+               {% endif %}
+            {%- endfor -%}
+          </div>
+        </nav>
+      {% endif %} 

@@ -100,3 +100,14 @@ document.addEventListener('DOMContentLoaded', function () {
     nav.style.display = 'block !important';
   });
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const navToggleButton = document.querySelector('.nav-toggle-btn');
+  const nav = document.querySelector('.site-nav');
+
+  navToggleButton.addEventListener('click', function() {
+    const isDisplayed = window.getComputedStyle(nav).display !== 'none';
+    nav.style.display = isDisplayed ? 'none' : 'block';
+  });
+});

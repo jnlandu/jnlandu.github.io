@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 title: Summer School on Probability, Information Theory, Combinatorics
 location: Kigali, Rwanda
 url: "https://www.uni-frankfurt.de/147012250/A_PIC_24"

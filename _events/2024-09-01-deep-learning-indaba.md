@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 title:  Deep Learning Indaba 2024, African parlour in AI and Machine Learning.
 location: Dakar, Senegal
 date: "01 Sept - 09 Sept 24"
