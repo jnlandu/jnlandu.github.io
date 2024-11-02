@@ -4,3 +4,58 @@ title: Chat with Me
 description: Chat with me
 permalink: /chat-with-me.html
 ---
+
+<h1 class="chat-title">Ask anything about Jeremie</h1>
+<div class="question-input d-flex align-items-center gap-2">
+    <textarea
+        id="message"
+        class="form-control p-2"
+        placeholder="Type your message here..."
+        rows="2"
+        oninput="updateMessage(event)"
+    ></textarea>
+    <button onclick="handleSend()" class="btn send-btn">
+        <svg width="24" height="24" fill="#c9c9c9">
+            <use xlink:href="#arrow-top"></use>
+        </svg>
+        
+    </button>
+</div>
+
+<script>
+    let message = '';
+    function startVoiceRecognition() {
+        // Dummy function for voice recognition toggle
+        const micIcon = document.getElementById('micIcon');
+        micIcon.classList.toggle('icon-mic-on');
+        micIcon.classList.toggle('icon-mic-off');
+        micIcon.textContent = micIcon.classList.contains('icon-mic-on') ? '🔴' : '🎤';
+    }
+    
+    function updateMessage(event) {
+        message = event.target.value;
+    }
+    
+    function handleFileUpload(event) {
+        // Handle the file input change event here
+        console.log('File uploaded:', event.target.files[0]);
+    }
+    
+    function handleSend() {
+        console.log('Message sent:', message);
+        // Reset the textarea
+        document.getElementById('message').value = '';
+        message = '';
+    }
+    
+    function openVisionPage() {
+        // Navigation to vision page
+        window.location.href = '/vision'; // Adjust this URL to your vision page's URL
+    }
+</script>
+    
+
+<!-- <dv class="chat-input-container">
+    <input type="text" class="chat-input" placeholder="Type your message here">
+    <button class="chat-send-btn">Send</button>
+</dv> -->
