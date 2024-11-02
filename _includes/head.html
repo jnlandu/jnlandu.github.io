@@ -7,6 +7,9 @@
   
   <link id="style" rel="stylesheet" href="{{ '/assets/css/main/main-dark.css' | relative_url }}" data-light-theme="{{ '/assets/css/main/main-light.css' | relative_url }}" 
   data-dark-theme="{{ '/assets/css/main/main-dark.css' | relative_url }}">
+  {% if page.url == '/chat-with-me.html' or page.title == 'chat' %}
+  <link rel="stylesheet" href="{{ '/assets/chat.css' | relative_url }}">
+  {% endif %}
 
  <!--  bootstrap -->
  <link rel="stylesheet" href="{{ '/assets/css/custom/bootstrap-mini.css' | relative_url }}">
@@ -36,5 +39,6 @@
   {%- endif -%}
   
   {% include katex.html %}
+
 
 </head>

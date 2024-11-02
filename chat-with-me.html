@@ -1,12 +1,13 @@
 ---
 layout: chat-layout
-title: Chat with Me
+title: chat
 description: Chat with me
 permalink: /chat-with-me.html
 ---
 
 <h1 class="chat-title">Ask anything about Jeremie</h1>
-<div class="question-input d-flex align-items-center gap-2">
+
+<!-- <div class="question-input d-flex align-items-center gap-2">
     <textarea
         id="message"
         class="form-control p-2"
@@ -20,9 +21,36 @@ permalink: /chat-with-me.html
         </svg>
         
     </button>
-</div>
+</div> -->
+<p>Step 1: Initialize WebLLM and Download Model</p>
+<p class="test"> test </p>
+    <div class="download-container">
+      <select id="model-selection"></select>
+      <button id="download">Download</button>
+    </div>
+    <p id="download-status" class="hidden"></p>
 
-<script>
+    <p>Step 2: Chat</p>
+    <div class="chat-container">
+      <div id="chat-box" class="chat-box"></div>
+      <div id="chat-stats" class="chat-stats hidden"></div>
+      <div class="chat-input-container">
+        <input type="text" id="user-input" placeholder="Type a message..." />
+        <button id="send">Send</button>
+      </div>
+ </div>
+
+
+
+<!-- <script>
+    // Import webllm from the cloud
+    // import * as webllm from "https://esm.run/@mlc-ai/web-llm";
+    const webllm = await import("https://esm.run/@mlc-ai/web-llm");
+
+
+
+
+// 
     let message = '';
     function startVoiceRecognition() {
         // Dummy function for voice recognition toggle
@@ -53,7 +81,7 @@ permalink: /chat-with-me.html
         window.location.href = '/vision'; // Adjust this URL to your vision page's URL
     }
 </script>
-    
+     -->
 
 <!-- <dv class="chat-input-container">
     <input type="text" class="chat-input" placeholder="Type your message here">

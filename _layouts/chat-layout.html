@@ -6,9 +6,7 @@
     <body>
         <!-- Back to Top button -->
         {% include back-to-top-btn.html %}
-        <!-- <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
-        </button> -->
-        <!-- {% include chat-with-me-icon.html %} -->
+       
         
         <!-- Site Header -->
         <header class="site-header">
@@ -27,9 +25,7 @@
 
 
         
-        <!-- Scripts -->
-        <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-
+        
 
         <!--  include icons  -->
         {% include icons.html %}
@@ -37,5 +33,8 @@
         <footer class="mt-4 justify-content-center">
             {% include footer.html %}
         </footer>
+        <!-- Scripts -->
+        <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+        <script type="module" src="{{ '/assets/js/chat.js' | relative_url }}"></script>
     </body>
 </html>

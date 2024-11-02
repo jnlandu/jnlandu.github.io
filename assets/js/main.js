@@ -1,3 +1,7 @@
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
   renderMathInElement(document.body, {
     delimiters: [
@@ -111,3 +115,10 @@ document.addEventListener("DOMContentLoaded", function() {
     nav.style.display = isDisplayed ? 'none' : 'block';
   });
 });
+
+
+
+
+
+
+// Chat
