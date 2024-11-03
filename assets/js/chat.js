@@ -13,11 +13,11 @@ const messages = [
 ];
 
 
-
-const availableModels = webllm.prebuiltAppConfig.model_list.map(
-  (m) => m.model_id,
-);
-let selectedModel = "Llama-3.1-8B-Instruct-q4f32_1-1k";
+// const availableModels = webllm.prebuiltAppConfig.model_list.map(
+//   (m) => m.model_id,
+// );
+// let selectedModel = "Llama-3.1-8B-Instruct-q4f32_1-1k";
+let selectedModel = "Llama-3.2-1B-Instruct-q4f32_1-MLC";
 
 // Callback function for initializing progress
 function updateEngineInitProgressCallback(report) {
@@ -32,7 +32,7 @@ engine.setInitProgressCallback(updateEngineInitProgressCallback);
 
 async function initializeWebLLMEngine() {
   document.getElementById("download-status").classList.remove("hidden");
-  selectedModel = document.getElementById("model-selection").value;
+  // selectedModel = document.getElementById("model-selection").value;
   const config = {
     temperature: 1.0,
     top_p: 1,
@@ -140,13 +140,6 @@ function updateLastMessage(content) {
 }
 
 /*************** UI binding ***************/
-availableModels.forEach((modelId) => {
-  const option = document.createElement("option");
-  option.value = modelId;
-  option.textContent = modelId;
-  document.getElementById("model-selection").appendChild(option);
-});
-document.getElementById("model-selection").value = selectedModel;
 document.getElementById("download").addEventListener("click", function () {
   initializeWebLLMEngine().then(() => {
     document.getElementById("send").disabled = false;
@@ -156,9 +149,7 @@ document.getElementById("send").addEventListener("click", function () {
   onMessageSend();
 });
 
-
 //  Test the code 
-
 console.log("Hello from chat.js");
 document.querySelector(".test").style.color = "red";
 console.log(document.querySelector(".test").innerHTML);

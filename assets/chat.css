@@ -1,9 +1,32 @@
-body,
-html {
-  font-family: Arial, sans-serif;
-  padding: 10px 20px;
+.main-content{
+  overflow-x: visible !important;
 }
-
+.chat-title{
+  position: sticky;
+  font-family: 'Lobster', sans-serif;
+  text-align: center;
+  margin-left: 2px;
+  margin-bottom: 20px;
+}
+.question-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.send-btn {
+  background-color: #2a7ae2;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 180px;
+  max-width: max-content;
+}
+.send-btn:hover {
+  /* background-color: #171717; */
+}
 .download-container {
   display: flex;
   justify-content: space-between;
@@ -20,8 +43,8 @@ html {
 
 .chat-container {
   height: 400px;
-  width: 100%;
-  border: 2px solid black;
+  /* width: 100%; */
+  /* border: 2px solid black; */
   display: flex;
   flex-direction: column;
 }
@@ -103,4 +126,29 @@ button:hover:not(:disabled) {
 
 .hidden {
   display: none;
+}
+
+.sync-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+.sync-text{
+  padding-left : 30px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.sync-btn{
+  margin: 10px;
+  width: fit-content;
+  background-color: var(--brand-color);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 180px;
+}
+.download-status-color{
+  color: #2a7ae2;
 }

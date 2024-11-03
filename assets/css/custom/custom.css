@@ -336,28 +336,3 @@
   color: #ffff;
   z-index: 1000;
 }
-.chat-title{
-  font-family: 'Lobster', sans-serif;
-  text-align: center;
-  margin-left: 2px;
-  margin-bottom: 20px;
-}
-.question-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.send-btn {
-  background-color: #2a7ae2;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 180px;
-  max-width: max-content;
-}
-.send-btn:hover {
-  /* background-color: #171717; */
-}

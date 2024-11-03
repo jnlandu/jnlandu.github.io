@@ -5,40 +5,52 @@ description: Chat with me
 permalink: /chat-with-me.html
 ---
 
-<h1 class="chat-title">Ask anything about Jeremie</h1>
+<h1 class="chat-title">Ask anything about <span class="text-brand">Jérémie</span></h1>
+<p class="text-center "> Please, here's how you will do: First press the button below to sync model.</p>
 
-<!-- <div class="question-input d-flex align-items-center gap-2">
-    <textarea
-        id="message"
+<div class="sync-container">
+    <p class="sync-text"> Sync the local model to start asking questions ...</p>
+    <button id="download" class="sync-btn">
+       <svg width="35" height="35" fill="#c9c9c9">
+            <use xlink:href="#synch"></use>
+       </svg>
+    </button>
+</div>
+<p id="download-status" class="hidden download-status-color"></p>
+<p class="test"> test </p>
+<div class="chat-container">
+      <div id="chat-box" class="chat-box"></div>
+      <div id="chat-stats" class="chat-stats hidden"></div>
+
+      <!-- <div class="chat-input-container question-input d-flex align-items-center gap-2">
+        <textarea
+        id="user-input"
         class="form-control p-2"
-        placeholder="Type your message here..."
+        placeholder="Ask your question here ..."
         rows="2"
-        oninput="updateMessage(event)"
-    ></textarea>
-    <button onclick="handleSend()" class="btn send-btn">
+        type="text"
+        ></textarea>
+        <button  id="send"  class="btn send-btn">
+            <svg width="24" height="24" fill="#c9c9c9">
+                <use xlink:href="#arrow-top"></use>
+            </svg>
+        </button>
+      </div>   -->
+ </div>
+ <div class="question-input d-flex align-items-center gap-2">
+    <textarea
+        id="user-input"
+        class="form-control p-2"
+        placeholder="Ask your question here ..."
+        rows="2"
+        type="text"
+        ></textarea>
+      <button  id="send"  class="btn send-btn">
         <svg width="24" height="24" fill="#c9c9c9">
             <use xlink:href="#arrow-top"></use>
         </svg>
-        
     </button>
-</div> -->
-<p>Step 1: Initialize WebLLM and Download Model</p>
-<p class="test"> test </p>
-    <div class="download-container">
-      <select id="model-selection"></select>
-      <button id="download">Download</button>
-    </div>
-    <p id="download-status" class="hidden"></p>
-
-    <p>Step 2: Chat</p>
-    <div class="chat-container">
-      <div id="chat-box" class="chat-box"></div>
-      <div id="chat-stats" class="chat-stats hidden"></div>
-      <div class="chat-input-container">
-        <input type="text" id="user-input" placeholder="Type a message..." />
-        <button id="send">Send</button>
-      </div>
- </div>
+</div>
 
 
 
