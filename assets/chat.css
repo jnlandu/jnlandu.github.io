@@ -28,6 +28,7 @@
   background-color: #2a7ae2;
   border: none;
   padding: 10px 20px;
+  margin: 10px;
   cursor: pointer;
   border-radius: 180px;
   max-width: max-content;
@@ -100,7 +101,7 @@
 }
 
 #user-input {
-  width: 70%;
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
 }
