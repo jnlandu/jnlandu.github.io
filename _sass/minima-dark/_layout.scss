@@ -15,9 +15,6 @@
     position: sticky !important; 
     top: 0px !important;
     z-index: 1020 !important;
-    // transition: opacity 0.3s ease; /* Smooth transition for visibility */
-    // transition: border-bottom 0.1s ease; /* Smooth shadow transition */
-
 }
 
 .site-title {
@@ -27,7 +24,7 @@
   letter-spacing: -1px;
   margin-bottom: 0;
   float: left;
-  background-color: var(--bg-light-black); 
+  // background-color: var(--bg-light-black); 
   z-index: 1020 !important;
   &,
   &:visited {
@@ -36,7 +33,6 @@
 }
 
 .site-nav {
-  // float: right;
   line-height: $base-line-height * $base-font-size * 2.25;
   position: -webkit-sticky;
   position: sticky;

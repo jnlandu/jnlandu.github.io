@@ -1,3 +1,15 @@
+:root {
+  /* Light mode colors */
+  --bg-black: #000000;
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --link-color: #1a73e8;
+  --brand-color: #2a7ae2; 
+  --bs-emphasis-color-rgb: rgb(255, 255, 255);
+  --text-white: white;
+  --bg-light-black: #1a1a1a;
+}
+
 .main-content{
   overflow-x: visible !important;
 }
@@ -49,20 +61,21 @@
 }
 
 .chat-container {
+  background-color: var(--bg-light-black);
   height: 400px;
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
+  border: none;
 }
 
 .chat-box {
+  background-color: var(--bg-light-black);
   overflow-y: scroll;
-  background-color: #c3c3c3;
-  border: 1px solid #ccc;
-  padding: 5px;
+  /* border: 1px solid #ccc; */
+  padding: 20px;
   flex: 1 1;
 }
-
 .chat-stats {
   background-color: #d3eceb;
   flex: 0 0;
