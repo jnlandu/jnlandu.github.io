@@ -9,13 +9,16 @@
   margin-bottom: 20px;
 }
 .question-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
   margin-bottom: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
   /*  */
   min-height: 40px;
   flex: 0 0;
@@ -29,9 +32,7 @@
   border-radius: 180px;
   max-width: max-content;
 }
-.send-btn:hover {
-  /* background-color: #171717; */
-}
+
 .download-container {
   display: flex;
   justify-content: space-between;
@@ -48,10 +49,9 @@
 
 .chat-container {
   height: 400px;
-  /* width: 100%; */
-  /* border: 2px solid black; */
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 
 .chat-box {
@@ -104,7 +104,6 @@
   padding: 10px;
   border: 1px solid #ccc;
 }
-
 button {
   width: 25%;
   padding: 10px;
