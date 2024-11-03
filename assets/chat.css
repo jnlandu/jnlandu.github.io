@@ -133,6 +133,7 @@ button:hover:not(:disabled) {
   align-items: center;
   border: 1px solid #ccc;
   border-radius: 20px;
+  margin-bottom: 20px;
 }
 .sync-text{
   padding-left : 30px;

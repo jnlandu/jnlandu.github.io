@@ -1,8 +1,8 @@
 - title: Home
   url: /
   
-- title: Chat with Me
-  url: /chat/
+# - title: Chat with Me
+#   url: /chat/
 
 - title: Posts
   url: /posts/
