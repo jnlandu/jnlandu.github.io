@@ -336,3 +336,12 @@
   color: #ffff;
   z-index: 1000;
 }
+.warning-text{
+  animation: blink-animation 1.9s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
