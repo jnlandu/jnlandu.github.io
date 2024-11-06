@@ -4,11 +4,17 @@ title: Chat with Jérémie
 description: Chat with Jeremie
 permalink: /chat-with-me.html
 ---
+
 <h1 class="chat-title">Ask anything about <span class="text-brand">Jérémie</span></h1>
 <p class="text-danger warning-text">
-    This chat, may not be able to answer all your questions, but it will try to answer as much as possible. 
-    Currently it can chat  about several topics, but not exactly  about me, since I am still fine-tuning the model on my personal data.
-    Feel free to reach out to me in my  email or social media, if you have any questions. I am always active  on twitter.
+    This chat may not be able to answer all  the questions about me, but it will try to answer as much as possible. 
+    Currently it can also chat  about several topics, since it is a bigger model which was trained on larger datasets. 
+    This being said, I expect it to hallucinate, that is, generate answers that are exagerated.
+    I am working on building a tiny model,fully specialized model on my personal informations, to prevent such behavior.
+    For more accurate details about me, feel free to reach out via my 
+    <a href="mailto:{{ site.email }}" class="text-brand">email</a> or social media
+    <a href="{{ site.data.social['Twitter'] }}" class="text-brand ">twitter</a>.
+</p>
 </p>
 <p class="text-center "> Please, here's how you will do. First press the button below to sync the model.</p>
 <div class="sync-container">
@@ -22,7 +28,6 @@ permalink: /chat-with-me.html
 <p id="download-status" class="hidden download-status-color"></p>
 
 <!-- <p class="test"> test </p> -->
-
 <div class="chat-container">
       <div id="chat-box" class="chat-box"></div>
       <div id="chat-stats" class="chat-stats hidden"></div>

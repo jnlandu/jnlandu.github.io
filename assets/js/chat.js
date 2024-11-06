@@ -1,22 +1,23 @@
 
-
 import * as webllm from "https://esm.run/@mlc-ai/web-llm";
-
-
 
 /*************** WebLLM logic ***************/
 const messages = [
   {
-    content: "You are a helpful AI agent helping users.",
+    content: "You are a helpful AI agent helping users.\
+    My name is Jeremie Nlandu Mabiala, I am a software engineer.\
+    I am currently  a Master  student in Artificial Intelligence at the African Institute of Mathematical Sciences (AIMS) in Senegal.\
+    Previously, I did a Master in Mathematics at Stellenbosch and AIMS South Africa in Cape Town. I also have a BSc in Mathematics, equivalent to Bac + 5.\
+    I am passionate about Mathematics and  AI. I am looking for PhDs or Research internship in Mathematical (Modeling) or  AI.\
+    I like to learn new things and I am a fast learner.\
+    I also have  an experience in teaching Mathematics.\
+    I am opened for collaboration in AI or Mathematics.\
+    ",
     role: "system",
   },
 ];
 
 
-// const availableModels = webllm.prebuiltAppConfig.model_list.map(
-//   (m) => m.model_id,
-// );
-// let selectedModel = "Llama-3.1-8B-Instruct-q4f32_1-1k";
 let selectedModel = "Llama-3.2-1B-Instruct-q4f32_1-MLC";
 
 // Callback function for initializing progress
@@ -32,7 +33,6 @@ engine.setInitProgressCallback(updateEngineInitProgressCallback);
 
 async function initializeWebLLMEngine() {
   document.getElementById("download-status").classList.remove("hidden");
-  // selectedModel = document.getElementById("model-selection").value;
   const config = {
     temperature: 1.0,
     top_p: 1,
@@ -149,8 +149,3 @@ document.getElementById("send").addEventListener("click", function () {
   onMessageSend();
 });
 
-//  Test the code 
-console.log("Hello from chat.js");
-document.querySelector(".test").style.color = "red";
-console.log(document.querySelector(".test").innerHTML);
-// console.log()
