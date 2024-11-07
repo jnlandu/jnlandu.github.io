@@ -8,10 +8,12 @@
     {% endif %}
   <p class="text-center">
     {% if site.firstName and site.lastName  %}
-    Copyright © {{ year_string }} <span class="text-brand">{{ site.firstName }} {{ site.lastName }}</span>; All rights reserved.
+    Developed by  <span class="text-brand">{{ site.firstName }} {{ site.lastName }}</span> ©{{ year_string }}.
     {% endif %}
     <br>
+    {% comment %}
     Powered by <a class="yellow" href="https://jekyllrb.com/">Jekyll</a> and hosted by <a class="yellow" href="hhttps://pages.github.com/">github pages</a>.
+    {% endcomment %}
      {{ site.description | escape }} 
      {% if site.github_repo %}
      Feel free to 
