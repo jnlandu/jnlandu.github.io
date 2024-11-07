@@ -18,7 +18,7 @@
   font-family: 'Lobster', sans-serif;
   text-align: center;
   margin-left: 2px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .question-input {
   display: flex;
@@ -143,16 +143,36 @@ button:hover:not(:disabled) {
 
 .sync-container{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  border: 1px solid #ccc;
   border-radius: 20px;
   margin-bottom: 20px;
 }
 .sync-text{
-  padding-left : 30px;
+  /* padding-left : 30px; */
   text-align: center;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
+}
+button{
+  background-color: none !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  cursor: pointer;
+  border-radius: 180px  !important;
+  align-items: center;
+}
+.sync-btn-container{
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  align-items: center;
+  /* border: 1px solid #ccc; */
+  background-color: none !important;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 180px;
+  align-items: center;
+
 }
 .sync-btn{
   margin: 10px;
@@ -162,6 +182,7 @@ button:hover:not(:disabled) {
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 180px;
+  align-items: center;
 }
 .download-status-color{
   color: #2a7ae2;

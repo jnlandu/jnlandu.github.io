@@ -179,6 +179,7 @@
   --bs-form-valid-border-color: #75b798;
   --bs-form-invalid-color: #ea868f;
   --bs-form-invalid-border-color: #ea868f;
+  --brand-color: #2a7ae2; 
 }
 
 
@@ -2164,12 +2165,12 @@ btn {
   }
 }
 .btn:hover {
-  color: var(--bs-btn-hover-color);
-  background-color: var(--bs-btn-hover-bg);
+  color: var(--brand-color);
+  background-color: var(--brand-color);
   border-color: var(--bs-btn-hover-border-color);
 }
 .btn-check + .btn:hover {
-  color: var(--bs-btn-color);
+  color: var(--brand-color);
   background-color: var(--bs-btn-bg);
   border-color: var(--bs-btn-border-color);
 }
