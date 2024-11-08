@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+    {%- include head.html -%}
+
+    <body>
+        <!-- Back to Top button -->
+        {% include back-to-top-btn.html %}
+        <!-- <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
+        </button> -->
+        {% include chat-with-me-icon.html %}
+        
+        <!-- Site Header -->
+        <header class="site-header">
+            {%- include header.html -%}
+        </header>
+
+        {% if page.title =='Home' %}
+        <div class="about-wrapper">
+            {% include about-me.html %}
+        </div>
+        <div class="course-section">
+                <h2 class="course-section-title">Cours Attended</h2>
+                <hr class="h-line">
+            <div class="course-wrapper">
+                {% include courses.html %}
+            </div>
+        </div>
+        
+        {% comment %}
+        <div class="blog-wrapper">
+            {% include blog.html %}
+        </div>
+        <div class="project-wrapper">
+            {% include projects.html %}
+        
+        </div>
+        <div class="contact-wrapper">
+            {% include contact.html %}
+        </div>
+        {% endcomment %}
+
+        {% else %}
+        <div class="row main-wrapper">
+           
+            <div class="main-content">
+                {{ content }}
+            </div>
+            {%- if page.layout == 'post' and page.toc -%}
+            <aside class="col-md-1 sidebar-right">
+                {% include toc.html html=content %}
+            </aside>
+            {%- endif -%}
+        </div>
+        {% endif %}
+    
+        <!-- Scripts -->
+        <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+        <script src="{{ '/assets/js/animation.js' | relative_url }}"></script>
+        <!--  include icons  -->
+        {% include icons.html %}
+
+        <footer class="mt-4 justify-content-center">
+            {% include footer.html %}
+        </footer>
+    </body>
+</html>
