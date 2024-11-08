@@ -1,0 +1,15 @@
+---
+layout: default
+---
+{% if site.courses != nil %}
+{% assign courses = site.courses %}
+{% for course in courses %}
+<div class=" course-content-container"  style="animation-delay: 0s;">
+    <h1 class="h5 text-brand">{{course.title}}</h1>
+    <p>
+       {{course.content}}
+    <p>
+</div>
+{% endfor %}
+{% endif %}
+
