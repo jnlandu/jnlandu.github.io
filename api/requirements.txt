@@ -1,3 +1,0 @@
-transformers>=4.43.2
-bitsandbytes>=0.1.0
-peft

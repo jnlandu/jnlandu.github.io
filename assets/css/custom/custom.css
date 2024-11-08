@@ -16,7 +16,8 @@
   --bs-emphasis-color-rgb: rgb(255, 255, 255);
   --text-white: white;
   --bg-light-black: #1a1a1a;
-
+  --bg-light-black-secondary:  #121212;
+  --bg-light-black-tertiary: #0e0e0e;
   /* --content-width: 100%;  */
   --spacing-unit: 20px;  
   --bs-border-width: 1px;
@@ -345,3 +346,80 @@
     visibility: hidden;
   }
 }
+
+
+
+
+/*  Course section  styles */
+.h-line{
+  margin-left: 200px;
+  margin-top: -30px;
+}
+.course-section-title{
+  font-family: 'Lobster', sans-serif;
+  font-size: 2rem;
+  margin-top: 20px;
+  width: 20%;
+}
+.course-section{
+  margin-top: 20px;
+  padding: 10px;
+}
+.course-wrapper {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  overflow-x: auto;
+  width: fit-content;
+  gap: 10px;
+  width: calc(var(--content-width) - 40px);
+  z-index: -1 !important;
+ 
+}
+.course-content-container .h5{
+  font-family: 'Lobster', sans-serif !important;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.course-content-container{
+  position: relative;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 30px;
+  text-align: justify;
+  justify-content: center;
+  width: 50%;
+  border-radius: 10px;
+  /* box-shadow: 0 2px 5px rgba(182, 100, 100, 0.2); */
+  box-shadow: 0 2px 5px rgba(18, 12, 12, 0.2);
+  background-color: var(--bg-light-black-secondary);
+
+   /*  animation  */
+   animation: slideIn 10s linear;
+   animation-fill-mode: forwards; 
+   animation-direction: reverse;
+   animation-iteration-count: infinite;
+
+}
+@keyframes slideIn {
+  from{right: 50%;}
+  to { right: 0px;}
+}
+.course-content-container{
+  transition: opacity 0.3s ease, transform 0.5s ease; 
+}
+/* Hover effect */
+.course-content-container:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+/* Disable animation */
+.no-animation {
+  animation: none !important;
+}
+
+
