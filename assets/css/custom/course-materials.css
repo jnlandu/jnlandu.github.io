@@ -1,0 +1,31 @@
+.img-fluid {
+    width: 100%;
+    height: auto;
+    border-radius: 15px !important;
+  }
+  .image-container{
+    display: flex;
+    flex-direction: column !important;
+  }
+  
+  .img-thumbnail {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    height: auto;
+  }
+  .course-material-container{
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+  .course-component{
+    display:flex;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* margin-left: 150px;
+    margin-right: 150px; */
+  }
+

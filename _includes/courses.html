@@ -37,7 +37,13 @@
         
         The purpose of the course was to present the theoretical formulation of convex problems and the asymptotic behaviors of (Stochastic) Gradient methods. For instance, it was shown that 
         although Stochastic Gradient Descent (SGD) is efficient—because it does not make use of the full dataset—it never converges to the optimal solution without restrictive assumptions. We also implemented these algorithms from scratch and worked on theoretical exercises.
-        Please refer to the materials <a class="text-brand" href="optim">here</a>. The course was given by Dr. <a class="text-brand" href="https://www.linkedin.com/in/lionel-ngoupeyou-tondji-057a25128/?originalSubdomain=de">Lionel Tondji</a>, 
+        Please refer to 
+        {% if site.courses_materials.optim %} 
+        <a class="text-brand" href="{{ site.course_materials.optim.url  | relative_url }}">here</a>
+        {% else %}
+        <a class="text-brand" href="optim"> the course  material.</a>
+        {% endif %}
+       The course was given by Dr. <a class="text-brand" href="https://www.linkedin.com/in/lionel-ngoupeyou-tondji-057a25128/?originalSubdomain=de">Lionel Tondji</a>, 
         a former student of AMMI. Find the goodbye photos <a class="text-brand" href="ammi-photos/optim">here</a>.
     </p>    
   </div>

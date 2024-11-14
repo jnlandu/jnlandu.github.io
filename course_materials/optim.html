@@ -1,0 +1,85 @@
+---
+layout: course-default
+title: Optimization for Machine Learning
+permalink: /optim/
+---
+
+<h1 class="h5 text-brand mt-3">Optimization for Machine Learning</h1>
+  <div class="d-flex gap-3">
+    <div class=" col-sm-4 image-container">
+    <img src="{{ '/assets/static/img/optim.png' | relative_url }}" alt="Optimization for Machine Learning" class="img-fluid">
+    <small class="small">Image source: <a class="text-brand" href="https://www.linkedin.com/pulse/supervised-learning-optimization-mateo-gallo/">Mateo Gallo</a></small>
+  </div>
+    <div class="col-sm-8 course-summary">
+      <p class="text-justified">
+        Many problems in statistical learning consist of finding the best set of parameters or the best functions given some data. These are estimation problems.
+        These problems, encountered almost everywhere in Machine Learning and Deep Learning, can easily be formulated as
+        optimization problems. These formulations help to understand the performance of learning algorithms.
+        In this course, classical convex optimization theory was presented. Classical gradient methods and their variants were discussed, as well as variance-reduced methods and 
+        accelerated gradient methods <a class="text-brand"  href="" onclick="toggleText(this)">Read more</a>.
+        <p class="more d-none">
+          The purpose of the course was to present the theoretical formulation of convex problems and the asymptotic behaviors of (Stochastic) Gradient methods. For instance, it was shown that
+          although Stochastic Gradient Descent (SGD) is efficient—because it does not make use of the full dataset—it never converges to the optimal solution without restrictive assumptions. We also implemented these algorithms from scratch and worked on theoretical exercises.
+          Please refer to  
+          {% if site.courses_materials.optim %}
+          <a class="text-brand" href="{{ site.course_materials.optim.url  | relative_url }}">here</a>
+          {% else %}
+          <a class="text-brand" href="optim"> the course  material.</a>
+          {% endif %}
+          The course was given by Dr. <a class="text-brand" href="https://www.linkedin.com/in/lionel-ngoupeyou-tondji-057a25128/?originalSubdomain=de">Lionel Tondji</a>,
+          a former student of AMMI. Find the goodbye photos <a class="text-brand" href="ammi-photos/optim">here</a>.
+        </p>
+      </p>
+</div>
+</div>
+<div class="course-component ">
+  <div class="d-flex gap-3">
+    <div class=" course-assignment">
+      <h3 class=" text-brand mb-0">Assignments</h1>
+      <ul class="mt-0">
+        <li class="list-item">Implementation of the Stochasric Gradient Descent: <a class="text-brand" href="{{ '/assets/static/pdf/optim/assignment1.pdf' | relative_url }}">notebook</a>
+        </li>
+        <li class="list-item">Implementation of the Proximal Gradient Descent: <a class="text-brand
+            " href="{{ '/assets/static/pdf/optim/assignment2.pdf' | relative_url }}">notebook</a>
+         </li>
+      </ul>
+    </div>
+  <div class=" course-quiz">
+    <h3 class="text-brand mb-0">Quizzes</h1>
+    <ul class="mt-0">
+      <li>Quiz 1: Sets, Convexity, Smooth Convexity, Strong convexity,  etc. <a class="text-brand" href="{{ '/assets/static/pdf/optim/quiz1.pdf' | relative_url }}">PDF</a></li>
+      <li>Quiz 2: Proximal operators, stochastisc gradients, etc. <a class="text-brand" href="{{ '/assets/static/pdf/optim/quiz2.pdf' | relative_url }}">PDF</a></li>
+      <li>Quiz 3: Convergence theory, variance-reduced methods <a class="text-brand
+        " href="{{ '/assets/static/pdf/optim/quiz3.pdf' | relative_url }}">PDF</a></li>
+    </ul>
+  </div>
+</div>
+
+</div>  
+<div class="course-component">
+  <div class="course-references">
+    <h3 class="text-brand mb-0">References</h1>
+    <ul class="mt-0">
+      <li>Lecture's notes:  <a class="text-brand" href="{{ '/assets/static/pdf/optim/reference1.pdf' | relative_url }}">PDF</a></li>
+      <li>Yurii Nesterov,  Introductory Lectures on   Convex Optimization, 2004.
+  <a class="text-brand" href="{{ '/assets/static/pdf/optim/reference3.pdf' | relative_url }}">PDF</a></li>
+  <li> 
+    Shai Shalev-Shwartz et al., Understanding Machine Learning: From Theory to Algorithms, 2014.
+    <a class="text-brand" href="{{ '/assets/static/pdf/optim/reference2.pdf' | relative_url }}">PDF</a></li>
+  </li>
+  </ul>
+  </div>
+  <div class="course-keywords">
+    <h3 class="text-brand mb-0">Keywords</h1>
+    <ul class="mt-0">
+      <li>Convex Optimization</li>
+      <li>Gradient Descent</li>
+      <li>Stochastic Gradient Descent</li>
+      <li>Proximal Gradient Descent</li>
+      <li>Accelerated Gradient Descent</li>
+      <li>Variance-Reduced Methods</li>
+    </ul> 
+  </div>
+</div>
+  
+

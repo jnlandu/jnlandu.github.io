@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+    {%- include head.html -%}
+
+    <body>
+        <!-- Back to Top button -->
+        {% include back-to-top-btn.html %}
+        <!-- <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
+        </button> -->
+        {% include chat-with-me-icon.html %}
+        
+        <!-- Site Header -->
+        <header class="site-header">
+            {%- include header.html -%}
+        </header>
+
+        <div class="course-material-container">
+            {{ content }}
+        </div>
+
+        <!-- Scripts -->
+        <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+        <script src="{{ '/assets/js/animation.js' | relative_url }}"></script>
+        <!--  include icons  -->
+        {% include icons.html %}
+
+        <footer class="mt-4 justify-content-center">
+            {% include footer.html %}
+        </footer>
+    </body>
+</html>
