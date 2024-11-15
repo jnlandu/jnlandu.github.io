@@ -63,13 +63,13 @@
     background-color: var(--bg-light-black-secondary);
   
      /*  animation  */
-     animation: slideIn 10s linear;
+     animation: photosSlideIn 10s linear;
      animation-fill-mode: forwards; 
      animation-direction: reverse;
      animation-iteration-count: infinite;
   
   }
-  @keyframes slideIn {
+  @keyframes photosSlideIn {
     from{right: 50%;}
     to { right: 0px;}
   }
@@ -85,3 +85,8 @@
     animation: none !important;
   }
 
+
+.course-title{
+  color: red;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
