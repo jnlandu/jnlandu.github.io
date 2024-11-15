@@ -5,7 +5,6 @@
 } */
 
 
-
 :root {
   /* Light mode colors */
   --bg-black: #000000;
@@ -18,6 +17,11 @@
   --bg-light-black: #1a1a1a;
   --bg-light-black-secondary:  #121212;
   --bg-light-black-tertiary: #0e0e0e;
+  --brand-color-light: #5393ff; /* Lighter shade */
+  --brand-color-dark: #1a5bb8; /* Darker shade */
+  --brand-color-muted: #a3c4f3; /* Muted shade */
+  --brand-color-accent: #1e90ff; /* Accent shade */
+  --brand-color-contrast: #ffffff; /* High contrast (white) */
   /* --content-width: 100%;  */
   --spacing-unit: 20px;  
   --bs-border-width: 1px;
@@ -32,8 +36,6 @@
   --bs-navbar-toggler-focus-width: 0.25rem;
   --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
 
-
- 
 
 
 
@@ -60,6 +62,8 @@
 }
 .dark-mode {
   background-color: var(--bg-light-black);
+  margin-left: 10% !important;
+  margin-right: 10% !important;
 }
 
 /* Style for the toggle button */
@@ -114,8 +118,8 @@
   body{
     display: flex;
     flex-direction: column;
-    margin-right: 30px !important;
-    margin-left: 30px !important
+    margin-right: 10px !important;
+    margin-left: 10px !important
   }
 
   .nav-toggle-btn{
@@ -154,15 +158,8 @@
 
 .img-profile {
   margin-left: calc(.5*var(--content-width) - 20lvw) !important;
-  width: 50% !important;
-  height: 50% !important;
   vertical-align:-webkit-baseline-middle;
-  /* margin-top: 35px; */
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
-  border-top-right-radius: 25px;
-  /* margin-left: 300px; */
+  border-radius: 10px;
 }
 .col-4, .col-8{
   align-items: center !important;
@@ -185,13 +182,10 @@
   z-index: 0 !important;
   margin-left:150px;
 }
-
 .main-wrapper{
     display: flex !important;
     flex-direction: row !important;
 }
-
-
 
 }
 
@@ -211,29 +205,30 @@
   display: none;
 }
 .img-profile {
-  max-width: 100%;
-  /* width: 20lvw !important; */
-  /* height: 20lvw !important; */
+ max-width: 100%;
  vertical-align:-webkit-baseline-middle;
- margin-top: 35px;
- border-top-left-radius: 25px;
- border-bottom-left-radius: 25px;
- border-bottom-right-radius: 25px;
- border-top-right-radius: 25px;
+ margin-top: 10px !important;
+ border-radius: 10px;
 }
 
+.main-wrapper{
+  margin-top: 20px;
+  margin: auto;
+}
 /* Right side column */
 .sidebar-right {
-  width: auto; /* Adjust as needed */
-  /* background-color: #f0f0f0;  Replace with actual background color  */
+  width: calc(100% - 77%); /* Adjust as needed */
+  margin-left: 20px;
+  margin-right: auto;
+  margin-top: 30px;
+  padding: 5px;
   overflow-x: auto; /* Allows horizontal scrolling */
-  position: -webkit-sticky; /* For Safari */
+  position: -webkit-sticky; 
   position: sticky;
-  /* float: right; */
-  top: 0; /* Stick to the top of the viewport */
-  height: 100vh; /* Full viewport height */
-  /* padding: 20px; */
-  /* box-shadow: 2px 0 5px rgba(0,0,0,0.1); */
+  height: 500px; 
+  border-radius: 10px;
+  border: 1px solid  var(--brand-color-dark);
+  box-shadow: 2px 0 5px var(--brand-color-dark)
 }
 
 /* Left side column */
@@ -241,25 +236,34 @@
   width: 18% !important; /* Adjust as needed */
   top: 0px; /* Stick to the top of the viewport */
   height: 100vh; /* Full viewport height */
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-  
   position: fixed ;
   overflow-x: hidden !important;
   top: 0px !important;
   z-index: 0 !important;
   margin-top: 100px !important;
+  border: 1px solid var(--brand-color-dark);
+  border-radius: 10px;
+  box-shadow: 2px 0 5px var(--brand-color-dark);
+  height:40em;
 }
-
+.firstname{
+  font-family: 'Lobster', sans-serif;
+  font-size: 2rem;
+}
+.lastname{
+  font-family: 'Lobster', sans-serif;
+  font-size: 2rem;
+}
 .text-justified {
   text-align: justify !important;
   text-justify: inter-word;
 }
-
 .active{
   color: var(--brand-color) !important;
   text-decoration: underline;
-  /* text-decoration-color: var(--brand-color); */
 }
 
 .disabled{
@@ -311,9 +315,11 @@
   background-size: 100%;
 }
 .main-content {
-  width: 50% !important;
-  margin-top: 50px !important;
-  margin-left: 30% !important;
+  width: 48% !important;
+  padding: 5px;
+  margin-top: 30px !important;
+  margin-left: 26% !important;
+  /* border: 1px solid red; */
 }
 
 .tag{

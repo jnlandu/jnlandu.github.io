@@ -34,10 +34,6 @@
             </div>
         </div>
   
-       
-        <div class="blog-wrapper">
-            {% include blog.html %}
-        </div>
         <div class="contact-wrapper">
             {% include contact.html %}
         </div>
@@ -45,16 +41,16 @@
 
         {% else %}
         <div class="row main-wrapper">
-            <aside class="sidebar-left">
+            <div class="sidebar-left">
                 {% include sidebar-left.html %}
-            </aside>
+            </div>
             <div class="main-content">
                 {{ content }}
             </div>
             {%- if page.layout == 'post' and page.toc -%}
-            <aside class="col-md-1 sidebar-right">
+            <div class="sidebar-right">
                 {% include toc.html html=content %}
-            </aside>
+            </div>
             {%- endif -%}
         </div>
         {% endif %}
