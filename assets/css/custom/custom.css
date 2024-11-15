@@ -54,21 +54,6 @@
   font-size: 2rem;
 }
 
-.d-none{
-  display: none !important;
-}
-.img-thumbnail {
-  padding: 0.25rem;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: 0.25rem;
-  max-width: 100%;
-  height: auto;
-}
-.img-fluid {
-  max-width: 100%;
-  height: auto;
-}
 /* Dark mode colors */
 .text-white {
   color: var(--test-white) !important;
