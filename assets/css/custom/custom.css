@@ -22,6 +22,9 @@
   --brand-color-muted: #a3c4f3; /* Muted shade */
   --brand-color-accent: #1e90ff; /* Accent shade */
   --brand-color-contrast: #ffffff; /* High contrast (white) */
+  --brand-color-contrast-dark: #000000; /* High contrast (black) */
+  --brand-color-contrast-muted: #f8f9fa; /* High contrast (muted) */
+  --post-background-color: #1d1c1c ;
   /* --content-width: 100%;  */
   --spacing-unit: 20px;  
   --bs-border-width: 1px;
@@ -66,6 +69,12 @@
   margin-right: 10% !important;
 }
 
+.card {
+  background-color: var(--post-background-color);
+  box-shadow: 2px 0px 2px 1px, 0px 8px 16px rgba(21, 15, 15, 0.2);
+  border-radius: 6px;
+  padding: 20px;
+}
 /* Style for the toggle button */
 .theme-toggle-btn {
   position: fixed;
@@ -196,7 +205,7 @@
 }
 
 .post-title {
-  color: var(--text-color); /* Fallback for browsers that do not support color modification */
+  color: var(--text-color); 
   color: color(var(--text-color) lightness(+20%));
 }
 
@@ -230,6 +239,7 @@
   border: 1px solid  var(--brand-color-dark);
   box-shadow: 2px 0 5px var(--brand-color-dark)
 }
+
 
 /* Left side column */
 .sidebar-left {

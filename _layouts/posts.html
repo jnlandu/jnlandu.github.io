@@ -4,10 +4,10 @@ layout: default
 {% if site.posts != nil %} 
 {% assign posts = site.posts %} 
 {% for post in posts limit:5 %}
-<article class="post card mb-3">
+<article class="card mb-3 text-justified">
 	{% if post.title %}
 	<header class="post-header">
-    <h3 class="post-title mb-0"> <a href="{{ post.url | escape }}">{{ post.title | escape }} </a></h3>
+    <h3 class="mb-0"> <a href="{{ post.url | escape }}">{{ post.title | escape }} </a></h3>
     {% if post.date %}
     <span>
         <small class="text-muted mt-0 me-2">{{ post.date | date: "%b %d, %Y" }}</small> 
