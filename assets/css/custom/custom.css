@@ -376,7 +376,7 @@
   margin-left: 20px;
 }
 
-.course-content-container{
+.course-content-container, .photos-content-container{
   position: relative;
   padding-left: 30px;
   padding-right: 30px;
@@ -403,11 +403,11 @@
   from{right: 50%;}
   to { right: 0px;}
 }
-.course-content-container{
+.course-content-container, .photos-content-container{
   transition: opacity 0.3s ease, transform 0.5s ease; 
 }
 /* Hover effect */
-.course-content-container:hover {
+.course-content-container:hover, .photos-content-container:hover {
   opacity: 0.9;
   transform: scale(1.05);
 }

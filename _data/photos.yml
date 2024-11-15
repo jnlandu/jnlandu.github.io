@@ -1,0 +1,20 @@
+# _data/photos.yml
+optim_photos:
+  - path: /assets/photos/optim/optim-1.jpeg
+    description: "Optic Photo 1 Description"
+  - path: /assets/photos/optim/optim-2.jpeg
+    description: "Optic Photo 2 Description"
+  - path: /assets/photos/optim/optim-3.jpeg
+    description: "Optic Photo 2 Description"
+  - path: /assets/photos/optim/optim-4.jpeg
+    description: "Optic Photo 2 Description"
+  - path: /assets/photos/optim/optim-5.jpeg
+    description: "Optic Photo 2 Description"
+  - path: /assets/photos/optim/optim-6.jpeg
+    description: "Optic Photo 2 Description"
+
+computer_vision_photos:
+  - path: /assets/photos/computer_vision/photo1.jpg
+    description: "Computer Vision Photo 1 Description"
+  - path: /assets/photos/computer_vision/photo2.jpg
+    description: "Computer Vision Photo 2 Description"

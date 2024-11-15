@@ -95,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
   const navToggleBtn = document.querySelector('.nav-toggle-btn');
   const nav = document.getElementById('site-nav');
@@ -119,6 +118,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
-
-// Chat
