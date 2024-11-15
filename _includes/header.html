@@ -14,11 +14,15 @@
         <nav class="site-nav">
           <div class="trigger">
             {% for navpage in navpages %}
-                {%- if navpage.url == '/'  -%}
-                <a class="page-link active" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
-                {% else %}
+                {%- if navpage.url != '/' and navpage.url !='/posts/' -%}
                 <a class="page-link text-white disabled " aria-disabled="true" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
-               {% endif %}
+                {% else %}
+                   {%- if navpage.url == page.url -%}
+                     <a class="page-link active" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>  
+                    {% else %}
+                    <a class="page-link" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
+                    {% endif %}
+                {% endif %}
             {%- endfor -%}
           </div>
         </nav>
