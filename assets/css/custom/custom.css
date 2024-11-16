@@ -236,6 +236,13 @@ html{
   margin-left: 30px;
   margin-right: 30px;
 }
+/* for the chat layout */
+.chat-main-wrapper{
+  margin-top: 20px;
+  margin: auto;
+  margin-left: 30px;
+  margin-right: 30px;
+}
 .main-wrapper-toc-off{
   margin-top: 20px;
   margin-left: 10%;
@@ -351,7 +358,6 @@ html{
 }
 .main-content {
   width: 48% !important;
-  /* padding-top: px; */
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 20px;
@@ -360,8 +366,17 @@ html{
   border-radius: 10px;
   border: 1px solid var(--brand-color-dark);
   box-shadow: 0px 0 0px var(--brand-color-dark);
-  /* border: 1px solid red; */
 }
+/* for the chat layout: */
+.chat-main-content{
+  width: 48% !important;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  margin-top: 30px !important;
+  margin-left: 30% !important;
+}
+/*  For posts without table of contents  */
 .main-content-toc-off{
   width: 58% !important;
   /* padding-top: px; */
