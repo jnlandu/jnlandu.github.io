@@ -3,8 +3,6 @@
 /* body {
   font-family: 'Lobster','Nunito', sans-serif;
 } */
-
-
 :root {
   /* Light mode colors */
   --bg-black: #000000;
@@ -52,6 +50,9 @@
   --on-large-desktop: 1200px ;
 }
 
+html{
+  background-color: var(--bg-light-black);
+}
 
 
 /*  Site-tile font style */
@@ -65,9 +66,8 @@
   color: var(--test-white) !important;
 }
 .dark-mode {
-  background-color: var(--bg-light-black);
-  margin-left: 10% !important;
-  margin-right: 10% !important;
+  /* margin-left: 10% !impmortant;
+  margin-right: 10% !important; */
 }
 
 .card {
@@ -240,24 +240,25 @@
   margin-top: 20px;
   margin-left: 10%;
   margin-right: 10%;
+ 
 }
 .main-post-wrapper{
   gap: 20px;
   margin-top: 20px;
   margin-left:10%;
   margin-right:10%;
+
 }
 /* Right side column */
 .sidebar-right {
   width: calc(100% - 88%);
-  margin-right: auto;
   margin-top: 30px;
   padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
   overflow-x: auto; /* Allows horizontal scrolling */
   position: fixed;
-  right: calc(var(--content-width) - 102em);
+  right: calc(var(--content-width) - 103em);
   height: 500px; 
   border-radius: 10px;
   border: 1px solid  var(--brand-color-dark);
@@ -351,32 +352,34 @@
 .main-content {
   width: 48% !important;
   /* padding-top: px; */
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-bottom: 20px;
   margin-top: 30px !important;
-  margin-left: 26% !important;
+  margin-left: 30% !important;
   border-radius: 10px;
   border: 1px solid var(--brand-color-dark);
   box-shadow: 0px 0 0px var(--brand-color-dark);
+  /* border: 1px solid red; */
 }
 .main-content-toc-off{
-  width: 48% !important;
+  width: 58% !important;
   /* padding-top: px; */
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
   margin-top: 15px !important;
-  margin-left: 32% !important;
+  margin-left: 36% !important;
   border-radius: 10px;
   border: 1px solid var(--brand-color-dark);
   box-shadow: 0px 0 0px var(--brand-color-dark);
+  /* border: 1px solid red; */
 }
 .main-post-content{
-  width: 50% !important;
+  width: 60% !important;
   padding: 5px;
   margin-top: 10px !important;
-  margin-left: 33% !important;
+  margin-left: 36% !important;
 
 }
 .tag{

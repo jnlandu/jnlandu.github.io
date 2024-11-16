@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // {left: "\(", right: "\)", display: false}  // Inline math
     ]
   });
-
+//  Fix this later: 
   const link = document.getElementById('style');
   const lightTheme = link.getAttribute('data-light-theme');
   const darkTheme = link.getAttribute('data-dark-theme');
