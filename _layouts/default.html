@@ -24,7 +24,6 @@
             <div class="course-wrapper">
                 {% include courses.html %}
             </div>
-         
         </div>
         {% comment %}
          <div class="project-section">
@@ -41,16 +40,16 @@
         {% endcomment %}
 
         {% else %}
-        <div class="row {% if page.url == '/posts/' %}main-post-wrapper {% else %}main-wrapper {% endif %}">
+        <div class="row {% if page.url == '/posts/' %}main-post-wrapper {% elsif page.toc %}main-wrapper  {%else %}main-wrapper-toc-off{% endif %}">
             <div class="sidebar-left">
                 {% include sidebar-left.html %}
             </div>
 
-            <div class="{% if page.url == '/posts/' %}main-post-content {% else %}main-content {% endif %}">
+            <div class="{% if page.url == '/posts/' %}main-post-content {% elsif page.toc  %}main-content  {%else%} main-content-toc-off {% endif %}">
                 {{ content }}
             </div>
-            {%- if page.layout == 'post' and page.toc -%}
-            <div class="sidebar-right">
+            {%- if page.layout == 'post' and page.toc  -%}
+            <div class="{% if page.toc %}sidebar-right {%else %}sidebar-right-off {%endif%}">
                 {% include toc.html html=content %}
             </div>
             {%- endif -%}

@@ -1,11 +1,11 @@
 ---
 layout: post
 toc: true
-title: "Forecasting with Time Series"
+title:  "Forecasting with Time Series Data in Python: A Comprehensive Guide"
 categories: junk
-tags: [Python]
+tags: [Python, nltk]
 author:
-  - Jérémie  Mabiala
+  - Jérémie N. Mabiala
 summary: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus 
   sint impedit doloremque reprehenderit, facilis quo optio veritatis molestias 
   autem sit amet magni laborum veniam corporis quam nostrum nam iure incidunt.
@@ -13,6 +13,9 @@ summary: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus
   ab architecto repudiandae amet perferendis, ea excepturi cupiditate nisi
   dolorem? Earum error adipisci nobis, dignissimos culpa quidem?.
 ---
+### Introduction
+Time series data is a sequence of observations collected over time, such as stock prices, weather data, or sales figures. Analyzing and forecasting time series data is essential for making informed decisions in various domains, including finance, economics, and business.
+
 
 ### Step 1: Setting Up Your Environment
 To work with time series data in Python, you'll need to install several libraries that facilitate data manipulation and visualization, as well as statistical modeling:

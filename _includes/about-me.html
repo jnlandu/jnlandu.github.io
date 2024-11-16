@@ -36,10 +36,9 @@
         <div class="d-flex justify-content-center">
             {% for social in site.data.social %}
             {% if social.title == 'Email' %}
-
-            <a class="mx-2" href="mailto:{{ social.url }}" >
-                <i class="{{ social.icon | default: 'fas-fa-link' }}" title="{{ social.title}}"></i>
-            </a>
+                <a class="mx-2" href="mailto:{{ social.url }}">
+                    <i class="{{ social.icon | default: 'fas-fa-link' }}" title="{{ social.title}}"></i>
+                </a>
             {% endif %}
             {% if social.title != 'Email' %}
             <a class="mx-2" href="{{ social.url }}" >
