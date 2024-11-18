@@ -265,7 +265,7 @@ html{
   padding-right: 5px;
   overflow-x: auto; /* Allows horizontal scrolling */
   position: fixed;
-  right: calc(var(--content-width) - 103em);
+  right: calc(var(--content-width) - 95.3em);
   height: 500px; 
   border-radius: 10px;
   border: 1px solid  var(--brand-color-dark);
