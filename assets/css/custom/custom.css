@@ -262,10 +262,10 @@ html{
   margin-top: 30px;
   padding-top: 10px;
   padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: auto; /* Allows horizontal scrolling */
+  padding-right: 20px;
+  overflow-x: hidden;
   position: fixed;
-  right: calc(var(--content-width) - 95.3em);
+  right: calc(var(--content-width) - 96.3em);
   height: 500px; 
   border-radius: 10px;
   border: 1px solid  var(--brand-color-dark);
