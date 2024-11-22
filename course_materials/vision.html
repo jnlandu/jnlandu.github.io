@@ -1,0 +1,83 @@
+---
+layout: course-default
+title: Computer Vision
+permalink: /computer_vision/
+---
+<div class="cc-container d-flex gap-4 mt-5">
+  <div class="">
+    <h1 class="h5  course-title text-brand mt-3">Computer Vision and Diffusion Models</h1>
+    <p class="text-justified">
+      This course was split into two parts: the first part was an introduction to computer vision, taught by Dr. 
+      <a class="text-brand
+      " href="https://lvdmaaten.github.io/">Laurens van der Maaten</a>
+      from <a class="text-brand" href="https://ai.meta.com/">Meta AI</a>, and co-inventor of
+      <a class="text-brand" href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-SNE</a>.
+      The second part focused on object detection and was given by Dr. <a class="text-brand" href="https://scholar.google.fr/citations?user=cLPaHcIAAAAJ&hl=en">Natalia Neverova</a>
+      from <a class="text-brand" href="https://ai.meta.com/">Meta AI</a>.
+        </p>
+  </div>
+  <img src="{{ '/assets/photos/computer-vision/cv-banner.jpeg' | relative_url }}" alt="Computer Vision" class="img mt-3">
+</div>
+
+
+<div class="course-component ">
+  <div class="d-flex gap-3">
+    <div class=" course-assignment">
+      <h3 class=" mb-0">Assignments and Labs</h1>
+      <ul class="mt-0">
+        <li class="list-item">Implementation of an Object Tracker with Detectron2 <a class="text-brand" href="https://github.com/jnlandu/AMMI2024/blob/main/Optim/Assignments/Implementation_of_SGD_Final_Lab.ipynb">notebook</a>
+        </li>
+        <li class="list-item">Cassava leaves Classification: <a class="text-brand
+            " href="https://github.com/jnlandu/AMMI2024/blob/main/ComputerVis/cassava-challenge/teamKO_jeremie_and_tony%202.pdf">notebook</a>
+         </li>
+         <li class="list-item">Implementation of Batch Normalization: <a class="text-brand" href="
+          ">notebook</a>
+        </li>
+      </ul>
+    </div>
+  <div class=" course-quiz border border-primary">
+    <h3 class="mb-0">Exercices and Quizzes</h1>
+    <ul class="mt-0">
+      <li>Exercices and partial solutions : Sets, Convexity, Smooth Convexity, Strong convexity,  etc. <a class="text-brand" href="{{ '/assets/static/pdf/optim/quiz1.pdf' | relative_url }}">pdf</a></li>
+      <li>Quizzes and solutions : Proximal operators, stochastisc gradients, etc. <a class="text-brand" href="{{ '/assets/static/pdf/optim/quiz2.pdf' | relative_url }}">pdf</a></li>
+    </ul>
+  </div>
+</div>
+
+</div>  
+<div class="course-component">
+  <div class="course-keywords">
+    <h3 class=" mb-0">Keywords</h1>
+      <p>Convex  and non-convex Optimization, Gradient Descent, Stochastic Gradient Descent, Proximal Gradient Descent,Accelerated Gradient 
+        Descent,Variance-Reduced Methods</p>
+  </div>
+  <div class="course-references">
+    <h3 class=" mb-0">References</h1>
+    <ul class="mt-0">
+      <li>Lecture's notes:  <a class="text-brand" href="{{ '/assets/static/pdf/optim/reference1.pdf' | relative_url }}">PDF</a></li>
+      <li>Yurii Nesterov,  Introductory Lectures on   Convex Optimization, 2004.
+  <a class="text-brand" href="{{ '/assets/static/pdf/optim/reference3.pdf' | relative_url }}">PDF</a></li>
+  <li> 
+    Shalev-Shwartz et al., Understanding Machine Learning: From Theory to Algorithms, 2014.
+    <a class="text-brand" href="{{ '/assets/static/pdf/optim/reference2.pdf' | relative_url }}">PDF</a></li>
+  </li>
+  </ul>
+  </div>
+</div>
+<div class="photos-container" style="animation-delay: 0s;">
+  <h3 class="mb-2 text-brand">Selected photos of the last day of the lecture.</h1>
+   <div class="d-flex gap-3">
+    {% if site.data.photos.optim_photos %}
+    {% assign photos = site.data.photos.optim_photos %}
+    {% for photo in photos %}
+    <div class="photos-cntent-container" style="animation-delay: 0s;">
+      <img src="{{ photo.path | relative_url }}" alt="{{ photo.description }}" class="photo-fluid">
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+</div>
+
+
+  
+

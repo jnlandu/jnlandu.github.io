@@ -54,6 +54,11 @@ html{
   background-color: var(--bg-light-black);
 }
 
+.img{
+  border-radius: 10px;
+  width: 50vw;
+  height: 50vh;
+}
 
 /*  Site-tile font style */
 .site-title {
@@ -69,6 +74,7 @@ html{
   /* margin-left: 10% !impmortant;
   margin-right: 10% !important; */
 }
+
 
 .card {
   background-color: var(--post-background-color);
