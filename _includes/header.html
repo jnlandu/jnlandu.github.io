@@ -14,7 +14,10 @@
         <nav class="site-nav">
           <div class="trigger">
             {% for navpage in navpages %}
-                {%- if navpage.url != '/' and navpage.url !='/posts/' -%}
+                {%- if navpage.url != '/' %}
+                {% comment %}
+                and navpage.url !='/posts/' -%}
+                {% endcomment %}
                 <a class="page-link text-white disabled " aria-disabled="true" href="{{ navpage.url | relative_url }}">{{ navpage.title | escape }}</a>
                 {% else %}
                    {%- if navpage.url == page.url -%}
