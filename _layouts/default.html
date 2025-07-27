@@ -1,77 +1,49 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-    {%- include head.html -%}
-
-    <body>
-        <!-- Back to Top button -->
-        {% include back-to-top-btn.html %}
-        <!-- <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
-        </button> -->
-        {% include chat-with-me-icon.html %}
-        
-        <!-- Site Header -->
-        <header class="site-header">
-            {%- include header.html -%}
-        </header>
-
-        {% if page.title =='Home' %}
-        <div class="about-wrapper">
-            {% include about-me.html %}
-        </div>
-        <div class="course-section">
-                <h2 class="course-section-title">Selected courses</h2>
-                <hr class="h-line">
-            <div class="course-wrapper">
-                {% include courses.html %}
-            </div>
-        </div>
-        <div class="course-section">
-            <h2 class="course-section-title mb-3">Current projects</h2>
-            <hr class="h-line dashed">
-            <div class="d-flex mt-3  gap-3">
-                {% include projects.html %}
-            </div>
-              
-        </div>
-        {% comment %}
-         <div class="project-section">
-            <h2 class="project-section-title">Selected projects</h2>
-            <hr class="h-line">
-            <div class="project-wrapper">
-                {% include projects.html %}
-            </div>
-        </div>
-  
-        <div class="contact-wrapper">
-            {% include contact.html %}
-        </div>
-        {% endcomment %}
-
-        {% else %}
-        <div class="row {% if page.url == '/posts/' %}main-post-wrapper {% elsif page.toc %}main-wrapper  {%else %}main-wrapper-toc-off{% endif %}">
-            <div class="sidebar-left">
-                {% include sidebar-left.html %}
-            </div>
-
-            <div class="{% if page.url == '/posts/' %}main-post-content {% elsif page.toc  %}main-content  {%else%} main-content-toc-off {% endif %}">
-                {{ content }}
-            </div>
-            {%- if page.layout == 'post' and page.toc  -%}
-            <div class="{% if page.toc %}sidebar-right {%else %}sidebar-right-off {%endif%}">
-                {% include toc.html html=content %}
-            </div>
-            {%- endif -%}
-        </div>
-        {% endif %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
-        <!-- Scripts -->
-        <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-        <script src="{{ '/assets/js/animation.js' | relative_url }}"></script>
-        <!--  include icons  -->
-        {% include icons.html %}
+    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+    
+    {% seo %}
+    {% feed_meta %}
+</head>
 
-        <footer class="mt-4 justify-content-center">
-            {% include footer.html %}
-        </footer>
-    </body>
+<body>
+    <header>
+        <div class="container">
+            <div class="site-title">
+                <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+            </div>
+            <div class="site-description">
+                {{ site.description }}
+            </div>
+            <nav>
+                <ul>
+                    {% for link in site.nav_links %}
+                    <li><a href="{{ link.url | relative_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            {{ content }}
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {{ 'now' | date: '%Y' }} {{ site.author.name }}. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
 </html>

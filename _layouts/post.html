@@ -2,42 +2,38 @@
 layout: default
 ---
 
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+<article>
+    <header>
+        <h1>{{ page.title }}</h1>
+        <div class="meta">
+            <span class="meta-item">{{ page.date | date: "%B %d, %Y" }}</span>
+            {% if page.author %}
+            <span class="meta-item">by {{ page.author }}</span>
+            {% endif %}
+            {% if page.categories %}
+            <span class="meta-item">in {{ page.categories | first }}</span>
+            {% endif %}
+        </div>
+    </header>
 
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
-      {%- endif -%}
+    <div class="content">
+        {{ content }}
+    </div>
 
-      <br>
-      {%- if page.tags -%}
-        {%- include post-tags.html -%}
-      {%- endif -%}
-    </p>
-  </header>
-  
-
-
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
-  </div>
-
-
-  <!-- post paginations   -->
-   <div class="post-footer">
-  {%- include posts-paginator.html -%}
-  </div>
-
-
-  {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
-  {%- endif -%}
-
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+    {% if page.tags %}
+    <div class="tags">
+        {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
 </article>
+
+<nav class="post-nav">
+    {% if page.previous.url %}
+    <a href="{{ page.previous.url | relative_url }}" class="prev">← {{ page.previous.title }}</a>
+    {% endif %}
+    {% if page.next.url %}
+    <a href="{{ page.next.url | relative_url }}" class="next">{{ page.next.title }} →</a>
+    {% endif %}
+</nav>

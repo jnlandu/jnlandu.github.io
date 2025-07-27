@@ -1,30 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+/* AI Engineer Website Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-/* body {
-  font-family: 'Lobster','Nunito', sans-serif;
-} */
+@import '../ai-homepage.css';
+
 :root {
-  /* Light mode colors */
+  /* AI Brand Colors - Updated for professional AI engineer look */
+  --brand-color: #2563eb;        /* AI Primary Blue */
+  --brand-color-light: #3b82f6;  /* Light Blue */
+  --brand-color-dark: #1d4ed8;   /* Dark Blue */
+  --brand-color-muted: #93c5fd;  /* Muted Blue */
+  --brand-color-accent: #06b6d4; /* Cyan Accent */
+  --brand-color-contrast: #ffffff;
+  --brand-color-contrast-dark: #000000;
+  
+  /* AI Secondary Colors */
+  --ai-secondary: #7c3aed;       /* Purple */
+  --ai-accent: #06b6d4;          /* Cyan */
+  --ai-success: #10b981;         /* Green */
+  --ai-warning: #f59e0b;         /* Orange */
+  --ai-error: #ef4444;           /* Red */
+  
+  /* Neural Network Colors */
+  --neural-pink: #ec4899;
+  --neural-purple: #a855f7;
+  --neural-indigo: #6366f1;
+  
+  /* Dark Theme Colors */
   --bg-black: #000000;
+  --bg-light-black: #0f172a;           /* Slate 900 */
+  --bg-light-black-secondary: #1e293b; /* Slate 800 */
+  --bg-light-black-tertiary: #334155;  /* Slate 700 */
+  --post-background-color: #1e293b;
+  
+  /* Text Colors */
+  --text-white: #f8fafc;               /* Slate 50 */
+  --text-color: #0f172a;               /* Dark text for light mode */
+  --text-secondary: #cbd5e1;           /* Slate 300 */
+  --text-muted: #64748b;               /* Slate 500 */
+  --bs-emphasis-color-rgb: rgb(248, 250, 252);
+  
+  /* Light Mode Colors */
   --bg-color: #ffffff;
-  --text-color: #000000;
-  --link-color: #1a73e8;
-  --brand-color: #2a7ae2; 
-  --bs-emphasis-color-rgb: rgb(255, 255, 255);
-  --text-white: white;
-  --bg-light-black: #1a1a1a;
-  --bg-light-black-secondary:  #121212;
-  --bg-light-black-tertiary: #0e0e0e;
-  --brand-color-light: #5393ff; /* Lighter shade */
-  --brand-color-dark: #1a5bb8; /* Darker shade */
-  --brand-color-muted: #a3c4f3; /* Muted shade */
-  --brand-color-accent: #1e90ff; /* Accent shade */
-  --brand-color-contrast: #ffffff; /* High contrast (white) */
-  --brand-color-contrast-dark: #000000; /* High contrast (black) */
-  --brand-color-contrast-muted: #f8f9fa; /* High contrast (muted) */
-  --post-background-color: #1d1c1c ;
-  /* --content-width: 100%;  */
-  --spacing-unit: 20px;  
+  --link-color: var(--brand-color);
+  
+  /* Layout & Spacing */
+  --content-width: 100%;
+  --spacing-unit: 20px;
+  --container-max-width: 1200px;
+  --section-padding: 5rem 0;
+  --element-radius: 12px;
+  --card-radius: 16px;
+  
+  /* Typography */
+  --font-heading: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', 'SF Pro Text', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', monospace;
+  
+  /* Bootstrap Variables */
   --bs-border-width: 1px;
   --bs-navbar-padding-x: 0;
   --bs-navbar-nav-link-padding-x: 0.5rem;
@@ -37,11 +70,7 @@
   --bs-navbar-toggler-focus-width: 0.25rem;
   --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
 
-
-
-
-  /*  meedia breakpoints */
-  --content-width: 100%;  /* Example value */
+  /* Media Breakpoints */
 
 
   --on-mobile: 576px;
