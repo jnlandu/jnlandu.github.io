@@ -2,52 +2,171 @@
 layout: default
 ---
 
-<section class="hero">
-    <h1>{{ site.author.name }}</h1>
-    <p>{{ site.author.bio }}</p>
-</section>
 
-<section>
-    <h2>Recent Posts</h2>
-    {% assign recent_posts = site.posts | limit: 5 %}
-    {% if recent_posts.size > 0 %}
-    <ul class="post-list">
-        {% for post in recent_posts %}
-        <li class="post-item">
-            <h3 class="post-title">
-                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            </h3>
-            <div class="meta">
-                <span class="meta-item">{{ post.date | date: "%B %d, %Y" }}</span>
-            </div>
-            {% if post.excerpt %}
-            <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No posts yet.</p>
-    {% endif %}
-</section>
-
-<section>
-    <h2>Featured Projects</h2>
-    {% assign featured_projects = site.projects | limit: 3 %}
-    {% if featured_projects.size > 0 %}
-    <div class="projects-grid">
-        {% for project in featured_projects %}
-        <div class="project-card">
-            <h3 class="project-title">
-                <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-            </h3>
-            {% if project.excerpt %}
-            <p class="project-description">{{ project.excerpt | strip_html | truncate: 100 }}</p>
-            {% endif %}
-        </div>
-        {% endfor %}
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="hero-image-container">
+      {% if site.profile_image %}
+        <img src="{{ site.profile_image | relative_url }}" 
+             alt="{{ site.profile_alt | default: site.title }}" 
+             class="hero-image">
+      {% endif %}
     </div>
-    {% else %}
-    <p>No projects yet.</p>
-    {% endif %}
+    
+    <div class="hero-text">
+      <h1>Hello, I'm {{ site.firstName }} <span class="text-brand">{{ site.lastName }}</span></h1>
+      <p class="hero-subtitle">Student in Artificial Intelligence & AI Enthusiast</p>
+      
+      {% if site.location %}
+      <div class="hero-location">
+        <i class="{{ site.location[2] | default: 'fas fa-map-marker-alt' }}"></i>
+        <span>{{ site.location[0] }}</span>
+      </div>
+      {% endif %}
+      
+      <div class="social-links">
+        {% if site.data.social %}
+          {% for social in site.data.social %}
+            {% if social.title == 'Email' %}
+              <a href="mailto:{{ social.url }}" class="social-link" title="{{ social.title }}">
+                <i class="{{ social.icon | default: 'fas fa-envelope' }}"></i>
+              </a>
+            {% else %}
+              <a href="{{ social.url }}" class="social-link" title="{{ social.title }}" target="_blank" rel="noopener">
+                <i class="{{ social.icon | default: 'fas fa-link' }}"></i>
+              </a>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
 </section>
+
+<!-- About Section -->
+<section class="about-section">
+  <div class="about-content">
+    <h2>About Me</h2>
+    <div class="about-text">
+      {% include bio.html %}
+    </div>
+    
+    <!-- Research Interests -->
+    <h3>Research Interests</h3>
+    <div class="research-interests">
+      <div class="interest-item">
+        <div class="interest-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h4 class="interest-title">Machine Learning Theory</h4>
+        <p class="interest-description">Theoretical aspects of ML and deep learning algorithms</p>
+      </div>
+      
+      <div class="interest-item">
+        <div class="interest-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h4 class="interest-title">Functional Data Analysis</h4>
+        <p class="interest-description">Mathematical statistics and Gaussian processes</p>
+      </div>
+      
+      <div class="interest-item">
+        <div class="interest-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <h4 class="interest-title">Large Language Models</h4>
+        <p class="interest-description">Natural language processing and LLM applications</p>
+      </div>
+      
+      <div class="interest-item">
+        <div class="interest-icon">
+          <i class="fas fa-eye"></i>
+        </div>
+        <h4 class="interest-title">Computer Vision</h4>
+        <p class="interest-description">Visual recognition and image analysis</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recent Posts Section -->
+{% if site.posts.size > 0 %}
+<section class="about-section">
+  <div class="about-content">
+    <h2>Recent Posts</h2>
+    <div class="post-list">
+      {% for post in site.posts limit:3 %}
+        <article class="post-card">
+          <h3 class="post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h3>
+          
+          {% if post.excerpt %}
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+          {% endif %}
+          
+          <div class="post-meta">
+            <time class="post-date">{{ post.date | date: "%B %d, %Y" }}</time>
+            {% if post.tags.size > 0 %}
+              <div class="tags">
+                {% for tag in post.tags limit:3 %}
+                  <span class="tag">{{ tag }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+    
+    <div class="text-center" style="margin-top: 3rem;">
+      <a href="{{ '/posts/' | relative_url }}" class="btn btn-primary">
+        <i class="fas fa-arrow-right"></i>
+        View All Posts
+      </a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Recent Projects Section -->
+{% if site.projects.size > 0 %}
+<section class="hero-section">
+  <div class="about-content">
+    <h2>Recent Projects</h2>
+    <div class="post-list">
+      {% for project in site.projects limit:2 %}
+        <article class="post-card">
+          <h3 class="post-title">
+            <a href="{{ project.url | relative_url }}">{{ project.title | escape }}</a>
+          </h3>
+          
+          {% if project.excerpt %}
+            <p class="post-excerpt">{{ project.excerpt | strip_html | truncatewords: 25 }}</p>
+          {% endif %}
+          
+          <div class="post-meta">
+            {% if project.tech %}
+              <div class="tags">
+                {% for tech in project.tech limit:4 %}
+                  <span class="tag">{{ tech }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+    
+    <div class="text-center" style="margin-top: 3rem;">
+      <a href="{{ '/projects/' | relative_url }}" class="btn btn-secondary">
+        <i class="fas fa-code"></i>
+        View All Projects
+      </a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+

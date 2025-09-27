@@ -2,38 +2,82 @@
 layout: default
 ---
 
-<article>
-    <header>
-        <h1>{{ page.title }}</h1>
-        <div class="meta">
-            <span class="meta-item">{{ page.date | date: "%B %d, %Y" }}</span>
-            {% if page.author %}
-            <span class="meta-item">by {{ page.author }}</span>
-            {% endif %}
-            {% if page.categories %}
-            <span class="meta-item">in {{ page.categories | first }}</span>
-            {% endif %}
+
+<div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+  <article class="card" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card-header">
+      <h1 class="card-title" itemprop="name headline">{{ page.title | escape }}</h1>
+      
+      <div class="card-meta">
+        <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          <i class="fas fa-calendar-alt"></i>
+          {{ page.date | date: "%B %d, %Y" }}
+        </time>
+        
+        {% if page.author %}
+          <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <i class="fas fa-user"></i>
+            <span itemprop="name">{{ page.author }}</span>
+          </span>
+        {% endif %}
+        
+        {% if page.categories.size > 0 %}
+          <span class="post-categories">
+            <i class="fas fa-folder"></i>
+            {% for category in page.categories %}
+              <a href="{{ '/categories/' | append: category | relative_url }}">{{ category }}</a>
+              {% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </span>
+        {% endif %}
+      </div>
+      
+      {% if page.tags.size > 0 %}
+        <div class="tags" style="margin-top: 1rem;">
+          {% for tag in page.tags %}
+            <a href="{{ '/tags/' | append: tag | relative_url }}" class="tag">{{ tag }}</a>
+          {% endfor %}
         </div>
+      {% endif %}
     </header>
 
-    <div class="content">
-        {{ content }}
+    <div class="post-content content" itemprop="articleBody">
+      {{ content }}
     </div>
 
-    {% if page.tags %}
-    <div class="tags">
-        {% for tag in page.tags %}
-        <span class="tag">{{ tag }}</span>
-        {% endfor %}
-    </div>
-    {% endif %}
-</article>
+    <!-- Post Navigation -->
+    <nav class="post-nav">
+      {% if page.previous %}
+        <div class="post-nav-prev">
+          <a href="{{ page.previous.url | relative_url }}" rel="prev">
+            <i class="fas fa-arrow-left"></i>
+            <div>
+              <small>Previous Post</small>
+              <strong>{{ page.previous.title | truncate: 50 }}</strong>
+            </div>
+          </a>
+        </div>
+      {% endif %}
+      
+      {% if page.next %}
+        <div class="post-nav-next">
+          <a href="{{ page.next.url | relative_url }}" rel="next">
+            <div>
+              <small>Next Post</small>
+              <strong>{{ page.next.title | truncate: 50 }}</strong>
+            </div>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      {% endif %}
+    </nav>
 
-<nav class="post-nav">
-    {% if page.previous.url %}
-    <a href="{{ page.previous.url | relative_url }}" class="prev">← {{ page.previous.title }}</a>
+    {% if site.disqus.shortname %}
+      <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+        {% include disqus_comments.html %}
+      </div>
     {% endif %}
-    {% if page.next.url %}
-    <a href="{{ page.next.url | relative_url }}" class="next">{{ page.next.title }} →</a>
-    {% endif %}
-</nav>
+
+    <div class="u-url" href="{{ page.url | relative_url }}" hidden></div>
+  </article>
+</div>

@@ -1,49 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-    
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
-    
-    {% seo %}
-    {% feed_meta %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  
+  <!-- Professional CSS -->
+  <link rel="stylesheet" href="{{ '/assets/css/professional-clean.css' | relative_url }}">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+  
+  <!-- SEO and meta tags -->
+  {% seo %}
+  
+  <!-- Feed -->
+  <link type="application/atom+xml" rel="alternate" href="{{ '/feed.xml' | relative_url }}" title="{{ site.title | escape }}">
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <div class="site-title">
-                <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
-            </div>
-            <div class="site-description">
-                {{ site.description }}
-            </div>
-            <nav>
-                <ul>
-                    {% for link in site.nav_links %}
-                    <li><a href="{{ link.url | relative_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.name }}</a></li>
-                    {% endfor %}
-                </ul>
-            </nav>
-        </div>
+    <!-- Site Header -->
+    <header class="site-header">
+      <div class="header-container">
+        <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title | escape }}</a>
+        
+        <nav class="main-nav">
+          <ul>
+            <li><a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Home</a></li>
+            <li><a href="{{ '/posts/' | relative_url }}" class="nav-link {% if page.url contains 'posts' %}active{% endif %}">Posts</a></li>
+            <li><a href="{{ '/projects/' | relative_url }}" class="nav-link {% if page.url contains 'projects' %}active{% endif %}">Projects</a></li>
+            <li><a href="{{ '/tutorials/' | relative_url }}" class="nav-link {% if page.url contains 'tutorials' %}active{% endif %}">Tutorials</a></li>
+            <li><a href="{{ '/about/' | relative_url }}" class="nav-link {% if page.url contains 'about' %}active{% endif %}">About</a></li>
+            <li><a href="{{ '/contact/' | relative_url }}" class="nav-link {% if page.url contains 'contact' %}active{% endif %}">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
+    
 
+    <!-- Main Content -->
     <main>
-        <div class="container">
-            {{ content }}
-        </div>
+      {{ content }}
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; {{ 'now' | date: '%Y' }} {{ site.author.name }}. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+          <p>Built with <a href="https://jekyllrb.com/">Jekyll</a> and hosted on <a href="https://github.com/">GitHub</a>.</p>
         </div>
+      </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+    <!-- Smooth scrolling and other interactions -->
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Add fade-in animation to elements when they come into view
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in-up');
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.card, .post-card, .interest-item').forEach(el => {
+        observer.observe(el);
+      });
+    </script>
 </body>
+
 </html>
