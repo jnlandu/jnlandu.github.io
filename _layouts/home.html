@@ -3,144 +3,152 @@ layout: default
 ---
 
 <section class="hero">
-    <div class="hero-content">
-        <div class="profile-image">
-            <img src="{{ '/profile.jpeg' | relative_url }}" alt="Profile photo of {{ site.author.name }}" loading="eager" />
-        </div>
-        <div class="hero-text">
-            <h1>{{ site.author.name }}</h1>
-            <p class="hero-tagline">AI Engineer & Researcher</p>
-            <p class="hero-description">{{ site.author.bio }}</p>
-        </div>
-    </div>
-</section>
-
-<section class="specializations">
-    <h2>Specializations</h2>
-    <div class="specializations-grid">
-        <div class="specialization-card">
-            <div class="specialization-icon">🤖</div>
-            <h3>Machine Learning</h3>
-            <p>Deep learning, neural networks, and predictive modeling for complex real-world problems</p>
-        </div>
-        <div class="specialization-card">
-            <div class="specialization-icon">👁️</div>
-            <h3>Computer Vision</h3>
-            <p>Image processing, pattern recognition, and visual AI systems for healthcare and agriculture</p>
-        </div>
-        <div class="specialization-card">
-            <div class="specialization-icon">🔢</div>
-            <h3>Mathematical Modeling</h3>
-            <p>Applied mathematics and statistical analysis for AI system optimization</p>
-        </div>
-        <div class="specialization-card">
-            <div class="specialization-icon">🌍</div>
-            <h3>NLP for African Languages</h3>
-            <p>Natural language processing and multilingual AI for underrepresented languages</p>
+    <div class="container">
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="{{ '/profile.jpeg' | relative_url }}" alt="{{ site.author.name }}" />
+            </div>
+            <div class="profile-info">
+                <h2 style="color: var(--accent-color); font-size: 1.5rem; margin-bottom: 0.5rem;">Hello, I'm</h2>
+                <h1 style="font-size: 3rem; margin-bottom: 0.5rem; font-style: italic;">{{ site.author.name }}</h1>
+                <p class="title" style="font-size: 1.5rem; margin-bottom: 1.5rem;">AI/ML enthusiast, Mathematician.</p>
+                <p class="bio">{{ site.author.bio }}</p>
+                <div class="action-buttons" style="margin: 2rem 0;">
+                    <a href="{{ '/projects/' | relative_url }}" class="btn-primary">View My Work</a>
+                    <a href="{{ '/contact/' | relative_url }}" class="btn-secondary">Contact Me</a>
+                </div>
+                <div class="social-links">
+                    {% if site.social.github %}
+                    <a href="https://github.com/{{ site.social.github }}" target="_blank" class="social-link">GitHub</a>
+                    {% endif %}
+                {% if site.social.linkedin %}
+                <a href="https://linkedin.com/in/{{ site.social.linkedin }}" target="_blank" class="social-link">LinkedIn</a>
+                {% endif %}
+                {% if site.social.email %}
+                <a href="mailto:{{ site.social.email }}" class="social-link">Email</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </section>
 
-<section class="featured-work">
-    <div class="section-header">
-        <h2>Featured Projects</h2>
-        <a href="{{ '/projects/' | relative_url }}" class="view-all">View All Projects →</a>
+<section class="expertise">
+    <div class="container">
+        <h2>Areas of Expertise</h2>
+        <div class="expertise-grid">
+            <div class="expertise-item">
+                <h3>Machine Learning</h3>
+                <p>Deep learning, neural networks, and predictive modeling</p>
+            </div>
+            <div class="expertise-item">
+                <h3>Computer Vision</h3>
+                <p>Image processing and pattern recognition systems</p>
+            </div>
+            <div class="expertise-item">
+                <h3>Mathematical Modeling</h3>
+                <p>Applied mathematics for AI system optimization</p>
+            </div>
+            <div class="expertise-item">
+                <h3>Natural Language Processing</h3>
+                <p>Multilingual AI and African language processing</p>
+            </div>
+        </div>
     </div>
-    {% assign featured_projects = site.projects | where: "featured", true | limit: 3 %}
-    {% if featured_projects.size > 0 %}
-    <div class="projects-showcase">
-        {% for project in featured_projects %}
-        <div class="project-showcase-card">
-            <h3 class="project-title">
-                <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-            </h3>
-            {% if project.excerpt %}
-            <p class="project-description">{{ project.excerpt | strip_html | truncate: 120 }}</p>
-            {% endif %}
-            <div class="project-meta">
+</section>
+
+<section class="recent-work">
+    <div class="container">
+        <div class="section-header">
+            <h2>Recent Work</h2>
+            <a href="{{ '/projects/' | relative_url }}" class="view-all">View All →</a>
+        </div>
+        {% assign recent_projects = site.projects | limit: 2 %}
+        {% if recent_projects.size > 0 %}
+        <div class="work-grid">
+            {% for project in recent_projects %}
+            <div class="work-item">
+                <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+                {% if project.excerpt %}
+                <p>{{ project.excerpt | strip_html | truncate: 100 }}</p>
+                {% endif %}
                 {% if project.technologies %}
-                <div class="tech-stack">
+                <div class="tech-tags">
                     {% for tech in project.technologies limit: 3 %}
                     <span class="tech-tag">{{ tech }}</span>
                     {% endfor %}
                 </div>
                 {% endif %}
             </div>
+            {% endfor %}
         </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="recent-posts">
+    <div class="container">
+        <div class="section-header">
+            <h2>Latest Posts</h2>
+            <a href="{{ '/blog/' | relative_url }}" class="view-all">View All →</a>
+        </div>
+        {% assign recent_posts = site.posts | limit: 3 %}
+        {% if recent_posts.size > 0 %}
+        <div class="posts-list">
+            {% for post in recent_posts %}
+            <div class="post-item">
+                <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+                <div class="post-meta">{{ post.date | date: "%B %d, %Y" }}</div>
+                {% if post.excerpt %}
+                <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section>
+    <h2>Recent Posts</h2>
+    {% assign recent_posts = site.posts | limit: 5 %}
+    {% if recent_posts.size > 0 %}
+    <ul class="post-list">
+        {% for post in recent_posts %}
+        <li class="post-item">
+            <h3 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            <div class="meta">
+                <span class="meta-item">{{ post.date | date: "%B %d, %Y" }}</span>
+            </div>
+            {% if post.excerpt %}
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+            {% endif %}
+        </li>
         {% endfor %}
-    </div>
+    </ul>
     {% else %}
-    <div class="projects-showcase">
-        <div class="project-showcase-card">
-            <h3 class="project-title">
-                <a href="#">AI for Healthcare</a>
-            </h3>
-            <p class="project-description">Medical image analysis and diagnostic systems for resource-limited settings</p>
-            <div class="tech-stack">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">TensorFlow</span>
-                <span class="tech-tag">OpenCV</span>
-            </div>
-        </div>
-        <div class="project-showcase-card">
-            <h3 class="project-title">
-                <a href="#">Agricultural AI</a>
-            </h3>
-            <p class="project-description">Crop monitoring and yield prediction using satellite imagery and machine learning</p>
-            <div class="tech-stack">
-                <span class="tech-tag">PyTorch</span>
-                <span class="tech-tag">GIS</span>
-                <span class="tech-tag">Computer Vision</span>
-            </div>
-        </div>
-        <div class="project-showcase-card">
-            <h3 class="project-title">
-                <a href="#">African NLP</a>
-            </h3>
-            <p class="project-description">Natural language processing tools for African languages and cultural contexts</p>
-            <div class="tech-stack">
-                <span class="tech-tag">Transformers</span>
-                <span class="tech-tag">NLP</span>
-                <span class="tech-tag">Multilingual</span>
-            </div>
-        </div>
-    </div>
+    <p>No posts yet.</p>
     {% endif %}
 </section>
 
-<section class="latest-insights">
-    <div class="section-header">
-        <h2>Latest Insights</h2>
-        <a href="{{ '/blog/' | relative_url }}" class="view-all">View All Posts →</a>
-    </div>
-    {% assign recent_posts = site.posts | limit: 2 %}
-    {% if recent_posts.size > 0 %}
-    <div class="insights-grid">
-        {% for post in recent_posts %}
-        <article class="insight-card">
-            <h3 class="insight-title">
-                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+<section>
+    <h2>Featured Projects</h2>
+    {% assign featured_projects = site.projects | limit: 3 %}
+    {% if featured_projects.size > 0 %}
+    <div class="projects-grid">
+        {% for project in featured_projects %}
+        <div class="project-card">
+            <h3 class="project-title">
+                <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
             </h3>
-            <div class="insight-meta">
-                <span class="insight-date">{{ post.date | date: "%B %d, %Y" }}</span>
-            </div>
-            {% if post.excerpt %}
-            <p class="insight-excerpt">{{ post.excerpt | strip_html | truncate: 140 }}</p>
+            {% if project.excerpt %}
+            <p class="project-description">{{ project.excerpt | strip_html | truncate: 100 }}</p>
             {% endif %}
-        </article>
+        </div>
         {% endfor %}
     </div>
     {% else %}
-    <div class="insights-grid">
-        <article class="insight-card">
-            <h3 class="insight-title">
-                <a href="#">The Future of AI in Africa</a>
-            </h3>
-            <div class="insight-meta">
-                <span class="insight-date">Recent</span>
-            </div>
-            <p class="insight-excerpt">Exploring opportunities and challenges for artificial intelligence development across African contexts</p>
-        </article>
-    </div>
+    <p>No projects yet.</p>
     {% endif %}
 </section>

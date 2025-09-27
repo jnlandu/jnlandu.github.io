@@ -195,7 +195,7 @@ li {
 .hero {
   text-align: center;
   padding: 3rem 0;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .hero-content {
@@ -228,201 +228,14 @@ li {
 
 .hero-text h1 {
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.hero-tagline {
-  font-size: 1.3rem;
-  color: var(--accent-color);
-  font-weight: 600;
-  margin-bottom: 1rem !important;
-}
-
-.hero-description {
+.hero-text p {
   font-size: 1.1rem;
   color: var(--text-light);
   max-width: 600px;
   margin: 0 auto;
-}
-
-/* Specializations Section */
-.specializations {
-  margin-bottom: 4rem;
-}
-
-.specializations h2 {
-  text-align: center;
-  margin-bottom: 3rem;
-  font-size: 2rem;
-}
-
-.specializations-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.specialization-card {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.specialization-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-
-.specialization-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.specialization-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: var(--accent-color);
-}
-
-.specialization-card p {
-  color: var(--text-light);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-/* Section Headers */
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.section-header h2 {
-  margin-bottom: 0;
-}
-
-.view-all {
-  color: var(--accent-color);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.view-all:hover {
-  color: var(--accent-hover);
-}
-
-/* Featured Work Section */
-.featured-work {
-  margin-bottom: 4rem;
-}
-
-.projects-showcase {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.project-showcase-card {
-  padding: 2rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.project-showcase-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-}
-
-.project-title {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.project-title a {
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-.project-title a:hover {
-  color: var(--accent-color);
-}
-
-.project-description {
-  color: var(--text-light);
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.tech-tag {
-  background: var(--accent-color);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
-/* Latest Insights Section */
-.latest-insights {
-  margin-bottom: 3rem;
-}
-
-.insights-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-}
-
-.insight-card {
-  padding: 2rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.insight-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-}
-
-.insight-title {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.insight-title a {
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-.insight-title a:hover {
-  color: var(--accent-color);
-}
-
-.insight-meta {
-  margin-bottom: 1rem;
-}
-
-.insight-date {
-  color: var(--text-light);
-  font-size: 0.9rem;
-}
-
-.insight-excerpt {
-  color: var(--text-light);
-  line-height: 1.6;
 }
 
 /* Optional: Horizontal layout for very large screens */
@@ -444,7 +257,7 @@ li {
     max-width: 500px;
   }
   
-  .hero-description {
+  .hero-text p {
     margin: 0;
   }
 }
@@ -562,40 +375,9 @@ footer {
     font-size: 2rem;
   }
   
-  .hero-tagline {
-    font-size: 1.1rem;
-  }
-  
   .profile-image {
     width: 100px;
     height: 100px;
-  }
-  
-  .specializations h2 {
-    font-size: 1.6rem;
-  }
-  
-  .specializations-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .specialization-card {
-    padding: 1.5rem 1rem;
-  }
-  
-  .projects-showcase {
-    grid-template-columns: 1fr;
-  }
-  
-  .insights-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .section-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
   }
   
   .projects-grid {
@@ -628,10 +410,7 @@ footer {
   }
   
   .card,
-  .project-card,
-  .specialization-card,
-  .project-showcase-card,
-  .insight-card {
+  .project-card {
     background: #2d3748;
     border-color: #4a5568;
   }
@@ -645,22 +424,11 @@ footer {
     background: #4a5568;
   }
   
-  .tech-tag {
-    background: var(--accent-color);
-    color: #1a202c;
-  }
-  
   .profile-image {
     border-color: #4a5568;
   }
   
   .profile-image:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  }
-  
-  .specialization-card:hover,
-  .project-showcase-card:hover,
-  .insight-card:hover {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
 }
