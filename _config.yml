@@ -18,15 +18,15 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title:  N. Mabiala
+title:  Jeremie Mabiala
 firstName: Jérémie
-lastName: N. Mabiala
+lastName: Mabiala
 email: 
   - jeremy@aimsammi.org
   # - jeremie@aims.ac.za
 
-profile_alt: Jérémie Nlandu Mabiala
-profile_image: ./profile.jpeg
+profile_alt: Jérémie Mabiala
+profile_image: ./profile.png
 
 location:
   - African Institute for Mathematical Sciences

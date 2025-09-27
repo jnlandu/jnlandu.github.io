@@ -3,27 +3,42 @@ layout: default
 ---
 
 <!-- Hero Section -->
-<section class="hero-section">
-  <div class="hero-content">
-    <div class="hero-image-container">
-      {% if site.profile_image %}
-        <img src="{{ site.profile_image | relative_url }}" 
-             alt="{{ site.profile_alt | default: site.title }}" 
-             class="hero-image">
-      {% endif %}
-    </div>
-    
-    <div class="hero-text">
-      <h1>Hello, I'm {{ site.firstName }} <span class="text-brand">{{ site.lastName }}</span></h1>
-      <p class="hero-subtitle">Student in Artificial Intelligence & AI Enthusiast</p>
-      
+<section id="top" class="hero-section hero-full">
+  <div class="hero-content hero-split">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Hi 👋, I'm</div>
+      <h1 class="hero-heading">
+        {{ site.firstName }} <span class="text-brand">{{ site.lastName }}</span>
+      </h1>
+      <p class="hero-subtitle">Student in Artificial Intelligence & Developer</p>
+
+      {% assign roles = site.roles | default: "AI Student|Machine Learning Developer|Data Science Enthusiast" | split: "|" %}
+      <div class="hero-roles">
+        {% for role in roles %}
+          <span class="role-badge">{{ role }}</span>
+        {% endfor %}
+      </div>
+
+      <p class="hero-bio">
+        {{ site.description | strip_html | normalize_whitespace | truncatewords: 36 }}
+        <a class="hero-bio-link" href="{{ '/about/' | relative_url }}">Read more →</a>
+      </p>
+
       {% if site.location %}
       <div class="hero-location">
         <i class="{{ site.location[2] | default: 'fas fa-map-marker-alt' }}"></i>
         <span>{{ site.location[0] }}</span>
       </div>
       {% endif %}
-      
+
+      <div class="hero-cta">
+        <a href="{{ '/about/' | relative_url }}" class="btn-circle" aria-label="View Resume">
+          <i class="fas fa-play"></i>
+        </a>
+        <a href="{{ '/projects/' | relative_url }}" class="btn btn-primary">View Projects</a>
+        <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary">Contact</a>
+      </div>
+
       <div class="social-links">
         {% if site.data.social %}
           {% for social in site.data.social %}
@@ -40,17 +55,48 @@ layout: default
         {% endif %}
       </div>
     </div>
+
+    <div class="hero-right">
+      {% if site.profile_image %}
+        <img src="{{ site.profile_image | relative_url }}" 
+             alt="{{ site.profile_alt | default: site.title }}" 
+             class="hero-portrait">
+      {% endif %}
+    </div>
   </div>
+
+  <nav class="section-dots" aria-label="Section navigation">
+    <a href="#top" class="dot" data-target="top" aria-label="Top"></a>
+    <a href="#about" class="dot" data-target="about" aria-label="About"></a>
+    <a href="#recent-posts" class="dot" data-target="recent-posts" aria-label="Recent Posts"></a>
+    <a href="#recent-projects" class="dot" data-target="recent-projects" aria-label="Recent Projects"></a>
+  </nav>
+
+  <a href="#about" class="scroll-cue" aria-label="Scroll to About">
+    <i class="fas fa-chevron-down"></i>
+  </a>
 </section>
 
 <!-- About Section -->
-<section class="about-section">
+<section id="about" class="about-section">
   <div class="about-content">
-    <h2>About Me</h2>
-    <div class="about-text">
-      {% include bio.html %}
+    <div class="about-split">
+      <div class="about-left">
+        <img 
+          src="{{ '/profile.png' | relative_url }}" 
+          alt="{{ site.profile_alt | default: site.title }}"
+          class="about-portrait"
+          loading="lazy"
+        >
+      </div>
+      <div class="about-right">
+        <h2>About Me</h2>
+        <div class="about-text">
+          {% include bio.html %}
+        </div>
+      </div>
     </div>
-    
+
     <!-- Research Interests -->
     <h3>Research Interests</h3>
     <div class="research-interests">
@@ -91,7 +137,7 @@ layout: default
 
 <!-- Recent Posts Section -->
 {% if site.posts.size > 0 %}
-<section class="about-section">
+<section id="recent-posts" class="about-section">
   <div class="about-content">
     <h2>Recent Posts</h2>
     <div class="post-list">
@@ -131,7 +177,7 @@ layout: default
 
 <!-- Recent Projects Section -->
 {% if site.projects.size > 0 %}
-<section class="hero-section">
+<section id="recent-projects" class="hero-section">
   <div class="about-content">
     <h2>Recent Projects</h2>
     <div class="post-list">

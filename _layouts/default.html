@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b1220">
   
   <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
@@ -15,8 +17,8 @@
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
-  <!-- Syntax highlighting -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+  <!-- Syntax highlighting (dark theme) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
   
   <!-- SEO and meta tags -->
   {% seo %}
@@ -93,6 +95,38 @@
       document.querySelectorAll('.card, .post-card, .interest-item').forEach(el => {
         observer.observe(el);
       });
+
+      // Section dots: active state and rail shift on scroll direction
+      (function() {
+        const dotsNav = document.querySelector('.section-dots');
+        if (!dotsNav) return;
+        const dots = Array.from(dotsNav.querySelectorAll('.dot'));
+        const targets = dots.map(d => document.getElementById(d.dataset.target));
+        let lastScrollY = window.scrollY;
+
+        // Highlight active dot using IntersectionObserver
+        const activeObs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const idx = targets.indexOf(entry.target);
+            if (idx === -1) return;
+            if (entry.isIntersecting) {
+              dots.forEach(d => d.classList.remove('active'));
+              dots[idx].classList.add('active');
+            }
+          });
+        }, { threshold: 0.6 });
+
+        targets.forEach(t => { if (t) activeObs.observe(t); });
+
+        // Scroll direction -> shift dot rail slightly
+        window.addEventListener('scroll', () => {
+          const curr = window.scrollY || document.documentElement.scrollTop;
+          const dirUp = curr < lastScrollY;
+          dotsNav.classList.toggle('shift-up', dirUp);
+          dotsNav.classList.toggle('shift-down', !dirUp);
+          lastScrollY = curr;
+        }, { passive: true });
+      })();
     </script>
 </body>
 
