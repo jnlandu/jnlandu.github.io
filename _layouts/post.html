@@ -2,42 +2,81 @@
 layout: default
 ---
 
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+<div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+  <article class="card" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="card-header">
+      <h1 class="card-title" itemprop="name headline">{{ page.title | escape }}</h1>
+      
+      <div class="card-meta">
+        <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          <i class="fas fa-calendar-alt"></i>
+          {{ page.date | date: "%B %d, %Y" }}
+        </time>
+        
+        {% if page.author %}
+          <span class="post-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <i class="fas fa-user"></i>
+            <span itemprop="name">{{ page.author }}</span>
+          </span>
+        {% endif %}
+        
+        {% if page.categories.size > 0 %}
+          <span class="post-categories">
+            <i class="fas fa-folder"></i>
+            {% for category in page.categories %}
+              <a href="{{ '/categories/' | append: category | relative_url }}">{{ category }}</a>
+              {% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </span>
+        {% endif %}
+      </div>
+      
+      {% if page.tags.size > 0 %}
+        <div class="tags" style="margin-top: 1rem;">
+          {% for tag in page.tags %}
+            <a href="{{ '/tags/' | append: tag | relative_url }}" class="tag">{{ tag }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </header>
 
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
-      {%- endif -%}
+    <div class="post-content content" itemprop="articleBody">
+      {{ content }}
+    </div>
 
-      <br>
-      {%- if page.tags -%}
-        {%- include post-tags.html -%}
-      {%- endif -%}
-    </p>
-  </header>
-  
+    <!-- Post Navigation -->
+    <nav class="post-nav">
+      {% if page.previous %}
+        <div class="post-nav-prev">
+          <a href="{{ page.previous.url | relative_url }}" rel="prev">
+            <i class="fas fa-arrow-left"></i>
+            <div>
+              <small>Previous Post</small>
+              <strong>{{ page.previous.title | truncate: 50 }}</strong>
+            </div>
+          </a>
+        </div>
+      {% endif %}
+      
+      {% if page.next %}
+        <div class="post-nav-next">
+          <a href="{{ page.next.url | relative_url }}" rel="next">
+            <div>
+              <small>Next Post</small>
+              <strong>{{ page.next.title | truncate: 50 }}</strong>
+            </div>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      {% endif %}
+    </nav>
 
+    {% if site.disqus.shortname %}
+      <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+        {% include disqus_comments.html %}
+      </div>
+    {% endif %}
 
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
-  </div>
-
-
-  <!-- post paginations   -->
-   <div class="post-footer">
-  {%- include posts-paginator.html -%}
-  </div>
-
-
-  {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
-  {%- endif -%}
-
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-</article>
+    <div class="u-url" href="{{ page.url | relative_url }}" hidden></div>
+  </article>
+</div>
