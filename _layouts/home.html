@@ -1,5 +1,53 @@
 ---
 layout: default
-title: 'Home'
 ---
 
+<section class="hero">
+    <h1>{{ site.author.name }}</h1>
+    <p>{{ site.author.bio }}</p>
+</section>
+
+<section>
+    <h2>Recent Posts</h2>
+    {% assign recent_posts = site.posts | limit: 5 %}
+    {% if recent_posts.size > 0 %}
+    <ul class="post-list">
+        {% for post in recent_posts %}
+        <li class="post-item">
+            <h3 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            <div class="meta">
+                <span class="meta-item">{{ post.date | date: "%B %d, %Y" }}</span>
+            </div>
+            {% if post.excerpt %}
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No posts yet.</p>
+    {% endif %}
+</section>
+
+<section>
+    <h2>Featured Projects</h2>
+    {% assign featured_projects = site.projects | limit: 3 %}
+    {% if featured_projects.size > 0 %}
+    <div class="projects-grid">
+        {% for project in featured_projects %}
+        <div class="project-card">
+            <h3 class="project-title">
+                <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+            </h3>
+            {% if project.excerpt %}
+            <p class="project-description">{{ project.excerpt | strip_html | truncate: 100 }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No projects yet.</p>
+    {% endif %}
+</section>

@@ -1,66 +1,49 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-
-  {%- include head.html -%}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+    
+    {% seo %}
+    {% feed_meta %}
+</head>
 
 <body>
-    <!-- Back to Top button -->
-    {% include back-to-top-btn.html %}
-    <!-- <button class="theme-toggle-btn" aria-label="Toggle Theme"><i></i>
-    </button> -->
-    <!-- Site Header -->
-     
-     <header class="site-header">
-      
-      {%- include header.html -%}
-     </header>
-    
+    <header>
+        <div class="container">
+            <div class="site-title">
+                <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+            </div>
+            <div class="site-description">
+                {{ site.description }}
+            </div>
+            <nav>
+                <ul>
+                    {% for link in site.nav_links %}
+                    <li><a href="{{ link.url | relative_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <!-- Main Content goes here -->
-    <!-- <div class="main-wrapper" role="main"> -->
-    {% if page.title =='Home' %}
-      <div class=" about-wrapper">
-          {% include about-me.html %}
-      </div>
-
-    {% else %}
-
-     <div class="row main-wrapper">
-        <aside class="col-md-3 sidebar-left">
-          {% include sidebar-left.html %}
-        </aside>
-        <div class="col-md-6">
+    <main>
+        <div class="container">
             {{ content }}
         </div>
-        {%- if page.layout == 'post' and page.toc -%}
-        <aside class="col-md-2 sidebar-right">
-            {% include toc.html html=content %}
-        </aside>
-        {%- endif -%}
-    </div>
-    {% endif %}
-  <!-- </div> -->
+    </main>
 
-    <!-- Scripts -->
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-
-
-    <!-- Footer is commented out -->
- <!-- <footer class="site-footer">
-    {%- include footer.html -%}
-
-  
-  </footer> -->
-
- <!--  include icons  -->
- {% include icons.html %}
-
-  <footer class="mt-4 justify-content-center">
-  <!-- {% include footer.html %} -->
-</footer>
-
+    <footer>
+        <div class="container">
+            <p>&copy; {{ 'now' | date: '%Y' }} {{ site.author.name }}. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
-
-
-
 </html>
