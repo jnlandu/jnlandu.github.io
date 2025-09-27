@@ -7,6 +7,7 @@ html{
   position: absolute !important;
 }
 
+
 body, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
@@ -23,7 +24,6 @@ dl, dd, ol, ul, figure {
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   color: $text-color;
-  // background-color: $background-color !important;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
      -moz-font-feature-settings: "kern" 1;
@@ -33,24 +33,9 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  margin-left: 200px !important;
-  margin-right:200px !important;
-}
+  margin-left:  15lvw !important;
+  margin-right: 15lvw !important;
 
-// body {
-//   // background-color: black !important;
-//   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
-//   color: var(--text-color);
-//   font-family: Arial, sans-serif;
-//   transition: background-color 0.3s ease, color 0.3s ease;
-//   margin-left: 50px;
-//   margin-right:50px;
-// }
-header{
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 1020
 }
 
 /**
@@ -70,29 +55,6 @@ ul, ol, dl, figure,
  */
 main {
   display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
-}
-
-
-
-/**
- * Images
- */
-// img {
-//   max-width: 100%;
-//   vertical-align: middle;xp
-// }
-
-img {
-  max-width: 100%;
-  // width: 20lvw !important;
-  // height: 20lvw !important;
-  vertical-align:-webkit-baseline-middle;
-  margin-top: 35px;
- 
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
-  border-top-right-radius: 25px;
 }
 
 
@@ -140,6 +102,7 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: $brand-color;
   text-decoration: none;
+  cursor: pointer;
 
   &:visited {
     color: darken($brand-color, 15%);

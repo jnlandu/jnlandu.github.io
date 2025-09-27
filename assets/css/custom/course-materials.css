@@ -1,0 +1,90 @@
+.d-none{
+  display: none !important;
+}
+.img-thumbnail {
+  padding: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  max-width: 100%;
+  height: auto;
+}
+.img-fluid {
+    width: 100%;
+    height: auto;
+    border-radius: 15px !important;
+  }
+  .image-container{
+    display: flex;
+    flex-direction: column !important;
+  }
+  
+  .img-thumbnail {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    height: auto;
+  }
+  .course-material-container{
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+  .course-component{
+    display:flex;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .photo-fluid{
+    width: 100%;
+    height: auto;
+    border-radius: 15px !important;
+  }
+
+.photos-container{
+  width: 100%;
+}
+  
+.photos-content-container{
+    position: relative;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    text-align: justify;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(18, 12, 12, 0.2);
+    background-color: var(--bg-light-black-secondary);
+  
+     /*  animation  */
+     animation: photosSlideIn 10s linear;
+     animation-fill-mode: forwards; 
+     animation-direction: reverse;
+     animation-iteration-count: infinite;
+  
+  }
+  @keyframes photosSlideIn {
+    from{right: 50%;}
+    to { right: 0px;}
+  }
+.photos-content-container{
+    transition: opacity 0.3s ease, transform 0.5s ease; 
+  }
+.photos-content-container:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+  /* Disable animation */
+  .no-animation {
+    animation: none !important;
+  }
+
+.course-title{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
