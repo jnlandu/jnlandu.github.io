@@ -4,57 +4,86 @@ layout: default
 
 
 <!-- Hero Section -->
-<section class="hero-section">
-  <div class="hero-content">
-    <div class="hero-image-container">
+<section id="top" class="hero-section hero-full">
+  <div class="hero-content-centered">
+    <div class="hero-main">
+      <div class="hero-eyebrow">Howdy,</div>
+      <h1 class="hero-heading-large">
+        I'm {{ site.firstName }} <span class="text-brand">{{ site.lastName }}</span>
+      </h1>
+      
+      <div class="hero-cta-simple">
+        <a href="{{ '/about/' | relative_url }}" class="btn-circle-large" aria-label="View Resume">
+          <i class="fas fa-play"></i>
+        </a>
+        <span class="cta-label">Watch Resume</span>
+      </div>
+    </div>
+
+    <div class="hero-image-bg">
       {% if site.profile_image %}
         <img src="{{ site.profile_image | relative_url }}" 
              alt="{{ site.profile_alt | default: site.title }}" 
-             class="hero-image">
+             class="hero-portrait-bg">
       {% endif %}
-    </div>
-    
-    <div class="hero-text">
-      <h1>Hello, I'm {{ site.firstName }} <span class="text-brand">{{ site.lastName }}</span></h1>
-      <p class="hero-subtitle">Student in Artificial Intelligence & AI Enthusiast</p>
-      
-      {% if site.location %}
-      <div class="hero-location">
-        <i class="{{ site.location[2] | default: 'fas fa-map-marker-alt' }}"></i>
-        <span>{{ site.location[0] }}</span>
-      </div>
-      {% endif %}
-      
-      <div class="social-links">
-        {% if site.data.social %}
-          {% for social in site.data.social %}
-            {% if social.title == 'Email' %}
-              <a href="mailto:{{ social.url }}" class="social-link" title="{{ social.title }}">
-                <i class="{{ social.icon | default: 'fas fa-envelope' }}"></i>
-              </a>
-            {% else %}
-              <a href="{{ social.url }}" class="social-link" title="{{ social.title }}" target="_blank" rel="noopener">
-                <i class="{{ social.icon | default: 'fas fa-link' }}"></i>
-              </a>
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-      </div>
     </div>
   </div>
+
+  <nav class="section-dots" aria-label="Section navigation">
+    <a href="#top" class="dot" data-target="top" aria-label="Top"></a>
+    <a href="#about" class="dot" data-target="about" aria-label="About"></a>
+    <a href="#education" class="dot" data-target="education" aria-label="Education"></a>
+    <a href="#resume" class="dot" data-target="resume" aria-label="Resume"></a>
+    <a href="#news" class="dot" data-target="news" aria-label="News"></a>
+    <a href="#news-archive" class="dot" data-target="news-archive" aria-label="More News"></a>
+    <a href="#recent-posts" class="dot" data-target="recent-posts" aria-label="Recent Posts"></a>
+    <a href="#recent-projects" class="dot" data-target="recent-projects" aria-label="Recent Projects"></a>
+    <a href="#contact" class="dot" data-target="contact" aria-label="Contact"></a>
+  </nav>
+
+  <!-- Hero Social Icons -->
+  <div class="hero-social">
+    {% for social in site.data.social %}
+      {% if social.title == "Email" %}
+        <a href="mailto:{{ social.url }}" class="hero-social-icon" aria-label="{{ social.title }}">
+          <i class="{{ social.icon }}"></i>
+        </a>
+      {% else %}
+        <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" class="hero-social-icon" aria-label="{{ social.title }}">
+          <i class="{{ social.icon }}"></i>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <a href="#about" class="scroll-cue" aria-label="Scroll to About">
+    <i class="fas fa-chevron-down"></i>
+  </a>
 </section>
 
 <!-- About Section -->
-<section class="about-section">
+<section id="about" class="about-section">
   <div class="about-content">
-    <h2>About Me</h2>
-    <div class="about-text">
-      {% include bio.html %}
+    <div class="about-split">
+      <div class="about-left">
+        <img 
+          src="{{ '/profile.png' | relative_url }}" 
+          alt="{{ site.profile_alt | default: site.title }}"
+          class="about-portrait"
+          loading="lazy"
+        >
+      </div>
+      <div class="about-right">
+        <h2>About Me</h2>
+        <div class="about-text">
+          {% include bio.html %}
+        </div>
+      </div>
     </div>
-    
+
     <!-- Research Interests -->
-    <h3>Research Interests</h3>
-    <div class="research-interests">
+    <!-- <h3>Research Interests</h3> -->
+    <!-- <div class="research-interests">
       <div class="interest-item">
         <div class="interest-icon">
           <i class="fas fa-brain"></i>
@@ -86,45 +115,360 @@ layout: default
         <h4 class="interest-title">Computer Vision</h4>
         <p class="interest-description">Visual recognition and image analysis</p>
       </div>
+    </div> -->
+  </div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="about-section">
+  <div class="about-content">
+    <header class="posts-header">
+      <div>
+        <div class="posts-eyebrow">Education</div>
+        <h2 class="posts-title">Education</h2>
+        <p class="posts-subtitle">Formal training focused on AI, mathematical sciences, and rigorous problem solving.</p>
+      </div>
+    </header>
+
+    <div class="resume-grid" data-animate="stagger">
+      <div class="resume-timeline">
+        <div class="resume-item">
+          <div class="resume-top">
+            <span class="resume-role">MSc in Artificial Intelligence</span>
+            <span class="resume-date">2024 – Present</span>
+          </div>
+          <div class="resume-company">African Institute for Mathematical Sciences (AIMS), Senegal</div>
+        </div>
+        <div class="resume-item">
+          <div class="resume-top">
+            <span class="resume-role">MSc in Mathematical Sciences</span>
+            <span class="resume-date">2023 – 2024</span>
+          </div>
+          <div class="resume-company">Stellenbosch University & AIMS South Africa</div>
+          <p class="resume-desc">Awarded the fully funded AIMS scholarship for academic excellence.</p>
+        </div>
+        <div class="resume-item">
+          <div class="resume-top">
+            <span class="resume-role">BSc in Mathematics</span>
+            <span class="resume-date">2015 – 2021</span>
+          </div>
+          <div class="resume-company">University of Kinshasa (UPN), DRC</div>
+          <p class="resume-desc">Graduated with Distinction.</p>
+        </div>
+      </div>
+
+      <div class="resume-aside">
+        <h3 class="mb-1">Focus Areas</h3>
+        <div class="skills-grid">
+          <span class="tag chip">NLP</span>
+          <span class="tag chip">Computer Vision</span>
+          <span class="tag chip">MLOps</span>
+          <span class="tag chip">Biostatistics</span>
+          <span class="tag chip">Mathematical Modelling</span>
+          <span class="tag chip">Network Analysis</span>
+          <span class="tag chip">Data Analysis</span>
+          <span class="tag chip">Statistical Modelling</span>
+          <span class="tag chip">Advanced Python</span>
+          <span class="tag chip">Probability</span>
+          <span class="tag chip">Statistics</span>
+          <span class="tag chip">Databases</span>
+          <span class="tag chip">Systems Management</span>
+          <span class="tag chip">Programming</span>
+          <span class="tag chip">Algorithmics</span>
+          <span class="tag chip">Optimization</span>
+        </div>
+        <h3 class="mt-2 mb-1">Key Coursework</h3>
+        <div class="skills-grid">
+          <span class="tag chip">Deep Learning</span>
+          <span class="tag chip">Foundation Models</span>
+          <span class="tag chip">Probabilistic ML</span>
+          <span class="tag chip">Advanced Optimization</span>
+          <span class="tag chip">Biostatistics</span>
+          <span class="tag chip">Mathematical Modelling</span>
+          <span class="tag chip">Network Analysis</span>
+          <span class="tag chip">Data Analysis</span>
+          <span class="tag chip">Statistical Modelling</span>
+          <span class="tag chip">Advanced Python</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Resume Section -->
+<section id="resume" class="about-section">
+  <div class="about-content">
+    <header class="posts-header">
+      <div>
+        <div class="posts-eyebrow">Resume</div>
+        <h2 class="posts-title">Experience & Skills</h2>
+        <p class="posts-subtitle">A snapshot of roles, projects, and tools I use day-to-day.</p>
+      </div>
+      <div class="posts-cta">
+        <a href="{{ '/assets/static/resume.pdf' | relative_url }}" class="btn btn-primary" download>
+          <i class="fas fa-file-download"></i>
+          Download CV
+        </a>
+      </div>
+    </header>
+
+    <div class="resume-grid" data-animate="stagger">
+      <div class="resume-timeline">
+        <div class="resume-item">
+          <div class="resume-top">
+            <span class="resume-role">Machine Learning Intern</span>
+            <span class="resume-date">2024 — 2025</span>
+          </div>
+          <div class="resume-company">Example Lab</div>
+          <p class="resume-desc">Built and deployed ML prototypes for NLP and time-series; improved model selection using AIC/BIC; productionized a Flask service.</p>
+        </div>
+        <div class="resume-item">
+          <div class="resume-top">
+            <span class="resume-role">Research Assistant</span>
+            <span class="resume-date">2023 — 2024</span>
+          </div>
+          <div class="resume-company">University • Statistics</div>
+          <p class="resume-desc">Worked on Gaussian processes and functional data analysis; implemented experiments and visualizations.</p>
+        </div>
+      </div>
+
+      <div class="resume-aside">
+        <h3 class="mb-1">Core Skills</h3>
+        <div class="skills-grid">
+          <span class="tag chip">Python</span>
+          <span class="tag chip">PyTorch</span>
+          <span class="tag chip">TensorFlow</span>
+          <span class="tag chip">NLP</span>
+          <span class="tag chip">Time-series</span>
+          <span class="tag chip">Statistics</span>
+          <span class="tag chip">Flask</span>
+          <span class="tag chip">JAX</span>
+          <span class="tag chip">Pandas</span>
+          <span class="tag chip">Docker</span>
+        </div>
+        <h3 class="mt-2 mb-1">Links</h3>
+        <div class="resume-actions">
+          <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary"><i class="fas fa-id-card"></i> View Full Bio</a>
+          <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary"><i class="fas fa-paper-plane"></i> Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- News Section -->
+<section id="news" class="about-section">
+  <div class="about-content">
+    <header class="posts-header">
+      <div>
+        <div class="posts-eyebrow">Latest</div>
+        <h2 class="posts-title">News & Updates</h2>
+        <p class="posts-subtitle">Recent achievements, fellowships, and exciting projects I'm working on.</p>
+      </div>
+    </header>
+
+    <div class="news-grid" data-animate="stagger">
+      <div class="news-timeline">
+        <div class="news-item">
+          <div class="news-date">January 2025</div>
+          <div class="news-content">
+            <h3 class="news-title">
+              <i class="fas fa-award news-icon"></i>
+              African Masters in Machine Intelligence (AMMI) Fellowship
+            </h3>
+            <p class="news-description">
+              I was awarded a fully funded fellowship to mentor and teach young generations of African researchers in Machine Learning, at the African Institute for Mathematical Sciences, in its Machine Learning Stream.
+            </p>
+            <div class="news-tags">
+              <span class="tag chip">Fellowship</span>
+              <span class="tag chip">Teaching</span>
+              <span class="tag chip">AIMS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">January 2024</div>
+          <div class="news-content">
+            <h3 class="news-title">
+              <i class="fas fa-graduation-cap news-icon"></i>
+              African Masters in Machine Intelligence (AMMI) Scholarship
+            </h3>
+            <p class="news-description">
+              I was awarded the prestigious fully funded AMMI scholarship to study Machine Learning at the African Institute for Mathematical Sciences, Senegal.
+            </p>
+            <div class="news-tags">
+              <span class="tag chip">Scholarship</span>
+              <span class="tag chip">Machine Learning</span>
+              <span class="tag chip">AIMS Senegal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">August 2024</div>
+          <div class="news-content">
+            <h3 class="news-title">
+              <i class="fas fa-plane news-icon"></i>
+              African Probability, Information Theory and Computing School
+            </h3>
+            <p class="news-description">
+              I was privileged to attend the African Probability, Information Theory and Computing School in Kigali, Rwanda, I was awarded a fully funded scholarship, including flight tickets and accommodation.
+            </p>
+            <div class="news-tags">
+              <span class="tag chip">Conference</span>
+              <span class="tag chip">Rwanda</span>
+              <span class="tag chip">Probability</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-sidebar">
+        <div class="news-highlight">
+          <h4 class="news-highlight-title">
+            <i class="fas fa-book-open"></i>
+            Current Project
+          </h4>
+          <div class="book-preview">
+            <div class="book-cover">
+              <div class="book-placeholder">
+                <div class="book-title">MATHEMATICS<br>FOR<br>DATA SCIENCE</div>
+                <div class="book-subtitle-text">LINEAR ALGEBRA WITH PYTHON</div>
+                <div class="book-author">JEREMIE NLANDU MABIALA</div>
+              </div>
+            </div>
+            <div class="book-info">
+              <h5>Mathematics for Data Science</h5>
+              <p class="book-subtitle">Linear Algebra with Python</p>
+              <p class="book-description">
+                I am currently writing a comprehensive book on Linear Algebra for Data Science, combining mathematical theory with practical Python implementations.
+              </p>
+              <div class="book-status">
+                <span class="status-badge">In Progress</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- News Archive Section -->
+<section id="news-archive" class="about-section">
+  <div class="about-content">
+    <header class="posts-header">
+      <div>
+        <div class="posts-eyebrow">Archive</div>
+        <h2 class="posts-title">More News & Updates</h2>
+        <p class="posts-subtitle">Additional achievements and milestones from my academic journey.</p>
+      </div>
+    </header>
+
+    <div class="news-archive-grid" data-animate="stagger">
+      <div class="news-archive-timeline">
+        <div class="news-item">
+          <div class="news-date">2023</div>
+          <div class="news-content">
+            <h3 class="news-title">
+              <i class="fas fa-calculator news-icon"></i>
+              AIMS Scholarship
+            </h3>
+            <p class="news-description">
+              I was awarded a fully funded Master Student scholarship to study Mathematics at Stellenbosch University & AIMS South Africa.
+            </p>
+            <div class="news-tags">
+              <span class="tag chip">Scholarship</span>
+              <span class="tag chip">Mathematics</span>
+              <span class="tag chip">Stellenbosch</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add more news items here as needed -->
+        <!-- Example structure for future news items:
+        <div class="news-item">
+          <div class="news-date">Year</div>
+          <div class="news-content">
+            <h3 class="news-title">
+              <i class="fas fa-icon-name news-icon"></i>
+              Title
+            </h3>
+            <p class="news-description">
+              Description
+            </p>
+            <div class="news-tags">
+              <span class="tag chip">Tag1</span>
+              <span class="tag chip">Tag2</span>
+            </div>
+          </div>
+        </div>
+        -->
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Recent Posts Section -->
 {% if site.posts.size > 0 %}
-<section class="about-section">
+<section id="recent-posts" class="about-section">
   <div class="about-content">
-    <h2>Recent Posts</h2>
-    <div class="post-list">
-      {% for post in site.posts limit:3 %}
-        <article class="post-card">
-          <h3 class="post-title">
-            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-          </h3>
-          
-          {% if post.excerpt %}
-            <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+    <header class="posts-header">
+      <div>
+        <div class="posts-eyebrow">Latest writing</div>
+        <h2 class="posts-title">Recent Posts</h2>
+        <p class="posts-subtitle">Fresh notes on machine learning, statistics, and engineering.</p>
+      </div>
+      <div class="posts-cta">
+        <a href="{{ '/posts/' | relative_url }}" class="btn btn-primary">
+          <i class="fas fa-arrow-right"></i>
+          View All Posts
+        </a>
+      </div>
+    </header>
+
+    <div class="posts-grid" data-animate="stagger">
+      {% assign recent = site.posts | slice: 0, 4 %}
+      {% for post in recent %}
+        <article class="post-card pro{% if forloop.first %} featured{% endif %}" aria-label="Read {{ post.title | escape }}">
+          <a class="post-card-link" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1"></a>
+
+          {% if post.image %}
+          <div class="post-card-media">
+            <img 
+              src="{{ post.image | relative_url }}" 
+              alt="{{ post.title | escape }} cover" 
+              class="post-card-img" 
+              loading="lazy" 
+              decoding="async"
+            />
+          </div>
           {% endif %}
-          
-          <div class="post-meta">
-            <time class="post-date">{{ post.date | date: "%B %d, %Y" }}</time>
-            {% if post.tags.size > 0 %}
-              <div class="tags">
+
+          <div class="post-card-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date-pro">{{ post.date | date: "%b %d, %Y" }}</time>
+            {% if post.tags and post.tags.size > 0 %}
+              <div class="post-tags-pro">
                 {% for tag in post.tags limit:3 %}
-                  <span class="tag">{{ tag }}</span>
+                  <span class="tag chip">{{ tag }}</span>
                 {% endfor %}
               </div>
             {% endif %}
           </div>
+
+          <h3 class="post-title-pro"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+
+          {% if post.excerpt %}
+            <p class="post-excerpt-pro">{{ post.excerpt | strip_html | truncatewords: 28 }}</p>
+          {% endif %}
+
+          <div class="post-card-footer">
+            <span class="read-more">Read</span>
+            <span class="post-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+          </div>
         </article>
       {% endfor %}
-    </div>
-    
-    <div class="text-center" style="margin-top: 3rem;">
-      <a href="{{ '/posts/' | relative_url }}" class="btn btn-primary">
-        <i class="fas fa-arrow-right"></i>
-        View All Posts
-      </a>
     </div>
   </div>
 </section>
@@ -132,41 +476,144 @@ layout: default
 
 <!-- Recent Projects Section -->
 {% if site.projects.size > 0 %}
-<section class="hero-section">
+<section id="recent-projects" class="hero-section">
   <div class="about-content">
-    <h2>Recent Projects</h2>
-    <div class="post-list">
-      {% for project in site.projects limit:2 %}
-        <article class="post-card">
-          <h3 class="post-title">
-            <a href="{{ project.url | relative_url }}">{{ project.title | escape }}</a>
-          </h3>
-          
-          {% if project.excerpt %}
-            <p class="post-excerpt">{{ project.excerpt | strip_html | truncatewords: 25 }}</p>
+    <header class="posts-header">
+      <div>
+        <div class="posts-eyebrow">Selected work</div>
+        <h2 class="posts-title">Recent Projects</h2>
+        <p class="posts-subtitle">A few builds and experiments I’m proud of.</p>
+      </div>
+      <div class="posts-cta">
+        <a href="{{ '/projects/' | relative_url }}" class="btn btn-secondary">
+          <i class="fas fa-code"></i>
+          View All Projects
+        </a>
+      </div>
+    </header>
+
+    <div class="posts-grid" data-animate="stagger">
+      {% assign recent_projects = site.projects | slice: 0, 4 %}
+      {% for project in recent_projects %}
+        <article class="post-card pro{% if forloop.first %} featured{% endif %}" aria-label="View {{ project.title | escape }}">
+          <a class="post-card-link" href="{{ project.url | relative_url }}" aria-hidden="true" tabindex="-1"></a>
+
+          {% if project.image %}
+          <div class="post-card-media">
+            <img 
+              src="{{ project.image | relative_url }}" 
+              alt="{{ project.title | escape }} image" 
+              class="post-card-img" 
+              loading="lazy" 
+              decoding="async"
+            />
+          </div>
           {% endif %}
-          
-          <div class="post-meta">
+
+          <div class="post-card-meta">
             {% if project.tech %}
-              <div class="tags">
+              <div class="post-tags-pro">
                 {% for tech in project.tech limit:4 %}
-                  <span class="tag">{{ tech }}</span>
+                  <span class="tag chip">{{ tech }}</span>
                 {% endfor %}
               </div>
             {% endif %}
           </div>
+
+          <h3 class="post-title-pro"><a href="{{ project.url | relative_url }}">{{ project.title | escape }}</a></h3>
+
+          {% if project.excerpt %}
+            <p class="post-excerpt-pro">{{ project.excerpt | strip_html | truncatewords: 26 }}</p>
+          {% endif %}
+
+          <div class="post-card-footer">
+            <span class="read-more">View</span>
+            <span class="post-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+          </div>
         </article>
       {% endfor %}
     </div>
-    
-    <div class="text-center" style="margin-top: 3rem;">
-      <a href="{{ '/projects/' | relative_url }}" class="btn btn-secondary">
-        <i class="fas fa-code"></i>
-        View All Projects
-      </a>
-    </div>
   </div>
+  
 </section>
 {% endif %}
 
+
+<!-- Contact Section -->
+<section id="contact" class="about-section">
+  <div class="about-content">
+    <header class="posts-header">
+      <div>
+        <div class="posts-eyebrow">Get in touch</div>
+        <h2 class="posts-title">Contact</h2>
+        <p class="posts-subtitle">Currently based at AIMS Senegal in Mbour. Let's connect and collaborate.</p>
+      </div>
+    </header>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-details">
+            <h3>Email</h3>
+            <p><a href="mailto:jeremie@aims.ac.za">jeremie@aims.ac.za</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-details">
+            <h3>Phone</h3>
+            <p><a href="tel:+27714435490">+27 71 44 35 490</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-details">
+            <h3>Location</h3>
+            <p>African Institute for Mathematical Sciences<br>
+            Mbour, Senegal</p>
+          </div>
+        </div>
+
+        <div class="contact-social">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://github.com/jnlandu" class="social-link" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/jeremie-mabiala" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/jeremie_mabiala" class="social-link" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-map">
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.2769384894376!2d-16.966935524506435!3d14.414477885988985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172b1d41e7d95%3A0x51c2d0c8267a4b5a!2sAfrican%20Institute%20for%20Mathematical%20Sciences%20-%20Senegal!5e0!3m2!1sen!2s!4v1703123456789!5m2!1sen!2s"
+            width="100%" 
+            height="400" 
+            style="border:0; border-radius: 12px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            aria-label="Map showing AIMS Senegal location in Mbour">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 

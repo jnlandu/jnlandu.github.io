@@ -6,6 +6,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b1220">
   
   <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
@@ -16,8 +18,8 @@
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
-  <!-- Syntax highlighting -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+  <!-- Syntax highlighting (dark theme) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
   
   <!-- SEO and meta tags -->
   {% seo %}
@@ -25,24 +27,41 @@
   <!-- Feed -->
   <link type="application/atom+xml" rel="alternate" href="{{ '/feed.xml' | relative_url }}" title="{{ site.title | escape }}">
 </head>
-
+<!-- --error-color: #e53e3e;} -->
 <body>
     <!-- Site Header -->
     <header class="site-header">
       <div class="header-container">
-        <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title | escape }}</a>
+        <a href="{{ '/' | relative_url }}" class="site-title" style="font-family: 'Georgia', serif; font-size: 2.2rem; font-weight: 300; letter-spacing: 0.5px;"> Jeremie  <span class="text-brand" style="font-weight: 600;"> Mabiala </span></a>
         
-        <nav class="main-nav">
-          <ul>
-            <li><a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Home</a></li>
-            <li><a href="{{ '/posts/' | relative_url }}" class="nav-link {% if page.url contains 'posts' %}active{% endif %}">Posts</a></li>
-            <li><a href="{{ '/projects/' | relative_url }}" class="nav-link {% if page.url contains 'projects' %}active{% endif %}">Projects</a></li>
-            <li><a href="{{ '/tutorials/' | relative_url }}" class="nav-link {% if page.url contains 'tutorials' %}active{% endif %}">Tutorials</a></li>
-            <li><a href="{{ '/about/' | relative_url }}" class="nav-link {% if page.url contains 'about' %}active{% endif %}">About</a></li>
-            <li><a href="{{ '/contact/' | relative_url }}" class="nav-link {% if page.url contains 'contact' %}active{% endif %}">Contact</a></li>
-          </ul>
-        </nav>
+        <div class="header-contact">
+          <span class="contact-item">+27 71 44 35 490 </span>
+          <span class="contact-divider">/</span>
+          <span class="contact-item">jeremie@aims.ac.za</span>
+        </div>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
+
+      <!-- Slide-in navigation menu -->
+      <nav class="nav-menu">
+        <button class="close-btn" aria-label="Close menu">&times;</button>
+        <ul>
+          <li><a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">Home</a></li>
+          <li><a href="{{ '/about/' | relative_url }}" class="{% if page.url contains 'about' %}active{% endif %}">Specialization</a></li>
+          <li><a href="{{ '/posts/' | relative_url }}" class="{% if page.url contains 'posts' %}active{% endif %}">Resume</a></li>
+          <li><a href="{{ '/about/' | relative_url }}" class="{% if page.url contains 'about' %}active{% endif %}">About</a></li>
+          <li><a href="{{ '/projects/' | relative_url }}" class="{% if page.url contains 'projects' %}active{% endif %}">Projects</a></li>
+          <li><a href="{{ '/tutorials/' | relative_url }}" class="{% if page.url contains 'tutorials' %}active{% endif %}">Reviews</a></li>
+          <li><a href="{{ '/posts/' | relative_url }}" class="{% if page.url contains 'posts' %}active{% endif %}">Articles</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}" class="{% if page.url contains 'contact' %}active{% endif %}">Contact</a></li>
+        </ul>
+        <div class="copyright">All Rights Reserved.</div>
+      </nav>
     </header>
     
 
@@ -94,6 +113,199 @@
       document.querySelectorAll('.card, .post-card, .interest-item').forEach(el => {
         observer.observe(el);
       });
+
+      // Stagger-in for any grid when it enters the viewport
+      (function() {
+        const grids = document.querySelectorAll('[data-animate="stagger"]');
+        if (!grids.length) return;
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('inview');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        grids.forEach(g => obs.observe(g));
+      })();
+
+      // Cursor-follow glow for pro post cards
+      (function() {
+        const cards = document.querySelectorAll('.post-card.pro');
+        if (!cards.length) return;
+        cards.forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--mx', x + '%');
+            card.style.setProperty('--my', y + '%');
+          });
+        });
+      })();
+
+      // Enhanced section navigation with one-click scrolling
+      (function() {
+        const dotsNav = document.querySelector('.section-dots');
+        if (!dotsNav) return;
+        const dots = Array.from(dotsNav.querySelectorAll('.dot'));
+        const targets = dots.map(d => document.getElementById(d.dataset.target));
+        let lastScrollY = window.scrollY;
+        let currentSectionIndex = 0;
+        let isScrolling = false;
+
+        // Highlight active dot using IntersectionObserver
+        const activeObs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const idx = targets.indexOf(entry.target);
+            if (idx === -1) return;
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+              dots.forEach(d => d.classList.remove('active'));
+              dots[idx].classList.add('active');
+              currentSectionIndex = idx;
+            }
+          });
+        }, { threshold: [0.5, 0.8] });
+
+        targets.forEach(t => { if (t) activeObs.observe(t); });
+
+        // Smooth scroll with directional slide effects
+        function scrollToSection(index, direction = 'down') {
+          if (index < 0 || index >= targets.length || !targets[index] || isScrolling) return;
+          
+          isScrolling = true;
+          const target = targets[index];
+          const currentTarget = targets[currentSectionIndex];
+          
+          // Add slide-out effect to current section
+          if (currentTarget && currentTarget !== target) {
+            const slideOutClass = direction === 'down' ? 'section-slide-out-up' : 'section-slide-out-down';
+            currentTarget.classList.add(slideOutClass);
+            
+            // Remove slide-out class after animation
+            setTimeout(() => {
+              currentTarget.classList.remove(slideOutClass);
+            }, 400);
+          }
+          
+          // Scroll to target with gentle delay
+          setTimeout(() => {
+            target.scrollIntoView({ 
+              behavior: 'auto',
+              block: 'start',
+              inline: 'nearest'
+            });
+            
+            // Add slide-in effect to new section
+            const slideInClass = direction === 'down' ? 'section-slide-in-from-down' : 'section-slide-in-from-up';
+            target.classList.add(slideInClass);
+            
+            // Clean up classes and reset state
+            setTimeout(() => {
+              target.classList.remove(slideInClass);
+              isScrolling = false;
+            }, 600);
+            
+          }, direction === 'instant' ? 0 : 200); // more comfortable delay
+        }
+
+        // Dot click navigation with instant transitions
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', (e) => {
+            e.preventDefault();
+            const direction = index > currentSectionIndex ? 'down' : 'up';
+            scrollToSection(index, 'instant');
+          });
+        });
+
+        // Keyboard navigation with directional effects
+        document.addEventListener('keydown', (e) => {
+          if (isScrolling) return;
+          
+          switch(e.code) {
+            case 'ArrowDown':
+            case 'Space':
+              e.preventDefault();
+              scrollToSection(currentSectionIndex + 1, 'down');
+              break;
+            case 'ArrowUp':
+              e.preventDefault();
+              scrollToSection(currentSectionIndex - 1, 'up');
+              break;
+            case 'Home':
+              e.preventDefault();
+              scrollToSection(0, 'up');
+              break;
+            case 'End':
+              e.preventDefault();
+              scrollToSection(targets.length - 1, 'down');
+              break;
+          }
+        });
+
+        // Smooth wheel-based section scrolling
+        let wheelTimeout;
+        let wheelAccumulator = 0;
+        
+        document.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          
+          if (isScrolling) return;
+          
+          wheelAccumulator += e.deltaY;
+          
+          clearTimeout(wheelTimeout);
+          wheelTimeout = setTimeout(() => {
+            if (Math.abs(wheelAccumulator) > 50) { // higher threshold for more deliberate scrolling
+              const direction = wheelAccumulator > 0 ? 'down' : 'up';
+              const nextIndex = wheelAccumulator > 0 ? 
+                currentSectionIndex + 1 : currentSectionIndex - 1;
+              
+              scrollToSection(nextIndex, direction);
+            }
+            wheelAccumulator = 0; // reset
+          }, 150); // slower, more comfortable response time
+        }, { passive: false });
+
+        // Scroll direction -> shift dot rail slightly
+        window.addEventListener('scroll', () => {
+          const curr = window.scrollY || document.documentElement.scrollTop;
+          const dirUp = curr < lastScrollY;
+          dotsNav.classList.toggle('shift-up', dirUp);
+          dotsNav.classList.toggle('shift-down', !dirUp);
+          lastScrollY = curr;
+        }, { passive: true });
+      })();
+
+      // Navigation menu toggle
+      (function() {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const closeBtn = document.querySelector('.close-btn');
+
+        function toggleMenu() {
+          navToggle.classList.toggle('active');
+          navMenu.classList.toggle('active');
+          document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        navToggle.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking outside
+        navMenu.addEventListener('click', (e) => {
+          if (e.target === navMenu) {
+            toggleMenu();
+          }
+        });
+
+        // Close menu when pressing Escape
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            toggleMenu();
+          }
+        });
+      })();
     </script>
 </body>
 
