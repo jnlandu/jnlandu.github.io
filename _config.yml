@@ -56,6 +56,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-toc
+  - jekyll-redirect-from
 
 
 # Pagination settings
@@ -94,11 +95,19 @@ collections:
     output: true
     permalink: /projects/:title/
   news:
-    output: false
+    output: true
     sort_by: date
+    permalink: /news/:name/
   current_projects:
     output: false
     sort_by: date
+
+defaults:
+  - scope:
+      path: ""
+      type: news
+    values:
+      layout: news_item
 
     
 # Exclude from processing.

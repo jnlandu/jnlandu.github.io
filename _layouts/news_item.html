@@ -1,0 +1,217 @@
+---
+layout: default
+---
+
+<article class="news-article">
+  <!-- Hero Header Section -->
+  <section class="news-hero">
+    <div class="news-hero-bg">
+      {% if page.cover_image %}
+        <div class="news-hero-image">
+          <img src="{{ page.cover_image | relative_url }}" alt="{{ page.title }}" />
+          <div class="news-hero-overlay"></div>
+        </div>
+      {% endif %}
+    </div>
+    
+    <div class="container">
+      <div class="news-hero-content">
+        <nav class="news-breadcrumb">
+          <a href="{{ '/' | relative_url }}" class="breadcrumb-link">Home</a>
+          <span class="breadcrumb-separator">→</span>
+          <a href="{{ '/news/' | relative_url }}" class="breadcrumb-link">News</a>
+          <span class="breadcrumb-separator">→</span>
+          <span class="breadcrumb-current">{{ page.title | truncate: 30 }}</span>
+        </nav>
+        
+        <header class="news-hero-header">
+          <div class="news-category">
+            <i class="{{ page.icon | default: 'fas fa-newspaper' }}"></i>
+            <span>News & Updates</span>
+          </div>
+          
+          <h1 class="news-hero-title">{{ page.title }}</h1>
+          
+          <div class="news-hero-meta">
+            <div class="news-date-badge">
+              <i class="fas fa-calendar-alt"></i>
+              <time datetime="{{ page.date | date_to_xmlschema }}">
+                {{ page.date | date: "%B %d, %Y" }}
+              </time>
+            </div>
+            
+            {% if page.tags and page.tags.size > 0 %}
+            <div class="news-tags-hero">
+              {% for tag in page.tags %}
+                <span class="tag-pill">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </header>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="news-content">
+    <div class="container">
+      <div class="news-content-grid">
+        
+        <!-- Main Content -->
+        <main class="news-main-content">
+          <div class="news-content-body">
+            {{ content }}
+          </div>
+
+          {% if page.gallery and page.gallery.size > 0 %}
+          <section class="news-gallery-section">
+            <div class="gallery-header">
+              <h3 class="gallery-title">
+                <i class="fas fa-images"></i>
+                Photo Gallery
+              </h3>
+              <span class="gallery-count">{{ page.gallery.size }} images</span>
+            </div>
+            
+            <div class="news-gallery-grid" aria-label="Photo Gallery">
+              {% for img in page.gallery %}
+              <div class="gallery-item-wrapper">
+                <a href="{{ img | relative_url }}" class="gallery-item" data-lightbox="news">
+                  <img loading="lazy" src="{{ img | relative_url }}" alt="Gallery image {{ forloop.index }}" />
+                  <div class="gallery-item-overlay">
+                    <div class="gallery-item-icon">
+                      <i class="fas fa-search-plus"></i>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {% endfor %}
+            </div>
+          </section>
+          {% endif %}
+        </main>
+        
+        <!-- Sidebar -->
+        <aside class="news-sidebar">
+          <div class="news-sidebar-content">
+            
+            <!-- Article Info -->
+            <div class="sidebar-card article-info">
+              <h4 class="sidebar-title">Article Info</h4>
+              <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <div>
+                  <strong>Published</strong>
+                  <span>{{ page.date | date: "%B %d, %Y" }}</span>
+                </div>
+              </div>
+              {% if page.tags and page.tags.size > 0 %}
+              <div class="info-item">
+                <i class="fas fa-tags"></i>
+                <div>
+                  <strong>Tags</strong>
+                  <div class="sidebar-tags">
+                    {% for tag in page.tags %}
+                      <span class="sidebar-tag">{{ tag }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+            
+            <!-- Related News -->
+            {% assign related_news = site.news | where_exp: "item", "item.url != page.url" | sample: 3 %}
+            {% if related_news.size > 0 %}
+            <div class="sidebar-card related-news">
+              <h4 class="sidebar-title">Related News</h4>
+              <div class="related-news-list">
+                {% for news in related_news %}
+                <a href="{{ news.url | relative_url }}" class="related-news-item">
+                  <div class="related-news-icon">
+                    <i class="{{ news.icon | default: 'fas fa-newspaper' }}"></i>
+                  </div>
+                  <div class="related-news-content">
+                    <h5>{{ news.title | truncate: 40 }}</h5>
+                    <span class="related-news-date">{{ news.date | date: "%b %Y" }}</span>
+                  </div>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            
+            <!-- Share -->
+            <div class="sidebar-card share-card">
+              <h4 class="sidebar-title">Share Article</h4>
+              <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}" 
+                   target="_blank" class="share-btn twitter">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" 
+                   target="_blank" class="share-btn linkedin">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:?subject={{ page.title | url_encode }}&body={{ page.url | absolute_url | url_encode }}" 
+                   class="share-btn email">
+                  <i class="fas fa-envelope"></i>
+                </a>
+              </div>
+            </div>
+            
+          </div>
+        </aside>
+        
+      </div>
+    </div>
+  </section>
+  
+  <!-- Navigation Footer -->
+  <section class="news-navigation">
+    <div class="container">
+      <div class="news-nav-content">
+        <a href="{{ '/news/' | relative_url }}" class="news-back-btn">
+          <i class="fas fa-arrow-left"></i>
+          <span>Back to All News</span>
+        </a>
+        
+        <div class="news-nav-actions">
+          <button class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-arrow-up"></i>
+            <span>Top</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+<!-- lightweight lightbox (no external dependency) -->
+<style>
+.lightbox-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:3000}
+.lightbox-overlay.active{display:flex}
+.lightbox-overlay img{max-width:92vw;max-height:92vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lightbox-overlay .close{position:absolute;top:24px;right:28px;color:#fff;font-size:28px;cursor:pointer}
+</style>
+<script>
+(function(){
+  const overlay=document.createElement('div');
+  overlay.className='lightbox-overlay';
+  overlay.innerHTML='<span class="close">&times;</span><img alt="lightbox" />';
+  document.body.appendChild(overlay);
+  const imgEl=overlay.querySelector('img');
+  const close=()=>overlay.classList.remove('active');
+  overlay.addEventListener('click',e=>{ if(e.target===overlay||e.target.classList.contains('close')) close(); });
+  document.querySelectorAll('.news-gallery-grid a[data-lightbox="news"]').forEach(a=>{
+    a.addEventListener('click',e=>{ e.preventDefault(); imgEl.src=a.href; overlay.classList.add('active'); });
+  });
+})();
+
+// Disable scroll-snap for news detail pages
+document.documentElement.style.scrollSnapType = 'none';
+document.body.classList.add('news-detail-page');
+</script>
+
+

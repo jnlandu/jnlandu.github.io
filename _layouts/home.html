@@ -278,7 +278,12 @@ layout: default
               {{ news.title }}
             </h3>
             <p class="news-description">
-              {{ news.content | strip_html | truncate: 200 }}
+              {% assign content_text = news.content | strip_html | strip_newlines %}
+              {% if content_text.size > 120 %}
+                {{ content_text | truncate: 120 | append: '... ' }}<a href="{{ news.url | relative_url }}" class="news-more-link">more</a>
+              {% else %}
+                {{ content_text }}
+              {% endif %}
             </p>
             {% if news.tags and news.tags.size > 0 %}
             <div class="news-tags">
@@ -371,7 +376,12 @@ layout: default
               {{ news.title }}
             </h3>
             <p class="news-description">
-              {{ news.content | strip_html | truncate: 200 }}
+              {% assign content_text = news.content | strip_html | strip_newlines %}
+              {% if content_text.size > 120 %}
+                {{ content_text | truncate: 120 | append: '... ' }}<a href="{{ news.url | relative_url }}" class="news-more-link">more</a>
+              {% else %}
+                {{ content_text }}
+              {% endif %}
             </p>
             {% if news.tags and news.tags.size > 0 %}
             <div class="news-tags">

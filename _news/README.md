@@ -81,3 +81,48 @@ Use descriptive tags that will help categorize your news. Examples:
 - Publication, Research, Teaching
 - Mathematics, Machine Learning, AI
 - AIMS, University names, Organization names
+
+## Images: cover and gallery
+
+News items support an optional cover image and a gallery on their individual detail pages.
+
+Front matter fields:
+
+```yaml
+# Optional hero image displayed above the content
+cover_image: /assets/static/img/default.jpg
+
+# Optional gallery of images; shows as a grid with a lightbox on click
+gallery:
+  - /assets/static/img/indaba.jpeg
+  - /assets/static/img/indaba2.png
+  - /assets/static/img/indaba3.png
+```
+
+Example with cover + gallery:
+
+```yaml
+---
+title: "Conference Talk at Indaba"
+date: 2024-08-20
+icon: "fas fa-microphone"
+featured: true
+tags: [Conference, Talk]
+cover_image: /assets/static/img/indaba.jpeg
+gallery:
+  - /assets/static/img/indaba.jpeg
+  - /assets/static/img/indaba2.png
+  - /assets/static/img/indaba3.png
+---
+
+Short summary here. The full content appears on the detail page.
+```
+
+Where to put images:
+- Place images under `assets/static/img/` (recommended). You can also create a subfolder like `assets/static/img/news/` if you prefer to organize by section.
+- Reference images with absolute paths (starting with `/assets/...`) so they work both locally and in production.
+
+Tips:
+- Prefer reasonable sizes (≤ 2000px on the long edge); Jekyll doesn’t resize images by default.
+- Use `loading: lazy` is already applied in the template for gallery thumbnails.
+- If you add a gallery, clicking a thumbnail opens a lightweight lightbox overlay; click anywhere outside the image or the × icon to close.
