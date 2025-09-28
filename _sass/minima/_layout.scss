@@ -6,13 +6,10 @@
   border-top: 5px solid $grey-color-dark;
   border-bottom: 1px solid $grey-color-light;
   min-height: $spacing-unit * 1.865;
-
-  // Positioning context for the mobile navigation icon
-  // position: relative;
-   position: -webkit-sticky !important;
-    position: sticky !important; 
-    top: 0px !important;
-    z-index: 1020;
+  position: -webkit-sticky !important;
+  position: sticky !important; 
+  top: 0px !important;
+  z-index: 1020;
   
 }
 

@@ -1,32 +1,4 @@
-
-  <data class="u-url" href="{{ '/'' | relative_url }}"></data>
-
-  
-
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">
-            {%- if site.author -%}
-              {{ site.author | escape }}
-            {%- else -%}
-              {{ site.title | escape }}
-            {%- endif -%}
-            </li>
-            {%- if site.email -%}
-            <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-            {%- endif -%}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-3">
-         {%- include social.html -%}
-        <p>{{- site.description | escape -}}</p>
-      </div>
-    </div>
-
+<div class="site-footer">
     {% assign year_from = site.posts[-1].date | date: '%Y' %}
     {% assign year_to   = site.time | date: '%Y' %}
     {% if year_from == nil or year_from == year_to %}
@@ -34,10 +6,25 @@
     {% else %}
       {% assign year_string = year_from | append: '&nbsp;' | append: '-' | append: '&nbsp;' | append: year_to %}
     {% endif %}
-    {% if site.author %}
-    <p>Copyright © {{ year_string }} {{ site.author }}; All rights reserved.</p>
+  <p class="text-center">
+    {% if site.firstName and site.lastName  %}
+    Alrights Reserved  <span class="text-brand">{{ site.firstName }} {{ site.lastName }}</span> ©{{ year_string }}.
     {% endif %}
-  <p class="text-white text-center">
-    Powered by <a class="yellow" href="https://jekyllrb.com/">Jekyll</a>. {{ site.description | escape }}</p>
-
-
+    <br>
+    {% comment %}
+    Powered by <a class="yellow" href="https://jekyllrb.com/">Jekyll</a> and hosted by <a class="yellow" href="hhttps://pages.github.com/">github pages</a>.
+    {% endcomment %}
+     {{ site.description | escape }} 
+     {% if site.github_repo %}
+     Feel free to 
+     <a class="text-brand" href="{{ site.github_repo }}"> 
+      steal it 
+    </a> 
+    and make it yours. Please,  don't forget to star the 
+    <a href="{{ site.github_repo }}">
+      repo 
+    </a> 
+    if you like it.
+    {% endif %}
+  </p>
+</div>

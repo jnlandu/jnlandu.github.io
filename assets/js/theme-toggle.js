@@ -25,3 +25,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
+
+
+toggleText = (element) => {
+  const moreText = element.parentElement.querySelector('.more');
+  if (moreText.classList.contains('d-none')) {
+    moreText.classList.remove('d-none');
+    element.textContent = 'Read less';
+  } else {
+    moreText.classList.add('d-none');
+    element.textContent = 'Read more';
+  }
+  return false;
+}

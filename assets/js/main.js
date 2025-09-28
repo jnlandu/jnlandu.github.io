@@ -1,3 +1,7 @@
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
   renderMathInElement(document.body, {
     delimiters: [
@@ -7,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // {left: "\(", right: "\)", display: false}  // Inline math
     ]
   });
-
+//  Fix this later: 
   const link = document.getElementById('style');
   const lightTheme = link.getAttribute('data-light-theme');
   const darkTheme = link.getAttribute('data-dark-theme');
@@ -65,3 +69,52 @@ document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.scrollTop = 0;  // For Chrome, Firefox, IE, and Opera
   }
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const nav = document.querySelector('.site-header');
+  const aboutWrapper = document.querySelector('.about-wrapper');
+  
+  window.addEventListener('scroll', function() {
+      const navHeight = nav.offsetHeight; // Get the height of the nav
+      const scrollPosition = window.scrollY; // Current scroll position
+        // Ensure the nav stays sticky without affecting content opacity
+        if (scrollPosition > navHeight) {
+          nav.classList.add('sticky-nav'); // Add class for styling when scrolled past the nav height
+          // aboutWrapper.style.opacity = 0.8;
+          // aboutWrapper.style.transition = 'opacity 0.5s';
+        } else {
+          nav.classList.remove('sticky-nav'); // Remove class when above the nav height
+          // aboutWrapper.style.opacity = 1;
+          
+        }
+
+      
+  });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const navToggleBtn = document.querySelector('.nav-toggle-btn');
+  const nav = document.getElementById('site-nav');
+  navToggleBtn.addEventListener('click', function () {
+    // nav.classList.toggle('active');
+    nav.style.display = 'block !important';
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const navToggleButton = document.querySelector('.nav-toggle-btn');
+  const nav = document.querySelector('.site-nav');
+
+  navToggleButton.addEventListener('click', function() {
+    const isDisplayed = window.getComputedStyle(nav).display !== 'none';
+    nav.style.display = isDisplayed ? 'none' : 'block';
+  });
+});
+
+
+
+

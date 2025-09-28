@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+    {%- include head.html -%}
+
+
+    <body>
+        <!-- Back to Top button -->
+        {% include back-to-top-btn.html %}
+       
+        <!-- Site Header -->
+        <header class="site-header">
+            {%- include header.html -%}
+        </header>
+
+        <div class="row chat-main-wrapper">
+            <div class="chat-main-content">
+                {{ content }}
+            </div>
+        </div>
+
+
+
+
+
+
+        
+        
+
+        <!--  include icons  -->
+        {% include icons.html %}
+
+        <footer class="mt-4 justify-content-center">
+            {% include footer.html %}
+        </footer>  
+        <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script>
+            document.getElementById('content').innerHTML =
+              marked.parse('# Marked in the browser\n\nRendered by **marked**.');
+        </script>
+        <script type="module" src="{{ '/assets/js/chat.js' | relative_url }}"></script>
+    </body>
+</html>

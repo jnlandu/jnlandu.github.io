@@ -18,6 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+
 title:  Jeremie Mabiala
 firstName: Jérémie
 lastName: Mabiala
@@ -28,28 +29,41 @@ email:
 profile_alt: Jérémie Mabiala
 profile_image: ./profile.png
 
-location:
-  - African Institute for Mathematical Sciences
-  - https://aims-senegal.org/
-  - fa-solid fa-location-dot
 
+# Location & Institution
+location:
+  name: African Institute for Mathematical Sciences (AIMS) Senegal
+  url: https://aims-senegal.org/
+  city: Mbour, Senegal
+  icon: fa-solid fa-location-dot
+
+# Navigation
 header_pages:
   - index.md
   - about.md
+# <<<<<<< dev2
   - news.md
+# =======
+#   - research.md
+#   - projects.md
+#   - blog.md
+#   - courses.md
+# >>>>>>> dev
   - contact.md
- 
 
-description: >- # this means to ignore newlines until "baseurl:"
-  This is my personal blog where I share my thoughts and experiences on various topics. 
-  I am a mathematician and a data scientist. Feel free to steal it and make it your own.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+# Site Description
+description: >- 
+  AI Engineer and Mathematical Modeling Researcher passionate about advancing 
+  artificial intelligence and mathematics in Africa. Currently pursuing AMMI 
+  (African Master in Machine Intelligence) at AIMS Senegal. Specialized in 
+  deep learning, computer vision, NLP, and mathematical optimization.
+
+# Site Configuration
+baseurl: "" 
+url: "https://jnlandu.github.io"
 
 # Build settings
-theme: minima
+# theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
@@ -58,6 +72,7 @@ plugins:
   - jekyll-toc
   - jekyll-redirect-from
 
+github_repo: https://github.com/jnlandu/jnlandu.github.io/
 
 # Pagination settings
 pagination:
@@ -65,16 +80,56 @@ pagination:
   per_page: 5  # Number of posts per page
   permalink: "/page:num/"  # Optional: Customize the pagination URL
 
-# paginate: 10
+sitemap:
+  exclude:
+    - /contact.md
+    - /404.html
 
+# Social Media & SEO
 social:
   name: Jeremie Nlandu Mabiala
   links:
-    - https://twitter.com/Valentinmabiala
-    - https://www.facebook.com/nlandu
+    - https://twitter.com/ValentinMabiala
+    - https://www.linkedin.com/in/jeremie-nlandu-mabiala-aa3a1b1b
     - https://github.com/jnlandu
+    - mailto:jeremie@aims.ac.za
+
+# Analytics & Verification
+google_analytics: G-ZQTH7FZ9T4
 google_site_verification: u4WXQl0Eu66rsQo2kRdCNx
+
+# Site Language
 lang: en
+
+# Professional Details
+profession:
+  current_role: AI Master's Student
+  institution: AIMS Senegal
+  program: African Master in Machine Intelligence (AMMI)
+  research_interests:
+    - Artificial Intelligence
+    - Machine Learning
+    - Deep Learning
+    - Mathematical Modeling
+    - Computer Vision
+    - Natural Language Processing
+    - Optimization
+    - Statistical Learning
+
+# AI Engineer Specializations
+specializations:
+  - name: Machine Learning
+    level: advanced
+    tools: [Python, PyTorch, TensorFlow, Scikit-learn]
+  - name: Computer Vision
+    level: intermediate
+    tools: [OpenCV, PIL, Matplotlib]
+  - name: Natural Language Processing
+    level: intermediate
+    tools: [NLTK, spaCy, Transformers]
+  - name: Mathematical Modeling
+    level: advanced
+    tools: [NumPy, SciPy, R]
 
 #  Updated theme schemas:
 sass:
@@ -94,6 +149,7 @@ collections:
   projects:
     output: true
     permalink: /projects/:title/
+# <<<<<<< dev2
   news:
     output: true
     sort_by: date
@@ -108,6 +164,37 @@ defaults:
       type: news
     values:
       layout: news_item
+# =======
+#   courses:
+#     output: true
+#     permalink: /courses/:title/
+#   research:
+#     output: true
+#     permalink: /research/:title/
+
+# # Collection defaults for better SEO and organization
+# defaults:
+#   - scope:
+#       path: ""
+#       type: "posts"
+#     values:
+#       layout: "post"
+#       toc: true
+#       author: "Jeremie Nlandu Mabiala"
+#   - scope:
+#       path: ""
+#       type: "projects"
+#     values:
+#       layout: "project"
+#       author: "Jeremie Nlandu Mabiala"
+#   - scope:
+#       path: ""
+#       type: "research"
+#     values:
+#       layout: "post"
+#       toc: true
+#       author: "Jeremie Nlandu Mabiala"
+# >>>>>>> dev
 
     
 # Exclude from processing.

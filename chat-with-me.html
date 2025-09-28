@@ -1,0 +1,51 @@
+---
+layout: chat-layout
+title: Chat with Jérémie
+description: Chat with Jeremie
+permalink: /chat-with-me.html
+---
+
+<h1 class="chat-title">Ask anything about <span class="text-brand">Jérémie</span></h1>
+    <p class=""> 
+    <span class="h2 text-danger warning-text">Attention! </span> This chat works only in Chrome. Be advertised that it  may not answer all  the questions about me. 
+    It is also  expected to generate  exagerated answers, or even wrong answers.
+    I am working on having  a smaller <a href="https://colab.research.google.com/drive/1aW6ex4EAqelmAlt5QykGH-KrqZB_WYPj?usp=sharing">model</a>, fully specialized model on my personal informations.
+    For more accurate details about me, feel free to reach out via my 
+    <a href="mailto:{{ site.email }}" class="text-brand">email</a> or social media
+    <a href="{{ site.data.social['Twitter'] }}" class="text-brand ">twitter</a>.
+</p>
+<!-- <p class="text-center "> Please, here's how you will do. First press the button below to sync the model.</p> -->
+<div class="sync-container">
+    <button id="download" class="sync-btn-container">
+        <span class="sync-text">
+        Sync the local model to start asking questions ...
+        </span>
+       <a id="download"><svg width="35" height="35" fill="#c9c9c9">
+            <use xlink:href="#synch"></use>
+       </svg>
+    </a>
+    </button>
+</div>
+<p id="download-status" class="hidden download-status-color"></p>
+
+<!-- <p class="test"> test </p> -->
+<div class="chat-container">
+      <div id="chat-box" class="chat-box"></div>
+      <div id="chat-stats" class="chat-stats hidden"></div>
+</div>
+<div class="question-input">
+    <textarea
+        id="user-input"
+        class="form-control "
+        placeholder="Ask your question here ..."
+        rows="2"
+        type="text"
+        ></textarea>
+      <button  id="send"  class="btn send-btn">
+        <svg width="24" height="24" fill="#c9c9c9">
+            <use xlink:href="#arrow-top"></use>
+        </svg>
+    </button>
+</div>
+
+

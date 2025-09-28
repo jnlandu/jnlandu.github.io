@@ -1,0 +1,19 @@
+- title: Home
+  url: /
+  
+# - title: Chat with Me
+#   url: /chat/
+
+- title: Posts
+  url: /posts/
+
+- title: News
+  url: /news/
+
+
+# - title: More
+#   sublinks:
+#     - title: FAQ
+#       url: /faq/
+#     - title: Docs
+#       url: /docs/
