@@ -36,6 +36,7 @@ location:
 header_pages:
   - index.md
   - about.md
+  - news.md
   - contact.md
  
 
