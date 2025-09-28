@@ -4,63 +4,26 @@ layout: default
 
 <!-- Hero Section -->
 <section id="top" class="hero-section hero-full">
-  <div class="hero-content hero-split">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Hi  there 👋, I'm</div>
-      <h1 class="hero-heading">
-        {{ site.firstName }} <span class="text-brand">{{ site.lastName }}</span>
+  <div class="hero-content-centered">
+    <div class="hero-main">
+      <div class="hero-eyebrow">Howdy,</div>
+      <h1 class="hero-heading-large">
+        I'm {{ site.firstName }} <span class="text-brand">{{ site.lastName }}</span>
       </h1>
-      <p class="hero-subtitle">Student in Artificial Intelligence & Developer</p>
-
-      {% assign roles = site.roles | default: "AI Student|Machine Learning Developer|Data Science Enthusiast" | split: "|" %}
-      <div class="hero-roles">
-        {% for role in roles %}
-          <span class="role-badge">{{ role }}</span>
-        {% endfor %}
-      </div>
-
-      <p class="hero-bio">
-        {{ site.description | strip_html | normalize_whitespace | truncatewords: 36 }}
-        <a class="hero-bio-link" href="{{ '/about/' | relative_url }}">Read more →</a>
-      </p>
-
-      {% if site.location %}
-      <div class="hero-location">
-        <i class="{{ site.location[2] | default: 'fas fa-map-marker-alt' }}"></i>
-        <span>{{ site.location[0] }}</span>
-      </div>
-      {% endif %}
-
-      <div class="hero-cta">
-        <a href="{{ '/about/' | relative_url }}" class="btn-circle" aria-label="View Resume">
+      
+      <div class="hero-cta-simple">
+        <a href="{{ '/about/' | relative_url }}" class="btn-circle-large" aria-label="View Resume">
           <i class="fas fa-play"></i>
         </a>
-        <a href="{{ '/projects/' | relative_url }}" class="btn btn-primary">View Projects</a>
-        <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary">Contact</a>
-      </div>
-
-      <div class="social-links">
-        {% if site.data.social %}
-          {% for social in site.data.social %}
-            {% if social.title == 'Email' %}
-              <a href="mailto:{{ social.url }}" class="social-link" title="{{ social.title }}">
-                <i class="{{ social.icon | default: 'fas fa-envelope' }}"></i>
-              </a>
-            {% else %}
-              <a href="{{ social.url }}" class="social-link" title="{{ social.title }}" target="_blank" rel="noopener">
-                <i class="{{ social.icon | default: 'fas fa-link' }}"></i>
-              </a>
-            {% endif %}
-          {% endfor %}
-        {% endif %}
+        <span class="cta-label">Watch Resume</span>
       </div>
     </div>
 
-    <div class="hero-right">
+    <div class="hero-image-bg">
       {% if site.profile_image %}
         <img src="{{ site.profile_image | relative_url }}" 
              alt="{{ site.profile_alt | default: site.title }}" 
-             class="hero-portrait">
+             class="hero-portrait-bg">
       {% endif %}
     </div>
   </div>
@@ -98,8 +61,8 @@ layout: default
     </div>
 
     <!-- Research Interests -->
-    <h3>Research Interests</h3>
-    <div class="research-interests">
+    <!-- <h3>Research Interests</h3> -->
+    <!-- <div class="research-interests">
       <div class="interest-item">
         <div class="interest-icon">
           <i class="fas fa-brain"></i>
@@ -131,44 +94,79 @@ layout: default
         <h4 class="interest-title">Computer Vision</h4>
         <p class="interest-description">Visual recognition and image analysis</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </section>
 
 <!-- Recent Posts Section -->
 {% if site.posts.size > 0 %}
-<section id="recent-posts" class="about-section">
+<section id="recent-posts" class="about-section posts-showcase">
   <div class="about-content">
-    <h2>Recent Posts</h2>
-    <div class="post-list">
+    <div class="section-header">
+      <div class="section-badge">
+        <i class="fas fa-feather-alt"></i>
+        <span>Latest Thoughts</span>
+      </div>
+      <h2 class="section-title">Recent Posts</h2>
+      <p class="section-subtitle">Exploring ideas in AI, machine learning, and data science</p>
+    </div>
+    
+    <div class="posts-grid">
       {% for post in site.posts limit:3 %}
-        <article class="post-card">
-          <h3 class="post-title">
-            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-          </h3>
-          
-          {% if post.excerpt %}
-            <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-          {% endif %}
-          
-          <div class="post-meta">
-            <time class="post-date">{{ post.date | date: "%B %d, %Y" }}</time>
-            {% if post.tags.size > 0 %}
-              <div class="tags">
-                {% for tag in post.tags limit:3 %}
-                  <span class="tag">{{ tag }}</span>
-                {% endfor %}
-              </div>
-            {% endif %}
+        {% assign post_index = forloop.index %}
+        <article class="post-card-enhanced {% if post_index == 1 %}featured-post{% endif %}">
+          <div class="post-header">
+            <div class="post-category">
+              {% if post.categories.size > 0 %}
+                <span class="category-tag">{{ post.categories.first | capitalize }}</span>
+              {% else %}
+                <span class="category-tag">Article</span>
+              {% endif %}
+            </div>
+            <time class="post-date-badge">{{ post.date | date: "%b %d" }}</time>
           </div>
+          
+          <div class="post-content">
+            <h3 class="post-title-enhanced">
+              <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+            </h3>
+            
+            {% if post.excerpt %}
+              <p class="post-excerpt-enhanced">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+            {% endif %}
+            
+            <div class="post-footer">
+              {% if post.tags.size > 0 %}
+                <div class="post-tags">
+                  {% for tag in post.tags limit:2 %}
+                    <span class="tag-minimal">{{ tag }}</span>
+                  {% endfor %}
+                  {% if post.tags.size > 2 %}
+                    <span class="tag-count">+{{ post.tags.size | minus: 2 }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+              
+              <div class="read-more">
+                <a href="{{ post.url | relative_url }}" class="read-more-link">
+                  <span>Read more</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="post-hover-effect"></div>
         </article>
       {% endfor %}
     </div>
     
-    <div class="text-center" style="margin-top: 3rem;">
-      <a href="{{ '/posts/' | relative_url }}" class="btn btn-primary">
-        <i class="fas fa-arrow-right"></i>
-        View All Posts
+    <div class="section-cta">
+      <a href="{{ '/posts/' | relative_url }}" class="btn-enhanced">
+        <span class="btn-text">Explore All Posts</span>
+        <span class="btn-icon">
+          <i class="fas fa-long-arrow-alt-right"></i>
+        </span>
       </a>
     </div>
   </div>
