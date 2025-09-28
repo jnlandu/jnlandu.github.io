@@ -4,3 +4,33 @@ _site
 .jekyll-metadata
 vendor
 draft
+
+
+
+# Jekyll build output
+_site/
+
+# Jekyll metadata and cache
+.jekyll-metadata
+.jekyll-cache/
+
+# Bundler dependencies (if using Bundler)
+vendor/bundle/
+.bundle/
+
+# Ruby gems and related files
+*.gem
+*.rbc
+
+# Editor-specific files (examples)
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Log files
+*.log
+
+# Environment variables (if used)
+.env

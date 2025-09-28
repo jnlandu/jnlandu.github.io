@@ -2,6 +2,15 @@
 layout: default
 ---
 
+<style>
+/* Force disable scroll-snap immediately for news detail pages */
+html, body, *, .container {
+  scroll-snap-type: none !important;
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
+}
+</style>
+
 <article class="news-article">
   <!-- Hero Header Section -->
   <section class="news-hero">
@@ -210,8 +219,42 @@ layout: default
 })();
 
 // Disable scroll-snap for news detail pages
-document.documentElement.style.scrollSnapType = 'none';
-document.body.classList.add('news-detail-page');
+function disableScrollSnap() {
+  // Force disable scroll-snap on all possible containers
+  document.documentElement.style.scrollSnapType = 'none !important';
+  document.body.style.scrollSnapType = 'none !important';
+  document.body.classList.add('news-detail-page');
+  
+  // Find and disable scroll-snap on any containers that might have it
+  const containers = document.querySelectorAll('*');
+  containers.forEach(el => {
+    const computed = window.getComputedStyle(el);
+    if (computed.scrollSnapType && computed.scrollSnapType !== 'none') {
+      el.style.scrollSnapType = 'none !important';
+    }
+  });
+  
+  // Override any CSS that might be setting scroll-snap
+  const style = document.createElement('style');
+  style.textContent = `
+    html, body, * { 
+      scroll-snap-type: none !important; 
+      scroll-snap-align: none !important;
+    }
+    body.news-detail-page {
+      scroll-snap-type: none !important;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+// Run immediately and after DOM loads
+disableScrollSnap();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', disableScrollSnap);
+} else {
+  disableScrollSnap();
+}
 </script>
 
 
