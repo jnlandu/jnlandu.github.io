@@ -1,4 +1,5 @@
 ---
+
 layout: default
 title: Blog Posts
 permalink: /posts/
@@ -58,3 +59,6 @@ description: Thoughts and insights on AI, machine learning, mathematics, and tec
     </div>
   {% endif %}
 </div>
+
+
+[jekyll-organization]: https://github.com/jekyll

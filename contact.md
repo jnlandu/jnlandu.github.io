@@ -1,3 +1,4 @@
+
 ------
 
 layout: pagelayout: page
@@ -8,9 +9,11 @@ permalink: /contact/permalink: /contact/
 
 description: Get in touch for collaborations, speaking opportunities, or general inquiries.---
 
+
 ---
 
 # Contact
+
 
 I'm always excited to connect with fellow researchers, students, and anyone interested in artificial intelligence, machine learning, and mathematics. Whether you're looking to collaborate on research, invite me to speak at an event, or simply want to discuss the fascinating world of AI, I'd love to hear from you.
 

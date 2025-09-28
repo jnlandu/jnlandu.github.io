@@ -1,0 +1,105 @@
+
+<div class=" course-content-container"  style="animation-delay: 0s;">
+    <h1 class="h5 text-brand">
+      <a class="text-brand"  href="ml_foundation">
+      Foundation of Machine Learning
+      </a>
+    </h1>
+    <p class="h6 text-white course-summary">
+      This course was provided by Prof. <a class="text-brand" href="https://scholar.google.com/citations?user=5wuvTfoAAAAJ&hl=en">Moustapha Cisse</a>. The course had two parts: Statistical Learning Theory and an introduction to Deep Learning. In the first part, we explored theoretical aspects of machine learning, particularly statistical learning theory, covering both supervised and unsupervised learning. We discussed the ERM problem, bias-variance tradeoff, overfitting and underfitting, linear regression, classification, generalized linear models, and dimensionality reduction techniques such as:
+      <ul class="h6 text-white">
+        <li>Random projections</li>
+        <li>Principal Component Analysis</li>
+        <li>Canonical Correlation Analysis</li>
+      </ul>
+      In the second part, we covered neural networks, weight initialization and normalization, CNNs, RNNs, attention mechanisms, and transformers.<br>
+      Please find <a class="text-brand" href="here">here</a> the materials I used and some code I implemented. Also, check out my tutorials below.
+    </p>
+</div>
+<div class=" course-content-container"  style="animation-delay: 0s;">
+    <h1 class="h5 text-brand">
+      <a class="text-brand"  href="kernels_methods">
+        Kernel Methods for Machine Learning
+        </a>
+     </h1>
+    <p>
+        This course was given by <a class="text-brand" href="https://jpvert.github.io/">J.P. Vert</a> from <a class="text-brand" href="https://www.owkin.com/">Owkin</a>, with T.As. Romain Menegeaux and Juliette-Marie from Inria.
+        The course covered basic concepts of machine learning in high dimensions and the importance of regularization. We also discussed Support Vector Machines (SVM).
+        We studied in detail high-dimensional linear models regularized by the Euclidean norm or the Manhattan norm, including ridge and lasso
+        regression, as well as ridge classification. One of the key ideas of this course
+        was to demonstrate that some learning problems, which can be complex to solve in finite-dimensional Euclidean space, can be easily addressed
+        in infinite-dimensional spaces, provided a good feature mapping. The kernel is simply a similarity function between data points. We were then shown how positive kernels, via the representer theorem, transform the ERM problem 
+        in Euclidean space into an ERM problem in large-dimensional space. Kernels allow for transforming linear models into non-linear models,
+        applicable even to non-euclidean data such as strings and graphs. We also discussed 
+        Reproducing Kernel Hilbert Spaces (RKHS) and related theorems. Please find my <a class="text-brand" href="codes">code</a> and the course page <a class="text-brand" href="here">here</a>.
+    </p>
+
+</div>
+<div class="course-content-container"  style="animation-delay: 0s;">
+    <h1 class="h5 text-brand">
+      <a class="text-brand"  href="optim">
+        Optimization for Machine Learning
+      </a>
+    </h1>
+    <p>
+        Many problems in statistical learning consist of finding the best set of parameters or the best functions given some data. These are estimation problems.
+        These problems, encountered almost everywhere in Machine Learning and Deep Learning, can easily be formulated as 
+        optimization problems. These formulations help to understand the performance of learning algorithms.
+        In this course, classical convex optimization theory was presented. Classical gradient methods and their variants were discussed, as well as variance-reduced methods and accelerated gradient methods.
+        
+        The purpose of the course was to present the theoretical formulation of convex problems and the asymptotic behaviors of (Stochastic) Gradient methods. For instance, it was shown that 
+        although Stochastic Gradient Descent (SGD) is efficient—because it does not make use of the full dataset—it never converges to the optimal solution without restrictive assumptions.
+         We also implemented these algorithms from scratch and worked on theoretical exercises.
+        Please refer to 
+        {% if site.courses_materials.optim %} 
+        <a class="text-brand" href="{{ site.course_materials.optim.url  | relative_url }}">here</a>
+        {% else %}
+        <a class="text-brand" href="optim"> the course  material.</a>
+        {% endif %}
+       The course was given by Dr. <a class="text-brand" href="https://www.linkedin.com/in/lionel-ngoupeyou-tondji-057a25128/?originalSubdomain=de">Lionel Tondji</a>, 
+        a former student of AMMI. Find the goodbye photos <a class="text-brand" href="ammi-photos/optim">here</a>.
+    </p>    
+  </div>
+<div class="course-content-container"  style="animation-delay: 0s;">
+    <h1 class="h5 text-brand">
+      <a class="text-brand"  href="computer_vision">
+        Computer Vision and Diffusion Models
+       </a>
+    </h1>
+    <p>
+      This course was split into two parts: the first part was an introduction to computer vision, taught by Dr. 
+      <a class="text-brand" href="https://lvdmaaten.github.io/">Laurens van der Maaten</a> 
+      from <a class="text-brand" href="https://ai.meta.com/">Meta AI</a>, and co-inventor of 
+      <a class="text-brand" href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-SNE</a>. 
+      The second part focused on object detection and was given by Dr. <a class="text-brand" href="https://scholar.google.fr/citations?user=cLPaHcIAAAAJ&hl=en">Natalia Neverova</a>
+       from <a class="text-brand" href="https://ai.meta.com/">Meta AI</a>.
+      
+      In the first part, we discussed CNNs, RNNs, U-Net, and implemented these architectures and related ones from scratch. 
+      See my <a class="text-brand" href="git">repo</a> for the code. The second part focused on detection and diffusion models. We covered vision models,
+    diffusion models, distillation, image and video understanding, and more. The main tool used in this part was FAIR's <a class="text-brand" href="https://ai.meta.com/tools/detectron2/">Detectron2</a>, 
+    with which we experimented using vision models like R-CNN, Mask R-CNN, Fast R-CNN, and RPN. Please check out the course the course materials,  or my tutorials
+    
+    {% if site.courses_materials.vision %} 
+    <a class="text-brand" href="{{ site.course_materials.vision.url  | relative_url }}">here</a> 
+    {% else %}
+    <a class="text-brand"  href="computer_vision">here </a>
+    {% endif %}
+     on 
+    <a class="text-brand" href="https://en.wikipedia.org/wiki/Object_detection">Object Detection with Detectron2</a>.
+    </p>.
+</div>
+<div class="course-content-container"  style="animation-delay: 0s;">
+    <h1 class="h5 text-brand">and Others</h1>
+   <p> Other amazing courses that I attended or am attending at AMMI include:<br/>
+        <ul>
+        <li> Machine Learning Operations (MLOps)</li>
+        <li> Natural Language Processing</li>
+        <li> Reinforcement Learning </li>
+        </ul>
+    For additional informations, pleasse check:
+    <ul>
+        <!-- <li> My blog post on <a class=" btn text-brand disabled"  href="{{ site.baseurl }}/blog"> blog post </a></li> -->
+        <li> some codes that I implemented and personal projects  on <a class="text-brand" href="githbu.com/jnlandu.git"></a>GitHub</li>
+    </ul>
+    </p>
+</div>
