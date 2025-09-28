@@ -113,6 +113,36 @@
         observer.observe(el);
       });
 
+      // Stagger-in for any grid when it enters the viewport
+      (function() {
+        const grids = document.querySelectorAll('[data-animate="stagger"]');
+        if (!grids.length) return;
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('inview');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        grids.forEach(g => obs.observe(g));
+      })();
+
+      // Cursor-follow glow for pro post cards
+      (function() {
+        const cards = document.querySelectorAll('.post-card.pro');
+        if (!cards.length) return;
+        cards.forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--mx', x + '%');
+            card.style.setProperty('--my', y + '%');
+          });
+        });
+      })();
+
       // Enhanced section navigation with one-click scrolling
       (function() {
         const dotsNav = document.querySelector('.section-dots');
