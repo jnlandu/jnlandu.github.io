@@ -92,6 +92,12 @@ collections:
   projects:
     output: true
     permalink: /projects/:title/
+  news:
+    output: false
+    sort_by: date
+  current_projects:
+    output: false
+    sort_by: date
 
     
 # Exclude from processing.

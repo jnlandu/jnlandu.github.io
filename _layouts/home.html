@@ -268,87 +268,75 @@ layout: default
 
     <div class="news-grid" data-animate="stagger">
       <div class="news-timeline">
+        {% assign featured_news = site.news | where: "featured", true | sort: "date" | reverse %}
+        {% for news in featured_news %}
         <div class="news-item">
-          <div class="news-date">January 2025</div>
+          <div class="news-date">{{ news.date | date: "%B %Y" }}</div>
           <div class="news-content">
             <h3 class="news-title">
-              <i class="fas fa-award news-icon"></i>
-              African Masters in Machine Intelligence (AMMI) Fellowship
+              <i class="{{ news.icon | default: 'fas fa-newspaper' }} news-icon"></i>
+              {{ news.title }}
             </h3>
             <p class="news-description">
-              I was awarded a fully funded fellowship to mentor and teach young generations of African researchers in Machine Learning, at the African Institute for Mathematical Sciences, in its Machine Learning Stream.
+              {{ news.content | strip_html | truncate: 200 }}
             </p>
+            {% if news.tags and news.tags.size > 0 %}
             <div class="news-tags">
-              <span class="tag chip">Fellowship</span>
-              <span class="tag chip">Teaching</span>
-              <span class="tag chip">AIMS</span>
+              {% for tag in news.tags %}
+                <span class="tag chip">{{ tag }}</span>
+              {% endfor %}
             </div>
+            {% endif %}
           </div>
         </div>
-
-        <div class="news-item">
-          <div class="news-date">January 2024</div>
-          <div class="news-content">
-            <h3 class="news-title">
-              <i class="fas fa-graduation-cap news-icon"></i>
-              African Masters in Machine Intelligence (AMMI) Scholarship
-            </h3>
-            <p class="news-description">
-              I was awarded the prestigious fully funded AMMI scholarship to study Machine Learning at the African Institute for Mathematical Sciences, Senegal.
-            </p>
-            <div class="news-tags">
-              <span class="tag chip">Scholarship</span>
-              <span class="tag chip">Machine Learning</span>
-              <span class="tag chip">AIMS Senegal</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="news-item">
-          <div class="news-date">August 2024</div>
-          <div class="news-content">
-            <h3 class="news-title">
-              <i class="fas fa-plane news-icon"></i>
-              African Probability, Information Theory and Computing School
-            </h3>
-            <p class="news-description">
-              I was privileged to attend the African Probability, Information Theory and Computing School in Kigali, Rwanda, I was awarded a fully funded scholarship, including flight tickets and accommodation.
-            </p>
-            <div class="news-tags">
-              <span class="tag chip">Conference</span>
-              <span class="tag chip">Rwanda</span>
-              <span class="tag chip">Probability</span>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
 
       <div class="news-sidebar">
+        {% assign current_project = site.current_projects | where: "featured", true | sort: "date" | reverse | first %}
+        {% if current_project %}
         <div class="news-highlight">
           <h4 class="news-highlight-title">
-            <i class="fas fa-book-open"></i>
+            <i class="{{ current_project.icon | default: 'fas fa-project-diagram' }}"></i>
             Current Project
           </h4>
           <div class="book-preview">
             <div class="book-cover">
-              <div class="book-placeholder">
-                <div class="book-title">MATHEMATICS<br>FOR<br>DATA SCIENCE</div>
-                <div class="book-subtitle-text">LINEAR ALGEBRA WITH PYTHON</div>
-                <div class="book-author">JEREMIE NLANDU MABIALA</div>
-              </div>
+              {% if current_project.cover_image %}
+                <img src="{{ current_project.cover_image | relative_url }}" alt="{{ current_project.title }} cover" loading="lazy">
+              {% else %}
+                <div class="book-placeholder">
+                  <div class="book-title">{{ current_project.title | upcase | replace: " ", "<br>" }}</div>
+                  {% if current_project.subtitle %}
+                    <div class="book-subtitle-text">{{ current_project.subtitle | upcase }}</div>
+                  {% endif %}
+                  {% if current_project.author %}
+                    <div class="book-author">{{ current_project.author | upcase }}</div>
+                  {% endif %}
+                </div>
+              {% endif %}
             </div>
             <div class="book-info">
-              <h5>Mathematics for Data Science</h5>
-              <p class="book-subtitle">Linear Algebra with Python</p>
+              <h5>{{ current_project.title }}</h5>
+              {% if current_project.subtitle %}
+                <p class="book-subtitle">{{ current_project.subtitle }}</p>
+              {% endif %}
               <p class="book-description">
-                I am currently writing a comprehensive book on Linear Algebra for Data Science, combining mathematical theory with practical Python implementations.
+                {{ current_project.content | strip_html | truncate: 150 }}
               </p>
               <div class="book-status">
-                <span class="status-badge">In Progress</span>
+                <span class="status-badge">{{ current_project.status | default: "In Progress" }}</span>
+                {% if current_project.progress %}
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: {{ current_project.progress }}%"></div>
+                  </div>
+                  <span class="progress-text">{{ current_project.progress }}% Complete</span>
+                {% endif %}
               </div>
             </div>
           </div>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -367,43 +355,43 @@ layout: default
 
     <div class="news-archive-grid" data-animate="stagger">
       <div class="news-archive-timeline">
+        {% assign archive_news = site.news | where: "featured", false | sort: "date" | reverse %}
+        {% for news in archive_news %}
         <div class="news-item">
-          <div class="news-date">2023</div>
+          <div class="news-date">{{ news.date | date: "%Y" }}</div>
           <div class="news-content">
             <h3 class="news-title">
-              <i class="fas fa-calculator news-icon"></i>
-              AIMS Scholarship
+              <i class="{{ news.icon | default: 'fas fa-newspaper' }} news-icon"></i>
+              {{ news.title }}
             </h3>
             <p class="news-description">
-              I was awarded a fully funded Master Student scholarship to study Mathematics at Stellenbosch University & AIMS South Africa.
+              {{ news.content | strip_html | truncate: 200 }}
             </p>
+            {% if news.tags and news.tags.size > 0 %}
             <div class="news-tags">
-              <span class="tag chip">Scholarship</span>
-              <span class="tag chip">Mathematics</span>
-              <span class="tag chip">Stellenbosch</span>
+              {% for tag in news.tags %}
+                <span class="tag chip">{{ tag }}</span>
+              {% endfor %}
             </div>
+            {% endif %}
           </div>
         </div>
-
-        <!-- Add more news items here as needed -->
-        <!-- Example structure for future news items:
-        <div class="news-item">
-          <div class="news-date">Year</div>
-          <div class="news-content">
-            <h3 class="news-title">
-              <i class="fas fa-icon-name news-icon"></i>
-              Title
-            </h3>
-            <p class="news-description">
-              Description
-            </p>
-            <div class="news-tags">
-              <span class="tag chip">Tag1</span>
-              <span class="tag chip">Tag2</span>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
+        
+        {% comment %}
+        <!-- To add more news items, create new Markdown files in the _news folder with this structure:
+        ---
+        title: "Your News Title"
+        date: YYYY-MM-DD
+        icon: "fas fa-icon-name"
+        featured: true/false (true for main news section, false for archive)
+        tags:
+          - Tag1
+          - Tag2
+        ---
+        Your news content here in Markdown format.
         -->
+        {% endcomment %}
       </div>
     </div>
   </div>
