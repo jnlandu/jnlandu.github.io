@@ -5,6 +5,20 @@ permalink: /news/
 description: "All news, achievements, fellowships, and updates from Jeremie Nlandu Mabiala"
 ---
 
+<style>
+/* Force disable scroll-snap and ensure page starts at top */
+html, body, *, .container {
+  scroll-snap-type: none !important;
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
+}
+
+/* Ensure page starts at very top */
+body {
+  scroll-padding-top: 0 !important;
+}
+</style>
+
 <section class="news-header-section" id="news-top">
   <div class="container">
     <header class="page-header">
@@ -189,11 +203,52 @@ function animateNewsItems() {
   items.forEach(el => io.observe(el));
 }
 
+// Disable scroll-snap and ensure page starts at top
+function disableScrollSnapAndScrollToTop() {
+  // Force disable scroll-snap on all possible containers
+  document.documentElement.style.scrollSnapType = 'none !important';
+  document.body.style.scrollSnapType = 'none !important';
+  
+  // Find and disable scroll-snap on any containers that might have it
+  const containers = document.querySelectorAll('*');
+  containers.forEach(el => {
+    const computed = window.getComputedStyle(el);
+    if (computed.scrollSnapType && computed.scrollSnapType !== 'none') {
+      el.style.scrollSnapType = 'none !important';
+    }
+  });
+  
+  // Force scroll to absolute top
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  
+  // Override any CSS that might be setting scroll-snap
+  const style = document.createElement('style');
+  style.textContent = `
+    html, body, * { 
+      scroll-snap-type: none !important; 
+      scroll-snap-align: none !important;
+      scroll-padding-top: 0 !important;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+// Run immediately
+disableScrollSnapAndScrollToTop();
+
 document.addEventListener('DOMContentLoaded', () => {
+  disableScrollSnapAndScrollToTop();
   bindDots();
   observeSections();
   animateNewsItems();
   setupLocalNewsSectionNavigation();
+});
+
+// Also run after everything loads
+window.addEventListener('load', () => {
+  disableScrollSnapAndScrollToTop();
 });
 
 // Local one-section navigation between header and content for directional slide
