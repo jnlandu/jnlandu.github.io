@@ -18,13 +18,13 @@ summary: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus
 
 Linear Regression is a simple yet powerful technique used for predicting a quantitative response. In this tutorial, we will implement Linear Regression from scratch and also using the `scikit-learn` library in Python.
 
-## Table of Contents
+<!-- ## Table of Contents
 1. [Introduction to Linear Regression](#introduction-to-linear-regression)
 2. [Mathematical Background](#mathematical-background)
 3. [Implementing Linear Regression from Scratch](#implementing-linear-regression-from-scratch)
 4. [Linear Regression Using scikit-learn](#linear-regression-using-scikit-learn)
 5. [Evaluation Metrics](#evaluation-metrics)
-6. [Conclusion](#conclusion)
+6. [Conclusion](#conclusion) -->
 
 ## Introduction to Linear Regression
 

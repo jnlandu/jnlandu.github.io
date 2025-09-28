@@ -2,12 +2,14 @@
   url: /
 - title: Years
   url: /years/
-- title: posts
+- title: Posts
   url: /posts/
 - title: Categories
   url: /categories/
 - title: Tags
   url: /tags/
+# - title: optim
+#   url: /optim/
 # - title: More
 #   sublinks:
 #     - title: FAQ

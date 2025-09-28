@@ -1,44 +1,50 @@
-
-    <!--  profile  -->
-    <div class="d-flex justify-content-center">
-    <img src="{{ '/assets/static/img/jeremie-apic-1.jpeg' | relative_url }}" 
-     alt="profile" class="" style="height: 25em; width: 25em;">
-    </div>
-        <div class="">
-        <h1 class="text-center"> {{ site.firstName }} 
-            <span class="yellow"> {{ site.lastName }} </span>
-        </h1>
+<div class="img-wrapper">
+    {% if  site.profile_image  %}
+        <img 
+         src="{{ site.profile_image | relative_url }}" 
+         alt="{{ profile_alt }}"
+         class="img-profile my-3"
+         >
+    {% endif %}
+</div>
+<div class="profile-img-caption">
+        <h1 class="h3 text-center"> 
+            <span class="text-white firstname">
+                {{ site.firstName }} 
+            </span> 
+            <span class="text-brand lastname">
+                 {{ site.lastName }} 
+                </span>
+         </h1>
         <p class=" text-center"> 
             Student in Artifical Intelligence
+            <br>
+            <a > AI enthusiast</a>
         </p>
         <p class="text-center">
-        {% if site.location %}
-            <a class="yellow mx-2" href="{{ site.location[0] }}">
-                <i class="{{ site.location[2] }}"></i> 
-                {{ site.location[0] }}
-            </a> 
-        {% endif %}
-        </p> 
+            {% if site.location %}
+                <a class="mx-2" href="{{ site.location[0] }}">
+                    <i class="{{ site.location[2] }}"></i> 
+                    {{ site.location[0] }}
+                </a> 
+            {% endif %}
+         </p>         
         {% if site.data.social %}
         <div class="d-flex justify-content-center">
             {% for social in site.data.social %}
-            <a class="mx-2 rs-click" href="{{ social.url }}" >
+            {% if social.title == 'Email' %}
+
+            <a class="mx-2" href="mailto:{{ social.url }}" >
                 <i class="{{ social.icon | default: 'fas-fa-link' }}" title="{{ social.title}}"></i>
             </a>
+            {% endif %}
+            {% if social.title != 'Email' %}
+            <a class="mx-2" href="{{ social.url }}" >
+                <i class="{{ social.icon | default: 'fas-fa-link' }}" title="{{ social.title}}"></i>
+            </a>
+            {% endif %}
             {% endfor %}
              </div>
-          {% endif %}
-    </div>
-    <div class="mt-4">
-            <h1 class="text-center"> About Me </h1>
-            <p class="text-justified">
-                {% include bio.html %}
-            </p>
-    </div>
-<p class="text-danger"> 
-    This site is  currently being updated (and modified). Feel free to 
-contact me, jeremie at aims.ac.za. Sorry, still working on the other devices
- layout. It only suits for mobile right now.
-</p>
-      
-   
+         {% endif %}
+</div>
+

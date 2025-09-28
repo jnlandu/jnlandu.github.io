@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<article>
+    <header>
+        <h1>{{ page.title }}</h1>
+        <div class="meta">
+            {% if page.date %}
+            <span class="meta-item">{{ page.date | date: "%B %Y" }}</span>
+            {% endif %}
+            {% if page.github %}
+            <span class="meta-item"><a href="{{ page.github }}" target="_blank">View on GitHub</a></span>
+            {% endif %}
+            {% if page.demo %}
+            <span class="meta-item"><a href="{{ page.demo }}" target="_blank">Live Demo</a></span>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="content">
+        {{ content }}
+    </div>
+
+    {% if page.technologies %}
+    <div class="tags">
+        {% for tech in page.technologies %}
+        <span class="tag">{{ tech }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+</article>
