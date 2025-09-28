@@ -755,8 +755,14 @@ a:hover {
   padding: 0 2rem;
 }
 
+/* Widen Education container slightly beyond default */
+#education .about-content {
+  max-width: 1400px;
+}
+
 /* Make key sections occupy full screen height and snap */
 #about.about-section,
+#education.about-section,
 #recent-posts.about-section,
 #resume.about-section,
 #recent-projects.hero-section {
@@ -1140,6 +1146,21 @@ a:hover {
 .resume-date { color: var(--text-muted); font-size: 0.95rem; }
 .resume-company { color: var(--text-secondary); margin-top: 0.25rem; }
 .resume-desc { color: var(--text-secondary); margin-top: 0.5rem; }
+
+/* Education bullets tweak */
+.edu-points {
+  margin: 0.5rem 0 0 1.25rem;
+  padding: 0;
+  list-style: disc;
+  color: var(--text-secondary);
+}
+.edu-points li { margin: 0.25rem 0; }
+
+/* Clean up unused education styles - now matches Experience & Skills layout */
+
+@media (max-width: 900px) {
+  .edu-row { grid-template-columns: 1fr; }
+}
 
 .skills-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .resume-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }

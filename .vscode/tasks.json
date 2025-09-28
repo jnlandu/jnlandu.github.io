@@ -10,6 +10,13 @@
 				"$gcc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Serve Jekyll site",
+			"type": "shell",
+			"command": "bundle exec jekyll serve --livereload --force_polling",
+			"isBackground": true,
+			"group": "build"
 		}
 	]
 }
