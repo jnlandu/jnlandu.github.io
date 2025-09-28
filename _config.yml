@@ -41,10 +41,14 @@ location:
 header_pages:
   - index.md
   - about.md
-  - research.md
-  - projects.md
-  - blog.md
-  - courses.md
+# <<<<<<< dev2
+  - news.md
+# =======
+#   - research.md
+#   - projects.md
+#   - blog.md
+#   - courses.md
+# >>>>>>> dev
   - contact.md
 
 # Site Description
@@ -66,6 +70,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-toc
+  - jekyll-redirect-from
 
 github_repo: https://github.com/jnlandu/jnlandu.github.io/
 
@@ -144,35 +149,52 @@ collections:
   projects:
     output: true
     permalink: /projects/:title/
-  courses:
+# <<<<<<< dev2
+  news:
     output: true
-    permalink: /courses/:title/
-  research:
-    output: true
-    permalink: /research/:title/
+    sort_by: date
+    permalink: /news/:name/
+  current_projects:
+    output: false
+    sort_by: date
 
-# Collection defaults for better SEO and organization
 defaults:
   - scope:
       path: ""
-      type: "posts"
+      type: news
     values:
-      layout: "post"
-      toc: true
-      author: "Jeremie Nlandu Mabiala"
-  - scope:
-      path: ""
-      type: "projects"
-    values:
-      layout: "project"
-      author: "Jeremie Nlandu Mabiala"
-  - scope:
-      path: ""
-      type: "research"
-    values:
-      layout: "post"
-      toc: true
-      author: "Jeremie Nlandu Mabiala"
+      layout: news_item
+# =======
+#   courses:
+#     output: true
+#     permalink: /courses/:title/
+#   research:
+#     output: true
+#     permalink: /research/:title/
+
+# # Collection defaults for better SEO and organization
+# defaults:
+#   - scope:
+#       path: ""
+#       type: "posts"
+#     values:
+#       layout: "post"
+#       toc: true
+#       author: "Jeremie Nlandu Mabiala"
+#   - scope:
+#       path: ""
+#       type: "projects"
+#     values:
+#       layout: "project"
+#       author: "Jeremie Nlandu Mabiala"
+#   - scope:
+#       path: ""
+#       type: "research"
+#     values:
+#       layout: "post"
+#       toc: true
+#       author: "Jeremie Nlandu Mabiala"
+# >>>>>>> dev
 
     
 # Exclude from processing.

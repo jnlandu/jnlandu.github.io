@@ -71,7 +71,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
+  <footer id="footer" class="site-footer">
       <div class="container">
         <div class="footer-content">
           <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
@@ -144,12 +144,17 @@
         });
       })();
 
-      // Enhanced section navigation with one-click scrolling
+      // Enhanced section navigation with one-click scrolling (home only)
       (function() {
         const dotsNav = document.querySelector('.section-dots');
         if (!dotsNav) return;
-        const dots = Array.from(dotsNav.querySelectorAll('.dot'));
-        const targets = dots.map(d => document.getElementById(d.dataset.target));
+        // Only enable if dots explicitly declare data-target and map to valid sections
+        const dots = Array.from(dotsNav.querySelectorAll('.dot[data-target]'));
+        if (!dots.length) return; // e.g., News page dots use href only -> skip this block
+        const targets = dots
+          .map(d => document.getElementById(d.dataset.target))
+          .filter(Boolean);
+        if (!targets.length || targets.length !== dots.length) return;
         let lastScrollY = window.scrollY;
         let currentSectionIndex = 0;
         let isScrolling = false;
@@ -265,7 +270,7 @@
             }
             wheelAccumulator = 0; // reset
           }, 150); // slower, more comfortable response time
-        }, { passive: false });
+  }, { passive: false });
 
         // Scroll direction -> shift dot rail slightly
         window.addEventListener('scroll', () => {
