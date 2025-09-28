@@ -15,6 +15,7 @@ _site/
 # Bundler dependencies (if using Bundler)
 vendor/bundle/
 .bundle/
+Gemfile.lock
 
 # Ruby gems and related files
 *.gem
