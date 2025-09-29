@@ -51,16 +51,46 @@
       <nav class="nav-menu">
         <button class="close-btn" aria-label="Close menu">&times;</button>
         <ul>
-          <li><a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">Home</a></li>
-          <li><a href="{{ '/about/' | relative_url }}" class="{% if page.url contains 'about' %}active{% endif %}">Specialization</a></li>
-          <li><a href="{{ '/posts/' | relative_url }}" class="{% if page.url contains 'posts' %}active{% endif %}">Resume</a></li>
-          <li><a href="{{ '/about/' | relative_url }}" class="{% if page.url contains 'about' %}active{% endif %}">About</a></li>
-          <li><a href="{{ '/projects/' | relative_url }}" class="{% if page.url contains 'projects' %}active{% endif %}">Projects</a></li>
-          <li><a href="{{ '/tutorials/' | relative_url }}" class="{% if page.url contains 'tutorials' %}active{% endif %}">Reviews</a></li>
-          <li><a href="{{ '/posts/' | relative_url }}" class="{% if page.url contains 'posts' %}active{% endif %}">Articles</a></li>
-          <li><a href="{{ '/contact/' | relative_url }}" class="{% if page.url contains 'contact' %}active{% endif %}">Contact</a></li>
+          <li><a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">
+            <i class="fas fa-home"></i>
+            Home
+          </a></li>
+          <li><a href="{{ '/about/' | relative_url }}" class="{% if page.url contains 'about' %}active{% endif %}">
+            <i class="fas fa-user"></i>
+            About Me
+          </a></li>
+          <li><a href="{{ '/about/' | relative_url }}#education" class="{% if page.url contains 'about' %}active{% endif %}">
+            <i class="fas fa-graduation-cap"></i>
+            Education
+          </a></li>
+          <li><a href="{{ '/about/' | relative_url }}#experience" class="{% if page.url contains 'about' %}active{% endif %}">
+            <i class="fas fa-briefcase"></i>
+            Experience & Skills
+          </a></li>
+          <li><a href="{{ '/news/' | relative_url }}" class="{% if page.url contains 'news' %}active{% endif %}">
+            <i class="fas fa-newspaper"></i>
+            News
+          </a></li>
+          <li><a href="{{ '/posts/' | relative_url }}" class="{% if page.url contains 'posts' %}active{% endif %}">
+            <i class="fas fa-edit"></i>
+            Posts
+          </a></li>
+          <li><a href="{{ '/tutorials/' | relative_url }}" class="{% if page.url contains 'tutorials' %}active{% endif %}">
+            <i class="fas fa-book-open"></i>
+            Tutorials
+          </a></li>
+          <li><a href="{{ '/projects/' | relative_url }}" class="{% if page.url contains 'projects' %}active{% endif %}">
+            <i class="fas fa-code"></i>
+            Projects
+          </a></li>
+          <li><a href="{{ '/contact/' | relative_url }}" class="{% if page.url contains 'contact' %}active{% endif %}">
+            <i class="fas fa-envelope"></i>
+            Contact
+          </a></li>
         </ul>
-        <div class="copyright">All Rights Reserved.</div>
+        <div class="copyright">
+          <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title | default: "Jeremie Mabiala" }}. All Rights Reserved.</p>
+        </div>
       </nav>
     </header>
     
