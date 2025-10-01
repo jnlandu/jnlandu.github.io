@@ -9,8 +9,7 @@
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#0b1220">
   
-  <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
-  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  {# Title and description will be output by jekyll-seo-tag to avoid duplicates #}
   
   <!-- Professional CSS -->
   <link rel="stylesheet" href="{{ '/assets/css/professional-clean.css' | relative_url }}">

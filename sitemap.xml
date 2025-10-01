@@ -1,0 +1,118 @@
+---
+layout: null
+sitemap: false
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {%- comment -%}
+    Pages
+  {%- endcomment -%}
+  {%- assign excluded_paths = site.sitemap.exclude | default: '' -%}
+  {%- for p in site.html_pages -%}
+    {%- assign is_excluded = false -%}
+    {%- if p.sitemap == false or p.noindex == true -%}
+      {%- assign is_excluded = true -%}
+    {%- endif -%}
+    {%- if p.url == '/404.html' or p.path == 'googlea489a1e69e94e097.html' -%}
+      {%- assign is_excluded = true -%}
+    {%- endif -%}
+    {%- if excluded_paths and excluded_paths contains p.path -%}
+      {%- assign is_excluded = true -%}
+    {%- endif -%}
+    {%- unless is_excluded -%}
+    <url>
+      <loc>{{ p.url | absolute_url }}</loc>
+      {%- if p.last_modified_at -%}
+      <lastmod>{{ p.last_modified_at | date_to_xmlschema }}</lastmod>
+      {%- elsif p.date -%}
+      <lastmod>{{ p.date | date_to_xmlschema }}</lastmod>
+      {%- endif -%}
+    </url>
+    {%- endunless -%}
+  {%- endfor -%}
+
+  {%- comment -%}
+    Blog posts
+  {%- endcomment -%}
+  {%- for post in site.posts -%}
+    {%- if post.sitemap != false and post.noindex != true -%}
+    <url>
+      <loc>{{ post.url | absolute_url }}</loc>
+      <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    </url>
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- comment -%}
+    News items
+  {%- endcomment -%}
+  {%- if site.news -%}
+    {%- for item in site.news -%}
+      {%- if item.sitemap != false and item.noindex != true -%}
+      <url>
+        <loc>{{ item.url | absolute_url }}</loc>
+        {%- if item.last_modified_at -%}
+        <lastmod>{{ item.last_modified_at | date_to_xmlschema }}</lastmod>
+        {%- elsif item.date -%}
+        <lastmod>{{ item.date | date_to_xmlschema }}</lastmod>
+        {%- endif -%}
+      </url>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- comment -%}
+    Tutorials
+  {%- endcomment -%}
+  {%- if site.tutorials -%}
+    {%- for t in site.tutorials -%}
+      {%- if t.sitemap != false and t.noindex != true -%}
+      <url>
+        <loc>{{ t.url | absolute_url }}</loc>
+        {%- if t.last_modified_at -%}
+        <lastmod>{{ t.last_modified_at | date_to_xmlschema }}</lastmod>
+        {%- elsif t.date -%}
+        <lastmod>{{ t.date | date_to_xmlschema }}</lastmod>
+        {%- endif -%}
+      </url>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- comment -%}
+    Projects
+  {%- endcomment -%}
+  {%- if site.projects -%}
+    {%- for pr in site.projects -%}
+      {%- if pr.sitemap != false and pr.noindex != true -%}
+      <url>
+        <loc>{{ pr.url | absolute_url }}</loc>
+        {%- if pr.last_modified_at -%}
+        <lastmod>{{ pr.last_modified_at | date_to_xmlschema }}</lastmod>
+        {%- elsif pr.date -%}
+        <lastmod>{{ pr.date | date_to_xmlschema }}</lastmod>
+        {%- endif -%}
+      </url>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- comment -%}
+    Events
+  {%- endcomment -%}
+  {%- if site.events -%}
+    {%- for e in site.events -%}
+      {%- if e.sitemap != false and e.noindex != true -%}
+      <url>
+        <loc>{{ e.url | absolute_url }}</loc>
+        {%- if e.last_modified_at -%}
+        <lastmod>{{ e.last_modified_at | date_to_xmlschema }}</lastmod>
+        {%- elsif e.date -%}
+        <lastmod>{{ e.date | date_to_xmlschema }}</lastmod>
+        {%- endif -%}
+      </url>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+</urlset>
