@@ -20,11 +20,11 @@
 
 
 title:  Jeremie Mabiala
+lang: en
 firstName: Jérémie
 lastName: Mabiala
 email: 
-  - jeremy@aimsammi.org
-  # - jeremie@aims.ac.za
+  - jnlandu00@gmail.com
 
 profile_alt: Jérémie Mabiala
 profile_image: ./profile.png
@@ -41,18 +41,19 @@ location:
 header_pages:
   - index.md
   - about.md
-  - research.md
-  - projects.md
-  - blog.md
-  - courses.md
+# <<<<<<< dev2
+  - news.md
+# =======
+#   - research.md
+#   - projects.md
+#   - blog.md
+#   - courses.md
+# >>>>>>> dev
   - contact.md
 
 # Site Description
 description: >- 
-  AI Engineer and Mathematical Modeling Researcher passionate about advancing 
-  artificial intelligence and mathematics in Africa. Currently pursuing AMMI 
-  (African Master in Machine Intelligence) at AIMS Senegal. Specialized in 
-  deep learning, computer vision, NLP, and mathematical optimization.
+  I am AI engineer and  Data Scientists, currently pursuing a Master in Artificial Intelligence at the prestigious AIMS Senegal.
 
 # Site Configuration
 baseurl: "" 
@@ -66,6 +67,10 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-toc
+  - jekyll-redirect-from
+
+# Permalink settings
+permalink: /posts/:title
 
 github_repo: https://github.com/jnlandu/jnlandu.github.io/
 
@@ -87,14 +92,55 @@ social:
     - https://twitter.com/ValentinMabiala
     - https://www.linkedin.com/in/jeremie-nlandu-mabiala-aa3a1b1b
     - https://github.com/jnlandu
-    - mailto:jeremie@aims.ac.za
+    - mailto:jnlandu00@gmail.com
+
+# jekyll-seo-tag extras
+logo: /profile.png
+favicon: /profile3.png
+twitter:
+  username: ValentinMabiala
+  card: summary_large_image
+facebook:
+  publisher: https://www.facebook.com/ # optional
+author:
+  name: Jeremie Nlandu Mabiala
+  avatar: /profile.png
+  url: https://jnlandu.github.io
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      image: /profile3.png
+      author: "Jeremie Nlandu Mabiala"
+      sitemap: true
+  - scope:
+      path: ""
+      type: tutorials
+    values:
+      image: /profile3.png
+      author: "Jeremie Nlandu Mabiala"
+      sitemap: true
+  - scope:
+      path: ""
+      type: projects
+    values:
+      image: /profile3.png
+      author: "Jeremie Nlandu Mabiala"
+      sitemap: true
+  - scope:
+      path: ""
+      type: news
+    values:
+      layout: news_item
+      image: /profile3.png
+      author: "Jeremie Nlandu Mabiala"
+      sitemap: true
 
 # Analytics & Verification
 google_analytics: G-ZQTH7FZ9T4
 google_site_verification: u4WXQl0Eu66rsQo2kRdCNx
-
-# Site Language
-lang: en
 
 # Professional Details
 profession:
@@ -144,35 +190,45 @@ collections:
   projects:
     output: true
     permalink: /projects/:title/
-  courses:
+# <<<<<<< dev2
+  news:
     output: true
-    permalink: /courses/:title/
-  research:
-    output: true
-    permalink: /research/:title/
+    sort_by: date
+    permalink: /news/:name/
+  current_projects:
+    output: false
+    sort_by: date
+# =======
+#   courses:
+#     output: true
+#     permalink: /courses/:title/
+#   research:
+#     output: true
+#     permalink: /research/:title/
 
-# Collection defaults for better SEO and organization
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      toc: true
-      author: "Jeremie Nlandu Mabiala"
-  - scope:
-      path: ""
-      type: "projects"
-    values:
-      layout: "project"
-      author: "Jeremie Nlandu Mabiala"
-  - scope:
-      path: ""
-      type: "research"
-    values:
-      layout: "post"
-      toc: true
-      author: "Jeremie Nlandu Mabiala"
+# # Collection defaults for better SEO and organization
+# defaults:
+#   - scope:
+#       path: ""
+#       type: "posts"
+#     values:
+#       layout: "post"
+#       toc: true
+#       author: "Jeremie Nlandu Mabiala"
+#   - scope:
+#       path: ""
+#       type: "projects"
+#     values:
+#       layout: "project"
+#       author: "Jeremie Nlandu Mabiala"
+#   - scope:
+#       path: ""
+#       type: "research"
+#     values:
+#       layout: "post"
+#       toc: true
+#       author: "Jeremie Nlandu Mabiala"
+# >>>>>>> dev
 
     
 # Exclude from processing.

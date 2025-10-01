@@ -4,7 +4,7 @@ title: "Building Simple, Clean Websites"
 date: 2024-12-27
 categories: [Web Development, Design]
 tags: [Jekyll, Minimalism, Clean Design, Static Sites]
-author: Jeremie Nlandu Mabiala
+author: Jeremie Mabiala
 excerpt: "Why simplicity and cleanliness in web design often beats complexity - lessons from rebuilding my personal website."
 ---
 

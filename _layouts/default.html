@@ -9,8 +9,7 @@
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#0b1220">
   
-  <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
-  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  {# Title and description will be output by jekyll-seo-tag to avoid duplicates #}
   
   <!-- Professional CSS -->
   <link rel="stylesheet" href="{{ '/assets/css/professional-clean.css' | relative_url }}">
@@ -35,9 +34,17 @@
         <a href="{{ '/' | relative_url }}" class="site-title" style="font-family: 'Georgia', serif; font-size: 2.2rem; font-weight: 300; letter-spacing: 0.5px;"> Jeremie  <span class="text-brand" style="font-weight: 600;"> Mabiala </span></a>
         
         <div class="header-contact">
-          <span class="contact-item">+27 71 44 35 490 </span>
+          <span class="contact-item">
+            <a href="https://wa.me/27714435490" class="whatsapp-link" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp" style="display:inline-flex;align-items:center;margin-right:6px;text-decoration:none;">
+              <i class="fab fa-whatsapp" aria-hidden="true" style="color:#25D366;font-size:1.5rem;"></i>
+            </a>
+            <span class="contact-number">+27 71 44 35 490</span>
+          </span>
           <span class="contact-divider">/</span>
-          <span class="contact-item">jeremie@aims.ac.za</span>
+            <span class="contact-item">
+            <i class="fas fa-envelope" aria-hidden="true" style="color:#007acc;font-size:1.2rem;margin-right:4px;"></i>
+            <span class="contact-email">jnlandu00@gmail.com</span>
+            </span>
         </div>
 
         <button class="nav-toggle" aria-label="Toggle navigation">
@@ -51,16 +58,46 @@
       <nav class="nav-menu">
         <button class="close-btn" aria-label="Close menu">&times;</button>
         <ul>
-          <li><a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">Home</a></li>
-          <li><a href="{{ '/about/' | relative_url }}" class="{% if page.url contains 'about' %}active{% endif %}">Specialization</a></li>
-          <li><a href="{{ '/posts/' | relative_url }}" class="{% if page.url contains 'posts' %}active{% endif %}">Resume</a></li>
-          <li><a href="{{ '/about/' | relative_url }}" class="{% if page.url contains 'about' %}active{% endif %}">About</a></li>
-          <li><a href="{{ '/projects/' | relative_url }}" class="{% if page.url contains 'projects' %}active{% endif %}">Projects</a></li>
-          <li><a href="{{ '/tutorials/' | relative_url }}" class="{% if page.url contains 'tutorials' %}active{% endif %}">Reviews</a></li>
-          <li><a href="{{ '/posts/' | relative_url }}" class="{% if page.url contains 'posts' %}active{% endif %}">Articles</a></li>
-          <li><a href="{{ '/contact/' | relative_url }}" class="{% if page.url contains 'contact' %}active{% endif %}">Contact</a></li>
+          <li><a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">
+            <i class="fas fa-home"></i>
+            Home
+          </a></li>
+          <li><a href="{{ '/about/' | relative_url }}" class="{% if page.url contains 'about' %}active{% endif %}">
+            <i class="fas fa-user"></i>
+            About Me
+          </a></li>
+          <li><a href="{{ '/about/' | relative_url }}#education" class="{% if page.url contains 'about' %}active{% endif %}">
+            <i class="fas fa-graduation-cap"></i>
+            Education
+          </a></li>
+          <li><a href="{{ '/about/' | relative_url }}#experience" class="{% if page.url contains 'about' %}active{% endif %}">
+            <i class="fas fa-briefcase"></i>
+            Experience & Skills
+          </a></li>
+          <li><a href="{{ '/news/' | relative_url }}" class="{% if page.url contains 'news' %}active{% endif %}">
+            <i class="fas fa-newspaper"></i>
+            News
+          </a></li>
+          <li><a href="{{ '/posts/' | relative_url }}" class="{% if page.url contains 'posts' %}active{% endif %}">
+            <i class="fas fa-edit"></i>
+            Posts
+          </a></li>
+          <li><a href="{{ '/tutorials/' | relative_url }}" class="{% if page.url contains 'tutorials' %}active{% endif %}">
+            <i class="fas fa-book-open"></i>
+            Tutorials
+          </a></li>
+          <li><a href="{{ '/projects/' | relative_url }}" class="{% if page.url contains 'projects' %}active{% endif %}">
+            <i class="fas fa-code"></i>
+            Projects
+          </a></li>
+          <li><a href="{{ '/contact/' | relative_url }}" class="{% if page.url contains 'contact' %}active{% endif %}">
+            <i class="fas fa-envelope"></i>
+            Contact
+          </a></li>
         </ul>
-        <div class="copyright">All Rights Reserved.</div>
+        <div class="copyright">
+          <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title | default: "Jeremie Mabiala" }}. All Rights Reserved.</p>
+        </div>
       </nav>
     </header>
     
@@ -71,7 +108,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
+  <footer id="footer" class="site-footer">
       <div class="container">
         <div class="footer-content">
           <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
@@ -144,12 +181,17 @@
         });
       })();
 
-      // Enhanced section navigation with one-click scrolling
+      // Enhanced section navigation with one-click scrolling (home only)
       (function() {
         const dotsNav = document.querySelector('.section-dots');
         if (!dotsNav) return;
-        const dots = Array.from(dotsNav.querySelectorAll('.dot'));
-        const targets = dots.map(d => document.getElementById(d.dataset.target));
+        // Only enable if dots explicitly declare data-target and map to valid sections
+        const dots = Array.from(dotsNav.querySelectorAll('.dot[data-target]'));
+        if (!dots.length) return; // e.g., News page dots use href only -> skip this block
+        const targets = dots
+          .map(d => document.getElementById(d.dataset.target))
+          .filter(Boolean);
+        if (!targets.length || targets.length !== dots.length) return;
         let lastScrollY = window.scrollY;
         let currentSectionIndex = 0;
         let isScrolling = false;
@@ -265,7 +307,7 @@
             }
             wheelAccumulator = 0; // reset
           }, 150); // slower, more comfortable response time
-        }, { passive: false });
+  }, { passive: false });
 
         // Scroll direction -> shift dot rail slightly
         window.addEventListener('scroll', () => {
