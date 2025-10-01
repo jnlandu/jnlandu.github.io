@@ -1,0 +1,8 @@
+# robots.txt for jnlandu.github.io
+User-agent: *
+Allow: /
+
+# Disallow build preview directories if any
+Disallow: /_site/
+
+Sitemap: https://jnlandu.github.io/sitemap.xml

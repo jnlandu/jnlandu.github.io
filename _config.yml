@@ -20,10 +20,11 @@
 
 
 title:  Jeremie Mabiala
+lang: en
 firstName: Jérémie
 lastName: Mabiala
 email: 
-  - jeremy@aimsammi.org
+  - jnlandu00@gmail.com
   # - jeremie@aims.ac.za
 
 profile_alt: Jérémie Mabiala
@@ -92,14 +93,54 @@ social:
     - https://twitter.com/ValentinMabiala
     - https://www.linkedin.com/in/jeremie-nlandu-mabiala-aa3a1b1b
     - https://github.com/jnlandu
-    - mailto:jeremie@aims.ac.za
+    - mailto:jnlandu00@gmail.com
+
+# jekyll-seo-tag extras
+logo: /profile.png
+twitter:
+  username: ValentinMabiala
+  card: summary_large_image
+facebook:
+  publisher: https://www.facebook.com/ # optional
+author:
+  name: Jeremie Nlandu Mabiala
+  avatar: /profile.png
+  url: https://jnlandu.github.io
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      image: /profile3.png
+      author: "Jeremie Nlandu Mabiala"
+      sitemap: true
+  - scope:
+      path: ""
+      type: tutorials
+    values:
+      image: /profile3.png
+      author: "Jeremie Nlandu Mabiala"
+      sitemap: true
+  - scope:
+      path: ""
+      type: projects
+    values:
+      image: /profile3.png
+      author: "Jeremie Nlandu Mabiala"
+      sitemap: true
+  - scope:
+      path: ""
+      type: news
+    values:
+      layout: news_item
+      image: /profile3.png
+      author: "Jeremie Nlandu Mabiala"
+      sitemap: true
 
 # Analytics & Verification
 google_analytics: G-ZQTH7FZ9T4
 google_site_verification: u4WXQl0Eu66rsQo2kRdCNx
-
-# Site Language
-lang: en
 
 # Professional Details
 profession:
@@ -157,13 +198,6 @@ collections:
   current_projects:
     output: false
     sort_by: date
-
-defaults:
-  - scope:
-      path: ""
-      type: news
-    values:
-      layout: news_item
 # =======
 #   courses:
 #     output: true
