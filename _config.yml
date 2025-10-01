@@ -25,7 +25,6 @@ firstName: Jérémie
 lastName: Mabiala
 email: 
   - jnlandu00@gmail.com
-  # - jeremie@aims.ac.za
 
 profile_alt: Jérémie Mabiala
 profile_image: ./profile.png
@@ -54,10 +53,7 @@ header_pages:
 
 # Site Description
 description: >- 
-  AI Engineer and Mathematical Modeling Researcher passionate about advancing 
-  artificial intelligence and mathematics in Africa. Currently pursuing AMMI 
-  (African Master in Machine Intelligence) at AIMS Senegal. Specialized in 
-  deep learning, computer vision, NLP, and mathematical optimization.
+  I am AI engineer and  Data Scientists, currently pursuing a Master in Artificial Intelligence at the prestigious AIMS Senegal.
 
 # Site Configuration
 baseurl: "" 
@@ -72,6 +68,9 @@ plugins:
   - jekyll-paginate
   - jekyll-toc
   - jekyll-redirect-from
+
+# Permalink settings
+permalink: /posts/:title
 
 github_repo: https://github.com/jnlandu/jnlandu.github.io/
 
@@ -97,6 +96,7 @@ social:
 
 # jekyll-seo-tag extras
 logo: /profile.png
+favicon: /profile3.png
 twitter:
   username: ValentinMabiala
   card: summary_large_image
