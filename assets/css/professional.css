@@ -644,7 +644,7 @@ a:hover {  min-height: 80vh;
 
 .about-section {.work-grid {
 
-  padding: 6rem 0;  display: grid;
+  padding: 2rem 0;  display: grid;
 
   background: var(--card-bg);  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 

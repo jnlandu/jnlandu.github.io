@@ -7,16 +7,17 @@ layout: default
 <section id="top" class="hero-section hero-full">
   <div class="hero-content-centered">
     <div class="hero-main">
-      <div class="hero-eyebrow">Howdy,</div>
+      <div class="hero-eyebrow">Hi!</div>
       <h1 class="hero-heading-large">
         I'm {{ site.firstName }} <span class="text-brand">{{ site.lastName }}</span>
       </h1>
       
       <div class="hero-cta-simple">
-        <a href="{{ '/about/' | relative_url }}" class="btn-circle-large" aria-label="View Resume">
+        <!-- <a href="{{ '/about/' | relative_url }}" class="btn-circle-large" aria-label="View Resume"> -->
+        <a href="#about" class="btn-circle-large" aria-label="View Resume"></a>
           <i class="fas fa-play"></i>
         </a>
-        <span class="cta-label">Watch Resume</span>
+        <span class="cta-label">Scroll down</span>
       </div>
     </div>
 
@@ -67,7 +68,7 @@ layout: default
     <div class="about-split">
       <div class="about-left">
         <img 
-          src="{{ '/profile.png' | relative_url }}" 
+          src="{{ '/profile4.png' | relative_url }}" 
           alt="{{ site.profile_alt | default: site.title }}"
           class="about-portrait"
           loading="lazy"
@@ -152,8 +153,8 @@ layout: default
             <span class="resume-role">BSc in Mathematics</span>
             <span class="resume-date">2015 – 2021</span>
           </div>
-          <div class="resume-company">University of Kinshasa (UPN), DRC</div>
-          <p class="resume-desc">Graduated with Distinction.</p>
+          <div class="resume-company">University of Kinshasa, Kinshsas, DR Congo</div>
+          <!-- <p class="resume-desc">Graduated with Distinction.</p> -->
         </div>
       </div>
 
@@ -261,7 +262,7 @@ layout: default
   <div class="about-content">
     <header class="posts-header">
       <div>
-        <div class="posts-eyebrow">Latest</div>
+        <!-- <div class="posts-eyebrow">Latest</div> -->
         <h2 class="posts-title">News & Updates</h2>
         <!-- <p class="posts-subtitle">Recent achievements, fellowships, and exciting projects I'm working on.</p> -->
       </div>
