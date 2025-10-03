@@ -1230,22 +1230,22 @@ a:hover {
 .news-grid {
   display: grid;
   grid-template-columns: 1fr 300px;
-  gap: 3rem;
+  gap: 1rem;
   align-items: start;
 }
 
 .news-timeline {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .news-item {
   display: grid;
   grid-template-columns: 120px 1fr;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: start;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -1836,7 +1836,7 @@ pre code {
 .news-timeline-full {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 .news-item-full {
