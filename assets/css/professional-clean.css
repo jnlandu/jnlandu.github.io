@@ -840,6 +840,7 @@ a:hover {
   scroll-snap-align: start;
   z-index: 5;
   position: relative;
+  padding-top: var(--header-h);
 }
 
 /* About split layout */
@@ -1230,7 +1231,7 @@ a:hover {
 .news-grid {
   display: grid;
   grid-template-columns: 1fr 300px;
-  gap: 1rem;
+  gap: 3rem;
   align-items: start;
 }
 
@@ -1245,8 +1246,8 @@ a:hover {
   grid-template-columns: 120px 1fr;
   gap: 1rem;
   align-items: start;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 0 1rem 0;
+  /* border-bottom: 2px solid red; */
 }
 
 .news-item:last-child {
@@ -1518,7 +1519,7 @@ a:hover {
   grid-template-columns: 120px 1fr;
   gap: 1.5rem;
   align-items: start;
-  padding: 1.5rem 0;
+  padding: 1.5rem 0 1rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -1836,7 +1837,7 @@ pre code {
 .news-timeline-full {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .news-item-full {
@@ -1844,7 +1845,7 @@ pre code {
   grid-template-columns: 150px 1fr;
   gap: 2rem;
   align-items: start;
-  padding: 2rem 0;
+  padding: 2rem 0 1.5rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -3296,6 +3297,19 @@ pre code {
   h1 { font-size: 2rem; }
   h2 { font-size: 1.75rem; }
   h3 { font-size: 1.25rem; }
+  
+  /* Mobile spacing adjustments for sections */
+  #about.about-section,
+  #education.about-section,
+  #news.about-section,
+  #news-archive.about-section,
+  #recent-posts.about-section,
+  #resume.about-section,
+  #recent-projects.hero-section,
+  #contact.about-section {
+    padding-top: calc(var(--header-h) + 1rem);
+    min-height: calc(100vh - var(--header-h) - 1rem);
+  }
 }
 
 @media (max-width: 480px) {

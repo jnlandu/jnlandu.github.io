@@ -1,0 +1,890 @@
+---
+layout: default
+---
+
+<style>
+/* Force disable scroll-snap immediately for project detail pages */
+html, body, *, .container {
+  scroll-snap-type: none !important;
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
+}
+</style>
+
+<article class="project-article" itemscope itemtype="http://schema.org/CreativeWork">
+  <!-- Hero Header Section -->
+  <section class="project-hero">
+    <div class="project-hero-bg">
+      {% if page.image %}
+        <div class="project-hero-image">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+          <div class="project-hero-overlay"></div>
+        </div>
+      {% endif %}
+    </div>
+    
+    <div class="container">
+      <div class="project-hero-content">
+        <nav class="project-breadcrumb">
+          <a href="{{ '/' | relative_url }}" class="breadcrumb-link">Home</a>
+          <span class="breadcrumb-separator">→</span>
+          <a href="{{ '/projects/' | relative_url }}" class="breadcrumb-link">Projects</a>
+          <span class="breadcrumb-separator">→</span>
+          <span class="breadcrumb-current">{{ page.title | truncate: 30 }}</span>
+        </nav>
+        
+        <header class="project-hero-header">
+          <div class="project-category">
+            {% if page.category %}
+              <i class="fas fa-folder"></i>
+              <span>{{ page.category | capitalize }}</span>
+            {% else %}
+              <i class="fas fa-code"></i>
+              <span>Project</span>
+            {% endif %}
+          </div>
+          
+          <h1 class="project-hero-title" itemprop="name">{{ page.title | escape }}</h1>
+          
+          {% if page.excerpt %}
+          <p class="project-hero-excerpt" itemprop="description">{{ page.excerpt }}</p>
+          {% endif %}
+          
+          <div class="project-hero-meta">
+            {% if page.date %}
+            <div class="project-date-badge">
+              <i class="fas fa-calendar-alt"></i>
+              <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="dateCreated">
+                {{ page.date | date: "%B %Y" }}
+              </time>
+            </div>
+            {% endif %}
+            
+            {% if page.status %}
+            <div class="project-status-badge status-{{ page.status | downcase }}">
+              <i class="fas fa-info-circle"></i>
+              <span>{{ page.status }}</span>
+            </div>
+            {% endif %}
+            
+            {% if page.technologies and page.technologies.size > 0 %}
+            <div class="project-tech-hero">
+              {% for tech in page.technologies limit: 5 %}
+                <span class="tech-pill">{{ tech }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          
+          {% if page.github or page.demo or page.links %}
+          <div class="project-hero-actions">
+            {% if page.github %}
+            <a href="{{ page.github }}" target="_blank" rel="noopener" class="project-action-btn github">
+              <i class="fab fa-github"></i>
+              <span>View Source</span>
+            </a>
+            {% endif %}
+            
+            {% if page.demo %}
+            <a href="{{ page.demo }}" target="_blank" rel="noopener" class="project-action-btn demo">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Live Demo</span>
+            </a>
+            {% endif %}
+            
+            {% if page.links %}
+              {% for link in page.links %}
+              <a href="{{ link.url }}" target="_blank" rel="noopener" class="project-action-btn">
+                <i class="{{ link.icon | default: 'fas fa-link' }}"></i>
+                <span>{{ link.title }}</span>
+              </a>
+              {% endfor %}
+            {% endif %}
+          </div>
+          {% endif %}
+        </header>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="project-content">
+    <div class="container">
+      <div class="project-content-grid">
+        
+        <!-- Main Content -->
+        <main class="project-main-content">
+          <div class="project-content-body content" itemprop="text">
+            {{ content }}
+          </div>
+          
+          <!-- Project Navigation -->
+          <nav class="project-navigation-section">
+            <div class="project-nav-header">
+              <h3>Explore More Projects</h3>
+            </div>
+            <div class="project-nav-grid">
+              {% assign current_index = 0 %}
+              {% for project in site.projects %}
+                {% if project.url == page.url %}
+                  {% assign current_index = forloop.index0 %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+              
+              {% assign prev_index = current_index | minus: 1 %}
+              {% assign next_index = current_index | plus: 1 %}
+              
+              {% if prev_index >= 0 %}
+                {% assign prev_project = site.projects[prev_index] %}
+                <div class="project-nav-item prev">
+                  <a href="{{ prev_project.url | relative_url }}" rel="prev">
+                    <div class="project-nav-icon">
+                      <i class="fas fa-arrow-left"></i>
+                    </div>
+                    <div class="project-nav-content">
+                      <span class="project-nav-label">Previous Project</span>
+                      <h4 class="project-nav-title">{{ prev_project.title | truncate: 50 }}</h4>
+                      {% if prev_project.date %}
+                      <span class="project-nav-date">{{ prev_project.date | date: "%b %Y" }}</span>
+                      {% endif %}
+                    </div>
+                  </a>
+                </div>
+              {% endif %}
+              
+              {% if next_index < site.projects.size %}
+                {% assign next_project = site.projects[next_index] %}
+                <div class="project-nav-item next">
+                  <a href="{{ next_project.url | relative_url }}" rel="next">
+                    <div class="project-nav-content">
+                      <span class="project-nav-label">Next Project</span>
+                      <h4 class="project-nav-title">{{ next_project.title | truncate: 50 }}</h4>
+                      {% if next_project.date %}
+                      <span class="project-nav-date">{{ next_project.date | date: "%b %Y" }}</span>
+                      {% endif %}
+                    </div>
+                    <div class="project-nav-icon">
+                      <i class="fas fa-arrow-right"></i>
+                    </div>
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </nav>
+        </main>
+        
+        <!-- Sidebar -->
+        <aside class="project-sidebar">
+          <div class="project-sidebar-content">
+            
+            <!-- Project Info -->
+            <div class="sidebar-card project-info">
+              <h4 class="sidebar-title">Project Details</h4>
+              
+              {% if page.date %}
+              <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <div>
+                  <strong>Started</strong>
+                  <span>{{ page.date | date: "%B %Y" }}</span>
+                </div>
+              </div>
+              {% endif %}
+              
+              {% if page.status %}
+              <div class="info-item">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                  <strong>Status</strong>
+                  <span class="status-{{ page.status | downcase }}">{{ page.status }}</span>
+                </div>
+              </div>
+              {% endif %}
+              
+              {% if page.author %}
+              <div class="info-item">
+                <i class="fas fa-user"></i>
+                <div>
+                  <strong>Author</strong>
+                  <span>{{ page.author }}</span>
+                </div>
+              </div>
+              {% endif %}
+              
+              {% if page.category %}
+              <div class="info-item">
+                <i class="fas fa-folder"></i>
+                <div>
+                  <strong>Category</strong>
+                  <span>{{ page.category }}</span>
+                </div>
+              </div>
+              {% endif %}
+              
+              {% if page.technologies and page.technologies.size > 0 %}
+              <div class="info-item">
+                <i class="fas fa-cogs"></i>
+                <div>
+                  <strong>Technologies</strong>
+                  <div class="sidebar-technologies">
+                    {% for tech in page.technologies %}
+                      <span class="sidebar-tech">{{ tech }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+            
+            <!-- Related Projects -->
+            {% assign related_projects = site.projects | where_exp: "project", "project.url != page.url" | limit: 3 %}
+            {% if related_projects.size > 0 %}
+            <div class="sidebar-card related-projects">
+              <h4 class="sidebar-title">Related Projects</h4>
+              <div class="related-projects-list">
+                {% for project in related_projects %}
+                <a href="{{ project.url | relative_url }}" class="related-project-item">
+                  <div class="related-project-icon">
+                    <i class="fas fa-code"></i>
+                  </div>
+                  <div class="related-project-content">
+                    <h5>{{ project.title | truncate: 40 }}</h5>
+                    {% if project.date %}
+                    <span class="related-project-date">{{ project.date | date: "%b %Y" }}</span>
+                    {% endif %}
+                  </div>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            
+            <!-- Table of Contents (if content has headings) -->
+            <div class="sidebar-card toc-card">
+              <h4 class="sidebar-title">Table of Contents</h4>
+              <div class="project-toc">
+                <!-- This will be populated by JavaScript -->
+              </div>
+            </div>
+            
+            <!-- Share -->
+            <div class="sidebar-card share-card">
+              <h4 class="sidebar-title">Share Project</h4>
+              <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}" 
+                   target="_blank" class="share-btn twitter">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" 
+                   target="_blank" class="share-btn linkedin">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:?subject={{ page.title | url_encode }}&body={{ page.url | absolute_url | url_encode }}" 
+                   class="share-btn email">
+                  <i class="fas fa-envelope"></i>
+                </a>
+              </div>
+            </div>
+            
+          </div>
+        </aside>
+        
+      </div>
+    </div>
+  </section>
+  
+  <!-- Navigation Footer -->
+  <section class="project-navigation-footer">
+    <div class="container">
+      <div class="project-nav-footer-content">
+        <a href="{{ '/projects/' | relative_url }}" class="project-back-btn">
+          <i class="fas fa-arrow-left"></i>
+          <span>Back to All Projects</span>
+        </a>
+        
+        <div class="project-nav-actions">
+          <button class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-arrow-up"></i>
+            <span>Top</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="u-url" href="{{ page.url | relative_url }}" hidden></div>
+</article>
+
+<script>
+// Disable scroll-snap for project detail pages
+function disableScrollSnap() {
+  // Force disable scroll-snap on all possible containers
+  document.documentElement.style.scrollSnapType = 'none !important';
+  document.body.style.scrollSnapType = 'none !important';
+  document.body.classList.add('project-detail-page');
+  
+  // Find and disable scroll-snap on any containers that might have it
+  const containers = document.querySelectorAll('*');
+  containers.forEach(el => {
+    const computed = window.getComputedStyle(el);
+    if (computed.scrollSnapType && computed.scrollSnapType !== 'none') {
+      el.style.scrollSnapType = 'none !important';
+    }
+  });
+  
+  // Override any CSS that might be setting scroll-snap
+  const style = document.createElement('style');
+  style.textContent = `
+    html, body, * { 
+      scroll-snap-type: none !important; 
+      scroll-snap-align: none !important;
+    }
+    body.project-detail-page {
+      scroll-snap-type: none !important;
+    }
+    
+    /* Project-specific styles similar to post styles */
+    .project-hero {
+      background: linear-gradient(135deg, var(--primary-color, #007bff) 0%, var(--secondary-color, #6f42c1) 100%);
+      color: white;
+      padding: 6rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+    
+    .project-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+    }
+    
+    .project-hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 123, 255, 0.8) 0%, rgba(111, 66, 193, 0.8) 100%);
+    }
+    
+    .project-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .project-breadcrumb {
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    .breadcrumb-link:hover {
+      color: white;
+    }
+    
+    .breadcrumb-separator {
+      margin: 0 0.5rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .breadcrumb-current {
+      color: white;
+    }
+    
+    .project-category {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .project-hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .project-hero-excerpt {
+      font-size: 1.25rem;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 800px;
+    }
+    
+    .project-hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .project-date-badge,
+    .project-status-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      font-size: 0.9rem;
+    }
+    
+    .project-status-badge.status-completed {
+      background: rgba(40, 167, 69, 0.2);
+    }
+    
+    .project-status-badge.status-in-progress {
+      background: rgba(255, 193, 7, 0.2);
+    }
+    
+    .project-status-badge.status-planning {
+      background: rgba(108, 117, 125, 0.2);
+    }
+    
+    .project-tech-hero {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .tech-pill {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      backdrop-filter: blur(10px);
+    }
+    
+    .project-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .project-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .project-action-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .project-action-btn.github {
+      background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .project-action-btn.demo {
+      background: rgba(40, 167, 69, 0.3);
+    }
+    
+    .project-content {
+      padding: 4rem 0;
+    }
+    
+    .project-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 3rem;
+    }
+    
+    .project-main-content {
+      min-width: 0;
+    }
+    
+    .project-content-body {
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    
+    .project-navigation-section {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color, #e9ecef);
+    }
+    
+    .project-nav-header h3 {
+      color: var(--text-color, #333);
+      margin-bottom: 1.5rem;
+    }
+    
+    .project-nav-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    
+    .project-nav-item a {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: var(--card-bg, #f8f9fa);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-color, #333);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .project-nav-item a:hover {
+      background: var(--primary-color, #007bff);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+    }
+    
+    .project-nav-item.next a {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+    
+    .project-nav-icon {
+      font-size: 1.5rem;
+      opacity: 0.6;
+    }
+    
+    .project-nav-label {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    
+    .project-nav-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.3;
+    }
+    
+    .project-nav-date {
+      font-size: 0.85rem;
+      opacity: 0.6;
+      display: block;
+      margin-top: 0.25rem;
+    }
+    
+    .project-sidebar {
+      position: sticky;
+      top: 2rem;
+      height: fit-content;
+    }
+    
+    .sidebar-card {
+      background: var(--card-bg, #f8f9fa);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color, #e9ecef);
+    }
+    
+    .sidebar-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--heading-color, #333);
+    }
+    
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .info-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .info-item i {
+      color: var(--primary-color, #007bff);
+      margin-top: 0.25rem;
+      width: 16px;
+    }
+    
+    .info-item strong {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .sidebar-technologies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    
+    .sidebar-tech {
+      background: var(--primary-color, #007bff);
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    
+    .related-projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .related-project-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: rgba(0, 123, 255, 0.05);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text-color, #333);
+      transition: all 0.2s ease;
+    }
+    
+    .related-project-item:hover {
+      background: rgba(0, 123, 255, 0.1);
+      transform: translateX(5px);
+    }
+    
+    .related-project-icon {
+      color: var(--primary-color, #007bff);
+      font-size: 1.2rem;
+    }
+    
+    .related-project-content h5 {
+      margin: 0 0 0.25rem 0;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    
+    .related-project-date {
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+    
+    .project-toc {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .toc-item {
+      margin-bottom: 0.5rem;
+    }
+    
+    .toc-link {
+      color: var(--text-color, #333);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: block;
+      padding: 0.25rem 0;
+      border-left: 3px solid transparent;
+      padding-left: 0.75rem;
+      transition: all 0.2s ease;
+    }
+    
+    .toc-link:hover {
+      color: var(--primary-color, #007bff);
+      border-left-color: var(--primary-color, #007bff);
+    }
+    
+    .toc-h3 .toc-link {
+      padding-left: 1.5rem;
+      font-size: 0.85rem;
+    }
+    
+    .toc-h4 .toc-link {
+      padding-left: 2.25rem;
+      font-size: 0.8rem;
+    }
+    
+    .share-buttons {
+      display: flex;
+      gap: 0.75rem;
+    }
+    
+    .share-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .share-btn.twitter {
+      background: #1da1f2;
+    }
+    
+    .share-btn.linkedin {
+      background: #0077b5;
+    }
+    
+    .share-btn.email {
+      background: #6c757d;
+    }
+    
+    .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .project-navigation-footer {
+      background: var(--card-bg, #f8f9fa);
+      padding: 2rem 0;
+      border-top: 1px solid var(--border-color, #e9ecef);
+    }
+    
+    .project-nav-footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .project-back-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-color, #007bff);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .project-back-btn:hover {
+      color: var(--primary-dark, #0056b3);
+    }
+    
+    .scroll-to-top {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary-color, #007bff);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .scroll-to-top:hover {
+      background: var(--primary-dark, #0056b3);
+      transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+      .project-content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .project-sidebar {
+        position: static;
+      }
+      
+      .project-hero-title {
+        font-size: 2rem;
+      }
+      
+      .project-nav-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .project-nav-footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+// Run immediately and after DOM loads
+disableScrollSnap();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', disableScrollSnap);
+} else {
+  disableScrollSnap();
+}
+
+// Generate Table of Contents
+document.addEventListener('DOMContentLoaded', function() {
+  const contentArea = document.querySelector('.project-content-body');
+  const tocContainer = document.querySelector('.project-toc');
+  
+  if (contentArea && tocContainer) {
+    const headings = contentArea.querySelectorAll('h2, h3, h4');
+    
+    if (headings.length > 0) {
+      const tocList = document.createElement('ul');
+      tocList.className = 'toc-list';
+      
+      headings.forEach((heading, index) => {
+        // Add ID to heading if it doesn't have one
+        if (!heading.id) {
+          heading.id = 'heading-' + index;
+        }
+        
+        const tocItem = document.createElement('li');
+        tocItem.className = 'toc-item toc-' + heading.tagName.toLowerCase();
+        
+        const tocLink = document.createElement('a');
+        tocLink.href = '#' + heading.id;
+        tocLink.textContent = heading.textContent;
+        tocLink.className = 'toc-link';
+        
+        tocItem.appendChild(tocLink);
+        tocList.appendChild(tocItem);
+      });
+      
+      tocContainer.appendChild(tocList);
+    } else {
+      tocContainer.innerHTML = '<p class="toc-empty">No headings found</p>';
+    }
+  }
+});
+</script>
