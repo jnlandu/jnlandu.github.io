@@ -1,23 +1,35 @@
 # Jeremie Mabiala - Personal Academic Website
 
-This is my personal website. You can find it live  at [jnlandu.github.io](https://jnlandu.github.io). Feel free to copy it.
+This is my personal website. You can find it live at [jnlandu.github.io](https://jnlandu.github.io). Feel free to copy it.
 
+## Preview
 
+### Desktop View
+<div align="center">
 
+**Homepage - Dark Theme**  
+<img width="800" alt="Homepage Preview" src="https://github.com/user-attachments/assets/bab5f329-8d29-4b77-9b99-157e8da99506" />
 
-The whole website is built with jekyll and deployed on Github Pages. If you like it, you can copy it. I describe below how you can set it up and run it locally.
+**Projects Page - Portfolio Layout**  
+<img width="800" alt="Projects Page Preview" src="https://github.com/user-attachments/assets/38bbbf37-7733-4a9a-9bd0-53d623fd5f67" />
+
+</div>
+
+### Mobile View
+<div align="center">
+
+**Responsive Mobile Design**  
+<img width="300" alt="Mobile Preview" src="https://github.com/user-attachments/assets/c7d86298-1aa5-4d61-9327-08091e9a3b41" />
+
+</div>
+
+---
+
+The whole website is built with Jekyll and deployed on GitHub Pages. If you like it, you can copy it. I describe below how you can set it up and run it locally.
 
 ## Features
-- **Modern Design**: Clean, professional dark theme with pink accent colors
-- **Responsive Layout**: Optimized for all device sizes
-- **Academic Focus**: Sections for education, research, publications, and projects
-- **Interactive Elements**: Smooth scrolling, animations, and dynamic content
-- **SEO Optimized**: Built-in Jekyll SEO plugin and meta tags
-- **Fast Performance**: Optimized CSS and JavaScript
 
-## Live Demo
-
-Visit the live website: [jnlandu.github.io](https://jnlandu.github.io)
+The webiste has an academic flavour(and maybe professional focuss too) with sections for education, research, publications, projects, and blog posts. You can easily customize it to fit your needs.
 
 ## Tech Stack
 - **Framework**: Jekyll 3.10.0
@@ -90,60 +102,6 @@ The project will be available at `http://localhost:4000` with live reload enable
    ```
    http://localhost:4000
    ```
-
-## Known Issues
-
-### Current Layout Problems (as of October 2025)
-
-#### Issue #1: Header Contact Information Overflow
-![Header Contact Issue](./docs/images/header-contact-issue.png)
-
-**Problem**: On smaller screens, the header contact information (phone number and email) overflows and creates layout issues.
-
-**Details**:
-- Phone number `+27 71 44 35 490` and email `jnlandu two zeros at gmail dot com` don't wrap properly
-- Header becomes cluttered on mobile devices
-- Navigation menu toggle button gets pushed down
-
-**Proposed Solutions**:
-- [ ] Implement responsive contact display (hide on mobile)
-- [ ] Add compact icon-only contact for small screens
-- [ ] Improve header flexbox layout
-- [ ] Add media queries for screens < 768px
-
-#### Issue #2: Mobile Navigation Menu Positioning
-![Navigation Menu Issue](./docs/images/nav-menu-issue.png)
-
-**Problem**: The slide-out navigation menu doesn't position correctly on very small screens.
-
-**Details**:
-- Menu slides in from the right but doesn't cover full screen properly
-- Close button (×) positioning needs adjustment
-- Menu items need better spacing on mobile
-- Background overlay could be improved
-
-**Proposed Solutions**:
-- [ ] Fix menu width to 100vw on mobile
-- [ ] Improve close button positioning
-- [ ] Add better touch targets for menu items
-- [ ] Enhance mobile navigation animations
-
-#### Issue #3: Hero Section Contact Display
-![Hero Section Issue](./docs/images/hero-contact-issue.png)
-
-**Problem**: Contact information in hero section appears disconnected from the main content.
-
-**Details**:
-- Contact blocks (phone and email) appear to float independently
-- Inconsistent spacing with the hero image
-- Layout breaks on certain screen sizes
-- Contact information hierarchy needs improvement
-
-**Proposed Solutions**:
-- [ ] Integrate contact info better with hero layout
-- [ ] Improve visual connection between elements
-- [ ] Add consistent spacing and alignment
-- [ ] Consider moving contact to dedicated section
 
 ## Development Workflow
 
@@ -306,8 +264,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Author
 
 **Jeremie Mabiala**
-- Website: [jnlandu.github.io](https://jnlandu.github.io)
 - Email: jnlandu [00] at gmail dot com
 - LinkedIn: [linkedin.com/in/jnlandu0a](https://linkedin.com/in/jnlandu0a)
-- GitHub: [github.com/jnlandu](https://github.com/jnlandu)
 
