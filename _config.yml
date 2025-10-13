@@ -126,6 +126,7 @@ defaults:
       path: ""
       type: projects
     values:
+      layout: project-detail
       image: /profile3.png
       author: "Jeremie Nlandu Mabiala"
       sitemap: true

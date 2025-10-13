@@ -1,7 +1,9 @@
 ---
-layout: project
+layout: project-detail
 title: "NLP for African Languages: Multilingual Sentiment Analysis"
 date: 2024-09-10
+status: "In Progress"
+category: "AI/NLP"
 categories: [AI, NLP, African Languages]
 tags: [NLP, Transformers, Multilingual, Sentiment Analysis, Africa]
 technologies: [Python, Transformers, TensorFlow, Hugging Face, FastAPI]
@@ -9,6 +11,7 @@ featured: true
 github: "https://github.com/jnlandu/african-nlp"
 image: "/assets/images/projects/african-nlp.jpg"
 excerpt: "Developing NLP models for African languages with focus on multilingual sentiment analysis, contributing to AI accessibility and representation in Africa."
+author: "Jeremie Nlandu Mabiala"
 ---
 
 # NLP for African Languages: Multilingual Sentiment Analysis

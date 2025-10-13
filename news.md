@@ -25,7 +25,7 @@ body {
       <div class="page-eyebrow">All Updates</div>
       <h1 class="page-title">News & Updates</h1>
       <p class="page-subtitle">
-        All my achievements, fellowships, conferences, and exciting projects in chronological order.
+       Latest uodates about me, my achievements, fellowships, conferences, and exciting events that I attended in chronological order.
       </p>
     </header>
   </div>
