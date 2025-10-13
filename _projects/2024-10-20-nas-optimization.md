@@ -1,7 +1,9 @@
 ---
-layout: project
+layout: project-detail
 title: "Mathematical Optimization for Neural Architecture Search"
 date: 2024-10-20
+status: "In Progress"
+category: "AI/Optimization"
 categories: [AI, Mathematical Modeling, Optimization]
 tags: [NAS, Optimization, AutoML, Mathematical Modeling]
 technologies: [Python, TensorFlow, SciPy, NumPy, Optuna]
@@ -9,6 +11,7 @@ featured: true
 github: "https://github.com/jnlandu/neural-architecture-search"
 image: "/assets/images/projects/nas-optimization.jpg"
 excerpt: "Advanced mathematical optimization techniques for automated neural architecture search, combining evolutionary algorithms with gradient-based methods."
+author: "Jeremie Nlandu Mabiala"
 ---
 
 # Mathematical Optimization for Neural Architecture Search

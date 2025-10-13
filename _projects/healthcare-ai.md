@@ -1,10 +1,23 @@
 ---
-layout: project
+layout: project-detail
 title: "AI for Healthcare in Rural Settings"
+permalink: /projects/healthcare-ai/
 date: 2024-01-15
-technologies: [Python, TensorFlow, Computer Vision, Mobile Development]
+status: "In Progress"
+category: "AI/Healthcare"
+technologies: [Python, TensorFlow, Computer Vision, Mobile Development, React Native, Flask]
 github: https://github.com/jnlandu/healthcare-ai
+demo: "#"
 excerpt: "Developing accessible AI diagnostic tools for healthcare workers in resource-limited environments across Africa."
+author: "Jeremie Nlandu Mabiala"
+image: /profile3.png
+links:
+  - title: "Research Paper"
+    url: "#"
+    icon: "fas fa-file-alt"
+  - title: "Clinical Trial Data"
+    url: "#"
+    icon: "fas fa-chart-line"
 ---
 
 # AI for Healthcare in Rural Settings
