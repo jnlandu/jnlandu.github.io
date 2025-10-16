@@ -13,7 +13,6 @@ layout: default
       </h1>
       
       <div class="hero-cta-simple">
-        <!-- <a href="{{ '/about/' | relative_url }}" class="btn-circle-large" aria-label="View Resume"> -->
         <a href="#about" class="btn-circle-large" aria-label="View Resume"></a>
           <i class="fas fa-play"></i>
         </a>
@@ -129,7 +128,14 @@ layout: default
         <h2 class="posts-title">Education</h2>
         <p class="posts-subtitle">Formal training focused on AI, mathematical sciences, and rigorous problem solving.</p>
       </div>
+      <div class="posts-cta">
+        <a href="{{ '/assets/static/resume.pdf' | relative_url }}" class="btn btn-primary" download>
+          <i class="fas fa-file-download"></i>
+          Download CV
+        </a>
+      </div>
     </header>
+    
 
     <div class="resume-grid" data-animate="stagger">
       <div class="resume-timeline">
@@ -194,6 +200,21 @@ layout: default
       </div>
     </div>
   </div>
+
+  <!-- Hero Social Icons -->
+<div class="hero-social">
+{% for social in site.data.social %}
+    {% if social.title == "Email" %}
+    <a href="mailto:{{ social.url }}" class="hero-social-icon" aria-label="{{ social.title }}">
+        <i class="{{ social.icon }}"></i>
+    </a>
+    {% else %}
+    <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" class="hero-social-icon" aria-label="{{ social.title }}">
+        <i class="{{ social.icon }}"></i>
+    </a>
+    {% endif %}
+{% endfor %}
+</div>
 </section>
 
 <!-- Resume Section -->
@@ -202,7 +223,7 @@ layout: default
     <header class="posts-header">
       <div>
         <div class="posts-eyebrow">Resume</div>
-        <h2 class="posts-title">Experience & Skills</h2>
+        <h2 class="posts-title">Relevant  Experience & Skills</h2>
         <p class="posts-subtitle">A snapshot of roles, projects, and tools I use day-to-day.</p>
       </div>
       <div class="posts-cta">
@@ -217,19 +238,20 @@ layout: default
       <div class="resume-timeline">
         <div class="resume-item">
           <div class="resume-top">
-            <span class="resume-role">Machine Learning Intern</span>
-            <span class="resume-date">2024 — 2025</span>
+            <span class="resume-role">Teaching Assistant in Machine Learning</span>
+            <span class="resume-date">Feb 2025 — Present</span>
           </div>
-          <div class="resume-company">Example Lab</div>
-          <p class="resume-desc">Built and deployed ML prototypes for NLP and time-series; improved model selection using AIC/BIC; productionized a Flask service.</p>
+          <div class="resume-company">AIMS, Senegal</div>
+            <p class="resume-desc">Conducted <strong>intensive bootcamps</strong> in the following key subjects: <strong><em>Advanced Linear Algebra</em> </strong>, <strong><em>Python Programming</em> </strong>, and <strong><em>PyTorch</em></strong>. 
+          </p>
         </div>
         <div class="resume-item">
           <div class="resume-top">
-            <span class="resume-role">Research Assistant</span>
-            <span class="resume-date">2023 — 2024</span>
+            <span class="resume-role">Assistant lecturer</span>
+            <span class="resume-date">2022 — 2023</span>
           </div>
-          <div class="resume-company">University • Statistics</div>
-          <p class="resume-desc">Worked on Gaussian processes and functional data analysis; implemented experiments and visualizations.</p>
+          <div class="resume-company">University of Kinshasa • School of Maths, Statistics, & Computer Science</div>
+            <p class="resume-desc">Taught undergraduate courses in <em><strong>Real Analysis</em></strong> and  <strong><em>Linear Algebra</strong></em>. Designed curriculum materials, graded assignments, and provided academic support to students pursuing degrees in mathematical sciences.</p>
         </div>
       </div>
 
@@ -237,24 +259,41 @@ layout: default
         <h3 class="mb-1">Core Skills</h3>
         <div class="skills-grid">
           <span class="tag chip">Python</span>
+          <span class="tag chip">FastAPI</span>
           <span class="tag chip">PyTorch</span>
           <span class="tag chip">TensorFlow</span>
           <span class="tag chip">NLP</span>
           <span class="tag chip">Time-series</span>
           <span class="tag chip">Statistics</span>
-          <span class="tag chip">Flask</span>
           <span class="tag chip">JAX</span>
           <span class="tag chip">Pandas</span>
           <span class="tag chip">Docker</span>
         </div>
         <h3 class="mt-2 mb-1">Links</h3>
         <div class="resume-actions">
-          <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary"><i class="fas fa-id-card"></i> View Full Bio</a>
-          <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary"><i class="fas fa-paper-plane"></i> Contact</a>
+            <!-- <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary"><i class="fas fa-id-card"></i> View Full Bio</a> -->
+            <a href="#about" class="btn btn-secondary"><i class="fas fa-id-card"></i> View Full Bio</a>
+
+            <a href="#contact" class="btn btn-secondary"><i class="fas fa-paper-plane"></i> Contact</a>
         </div>
       </div>
     </div>
   </div>
+
+<!-- Hero Social Icons -->
+<div class="hero-social">
+  {% for social in site.data.social %}
+      {% if social.title == "Email" %}
+      <a href="mailto:{{ social.url }}" class="hero-social-icon" aria-label="{{ social.title }}">
+          <i class="{{ social.icon }}"></i>
+      </a>
+      {% else %}
+      <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" class="hero-social-icon" aria-label="{{ social.title }}">
+          <i class="{{ social.icon }}"></i>
+      </a>
+    {% endif %}
+{% endfor %}
+</div>
 </section>
 
 <!-- News Section -->
@@ -262,15 +301,19 @@ layout: default
   <div class="about-content">
     <header class="posts-header">
       <div>
-        <!-- <div class="posts-eyebrow">Latest</div> -->
-        <h2 class="posts-title">News & Updaes</h2>
-        <!-- <p class="posts-subtitle">Recent achievements, fellowships, and exciting projects I'm working on.</p> -->
+        <h2 class="posts-title">News & Updates</h2>
+        <p class="posts-subtitle">My recent updates.</p>
+      </div>
+      <div class="posts-cta">
+        <a href="{{ '/news/' | relative_url }}" class="btn btn-primary">
+          <i class="fas fa-arrow-right"></i>
+        All news
+        </a>
       </div>
     </header>
-
     <div class="news-grid" data-animate="stagger">
       <div class="news-timeline">
-        {% assign featured_news = site.news | where: "featured", true | sort: "date" | reverse %}
+        {% assign featured_news = site.news | limit: 2 | where: "featured", true | sort: "date" | reverse %}
         {% for news in featured_news %}
         <div class="news-item">
           <div class="news-date">{{ news.date | date: "%B %Y" }}</div>
@@ -353,6 +396,21 @@ layout: default
       </div>
     </div>
   </div>
+
+<!-- Hero Social Icons -->
+<div class="hero-social">
+  {% for social in site.data.social %}
+      {% if social.title == "Email" %}
+      <a href="mailto:{{ social.url }}" class="hero-social-icon" aria-label="{{ social.title }}">
+          <i class="{{ social.icon }}"></i>
+      </a>
+      {% else %}
+      <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" class="hero-social-icon" aria-label="{{ social.title }}">
+          <i class="{{ social.icon }}"></i>
+      </a>
+    {% endif %}
+{% endfor %}
+</div>
 </section>
 
 <!-- News Archive Section -->
@@ -368,7 +426,7 @@ layout: default
 
     <div class="news-archive-grid" data-animate="stagger">
       <div class="news-archive-timeline">
-        {% assign archive_news = site.news | where: "featured", false | sort: "date" | reverse %}
+        {% assign archive_news = site.news | where: "archived", true | sort: "date" | reverse | limit: 2 %}
         {% for news in archive_news %}
         <div class="news-item">
           <div class="news-date">{{ news.date | date: "%Y" }}</div>
@@ -413,6 +471,20 @@ layout: default
       </div>
     </div>
   </div>
+<!-- Hero Social Icons -->
+<div class="hero-social">
+  {% for social in site.data.social %}
+      {% if social.title == "Email" %}
+      <a href="mailto:{{ social.url }}" class="hero-social-icon" aria-label="{{ social.title }}">
+          <i class="{{ social.icon }}"></i>
+      </a>
+      {% else %}
+      <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" class="hero-social-icon" aria-label="{{ social.title }}">
+          <i class="{{ social.icon }}"></i>
+      </a>
+    {% endif %}
+{% endfor %}
+</div>
 </section>
 
 <!-- Recent Posts Section -->
@@ -563,7 +635,7 @@ layout: default
           </div>
           <div class="contact-details">
             <h3>Email</h3>
-            <p><a href="mailto:jeremie@aims.ac.za">jeremie@aims.ac.za</a></p>
+            <p><a href="mailto:jeremie@aims.ac.za">jeremy at aimsammi dot org</a></p>
           </div>
         </div>
 

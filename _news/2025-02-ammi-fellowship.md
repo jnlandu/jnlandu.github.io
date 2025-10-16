@@ -3,6 +3,7 @@ title: "African Masters in Machine Intelligence (AMMI) Fellowship"
 date: 2025-02-02
 icon: "fas fa-award"
 featured: true
+
 tags:
   - Fellowship
   - Teaching

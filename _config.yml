@@ -19,7 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 
-title:  Jeremie Mabiala
+title:  Jérémie Mabiala
 lang: en
 firstName: Jérémie
 lastName: Mabiala
@@ -53,7 +53,7 @@ header_pages:
 
 # Site Description
 description: >- 
-  I am AI engineer and  Data Scientists, currently pursuing a Master in Artificial Intelligence at the prestigious AIMS Senegal.
+      I'm a master's student in Machine Intelligence at the African Institute of Mathematical Sciences, Senegal.
 
 # Site Configuration
 baseurl: "" 
