@@ -3,6 +3,7 @@ title: "AIMS Scholarship"
 date: 2022-01-01
 icon: "fas fa-calculator"
 featured: false
+archived: true
 tags:
   - Scholarship
   - Mathematics

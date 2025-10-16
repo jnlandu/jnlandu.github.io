@@ -1,31 +1,48 @@
-<div class="bio" style="text-align: justify;"></div>
+<div class="bio" style="text-align: justify;">
     <p>
-        I am Jérémie N. Mabiala, currently a student in Artificial Intelligence at the African Masters in Machine Intelligence 
-        (<a class="text-brand" href="https://aimsammi.org/">AMMI</a>), a pan-African flagship master's program 
-        in Artificial Intelligence founded by Google and Meta, hosted at <a class="text-brand" href="//aims-senegal.org/fr/">AIMS Senegal</a>.
+        I’m Jérémie Mabiala, an AI master’s student in the African Master in Machine Intelligence
+        (<a class="text-brand" href="https://aimsammi.org/" target="_blank" rel="noopener">AMMI</a>) program at
+        <a class="text-brand" href="https://aims-senegal.org/" target="_blank" rel="noopener">AIMS Senegal</a>.
     </p>
+
     <p>
-        Before that, I graduated from <a class="text-brand" href="https://www.sun.ac.za">Stellenbosch University</a> 
-        and <a class="text-brand" href="https://aims.ac.za">AIMS South Africa</a> in February 2024 with a 
-        Master's degree in Mathematical Sciences. I worked on Mathematical Statistics, specifically 
-        <a class="text-brand" href="https://en.wikipedia.org/wiki/Functional_data_analysis">Functional Data Analysis</a>. 
-        My master's thesis is titled <strong>Gaussian Processes for Multivariate Functional Data</strong>, 
-        and it is available at the <a class="text-brand" href="https://archive.aims.ac.za/">AIMS Archive</a>.
+        I hold a Master’s in Mathematical Sciences from
+        <a class="text-brand" href="https://www.sun.ac.za" target="_blank" rel="noopener">Stellenbosch University</a>
+        and <a class="text-brand" href="https://aims.ac.za" target="_blank" rel="noopener">AIMS South Africa</a>
+        (Feb 2024), where I focused on Mathematical Statistics and
+        <a class="text-brand" href="https://en.wikipedia.org/wiki/Functional_data_analysis" target="_blank" rel="noopener">Functional Data Analysis</a>.
+        My thesis, <strong>Gaussian Processes for Multivariate Functional Data</strong>, is available in the
+        <a class="text-brand" href="https://archive.aims.ac.za/" target="_blank" rel="noopener">AIMS Archive</a>.
     </p>
+
     <p>
-        I also hold a Bachelor's degree (equivalent to Bac +5) in Mathematics from the 
-        <a class="text-brand" href="https://unikin.ac.cd">University of Kinshasa</a>, the Congo's leading university. 
-        There I graduated in the top 5% in my department with "Grande Distinction" (the Congolese equivalent of 
-        Summa Cum Laude). During my time there, I worked on Functional Analysis, which was my early math interest, 
-        and I served as a teaching assistant and subsidiary lecturer for two years.
-    </p>
-     <p> 
-        I am passionate about teaching, gaining knowledge, and sharing it with others. I am particularly interested in 
-        <strong>Mathematics, Theoretical Aspects of Machine Learning and/or Deep Learning</strong> and their 
-        applications. My interests also extend to <strong>Mathematical Modeling</strong>, 
-        <strong>Functional Data Analysis</strong>, Large Language Models, and Reinforcement Learning.
-    </p>
+        Previously, I earned a Bac+5 in Mathematics from the
+        <a class="text-brand" href="https://unikin.ac.cd" target="_blank" rel="noopener">University of Kinshasa</a>,
+        graduating in the top 5% with “Grande Distinction.” I also served as a assistant lecturer for about one year.
+
     <p>
-        I am a hobbyist developer and an apprentice writer.
+        My interests span <strong>mathematics</strong>, the <strong>theory of machine learning and deep learning</strong>,
+        <strong>mathematical modeling</strong>, <strong>Optimization</strong>,<strong>Computer Vision</strong>, <strong>Natural Langiage Processing</strong><strong>LLMs</strong>, and
+        <strong>reinforcement learning</strong>, and their potential applications. I’m also a hobbyist developer and an apprentice writer.
     </p>
+
+    <p class="text-muted" style="margin-top: 0.75rem;">
+        <em>Site updates are in progress. For inquiries, please
+            <a href="{{ '/contact/' | relative_url }}">get in touch</a>.</em>
+    </p>
+</div>
+
+<!-- Hero Social Icons -->
+<div class="hero-social">
+{% for social in site.data.social %}
+    {% if social.title == "Email" %}
+    <a href="mailto:{{ social.url }}" class="hero-social-icon" aria-label="{{ social.title }}">
+        <i class="{{ social.icon }}"></i>
+    </a>
+    {% else %}
+    <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" class="hero-social-icon" aria-label="{{ social.title }}">
+        <i class="{{ social.icon }}"></i>
+    </a>
+    {% endif %}
+{% endfor %}
 </div>
