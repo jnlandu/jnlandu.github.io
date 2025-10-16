@@ -123,9 +123,28 @@
     <div id="chat-tip" class="chat-tip" aria-live="polite">
       <strong>Chat with my AI assistant</strong>
       <div class="chat-tip-actions">
-        <a href="{{ '/chat-with-me.html' | relative_url }}" class="chat-tip-link">Open chat</a>
+        <a href="{{ '/chat-with-me.html' | relative_url }}" id="chat-tip-open" class="chat-tip-link">Open chat</a>
         <button id="chat-tip-dismiss" class="chat-tip-dismiss" aria-label="Dismiss">Dismiss</button>
       </div>
+    </div>
+    
+    <!-- Embedded Chat Panel -->
+    <div id="chat-embed" class="chat-embed" aria-hidden="true" aria-label="Chat assistant">
+      <div class="chat-embed-header">
+        <strong>AI Assistant</strong>
+        <button id="chat-embed-close" class="chat-embed-close" aria-label="Close chat">&times;</button>
+      </div>
+      <div id="chat-embed-body" class="chat-embed-body">
+        <div id="chat-embed-status" class="chat-embed-status">Click “Start” to enable chat.</div>
+        <div id="chat-embed-box" class="chat-embed-box" aria-live="polite"></div>
+      </div>
+      <div class="chat-embed-actions">
+        <button id="chat-embed-init" class="chat-embed-btn">Start</button>
+        <input id="chat-embed-input" class="chat-embed-input" type="text" placeholder="Ask about Jeremie… e.g., background, interests" aria-label="Type your question" />
+        <button id="chat-embed-send" class="chat-embed-btn" disabled>Send</button>
+      </div>
+      <div class="chat-embed-hint">Answers are formatted as Key: Value lines.</div>
+      <div class="chat-embed-note">Note: We are integrated LLMs.</div>
     </div>
     <style>
       /* Minimal, self-contained styles for chat toggle and tooltip */
@@ -134,6 +153,7 @@
         display: inline-flex; align-items: center; gap: .5rem;
         background: #0b1220; color: #fff; border: 1px solid rgba(255,255,255,.12);
         padding: .6rem .9rem; border-radius: 999px; cursor: pointer;
+        bottom: 32px;
         box-shadow: 0 8px 24px rgba(0,0,0,.25);
       }
       .chat-fab .chat-fab-label { font-weight: 600; font-size: .95rem; }
@@ -150,9 +170,27 @@
       .chat-tip-link { color: #7aa2ff; text-decoration: none; font-weight: 600; }
       .chat-tip-link:hover { text-decoration: underline; }
       .chat-tip-dismiss { background: transparent; color: #c7d1e0; border: 1px solid rgba(255,255,255,.16); border-radius: 6px; padding: .25rem .5rem; cursor: pointer; }
+      
+      /* Embedded chat styles */
+      .chat-embed { position: fixed; left: 16px; bottom: 76px; z-index: 1000; width: 360px; background: #0b1220; color: #e6eefc; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,.35); display: none; flex-direction: column; overflow: hidden; }
+      .chat-embed[aria-hidden="false"] { display: flex; }
+      .chat-embed-header { display: flex; align-items: center; justify-content: space-between; padding: .6rem .8rem; background: rgba(255,255,255,.05); }
+      .chat-embed-close { background: transparent; border: 0; color: #c7d1e0; font-size: 1.25rem; cursor: pointer; }
+      .chat-embed-body { max-height: 50vh; overflow: auto; padding: .75rem .75rem 0; }
+      .chat-embed-status { font-size: .9rem; color: #c7d1e0; margin-bottom: .5rem; }
+      .chat-embed-box { display: flex; flex-direction: column; gap: .5rem; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; font-size: .95rem; }
+      .chat-msg { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 8px; padding: .5rem .6rem; white-space: pre-wrap; }
+      .chat-msg.user { border-color: rgba(122,162,255,.35); }
+      .chat-embed-actions { display: grid; grid-template-columns: auto 1fr auto; gap: .5rem; padding: .75rem; align-items: center; }
+      .chat-embed-btn { background: #1b2540; color: #e6eefc; border: 1px solid rgba(255,255,255,.18); border-radius: 8px; padding: .4rem .7rem; cursor: pointer; }
+      .chat-embed-btn:disabled { opacity: .6; cursor: not-allowed; }
+      .chat-embed-input { background: #0e172f; color: #e6eefc; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; padding: .5rem .6rem; }
+  .chat-embed-hint { font-size: .8rem; color: #9fb0ca; padding: 0 .75rem .25rem; }
+  .chat-embed-note { font-size: .8rem; color: #9fb0ca; padding: 0 .75rem .75rem; font-style: italic; }
       @media (max-width: 480px) {
         .chat-fab { left: 12px; bottom: 12px; }
         .chat-tip { left: 12px; right: 12px; bottom: 72px; }
+        .chat-embed { left: 12px; right: 12px; width: auto; }
       }
     </style>
 
@@ -398,11 +436,20 @@
         });
       })();
 
-      // Chat toggle + on-load tip
+      // Chat toggle + on-load tip + embedded chat
       (function() {
         const btn = document.getElementById('chat-toggle');
         const tip = document.getElementById('chat-tip');
         const dismiss = document.getElementById('chat-tip-dismiss');
+        const tipOpen = document.getElementById('chat-tip-open');
+        // Embedded chat elements
+        const panel = document.getElementById('chat-embed');
+        const closeBtn = document.getElementById('chat-embed-close');
+        const initBtn = document.getElementById('chat-embed-init');
+        const sendBtn = document.getElementById('chat-embed-send');
+        const inputEl = document.getElementById('chat-embed-input');
+        const boxEl = document.getElementById('chat-embed-box');
+        const statusEl = document.getElementById('chat-embed-status');
         if (!btn || !tip) return;
 
         // Show invite shortly after load on every (re)load
@@ -421,9 +468,77 @@
         // Dismiss button
         dismiss && dismiss.addEventListener('click', hideTip);
 
-        // Click on button navigates to chat page
-        btn.addEventListener('click', () => {
-          window.location.href = "{{ '/chat-with-me.html' | relative_url }}";
+        function openPanel() {
+          if (!panel) return;
+          panel.setAttribute('aria-hidden', 'false');
+          hideTip();
+          inputEl && inputEl.focus();
+        }
+        function closePanel() { panel && panel.setAttribute('aria-hidden', 'true'); }
+
+        // Click events to open embedded chat
+        btn.addEventListener('click', openPanel);
+        tipOpen && tipOpen.addEventListener('click', (e) => { e.preventDefault(); openPanel(); });
+        closeBtn && closeBtn.addEventListener('click', closePanel);
+
+        // Simple knowledge base to answer in Key: Value lines
+        const KB = {
+          "Name": "Jérémie Nlandu Mabiala",
+          "Program": "AI Master's student (AMMI)",
+          "Institution": "AIMS Senegal",
+          "Degrees": "MSc in Mathematical Sciences (Stellenbosch & AIMS South Africa); BSc in Mathematics (UNIKIN)",
+          "Thesis": "Gaussian Processes for Multivariate Functional Data",
+          "Interests": "Mathematics; Theoretical ML & DL; Mathematical Modeling; Functional Data Analysis; LLMs; Reinforcement Learning",
+          "Contact": "Use the contact page: {{ '/contact/' | relative_url }}"
+        };
+
+        function formatAll() {
+          return Object.entries(KB).map(([k,v]) => `${k}: ${v}`).join('\n');
+        }
+        function answerFor(q) {
+          if (!q) return formatAll();
+          const s = q.toLowerCase();
+          const lines = [];
+          if (/(who|name)/.test(s)) lines.push(`Name: ${KB.Name}`);
+          if (/(program|study|studying|ammi)/.test(s)) lines.push(`Program: ${KB.Program}`);
+          if (/(aims|institution|where)/.test(s)) lines.push(`Institution: ${KB.Institution}`);
+          if (/(degree|degrees|education|msc|bsc)/.test(s)) lines.push(`Degrees: ${KB.Degrees}`);
+          if (/(thesis|research|topic)/.test(s)) lines.push(`Thesis: ${KB.Thesis}`);
+          if (/(interest|interests|focus|areas|skills)/.test(s)) lines.push(`Interests: ${KB.Interests}`);
+          if (/(contact|email|reach)/.test(s)) lines.push(`Contact: ${KB.Contact}`);
+          if (!lines.length) return formatAll();
+          return lines.join('\n');
+        }
+
+        function appendMsg(text, cls) {
+          if (!boxEl) return;
+          const div = document.createElement('div');
+          div.className = `chat-msg${cls ? ' ' + cls : ''}`;
+          div.textContent = text;
+          boxEl.appendChild(div);
+          // Scroll to bottom
+          const body = document.getElementById('chat-embed-body');
+          body && (body.scrollTop = body.scrollHeight);
+        }
+
+        // Initialize chat (enable send)
+        initBtn && initBtn.addEventListener('click', () => {
+          if (sendBtn) sendBtn.disabled = false;
+          if (statusEl) statusEl.textContent = 'Ready. Ask a question about Jeremie.';
+          appendMsg(formatAll(), 'assistant');
+        });
+
+        function sendCurrent() {
+          const q = (inputEl && inputEl.value || '').trim();
+          if (!q) return;
+          appendMsg(q, 'user');
+          const ans = answerFor(q);
+          appendMsg(ans, 'assistant');
+          if (inputEl) inputEl.value = '';
+        }
+        sendBtn && sendBtn.addEventListener('click', sendCurrent);
+        inputEl && inputEl.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') { e.preventDefault(); sendCurrent(); }
         });
       })();
     </script>
