@@ -115,6 +115,47 @@
       {{ content }}
     </main>
 
+    <!-- Floating Chat Toggle + On-load Tooltip -->
+    <div id="chat-toggle" class="chat-fab" role="button" aria-label="Chat with my AI assistant" title="Chat with my AI assistant">
+      <i class="far fa-comment-dots" aria-hidden="true"></i>
+      <span class="chat-fab-label">Chat</span>
+    </div>
+    <div id="chat-tip" class="chat-tip" aria-live="polite">
+      <strong>Chat with my AI assistant</strong>
+      <div class="chat-tip-actions">
+        <a href="{{ '/chat-with-me.html' | relative_url }}" class="chat-tip-link">Open chat</a>
+        <button id="chat-tip-dismiss" class="chat-tip-dismiss" aria-label="Dismiss">Dismiss</button>
+      </div>
+    </div>
+    <style>
+      /* Minimal, self-contained styles for chat toggle and tooltip */
+      .chat-fab {
+        position: fixed; left: 16px; bottom: 16px; z-index: 999;
+        display: inline-flex; align-items: center; gap: .5rem;
+        background: #0b1220; color: #fff; border: 1px solid rgba(255,255,255,.12);
+        padding: .6rem .9rem; border-radius: 999px; cursor: pointer;
+        box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      }
+      .chat-fab .chat-fab-label { font-weight: 600; font-size: .95rem; }
+      .chat-fab .fa-comment-dots { color: #7aa2ff; font-size: 1.1rem; }
+      .chat-tip {
+        position: fixed; left: 16px; bottom: 80px; z-index: 1000;
+        background: #0b1220; color: #fff; border: 1px solid rgba(255,255,255,.12);
+        padding: .85rem 1rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+        transform: translateY(12px); opacity: 0; pointer-events: none; transition: all .25s ease;
+        max-width: 320px; line-height: 1.35; font-size: .95rem;
+      }
+      .chat-tip.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .chat-tip-actions { margin-top: .5rem; display: flex; gap: .5rem; align-items: center; }
+      .chat-tip-link { color: #7aa2ff; text-decoration: none; font-weight: 600; }
+      .chat-tip-link:hover { text-decoration: underline; }
+      .chat-tip-dismiss { background: transparent; color: #c7d1e0; border: 1px solid rgba(255,255,255,.16); border-radius: 6px; padding: .25rem .5rem; cursor: pointer; }
+      @media (max-width: 480px) {
+        .chat-fab { left: 12px; bottom: 12px; }
+        .chat-tip { left: 12px; right: 12px; bottom: 72px; }
+      }
+    </style>
+
     <!-- Footer -->
   <footer id="footer" class="site-footer">
       <div class="container">
@@ -354,6 +395,35 @@
           if (e.key === 'Escape' && navMenu.classList.contains('active')) {
             toggleMenu();
           }
+        });
+      })();
+
+      // Chat toggle + on-load tip
+      (function() {
+        const btn = document.getElementById('chat-toggle');
+        const tip = document.getElementById('chat-tip');
+        const dismiss = document.getElementById('chat-tip-dismiss');
+        if (!btn || !tip) return;
+
+        // Show invite shortly after load on every (re)load
+        function showTip() { tip.classList.add('show'); }
+        function hideTip() { tip.classList.remove('show'); }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => setTimeout(showTip, 900), { once: true });
+        } else {
+          setTimeout(showTip, 900);
+        }
+
+        // Auto-hide after a few seconds
+        setTimeout(hideTip, 5000);
+
+        // Dismiss button
+        dismiss && dismiss.addEventListener('click', hideTip);
+
+        // Click on button navigates to chat page
+        btn.addEventListener('click', () => {
+          window.location.href = "{{ '/chat-with-me.html' | relative_url }}";
         });
       })();
     </script>
