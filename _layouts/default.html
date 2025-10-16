@@ -31,7 +31,7 @@
     <!-- Site Header -->
     <header class="site-header">
       <div class="header-container">
-        <a href="{{ '/' | relative_url }}" class="site-title" style="font-family: 'Georgia', serif; font-size: 2.2rem; font-weight: 300; letter-spacing: 0.5px;"> Jeremie  <span class="text-brand" style="font-weight: 600;"> Mabiala </span></a>
+        <a href="{{ '/' | relative_url }}" class="site-title" style="font-family: 'Georgia', serif; font-size: 2.2rem; font-weight: 300; letter-spacing: 0.5px; font-weight: bold;"> Jérémie  <span class="text-brand" style="font-weight: 600;"> Mabiala </span></a>
         
         <div class="header-contact">
           <span class="contact-item">
@@ -43,7 +43,7 @@
           <span class="contact-divider">/</span>
             <span class="contact-item">
             <i class="fas fa-envelope" aria-hidden="true" style="color:#007acc;font-size:1.2rem;margin-right:4px;"></i>
-            <span class="contact-email">jnlandu  two zeros at gmail dot com </span>
+            <span class="contact-email">jeremy at aimsammi dot org </span>
             </span>
         </div>
 
@@ -62,15 +62,23 @@
             <i class="fas fa-home"></i>
             Home
           </a></li>
-          <li><a href="{{ '/about/' | relative_url }}" class="{% if page.url contains 'about' %}active{% endif %}">
+          <li><a href="#about" class="{% if page.url contains 'about' %}active{% endif %}">
             <i class="fas fa-user"></i>
             About Me
           </a></li>
-          <li><a href="{{ '/about/' | relative_url }}#education" class="{% if page.url contains 'about' %}active{% endif %}">
+          <!-- <li><a href="{{ '/about/' | relative_url }}#education" class="{% if page.url contains 'about' %}active{% endif %}">
+            <i class="fas fa-graduation-cap"></i>
+            Education
+          </a></li> -->
+           <li><a href="#education" class="{% if page.url contains 'about' %}active{% endif %}">
             <i class="fas fa-graduation-cap"></i>
             Education
           </a></li>
-          <li><a href="{{ '/about/' | relative_url }}#experience" class="{% if page.url contains 'about' %}active{% endif %}">
+          <!-- <li><a href="{{ '/about/' | relative_url }}#experience" class="{% if page.url contains 'about' %}active{% endif %}">
+            <i class="fas fa-briefcase"></i>
+            Experience & Skills
+          </a></li> -->
+          <li><a href="#resume" class="{% if page.url contains 'about' %}active{% endif %}">
             <i class="fas fa-briefcase"></i>
             Experience & Skills
           </a></li>

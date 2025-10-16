@@ -2,7 +2,7 @@
 title: "African Masters in Machine Intelligence (AMMI) Scholarship"
 date: 2024-01-01
 icon: "fas fa-graduation-cap"
-featured: true
+featured: false
 tags:
   - Scholarship
   - Machine Learning

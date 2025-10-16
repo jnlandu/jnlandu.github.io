@@ -2,7 +2,7 @@
 title: "African Probability, Information Theory and Computing School"
 date: 2024-08-01
 icon: "fas fa-plane"
-featured: true
+featured: false
 tags:
   - Conference
   - Rwanda

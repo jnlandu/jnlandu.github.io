@@ -1,122 +1,177 @@
-
-
-layout: pagelayout: page
-
-title: Abouttitle: About
-
-permalink: /about/permalink: /about/
-
-description: Learn more about my background, education, and research interests.---
-
+---
+layout: page
+title: About Me
+description: AI Master's student passionate about Mathematics, Machine Learning, and Mathematical Modeling
+permalink: /about/
 ---
 
-# About Me
+<section id="about" class="about-section">
+  <div class="about-content">
+    <header class="posts-header">
+      <div>
+        <div class="posts-eyebrow">About</div>
+        <h1 class="posts-title">Jérémie N. Mabiala</h1>
+        <p class="posts-subtitle">AI Master's Student & Mathematician — AIMS Senegal</p>
+      </div>
+    </header>
 
+    <div class="about-split">
+      <div class="about-left">
+        <img 
+          src="{{ '/profile4.png' | relative_url }}" 
+          alt="{{ site.profile_alt | default: site.title }}"
+          class="about-portrait"
+          loading="lazy"
+        >
+      </div>
+      <div class="about-right">
+        {% include bio.html %}
+      </div>
+    </div>
+  </div>
+</section>
 
-## Background
+<section id="education" class="about-section">
+  <div class="about-content">
+    <header class="posts-header">
+      <div>
+        <div class="posts-eyebrow">Education</div>
+        <h2 class="posts-title">Education</h2>
+        <p class="posts-subtitle">Formal training focused on AI, mathematical sciences, and rigorous problem solving.</p>
+      </div>
+    </header>
 
-Hi, I'm **Jeremie Nlandu Mabiala**, an AI Engineer and researcher currently pursuing my master's degree at the African Institute for Mathematical Sciences (AIMS) in Senegal.
+    <div class="resume-grid" data-animate="stagger">
+      <div class="resume-timeline">
+        <div class="resume-item">
+          <div class="resume-top">
+            <span class="resume-role">MSc in Artificial Intelligence</span>
+            <span class="resume-date">2024 – Present</span>
+          </div>
+          <div class="resume-company">African Institute for Mathematical Sciences (AIMS), Senegal</div>
+        </div>
+        <div class="resume-item">
+          <div class="resume-top">
+            <span class="resume-role">MSc in Mathematical Sciences</span>
+            <span class="resume-date">2023 – 2024</span>
+          </div>
+          <div class="resume-company">Stellenbosch University & AIMS South Africa</div>
+          <p class="resume-desc">Awarded the fully funded AIMS scholarship for academic excellence.</p>
+        </div>
+        <div class="resume-item">
+          <div class="resume-top">
+            <span class="resume-role">BSc in Mathematics</span>
+            <span class="resume-date">2015 – 2021</span>
+          </div>
+          <div class="resume-company">University of Kinshasa, Kinshsas, DR Congo</div>
+        </div>
+      </div>
 
-I am **{{ site.firstName }} {{ site.lastName }}**, an AI researcher and mathematician passionate about the theoretical foundations of machine learning and their practical applications. If you're from an English-speaking culture, you can call me Jeremy.
+      <div class="resume-aside">
+        <h3 class="mb-1">Focus Areas</h3>
+        <div class="skills-grid">
+          <span class="tag chip">NLP</span>
+          <span class="tag chip">Computer Vision</span>
+          <span class="tag chip">MLOps</span>
+          <span class="tag chip">Biostatistics</span>
+          <span class="tag chip">Mathematical Modelling</span>
+          <span class="tag chip">Network Analysis</span>
+          <span class="tag chip">Data Analysis</span>
+          <span class="tag chip">Statistical Modelling</span>
+          <span class="tag chip">Advanced Python</span>
+          <span class="tag chip">Probability</span>
+          <span class="tag chip">Statistics</span>
+          <span class="tag chip">Databases</span>
+          <span class="tag chip">Programming</span>
+          <span class="tag chip">Algorithmics</span>
+          <span class="tag chip">Optimization</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-## Background
+<section id="resume" class="about-section">
+  <div class="about-content">
+    <header class="posts-header">
+      <div>
+        <div class="posts-eyebrow">Experience</div>
+        <h2 class="posts-title">Experience & Skills</h2>
+        <p class="posts-subtitle">A snapshot of roles, projects, and tools I use day-to-day.</p>
+      </div>
+    </header>
 
-## Education
+    <div class="resume-grid" data-animate="stagger">
+      <div class="resume-timeline">
+        <div class="resume-item">
+          <div class="resume-top">
+            <span class="resume-role">Teaching Assistant in Machine Learning</span>
+            <span class="resume-date">Feb 2025 — Present</span>
+          </div>
+          <div class="resume-company">AIMS, Senegal</div>
+            <p class="resume-desc">Conducted <strong>intensive bootcamps</strong> in Advanced Linear Algebra, Python Programming, and PyTorch.</p>
+        </div>
+        <div class="resume-item">
+          <div class="resume-top">
+            <span class="resume-role">Assistant lecturer</span>
+            <span class="resume-date">2022 — 2023</span>
+          </div>
+          <div class="resume-company">University of Kinshasa • School of Maths, Statistics, & Computer Science</div>
+            <p class="resume-desc">Taught undergraduate courses in <em><strong>Real Analysis</em></strong> and  <strong><em>Linear Algebra</strong></em>.</p>
+        </div>
+      </div>
 
-I specialize in:
+      <div class="resume-aside">
+        <h3 class="mb-1">Core Skills</h3>
+        <div class="skills-grid">
+          <span class="tag chip">Python</span>
+          <span class="tag chip">FastAPI</span>
+          <span class="tag chip">PyTorch</span>
+          <span class="tag chip">TensorFlow</span>
+          <span class="tag chip">NLP</span>
+          <span class="tag chip">Time-series</span>
+          <span class="tag chip">Statistics</span>
+          <span class="tag chip">JAX</span>
+          <span class="tag chip">Pandas</span>
+          <span class="tag chip">Docker</span>
+        </div>
+        <h3 class="mt-2 mb-1">Links</h3>
+        <div class="resume-actions">
+            <a href="#about" class="btn btn-secondary"><i class="fas fa-id-card"></i> View Bio</a>
+            <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary"><i class="fas fa-paper-plane"></i> Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-### Current Studies- **Machine Learning** - Developing intelligent systems and algorithms
+<section id="more" class="about-section">
+  <div class="about-content">
+    <header class="posts-header">
+      <div>
+        <div class="posts-eyebrow">Extras</div>
+        <h2 class="posts-title">Beyond Work</h2>
+        <p class="posts-subtitle">A few things I enjoy when I'm not studying or teaching.</p>
+      </div>
+    </header>
 
-- **Student in Artificial Intelligence** at the [African Masters in Machine Intelligence (AMMI)](https://aimsammi.org/)- **Computer Vision** - Image processing and pattern recognition
+    <div class="skills-grid">
+      <span class="tag chip">Writing</span>
+      <span class="tag chip">Teaching</span>
+      <span class="tag chip">Open Source</span>
+      <span class="tag chip">Reading</span>
+      <span class="tag chip">Mentoring</span>
+    </div>
 
-- A pan-African master's program in Artificial Intelligence founded by Google and Meta- **Mathematical Modeling** - Applied mathematics for real-world problems
-
-- Hosted at AIMS Senegal- **Natural Language Processing** - Working with African languages and multilingual systems
-
-
-
-### Previous Education## Education
-
-- **Master's degree in Mathematical Sciences** (February 2024)
-
-  - [Stellenbosch University](https://www.sun.ac.za) and [AIMS South Africa](https://aims.ac.za)- **Master's in Mathematical Sciences** - AIMS Senegal (Current)
-
-  - Specialized in Mathematical Statistics and Functional Data Analysis- Focus on AI applications for African contexts
-
-  - Master's thesis: *"Gaussian Processes for Multivariate Functional Data"*
-
-  - Available at the [AIMS Archive](https://archive.aims.ac.za/)## Research Interests
-
-
-
-- **Bachelor's degree in Mathematics** (Bac +6 equivalent)My research focuses on developing AI solutions that address real challenges in Africa, particularly in:
-
-  - [University of Kinshasa](https://unikin.ac.cd), Congo's leading university- Healthcare AI systems for resource-limited settings
-
-  - Graduated as the best student in the department with "Grande Distinction" (Summa Cum Laude equivalent)- Agricultural technology and precision farming
-
-  - Served as teaching assistant and subsidiary lecturer for two years- Educational technology and personalized learning
-
-- Multilingual NLP for African languages
-
-## Research Interests
-
-## Mission
-
-My research focuses on several interconnected areas:
-
-I'm passionate about building the future of AI in Africa - creating technology that is inclusive, culturally-aware, and addresses the unique challenges and opportunities across the continent.
-
-### Primary Interests
-
-- **Theoretical Aspects of Machine Learning and Deep Learning**: Understanding the mathematical foundations that make these systems work## Connect
-
-- **Functional Data Analysis**: Mathematical statistics applied to functional data, with a focus on Gaussian processes
-
-- **Large Language Models**: Natural language processing and the development of more capable language models- **Email**: [jeremie@aims.ac.za](mailto:jeremie@aims.ac.za)
-
-- **GitHub**: [github.com/jnlandu](https://github.com/jnlandu)
-
-### Secondary Interests- **LinkedIn**: [linkedin.com/in/jeremie-nlandu-mabiala-aa3a1b1b](https://linkedin.com/in/jeremie-nlandu-mabiala-aa3a1b1b)
-
-- **Mathematical Modeling**: Applying mathematical techniques to solve real-world problems
-- **Computer Vision**: Visual recognition systems and image analysis
-- **Reinforcement Learning**: Decision-making algorithms and their applications
-
-## Teaching & Mentorship
-
-I am passionate about teaching and knowledge sharing, a trait I inherited from my father and grandfather, who were both teachers. I believe in:
-
-- Making complex mathematical concepts accessible
-- Bridging the gap between theory and practice
-- Mentoring the next generation of researchers
-- Contributing to the African AI research community
-
-## Beyond Research
-
-When I'm not immersed in research, I enjoy:
-
-- **Software Development**: Building tools and applications as a hobbyist developer
-- **Writing**: Working on various writing projects and poetry
-- **Knowledge Sharing**: Contributing to open-source projects and writing about AI/ML topics
-
-## Contact
-
-I'm always interested in discussing research collaborations, speaking opportunities, or just chatting about AI and mathematics. Feel free to reach out!
-
-{% if site.email %}
-- **Email**: [{{ site.email.first }}](mailto:{{ site.email.first }})
-{% endif %}
-
-{% if site.data.social %}
-- **Social Media**: 
-  {% for social in site.data.social %}
-    {% unless social.title == 'Email' %}
-      [{{ social.title }}]({{ social.url }}){% unless forloop.last %} • {% endunless %}
-    {% endunless %}
-  {% endfor %}
-{% endif %}
-
----
-
-*"The best way to learn is to teach, and the best way to understand is to question everything."*
+    <div class="resume-actions" style="margin-top:1.5rem;">
+      <a href="{{ '/assets/static/resume.pdf' | relative_url }}" class="btn btn-primary" download>
+        <i class="fas fa-file-download"></i>
+        Download CV
+      </a>
+      <a href="{{ '/projects/' | relative_url }}" class="btn btn-secondary">
+        <i class="fas fa-code"></i>
+        View Projects
+      </a>
+    </div>
+  </div>
+</section>

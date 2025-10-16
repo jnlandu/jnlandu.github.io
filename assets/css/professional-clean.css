@@ -668,7 +668,7 @@ a:hover {
 /* Hero Social Icons */
 .hero-social {
   position: absolute;
-  bottom: 24px;
+  bottom: 50px;
   right: 24px;
   display: flex;
   gap: 1rem;
@@ -821,9 +821,9 @@ a:hover {
 }
 
 /* Widen Education container slightly beyond default */
-#education .about-content {
+/* #education .about-content {
   max-width: 1400px;
-}
+} */
 
 /* Make key sections occupy full screen height and snap */
 #about.about-section,
