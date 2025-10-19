@@ -25,6 +25,11 @@
   
   <!-- Feed -->
   <link type="application/atom+xml" rel="alternate" href="{{ '/feed.xml' | relative_url }}" title="{{ site.title | escape }}">
+
+  <!-- Favicon -->
+  <link rel="icon" href="{{ '/profile2.png' | relative_url }}" type="image/png">
+  <link rel="shortcut icon" href="{{ '/profile2.png' | relative_url }}" type="image/png">
+  <link rel="apple-touch-icon" href="{{ '/profile2.png' | relative_url }}">
 </head>
 <!-- --error-color: #e53e3e;} -->
 <body>
@@ -45,6 +50,10 @@
             <i class="fas fa-envelope" aria-hidden="true" style="color:#007acc;font-size:1.2rem;margin-right:4px;"></i>
             <span class="contact-email">jeremy at aimsammi dot org </span>
             </span>
+          <span class="contact-divider">/</span>
+          <span class="contact-item" style="display:inline-flex;align-items:center;gap:.35rem;">
+            {% include visitor-counter.html target_id='visitor-count-header' label='Visitors:' no_style=true inline_style='font-size:.95rem;opacity:.85;' %}
+          </span>
         </div>
 
         <button class="nav-toggle" aria-label="Toggle navigation">
@@ -195,14 +204,7 @@
     </style>
 
     <!-- Footer -->
-  <footer id="footer" class="site-footer">
-      <div class="container">
-        <div class="footer-content">
-          <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
-          <p>Built with <a href="https://jekyllrb.com/">Jekyll</a> and hosted on <a href="https://github.com/">GitHub</a>.</p>
-        </div>
-      </div>
-    </footer>
+    {% include footer.html %}
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
