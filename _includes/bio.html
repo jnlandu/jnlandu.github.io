@@ -1,48 +1,30 @@
-<div class="bio" style="text-align: justify;">
+<div class=”bio” style=”text-align: justify;”>
     <p>
-        I’m Jérémie Mabiala, an AI master’s student in the African Master in Machine Intelligence
-        (<a class="text-brand" href="https://aimsammi.org/" target="_blank" rel="noopener">AMMI</a>) program at
-        <a class="text-brand" href="https://aims-senegal.org/" target="_blank" rel="noopener">AIMS Senegal</a>.
+        I'm Jérémie Mabiala, someone who studied mathematics and ended up fascinated by what machines can learn.
     </p>
 
     <p>
-        I hold a Master’s in Mathematical Sciences from
-        <a class="text-brand" href="https://www.sun.ac.za" target="_blank" rel="noopener">Stellenbosch University</a>
-        and <a class="text-brand" href="https://aims.ac.za" target="_blank" rel="noopener">AIMS South Africa</a>
-        (Feb 2024), where I focused on Mathematical Statistics and
-        <a class="text-brand" href="https://en.wikipedia.org/wiki/Functional_data_analysis" target="_blank" rel="noopener">Functional Data Analysis</a>.
-        My thesis, <strong>Gaussian Processes for Multivariate Functional Data</strong>, is available in the
-        <a class="text-brand" href="https://archive.aims.ac.za/" target="_blank" rel="noopener">AIMS Archive</a>.
+        I'm currently pursuing an MSc in Artificial Intelligence through the
+        <a class=”text-brand” href=”https://aimsammi.org/” target=”_blank” rel=”noopener”>African Master in Machine Intelligence (AMMI)</a>
+        program at <a class=”text-brand” href=”https://aims-senegal.org/” target=”_blank” rel=”noopener”>AIMS Senegal</a>.
+        I hold a Master's in Mathematical Sciences from
+        <a class=”text-brand” href=”https://www.sun.ac.za” target=”_blank” rel=”noopener”>Stellenbosch University</a>
+        &amp; <a class=”text-brand” href=”https://aims.ac.za” target=”_blank” rel=”noopener”>AIMS South Africa</a>,
+        where I graduated in 2024 with a thesis on
+        <strong>Gaussian Processes for Multivariate Functional Data</strong>,
+        supervised by <a class=”text-brand” href=”https://sites.google.com/view/sophie-dabo-niang/” target=”_blank” rel=”noopener”>Prof. Sophie Dabo-Niang</a>.
+        My current interests span ML theory, NLP, functional data analysis, and optimization.
     </p>
 
     <p>
-        Previously, I earned a Bac+5 in Mathematics from the
-        <a class="text-brand" href="https://unikin.ac.cd" target="_blank" rel="noopener">University of Kinshasa</a>,
-        graduating in the top 5% with “Grande Distinction.” I also served as a assistant lecturer for about one year.
+        Before that, I taught. I spent a year as an assistant lecturer in Real Analysis, Linear Algebra,
+        Functional Analysis, and General Topology at the <span class=”text-brand”>University of Kinshasa</span>.
+        I'm currently a resident teaching assistant at <a class=”text-brand” href=”https://aims-senegal.org/” target=”_blank” rel=”noopener”>AIMS Senegal</a>, where I run
+        bootcamps in Python, PyTorch, Introduction to Machine Learning, and Linear Algebra.
+        Teaching has been one of the better ways I've found to actually understand something.
+    </p>
 
     <p>
-        My interests span <strong>mathematics</strong>, the <strong>theory of machine learning and deep learning</strong>,
-        <strong>mathematical modeling</strong>, <strong>Optimization</strong>,<strong>Computer Vision</strong>, <strong>Natural Langiage Processing</strong><strong>LLMs</strong>, and
-        <strong>reinforcement learning</strong>, and their potential applications. I’m also a hobbyist developer and an apprentice writer.
+        Outside of coursework I write, build small tools, and read about machine learning, software engineering, and mathematics.
     </p>
-
-    <p class="text-muted" style="margin-top: 0.75rem;">
-        <em>Site updates are in progress. For inquiries, please
-            <a href="{{ '/contact/' | relative_url }}">get in touch</a>.</em>
-    </p>
-</div>
-
-<!-- Hero Social Icons -->
-<div class="hero-social">
-{% for social in site.data.social %}
-    {% if social.title == "Email" %}
-    <a href="mailto:{{ social.url }}" class="hero-social-icon" aria-label="{{ social.title }}">
-        <i class="{{ social.icon }}"></i>
-    </a>
-    {% else %}
-    <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" class="hero-social-icon" aria-label="{{ social.title }}">
-        <i class="{{ social.icon }}"></i>
-    </a>
-    {% endif %}
-{% endfor %}
 </div>
