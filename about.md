@@ -138,7 +138,7 @@ permalink: /about/
         <h3 class="mt-2 mb-1">Links</h3>
         <div class="resume-actions">
             <a href="#about" class="btn btn-secondary"><i class="fas fa-id-card"></i> View Bio</a>
-            <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary"><i class="fas fa-paper-plane"></i> Contact</a>
+            <a href="{{ '/' | relative_url }}#contact" class="btn btn-secondary"><i class="fas fa-paper-plane"></i> Contact</a>
         </div>
       </div>
     </div>

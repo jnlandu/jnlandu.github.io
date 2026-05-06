@@ -32,9 +32,9 @@ profile_image: ./profile.png
 
 # Location & Institution
 location:
-  name: African Institute for Mathematical Sciences (AIMS) Senegal
-  url: https://aims-senegal.org/
-  city: Mbour, Senegal
+  name: AUBAINE
+  city: Dakar, Senegal
+  plus_code: PG2J+X2M
   icon: fa-solid fa-location-dot
 
 # Navigation
@@ -42,7 +42,6 @@ header_pages:
   - index.md
   - about.md
   - news.md
-  - contact.md
 
 # Site Description
 description: >- 
@@ -75,7 +74,6 @@ pagination:
 
 sitemap:
   exclude:
-    - /contact.md
     - /404.html
 
 # Social Media & SEO
