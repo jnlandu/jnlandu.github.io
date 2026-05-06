@@ -11,8 +11,6 @@ redirect_from:
   - /news/2024-01-ammi-scholarship.html
 ---
 
-I was awarded the prestigious fully funded AMMI scholarship to study Machine Learning at the African Institute for Mathematical Sciences, Senegal.
+I was awarded a fully funded scholarship to join the African Master in Machine Intelligence (AMMI) program at AIMS Senegal, covering tuition, accommodation, and living expenses.
 
-This intensive 12-month program covers advanced topics in machine learning, deep learning, and artificial intelligence, with a focus on applications relevant to the African continent. The scholarship covers tuition, accommodation, and living expenses, allowing me to fully concentrate on my studies and research.
-
-The AMMI program brings together top students from across Africa and provides world-class education from leading researchers and practitioners in the field. I'm excited to collaborate with peers from diverse backgrounds and contribute to the growing AI research community in Africa.
+My background is in mathematics and at some point I became genuinely curious about what machine learning was actually doing. AMMI felt like the right place to find out. The courses are taught by researchers from universities and industry: I studied Computer Vision with [Laurens van der Maaten](https://lvdmaaten.github.io/), Kernel Methods with [Jean-Philippe Vert](https://jpvert.github.io/), among others. Coming from pure mathematics, the shift to applied ML has required adjusting how I think about problems, and that adjustment has been the interesting part.
