@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: post
 toc: true
 title:  "Mastering Text Processing in Python: An Introduction to NLTK"
@@ -173,6 +173,4 @@ NLTK provides tools for building n-gram language models that predict the next wo
 ##### **3.3. Sentiment Analysis**
 With NLTK, you can perform sentiment analysis to determine the sentiment (positive, negative, neutral) expressed in text.
 
-#### 4. **Conclusion**
-
-NLTK is a powerful and flexible tool for working with natural language in Python. It provides an extensive suite of libraries and resources that make it a go-to library for anyone working in the field of NLP. Whether you're building simple text processing applications or complex language models, NLTK offers the tools you need to get started.
+#### 4. **Conclusion** -->

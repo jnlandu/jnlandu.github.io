@@ -12,10 +12,10 @@ redirect_from:
   - /news/2022-01-aims-scholarship.html
 ---
 
-I was awarded a fully funded Master Student scholarship to study Mathematics at Stellenbosch University & AIMS South Africa.
+I was awarded a fully funded scholarship to study Mathematical Sciences at AIMS South Africa, affiliated with Stellenbosch University. The scholarship covers tuition, accommodation, and living expenses.
 
-This prestigious scholarship covers tuition fees, accommodation, and living expenses for the duration of my Master's program. The African Institute for Mathematical Sciences (AIMS) is renowned for its excellence in mathematical education and research across Africa.
+I came to AIMS after completing a BSc in Mathematics in Kinshasa. The programme gave me access to a research environment I wouldn't have had otherwise — structured around both coursework and a thesis. I graduated in 2024 with a thesis on Gaussian Processes for Multivariate Functional Data, supervised by [Prof. Sophie Dabo-Niang](https://sites.google.com/view/sophie-dabo-niang/).
 
-During my studies, I will focus on advanced mathematical concepts and research methodologies, working alongside leading academics and researchers in the field. This opportunity will allow me to deepen my understanding of mathematics while contributing to the vibrant academic community at both Stellenbosch University and AIMS South Africa.
+AIMS South Africa is based in Muizenberg, a small coastal town on the edge of Cape Town. Living there was a different kind of experience. The mountain, the ocean, the beach, and a charming, often a very unstable, weather. It's a good place to study.
 
-I am excited to begin this journey and grateful for the support that makes this educational pursuit possible.
+[Program details](https://drive.google.com/drive/folders/1gqQcc-r5TALs0cQvuQ9a36Tp2euSu1wK?usp=sharing)

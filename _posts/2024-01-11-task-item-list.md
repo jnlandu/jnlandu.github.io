@@ -1,8 +1,8 @@
 ---
 layout: post
-title: A very interesting title to talk about very amazing subject on Mathematics.
+title: I'm adding contents for this section
 tags: [to-do list]
-author: unkmown
+author: Jeremie Mabiala
 author_profile: "./assets/static/logo.jpeg"
 summary: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus 
   sint impedit doloremque reprehenderit, facilis quo optio veritatis molestias 
