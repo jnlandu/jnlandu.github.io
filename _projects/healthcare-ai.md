@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: project-detail
 title: "AI for Healthcare in Rural Settings"
 permalink: /projects/healthcare-ai/
@@ -74,4 +74,4 @@ Plans include expanding to additional conditions, integrating telemedicine capab
 
 ---
 
-*This project is part of my research at AIMS Senegal, focusing on practical AI applications for improving healthcare access in Africa.*
+*This project is part of my research at AIMS Senegal, focusing on practical AI applications for improving healthcare access in Africa.* -->

@@ -1,4 +1,4 @@
----
+<!-- ---
 title: "Advanced PyTorch Tutorial Series"
 subtitle: "Deep Learning for African Researchers"
 author: "Jeremie Nlandu Mabiala"
@@ -24,4 +24,4 @@ The course will feature:
 - Interactive Jupyter notebooks
 - Video lectures in English and French
 - Community support forum
-- Certificate upon completion
+- Certificate upon completion -->

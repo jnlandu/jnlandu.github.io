@@ -1,6 +1,6 @@
 ---
 layout: project-detail
-title: "Aura: AI-powered mobile app"
+title: "I'm adding contents for this section"
 date: 2024-06-06
 status: "Completed"
 category: "Mobile/AI"
@@ -11,6 +11,6 @@ author: "Jeremie Nlandu Mabiala"
 image: /profile3.png
 ---
 
-# Aura: AI-powered Mobile App
+# Adding contents for this section
 
-A small mobile app developed with React Native and OpenAI APIs to generate human-like images.
+I'm adding contents for this section ...

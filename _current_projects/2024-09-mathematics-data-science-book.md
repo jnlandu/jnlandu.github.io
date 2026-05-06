@@ -1,6 +1,6 @@
 ---
-title: "Mathematics for Data Science"
-subtitle: "Linear Algebra with Python"
+title: "Algèbre Linéaire avec Python"
+subtitle: "Mathématiques pour la Science des Données"
 author: "Jeremie Nlandu Mabiala"
 date: 2024-09-01
 status: "In Progress"
@@ -11,17 +11,11 @@ cover_image: "./assets/static/book-cover.png"
 featured: true
 tags:
   - Mathematics
-  - Data Science
   - Linear Algebra
   - Python
   - Book
 ---
+*A small project, a book to introduce beginners to linear algebra with Python : vector spaces, eigenvalues, SVD, with implementations alongside the theory. Still in progress.*
 
-I am currently writing a comprehensive book on Linear Algebra for Data Science, combining mathematical theory with practical Python implementations. The book covers fundamental concepts of linear algebra essential for data science applications, including vector spaces, matrices, eigenvalues, singular value decomposition, and their applications in machine learning algorithms.
+Je travaille sur un petit projet de  livre pour initier les débutants à l'algèbre linéaire avec Python — espaces vectoriels, valeurs propres, SVD — avec des implémentations en parallèle de la théorie. Toujours en cours.
 
-The book features:
-- Theoretical foundations of linear algebra
-- Practical Python implementations using NumPy and SciPy
-- Real-world data science applications
-- Interactive examples and exercises
-- Comprehensive coverage from basics to advanced topics
