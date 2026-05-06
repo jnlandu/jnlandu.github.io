@@ -41,14 +41,7 @@ location:
 header_pages:
   - index.md
   - about.md
-# <<<<<<< dev2
   - news.md
-# =======
-#   - research.md
-#   - projects.md
-#   - blog.md
-#   - courses.md
-# >>>>>>> dev
   - contact.md
 
 # Site Description
