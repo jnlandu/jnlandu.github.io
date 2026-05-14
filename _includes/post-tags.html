@@ -1,8 +1,8 @@
-<div class="tags-bar">
+<div class="tags-bar" style="padding-top: 10rem;">
 {% assign tags = page.tags | sort %}
 {% for tag in tags %}
   <span class="tag-wrapper">
-    <a class="tag-text" href="{{ site.baseurl }}/tags/{{ tag | slugify }}.html">{{ tag | replace:'-', ' ' }}</a>
+    <a class="tag-text" href="{{ '/tags/' | relative_url }}{{ tag | slugify }}">{{ tag | replace:'-', ' ' }}</a>
   </span>
 {% endfor %}
 </div>

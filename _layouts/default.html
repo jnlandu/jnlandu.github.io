@@ -120,7 +120,7 @@
           </a></li>
         </ul>
         <div class="copyright">
-          <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title | default: "Jeremie Mabiala" }}. All Rights Reserved.</p>
+          <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title | default: "Jeremie Mabiala" }}. MIT License.</p>
         </div>
       </nav>
     </header>
@@ -219,6 +219,18 @@
     
     <!-- Smooth scrolling and other interactions -->
     <script>
+      function setBioLang(lang) {
+        const en = document.querySelector('.bio-en');
+        const fr = document.querySelector('.bio-fr');
+        const btnEn = document.getElementById('lang-en');
+        const btnFr = document.getElementById('lang-fr');
+        if (!en || !fr) return;
+        en.style.display = lang === 'en' ? '' : 'none';
+        fr.style.display = lang === 'fr' ? '' : 'none';
+        btnEn.classList.toggle('lang-btn-active', lang === 'en');
+        btnFr.classList.toggle('lang-btn-active', lang === 'fr');
+      }
+
       // Smooth scrolling for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {

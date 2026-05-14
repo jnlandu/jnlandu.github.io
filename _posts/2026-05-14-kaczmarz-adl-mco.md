@@ -397,7 +397,7 @@ tandis que LSQR exploite la structure de Krylov pour converger en un nombre
 d'itérations bien inférieur. L'avantage de REK est son coût par itération
 $O(d)$ contre $O(Nd)$ pour LSQR — décisif pour $d \gg N$.
 
----
+
 
 ## 6. Courbes de convergence
 
@@ -493,7 +493,7 @@ plt.show()
 - **Calcul distribué** : chaque rangée peut vivre sur un nœud différent ; la
   mise à jour est locale.
 
----
+
 
 ## 8. Analyse de la vitesse de convergence
 
@@ -661,7 +661,68 @@ plus rapide (10.4 s vs 11.8 s). $\tau=64$ n'apporte pas de gain supplémentaire
 ici car $N=300$ est petit — le système $64 \times 64$ devient dominant ; le
 point idéal se situe autour de $\tau \approx \sqrt{N} \approx 17$ pour ce dataset.
 
----
+### 8.6 Visualisation des directions discriminantes Block REK
+
+Les 40 colonnes de $W_{\text{Block-REK}}$ ($\tau=32$, 500 steps) redimensionnées
+en $64 \times 64$ pixels — les équivalents Block Kaczmarz des Fisherfaces.
+
+```python
+W_block_rek = np.zeros((d, n_classes))
+for k in range(n_classes):
+    W_block_rek[:, k] = block_rek(X_train_c, T[:, k], n_iter=500, tau=32, seed=k)[0]
+
+n_show = 12
+fig, axes = plt.subplots(2, n_show // 2, figsize=(14, 5),
+                         subplot_kw={'xticks': [], 'yticks': []})
+for i, ax in enumerate(axes.ravel()):
+    ff = W_block_rek[:, i].reshape(64, 64)
+    vmax = np.abs(ff).max()
+    ax.imshow(ff, cmap='RdBu_r', vmin=-vmax, vmax=vmax)
+    ax.set_title(f"Block-REK-face {i+1}", fontsize=8)
+```
+
+<figure style="text-align:center; margin: 2rem 0;">
+  <img src="{{ '/assets/images/block_rek_faces.png' | relative_url }}"
+       alt="12 premières directions discriminantes Block REK τ=32 sur Olivetti Faces"
+       style="max-width:720px; width:100%; border-radius:6px;
+              box-shadow:0 2px 12px rgba(0,0,0,.15);">
+  <figcaption style="margin-top:.6rem; font-size:.88rem; color:#666;">
+    Les 12 premières colonnes de $W_{\text{Block-REK}}$ ($\tau=32$, 500 outer steps)
+    visualisées comme images $64 \times 64$ (colormap RdBu). Comparer avec les
+    REK-faces ci-dessus : les structures sont similaires — mêmes zones saillantes
+    (contours, yeux, bouche) — mais obtenues 10× plus vite en outer steps grâce
+    aux blocs.
+  </figcaption>
+</figure>
+
+### 8.7 Projection sur les 2 premières directions Block REK
+
+```python
+X_test_brek = X_test_c @ W_block_rek
+
+fig, ax = plt.subplots(figsize=(8, 6))
+sc = ax.scatter(X_test_brek[:, 0], X_test_brek[:, 1],
+                c=y_test, cmap='tab20', s=55, alpha=0.85)
+plt.colorbar(sc, ax=ax, label='Identité (0–39)')
+ax.set_xlabel("Block-REK-face 1 (τ=32)")
+ax.set_ylabel("Block-REK-face 2 (τ=32)")
+```
+
+<figure style="text-align:center; margin: 2rem 0;">
+  <img src="{{ '/assets/images/block_rek_scatter.png' | relative_url }}"
+       alt="Projection 2D des images test sur les 2 premières directions Block REK"
+       style="max-width:600px; width:100%; border-radius:6px;
+              box-shadow:0 2px 12px rgba(0,0,0,.15);">
+  <figcaption style="margin-top:.6rem; font-size:.88rem; color:#666;">
+    Projection des 100 images test sur les deux premières directions Block REK
+    ($\tau=32$). La séparation inter-classes est comparable à celle obtenue avec
+    REK scalaire, mais Block REK ($\tau=32$) n'a utilisé que 500 outer steps au
+    lieu de 15 000 pour REK — soit 30× moins d'itérations pour un résultat
+    visuellement identique.
+  </figcaption>
+</figure>
+
+
 
 ## 9. Code complet standalone
 
