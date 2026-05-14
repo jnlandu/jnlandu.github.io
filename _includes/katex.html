@@ -1,17 +1,31 @@
-  <script>
-    window.WebFontConfig = {
-      custom: {
-        families: ['KaTeX_AMS', 'KaTeX_Caligraphic:n4,n7', 'KaTeX_Fraktur:n4,n7',
-          'KaTeX_Main:n4,n7,i4,i7', 'KaTeX_Math:i4,i7', 'KaTeX_Script',
-          'KaTeX_SansSerif:n4,n7,i4', 'KaTeX_Size1', 'KaTeX_Size2', 'KaTeX_Size3',
-          'KaTeX_Size4', 'KaTeX_Typewriter'],
-      },
-    };
-  </script>
-    <!-- The loading of KaTeX is deferred to speed up page rendering -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script>
-    <!-- To automatically render math in text elements, include the auto-render extension: -->
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
+<!-- KaTeX v0.16.11 — consistent version across all three assets -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="initKatex()"></script>
+<script>
+function initKatex() {
+  // Render <script type="math/tex"> blocks produced by kramdown's math_engine: mathjax
+  document.querySelectorAll('script[type="math/tex"]').forEach(function(el) {
+    var span = document.createElement('span');
+    span.innerHTML = katex.renderToString(el.textContent, { throwOnError: false });
+    el.parentNode.replaceChild(span, el);
+  });
+  document.querySelectorAll('script[type="math/tex; mode=display"]').forEach(function(el) {
+    var div = document.createElement('div');
+    div.className = 'katex-display';
+    div.innerHTML = katex.renderToString(el.textContent, { displayMode: true, throwOnError: false });
+    el.parentNode.replaceChild(div, el);
+  });
+  // Also catch any remaining $...$ / $$...$$ that kramdown left as plain text
+  renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true  },
+      { left: '\\[', right: '\\]', display: true  },
+      { left: '$',  right: '$',  display: false },
+      { left: '\\(', right: '\\)', display: false }
+    ],
+    throwOnError: false
+  });
+}
+</script>

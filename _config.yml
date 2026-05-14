@@ -61,6 +61,11 @@ plugins:
   - jekyll-toc
   - jekyll-redirect-from
 
+# Kramdown — protect math expressions from Markdown emphasis/escaping
+kramdown:
+  math_engine: mathjax
+  math_engine_opts: {}
+
 # Permalink settings
 permalink: /posts/:title
 

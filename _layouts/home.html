@@ -78,6 +78,17 @@ layout: default
         <div class="about-text">
           {% include bio.html %}
         </div>
+        <div class="about-actions">
+          <div class="lang-switcher">
+            <span class="lang-label"><i class="fas fa-language"></i> Language:</span>
+            <button class="lang-btn lang-btn-active" id="lang-en" onclick="setBioLang('en')">En</button>
+            <span class="lang-sep">|</span>
+            <button class="lang-btn" id="lang-fr" disabled style="opacity:0.35;cursor:not-allowed;">Fr</button>
+          </div>
+          <a href="{{ '/posts/' | relative_url }}" class="btn btn-secondary btn-small">
+            <i class="fas fa-pen-nib"></i> Visit my posts
+          </a>
+        </div>
       </div>
     </div>
 

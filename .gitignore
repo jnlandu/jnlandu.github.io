@@ -5,6 +5,9 @@ _site
 vendor
 draft/
 
+.venv/
+notebooks/
+
 # Jekyll build output
 _site/
 
