@@ -26,13 +26,13 @@ appropriately encoded class labels yields **exactly the same projection directio
 as Fisher's LDA. Along the way we will see how scatter matrices appear naturally
 from the regression normal equations, and why this equivalence matters in practice.
 
----
+
 
 ## 1. Fisher's Linear Discriminant Analysis
 
 ### 1.1 Setup
 
-Let $\{\mathbf{x}_n, c_n\}_{n=1}^{N}$ be a labelled dataset in $\mathbb{R}^d$ with
+Let $$\{\mathbf{x}_n, c_n\}_{n=1}^{N}$# be a labelled dataset in $\mathbb{R}^d$ with
 binary classes $C_1$ and $C_2$, containing $N_1$ and $N_2$ samples respectively
 ($N_1 + N_2 = N$). Define class means
 
@@ -72,7 +72,7 @@ $$\boxed{\mathbf{w}^* \propto S_W^{-1}(\mathbf{m}_1 - \mathbf{m}_2).}$$
 The classifier projects each point onto $\mathbf{w}^*$ and assigns it to the
 class whose projected mean is closest.
 
----
+
 
 ## 2. Ordinary Least Squares: a Regression Perspective
 
@@ -94,7 +94,7 @@ minimising the sum of squared residuals:
 
 $$E(\mathbf{w}, w_0) = \frac{1}{2}\sum_{n=1}^{N}\left(\mathbf{w}^{\top}\mathbf{x}_n + w_0 - t_n\right)^2.$$
 
----
+
 
 ## 3. Deriving the Normal Equations
 
@@ -140,7 +140,7 @@ So the normal equation becomes:
 
 $$\boxed{S_T\,\mathbf{w} = N(\mathbf{m}_1 - \mathbf{m}_2).}$$
 
----
+
 
 ## 4. Connecting $S_T$ to $S_W$ and $S_B$
 
@@ -193,7 +193,7 @@ $$\mathbf{w} \propto S_W^{-1}(\mathbf{m}_1 - \mathbf{m}_2).$$
 
 This is precisely the Fisher LDA solution.
 
----
+
 
 ## 5. The Equivalence Theorem
 
@@ -209,7 +209,7 @@ on the **projection direction** but not on the intercept or the scale of
 $\mathbf{w}$: OLS gives a specific affine model while LDA gives a direction for
 a nearest-mean classifier.
 
----
+
 
 ## 6. Matrix Form and Iterative Solvers
 
@@ -268,7 +268,7 @@ the data as $S_T\,\mathbf{p} = \mathbf{X}_c^{\top}(\mathbf{X}_c\,\mathbf{p})$,
 where $\mathbf{X}_c$ is the mean-centred data matrix. This keeps the memory
 footprint at $O(Nd)$ rather than $O(d^2)$.
 
----
+
 
 ## 7. Numerical Example (Sketch)
 
@@ -288,7 +288,7 @@ encoding simplifies to $t_n = +1$ for $C_1$ and $t_n = -1$ for $C_2$. Solving
 $S_T\,\mathbf{w} = N(\mathbf{m}_1 - \mathbf{m}_2)$ and using $S_T = S_W + S_B$
 (both computable from the data) recovers the same direction $\propto (3, -1)^{\top}$.
 
----
+
 
 ## 8. Summary
 
@@ -313,7 +313,7 @@ This is more than a mathematical curiosity:
 - It paves the way for **kernel LDA** by kernelising the regression problem
   instead of kernelising Fisher's criterion directly.
 
----
+
 
 ## References
 

@@ -238,6 +238,110 @@ l'intercept ni sur l'échelle de $\mathbf{w}$ : les MCO donnent un modèle
 affine spécifique, tandis que l'ADL donne une direction pour un classifieur
 au plus proche voisin des moyennes.
 
+<figure style="text-align:center; margin:2rem 0;">
+<svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg"
+     style="font-family:Georgia,'Times New Roman',serif; max-width:100%;">
+
+  <!-- background -->
+  <rect width="500" height="300" fill="#f8f9fa" rx="10" stroke="#ddd" stroke-width="1"/>
+
+  <!-- faint axes -->
+  <line x1="50" y1="150" x2="450" y2="150" stroke="#e4e4e4" stroke-width="1"/>
+  <line x1="245" y1="20"  x2="245" y2="280" stroke="#e4e4e4" stroke-width="1"/>
+
+  <!-- Class C2 ellipse — lower-left, red -->
+  <ellipse cx="140" cy="205" rx="68" ry="32"
+           transform="rotate(-22 140 205)"
+           fill="rgba(192,57,43,0.13)" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="90" y="210" font-size="14" fill="#c0392b" font-style="italic">C₂</text>
+
+  <!-- Class C1 ellipse — upper-right, blue -->
+  <ellipse cx="350" cy="97" rx="68" ry="32"
+           transform="rotate(-22 350 97)"
+           fill="rgba(41,128,185,0.13)" stroke="#2980b9" stroke-width="1.5"/>
+  <text x="390" y="95" font-size="14" fill="#2980b9" font-style="italic">C₁</text>
+
+  <!-- Mean dots -->
+  <circle cx="140" cy="205" r="5" fill="#c0392b"/>
+  <text x="118" y="226" font-size="12" fill="#c0392b">m₂</text>
+
+  <circle cx="350" cy="97"  r="5" fill="#2980b9"/>
+  <text x="356" y="92"  font-size="12" fill="#2980b9">m₁</text>
+
+  <!-- Midpoint dot -->
+  <circle cx="245" cy="151" r="4" fill="#555"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="mkg" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#7f8c8d"/>
+    </marker>
+    <marker id="mkt" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#16a085"/>
+    </marker>
+  </defs>
+
+  <!-- Vector m1 − m2 (dashed grey), from m2 toward m1 direction, starting at midpoint -->
+  <!-- direction in SVG: (350-140, 97-205) = (210,-108), normalised ≈ (0.889,-0.458) -->
+  <!-- from midpoint (245,151) to (245+115*0.889, 151-115*0.458) = (347, 98) -->
+  <line x1="245" y1="151" x2="338" y2="104"
+        stroke="#7f8c8d" stroke-width="2" stroke-dasharray="7,4"
+        marker-end="url(#mkg)"/>
+  <!-- label midway, rotated to follow arrow -->
+  <text font-size="11" fill="#7f8c8d" transform="rotate(-27 285 120)">
+    <tspan x="272" y="128">m₁ − m₂</tspan>
+  </text>
+
+  <!-- w* line (solid teal) — different angle due to S_W⁻¹, through midpoint -->
+  <!-- direction chosen to be visibly rotated: roughly (170,-55) in SVG, angle ≈ -18° -->
+  <!-- unit ≈ (0.951,-0.309); extend 130px each side -->
+  <line x1="121" y1="191" x2="245" y2="151"
+        stroke="#16a085" stroke-width="2.5"/>
+  <line x1="245" y1="151" x2="369" y2="111"
+        stroke="#16a085" stroke-width="2.5" marker-end="url(#mkt)"/>
+  <text x="374" y="107" font-size="13" fill="#16a085" font-weight="bold">w*</text>
+
+  <!-- Angle arc between the two vectors at the midpoint -->
+  <!-- m1-m2 dir ≈ -27°; w* dir ≈ -18° → small arc from -18° to -27° -->
+  <path d="M 275,141 A 32,32 0 0,0 285,130"
+        stroke="#555" stroke-width="1.3" fill="none"/>
+  <text x="284" y="140" font-size="10" fill="#555">θ</text>
+
+  <!-- Decision boundary — perpendicular to w*, through midpoint -->
+  <!-- w* dir (0.951,-0.309); perp = (0.309,0.951) -->
+  <!-- from (245,151): ±95*(0.309,0.951) = (±29, ±90) -->
+  <line x1="216" y1="61" x2="274" y2="241"
+        stroke="#bbb" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <text x="275" y="247" font-size="10" fill="#aaa">frontière</text>
+
+  <!-- Legend box -->
+  <rect x="10" y="12" width="220" height="68" rx="7"
+        fill="white" stroke="#16a085" stroke-width="1.5"/>
+  <text x="115" y="31" text-anchor="middle" font-size="11" fill="#16a085" font-weight="bold">
+    Théorème d'équivalence
+  </text>
+  <text x="115" y="49" text-anchor="middle" font-size="11" fill="#333">
+    w*_ADL  =  w*_MCO
+  </text>
+  <text x="115" y="67" text-anchor="middle" font-size="10.5" fill="#555">
+    ∝  S_W⁻¹ (m₁ − m₂)
+  </text>
+
+  <!-- Small legend: line styles -->
+  <line x1="10" y1="258" x2="45" y2="258" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="50" y="262" font-size="10" fill="#7f8c8d">direction m₁ − m₂ (naive)</text>
+  <line x1="10" y1="278" x2="45" y2="278" stroke="#16a085" stroke-width="2.5"/>
+  <text x="50" y="282" font-size="10" fill="#16a085">direction optimale w* (ADL = MCO)</text>
+
+</svg>
+<figcaption style="margin-top:.7rem; font-size:.88rem; color:#888;">
+  <strong>Figure 4.</strong> Géométrie du théorème d'équivalence. La direction naïve
+  m₁ − m₂ (tirets gris) et la direction optimale w* = S_W⁻¹(m₁ − m₂) (trait teal)
+  sont en général distinctes (angle θ ≠ 0) lorsque S_W est non sphérique.
+  Le théorème affirme que l'ADL de Fisher et les MCO aboutissent tous deux à <strong>w*</strong>.
+</figcaption>
+</figure>
+
 
 
 ## 6. Forme matricielle et solveurs itératifs
@@ -330,7 +434,67 @@ données), on retrouve la même direction $\propto (3, -1)^{\top}$.
   </figcaption>
 </figure>
 
-## 8. Conclusion
+## 8. Applications concrètes
+
+L'équivalence ADL–MCO change la façon dont on implante et étend l'ADL dans
+des domaines très différents.
+
+### 8.1 Reconnaissance faciale — Fisherfaces
+
+L'algorithme **Fisherfaces** (Belhumeur, Hespanha & Kriegman, 1997) applique
+l'ADL directement aux pixels d'images de visages. Une image $64 \times 64$
+est un vecteur dans $\mathbb{R}^{4096}$. L'inversion directe de $S_W \in
+\mathbb{R}^{4096 \times 4096}$ coûte $O(d^3) \approx 7 \times 10^{10}$
+opérations — inaccessible.
+
+La solution classique passe d'abord par une ACP pour réduire la dimension,
+puis applique l'ADL dans le sous-espace réduit. Avec la reformulation MCO,
+on peut à la place appliquer **LSQR** directement sur les pixels centrés : le
+produit $S_T\,\mathbf{p} = \mathbf{X}_c^\top(\mathbf{X}_c\,\mathbf{p})$ ne
+matérialise jamais la matrice $4096 \times 4096$ et converge en quelques
+dizaines d'itérations.
+
+### 8.2 Génomique — classification de sous-types de cancer
+
+En RNA-seq ou microarray, on dispose typiquement de $N \approx 200$
+échantillons et $d \approx 20\,000$ gènes, donc $d \gg N$ et $S_W$ est
+singulière. La formulation MCO suggère immédiatement la correction : ajouter
+un terme de régularisation $\lambda I$ à $S_T$, ce qui revient à résoudre
+
+$$\min_{\mathbf{w}}\; \tfrac{1}{2}\|\mathbf{X}_c\,\mathbf{w} - \mathbf{t}\|^2 + \tfrac{\lambda}{2}\|\mathbf{w}\|^2,$$
+
+dont la solution $(S_T + \lambda I)^{-1}N(\mathbf{m}_1-\mathbf{m}_2)$ reste
+stable même quand $S_T$ est singulière. C'est exactement l'ADL régularisée
+(RDA) de Friedman (1989), obtenue ici par simple inspection du problème de
+régression.
+
+### 8.3 Finance — le Z-score d'Altman
+
+En 1968, Edward Altman publie un modèle de prédiction de faillite d'entreprise
+basé sur cinq ratios financiers $(x_1, \ldots, x_5)$ :
+
+$$Z = 1.2\,x_1 + 1.4\,x_2 + 3.3\,x_3 + 0.6\,x_4 + 1.0\,x_5.$$
+
+C'est un discriminant linéaire pur : les coefficients sont obtenus par ADL
+sur $N = 66$ entreprises dans $\mathbb{R}^5$. Une entreprise avec $Z < 1.81$
+est classée à risque, $Z > 2.99$ est saine. Plus de 50 ans après, ce modèle
+reste une référence dans l'industrie financière — illustration de la
+robustesse de la solution MCO en faible dimension.
+
+### 8.4 Spectroscopie — chimiométrie
+
+En spectroscopie proche infrarouge (NIR), un spectre est un vecteur de
+$d \approx 1\,000$–$10\,000$ longueurs d'onde fortement corrélées. L'objectif
+est de classer des substances (type d'huile, qualité du grain, contrefaçon
+alimentaire). La quasi-singularité de $S_W$ rend l'inversion directe instable ;
+la formulation MCO permet d'utiliser **LSQR** ou la régression ridge, qui
+exploitent la structure de faible rang effectif pour converger rapidement. En
+pratique, les solveurs itératifs issus de l'interprétation MCO offrent des
+gains d'un ordre de grandeur par rapport à l'inversion directe.
+
+---
+
+## 9. Conclusion
 
 L'équivalence établie ici peut s'énoncer simplement :
 
@@ -360,3 +524,6 @@ C'est plus qu'une curiosité mathématique :
 2. Hastie, T., Tibshirani, R., & Friedman, J. (2009). *The Elements of Statistical Learning*, Section 4.3. Springer.
 3. Duda, R. O., Hart, P. E., & Stork, D. G. (2001). *Pattern Classification*, Chapitre 3. Wiley.
 4. Paige, C. C. & Saunders, M. A. (1982). LSQR: An algorithm for sparse linear equations and sparse least squares. *ACM Transactions on Mathematical Software*, 8(1), 43–71.
+5. Belhumeur, P. N., Hespanha, J. P., & Kriegman, D. J. (1997). Eigenfaces vs. Fisherfaces: Recognition using class specific linear projection. *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 19(7), 711–720.
+6. Friedman, J. H. (1989). Regularized discriminant analysis. *Journal of the American Statistical Association*, 84(405), 165–175.
+7. Altman, E. I. (1968). Financial ratios, discriminant analysis and the prediction of corporate bankruptcy. *The Journal of Finance*, 23(4), 589–609.
