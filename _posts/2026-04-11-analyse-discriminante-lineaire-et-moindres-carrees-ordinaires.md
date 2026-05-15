@@ -32,9 +32,9 @@ cette équivalence a une importance pratique.
 
 
 
-## 1. L'Analyse Discriminante Linéaire de Fisher
+## L'Analyse Discriminante Linéaire de Fisher
 
-### 1.1 Mise en place
+### Mise en place
 
 Soit $$\{\mathbf{x}_n, c_n\}_{n=1}^{N}$$ un jeu de données étiqueté dans
 $$\mathbb{R}^d$$ avec deux classes $$C_1$$ et $$C_2$$, contenant respectivement
@@ -46,7 +46,7 @@ $$\mathbf{m}_k = \frac{1}{N_k}\sum_{n \in C_k} \mathbf{x}_n, \qquad k = 1, 2,$$
 et la moyenne globale $\mathbf{m} = \frac{1}{N}\sum_{n=1}^{N}\mathbf{x}_n = \frac{N_1}{N}\mathbf{m}_1 + \frac{N_2}{N}\mathbf{m}_2$.
 
 
-### 1.2 Le critère de Fisher
+### Le critère de Fisher
 
 On cherche une direction $\mathbf{w} \in \mathbb{R}^d$ telle que les
 projections scalaires $y_n = \mathbf{w}^{\top}\mathbf{x}_n$ soient bien
@@ -62,7 +62,7 @@ et la **matrice de dispersion intra-classes** est
 
 $$S_W = \sum_{k=1}^{2}\sum_{n \in C_k}(\mathbf{x}_n - \mathbf{m}_k)(\mathbf{x}_n - \mathbf{m}_k)^{\top}.$$
 
-### 1.3 La solution de l'ADL
+### La solution de l'ADL
 
 En utilisant les multiplicateurs de Lagrange (ou en différenciant $J$ et en
 annulant le gradient), la direction optimale satisfait le problème aux valeurs
@@ -89,9 +89,9 @@ classe dont la moyenne projetée est la plus proche.
   </figcaption>
 </figure>
 
-## 2. Les Moindres Carrés : une perspective par régression
+## Les Moindres Carrés : une perspective par régression
 
-### 2.1 Encodage des étiquettes de classe
+### Encodage des étiquettes de classe
 
 L'idée clé est de remplacer les étiquettes discrètes $c_n \in \{C_1, C_2\}$
 par des cibles à valeurs réelles
@@ -103,7 +103,7 @@ cibles sont **de moyenne nulle** :
 
 $$\sum_{n=1}^{N} t_n = N_1 \cdot \frac{N}{N_1} + N_2 \cdot \left(-\frac{N}{N_2}\right) = N - N = 0.$$
 
-### 2.2 L'objectif MCO
+### L'objectif MCO
 
 On ajuste un modèle affine $\hat{y}_n = \mathbf{w}^{\top}\mathbf{x}_n + w_0$
 en minimisant la somme des résidus au carré :
@@ -112,9 +112,9 @@ $$E(\mathbf{w}, w_0) = \frac{1}{2}\sum_{n=1}^{N}\left(\mathbf{w}^{\top}\mathbf{x
 
 
 
-## 3. Dérivation des équations normales
+## Dérivation des équations normales
 
-### 3.1 Résolution du biais $w_0$
+### Résolution du biais $w_0$
 
 En posant $\partial E / \partial w_0 = 0$ :
 
@@ -124,7 +124,7 @@ En réarrangeant et en utilisant $\sum_n t_n = 0$ et $\sum_n \mathbf{x}_n = N\ma
 
 $$N w_0 + \mathbf{w}^{\top}(N\mathbf{m}) = 0 \implies \boxed{w_0 = -\mathbf{w}^{\top}\mathbf{m}.}$$
 
-### 3.2 Résolution du vecteur de poids $\mathbf{w}$
+### Résolution du vecteur de poids $\mathbf{w}$
 
 En posant $\partial E / \partial \mathbf{w} = 0$ :
 
@@ -170,7 +170,7 @@ $$\boxed{S_T\,\mathbf{w} = N(\mathbf{m}_1 - \mathbf{m}_2).}$$
 
 ---
 
-## 4. Lien entre $S_T$, $S_W$ et $S_B$
+## Lien entre $S_T$, $S_W$ et $S_B$
 
 La matrice de dispersion totale se décompose comme suit :
 
@@ -223,7 +223,7 @@ C'est précisément la solution de l'ADL de Fisher.
 
 
 
-## 5. Théorème d'équivalence
+## Théorème d'équivalence
 
 > **Théorème.** Pour une classification binaire avec $N_1$ observations dans
 > $C_1$ et $N_2$ dans $C_2$, avec les cibles $t_n = N/N_1$ pour $C_1$ et
@@ -344,9 +344,9 @@ au plus proche voisin des moyennes.
 
 
 
-## 6. Forme matricielle et solveurs itératifs
+## Forme matricielle et solveurs itératifs
 
-### 6.1 Équation normale compacte
+### Équation normale compacte
 
 En notant $\mathbf{X} \in \mathbb{R}^{N \times d}$ la matrice de données
 (les lignes sont les observations) et $\mathbf{t} \in \mathbb{R}^N$ le vecteur
@@ -360,7 +360,7 @@ L'équation normale est :
 
 $$\tilde{\mathbf{X}}^{\top}\tilde{\mathbf{X}}\,\boldsymbol{\beta} = \tilde{\mathbf{X}}^{\top}\mathbf{t}.$$
 
-### 6.2 Pourquoi cela importe : l'ouverture vers les méthodes itératives
+### Pourquoi cela importe : l'ouverture vers les méthodes itératives
 
 La formule ADL $\mathbf{w} = S_W^{-1}(\mathbf{m}_1 - \mathbf{m}_2)$ est
 habituellement résolue par factorisation de $S_W$ (par exemple, décomposition
@@ -382,7 +382,7 @@ l'ordre des milliers, un solveur itératif comme **LSQR** ou les **GC appliqués
 à $S_T$** peut converger en bien moins de $d$ itérations lorsque la matrice de
 dispersion a des valeurs propres à décroissance rapide — situation courante en pratique.
 
-### 6.3 L'approche GC explicitement
+### L'approche GC explicitement
 
 En appliquant les GC au système $S_T\,\mathbf{w} = N(\mathbf{m}_1 - \mathbf{m}_2)$ :
 
@@ -403,7 +403,7 @@ l'empreinte mémoire à $O(Nd)$ plutôt que $O(d^2)$.
 
 
 
-## 7. Exemple numérique
+## Exemple numérique
 
 Supposons $d = 2$, $N_1 = N_2 = 50$, et
 
@@ -434,12 +434,12 @@ données), on retrouve la même direction $\propto (3, -1)^{\top}$.
   </figcaption>
 </figure>
 
-## 8. Applications concrètes
+## Applications concrètes
 
 L'équivalence ADL–MCO change la façon dont on implante et étend l'ADL dans
 des domaines très différents.
 
-### 8.1 Reconnaissance faciale — Fisherfaces
+### Reconnaissance faciale — Fisherfaces
 
 L'algorithme **Fisherfaces** (Belhumeur, Hespanha & Kriegman, 1997) applique
 l'ADL directement aux pixels d'images de visages. Une image $64 \times 64$
@@ -454,7 +454,7 @@ produit $S_T\,\mathbf{p} = \mathbf{X}_c^\top(\mathbf{X}_c\,\mathbf{p})$ ne
 matérialise jamais la matrice $4096 \times 4096$ et converge en quelques
 dizaines d'itérations.
 
-### 8.2 Génomique — classification de sous-types de cancer
+### Génomique — classification de sous-types de cancer
 
 En RNA-seq ou microarray, on dispose typiquement de $N \approx 200$
 échantillons et $d \approx 20\,000$ gènes, donc $d \gg N$ et $S_W$ est
@@ -468,7 +468,7 @@ stable même quand $S_T$ est singulière. C'est exactement l'ADL régularisée
 (RDA) de Friedman (1989), obtenue ici par simple inspection du problème de
 régression.
 
-### 8.3 Finance — le Z-score d'Altman
+### Finance — le Z-score d'Altman
 
 En 1968, Edward Altman publie un modèle de prédiction de faillite d'entreprise
 basé sur cinq ratios financiers $(x_1, \ldots, x_5)$ :
@@ -481,7 +481,7 @@ est classée à risque, $Z > 2.99$ est saine. Plus de 50 ans après, ce modèle
 reste une référence dans l'industrie financière — illustration de la
 robustesse de la solution MCO en faible dimension.
 
-### 8.4 Spectroscopie — chimiométrie
+### Spectroscopie — chimiométrie
 
 En spectroscopie proche infrarouge (NIR), un spectre est un vecteur de
 $d \approx 1\,000$–$10\,000$ longueurs d'onde fortement corrélées. L'objectif
@@ -494,7 +494,7 @@ gains d'un ordre de grandeur par rapport à l'inversion directe.
 
 ---
 
-## 9. Conclusion
+## Conclusion
 
 L'équivalence établie ici peut s'énoncer simplement :
 

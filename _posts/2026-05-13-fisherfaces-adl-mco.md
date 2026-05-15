@@ -31,7 +31,7 @@ comment la reformulation MCO contourne ce problème.
 
 
 
-## 1. Le dataset Olivetti Faces
+## Le dataset Olivetti Faces
 
 Le dataset Olivetti (AT&T Laboratories Cambridge, 1994) contient **400 images**
 en niveaux de gris de **40 personnes** (10 images par personne), chacune de
@@ -97,9 +97,9 @@ X_test_c  = X_test  - mean_face
 
 ---
 
-## 2. Approche classique : ACP puis ADL
+## Approche classique : ACP puis ADL
 
-### 2.1 Pourquoi passer par l'ACP ?
+### Pourquoi passer par l'ACP ?
 
 L'ADL cherche $\mathbf{w} = S_W^{-1}(\mathbf{m}_1 - \mathbf{m}_2)$. Avec
 $d = 4096$ et seulement $N = 300$ observations d'entraînement, $S_W$ est
@@ -126,7 +126,7 @@ X_train_lda = lda_classic.fit_transform(X_train_pca, y_train)  # (300, 39)
 X_test_lda  = lda_classic.transform(X_test_pca)                # (100, 39)
 ```
 
-### 2.2 Classification par plus proche voisin
+### Classification par plus proche voisin
 
 ```python
 from sklearn.neighbors import KNeighborsClassifier
@@ -158,9 +158,9 @@ print(f"Précision ACP+ADL : {acc_classic:.1%}")
 
 
 
-## 3. Approche MCO directe : LSQR sans ACP
+## Approche MCO directe : LSQR sans ACP
 
-### 3.1 Encodage des cibles multi-classes
+### Encodage des cibles multi-classes
 
 Dans le [billet précédent]({{ '/posts/analyse-discriminante-lineaire-et-moindres-carrees-ordinaires' | relative_url }}),
 nous avons montré pour le cas binaire que la cible $t_n = N/N_k$ (signe positif
@@ -188,7 +188,7 @@ for k in range(n_classes):
 T -= T.mean(axis=0)
 ```
 
-### 3.2 Résolution par LSQR
+### Résolution par LSQR
 
 L'idée clé : au lieu d'inverser $S_W$ de taille $d \times d$, on résout
 directement le système rectangulaire $\mathbf{X}_c\, W \approx T$ de taille
@@ -210,7 +210,7 @@ t_lsqr = time.time() - t0
 print(f"Temps LSQR ({n_classes} colonnes) : {t_lsqr:.2f} s")
 ```
 
-### 3.3 Classification
+### Classification
 
 On projette chaque image sur les $K = 40$ directions, puis on applique
 le plus proche voisin dans ce nouvel espace.
@@ -228,7 +228,7 @@ print(f"Précision LSQR direct : {acc_lsqr:.1%}")
 
 
 
-## 4. Comparaison des deux approches
+## Comparaison des deux approches
 
 ```python
 print("=" * 42)
@@ -267,7 +267,7 @@ print(f"Cosinus moyen entre directions ADL et LSQR : {np.mean(cosines):.4f}")
 
 
 
-## 5. Visualisation des Fisherfaces
+## Visualisation des Fisherfaces
 
 Les colonnes de $W$ redimensionnées en $64 \times 64$ pixels sont les
 **Fisherfaces** : les directions dans l'espace image qui maximisent la
@@ -324,7 +324,7 @@ plt.show()
   </figcaption>
 </figure>
 
-## 6. Pourquoi LSQR est indispensable en grande dimension
+## Pourquoi LSQR est indispensable en grande dimension
 
 La complexité mémoire est la vraie contrainte :
 
@@ -345,7 +345,7 @@ $\kappa = \lambda_{\max}/\lambda_{\min}$ est le conditionnement de $S_T$.
 Pour les visages, $\kappa$ est modéré et la convergence est rapide.
 
 -
-## 7. Code complet
+## Code complet
 
 ```python
 import numpy as np

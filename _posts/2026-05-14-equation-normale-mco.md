@@ -27,9 +27,9 @@ géométrique — et précise quand la solution est unique.
 
 
 
-## 1. Dérivation par la condition de gradient
+## Dérivation par la condition de gradient
 
-### 1.1 Développement de la fonction coût
+### Développement de la fonction coût
 
 Notons $f(\mathbf{w}) = \|\mathbf{X}\mathbf{w} - \mathbf{b}\|^2$. En développant :
 
@@ -42,7 +42,7 @@ $$f(\mathbf{w})
 $f$ est une fonction quadratique convexe en $\mathbf{w}$ (puisque
 $\mathbf{X}^\top \mathbf{X}$ est semi-définie positive).
 
-### 1.2 Condition de premier ordre
+### Condition de premier ordre
 
 Le gradient de $f$ par rapport à $\mathbf{w}$ est :
 
@@ -58,7 +58,7 @@ $$\nabla_{\mathbf{w}} f(\mathbf{w}^*) = \mathbf{0}
 C'est l'**équation normale**. C'est un système $n \times n$ en $\mathbf{w}^*$,
 quelle que soit la taille $m$ de $\mathbf{b}$.
 
-### 1.3 Pourquoi c'est bien un minimum global
+### Pourquoi c'est bien un minimum global
 
 $f$ est convexe (carré d'une norme), donc tout point critique est un minimum
 global. L'ensemble des minimiseurs est convexe ; il est réduit à un singleton
@@ -67,9 +67,9 @@ si $\mathbf{X}$ est de rang plein en colonnes ($\text{rang}(\mathbf{X}) = n$).
 
 
 
-## 2. Interprétation géométrique
+## Interprétation géométrique
 
-### 2.1 Projection orthogonale sur l'image de X
+### Projection orthogonale sur l'image de X
 
 Soit $\mathcal{C}(\mathbf{X}) = \{\mathbf{X}\mathbf{w} : \mathbf{w} \in \mathbb{R}^n\}$
 l'image (espace colonne) de $\mathbf{X}$. Le vecteur $\hat{\mathbf{b}} = \mathbf{X}\mathbf{w}^*$
@@ -88,7 +88,7 @@ $$\mathbf{X}^\top \mathbf{r}^* = \mathbf{0}
 
 On retrouve l'équation normale — ici comme **condition d'orthogonalité du résidu**.
 
-### 2.2 Schéma de la décomposition
+### Schéma de la décomposition
 
 $$\mathbf{b} = \underbrace{\mathbf{X}\mathbf{w}^*}_{\hat{\mathbf{b}}\;\in\;\mathcal{C}(\mathbf{X})}
   + \underbrace{(\mathbf{b} - \mathbf{X}\mathbf{w}^*)}_{\mathbf{r}^*\;\perp\;\mathcal{C}(\mathbf{X})}.$$
@@ -118,9 +118,9 @@ $$\|\mathbf{b}\|^2 = \|\hat{\mathbf{b}}\|^2 + \|\mathbf{r}^*\|^2.$$
 
 
 
-## 3. Unicité et rang
+## Unicité et rang
 
-### 3.1 Cas rang plein en colonnes ($\text{rang}(\mathbf{X}) = n$)
+### Cas rang plein en colonnes ($\text{rang}(\mathbf{X}) = n$)
 
 Si les colonnes de $\mathbf{X}$ sont linéairement indépendantes, alors
 $\mathbf{X}^\top \mathbf{X}$ est **symétrique définie positive** (SDP) :
@@ -135,7 +135,7 @@ $$\mathbf{w}^* = (\mathbf{X}^\top \mathbf{X})^{-1}\,\mathbf{X}^\top \mathbf{b}.$
 La matrice $(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top$ s'appelle la
 **pseudo-inverse de gauche** de $\mathbf{X}$.
 
-### 3.2 Cas rang déficient ($\text{rang}(\mathbf{X}) = r < n$)
+### Cas rang déficient ($\text{rang}(\mathbf{X}) = r < n$)
 
 Si $\mathbf{X}$ n'est pas de rang plein en colonnes, $\mathbf{X}^\top \mathbf{X}$
 est **singulière** : il existe une infinité de solutions à l'équation normale
@@ -150,7 +150,7 @@ décomposition en valeurs singulières $\mathbf{X} = \mathbf{U}\boldsymbol{\Sigm
 avec $\boldsymbol{\Sigma}^{\dagger}$ formée en inversant les valeurs singulières
 non nulles).
 
-### 3.3 Tableau récapitulatif
+### Tableau récapitulatif
 
 | Système | Condition | Équation normale | Solution |
 |---------|-----------|-----------------|----------|
@@ -159,7 +159,7 @@ non nulles).
 | Sous-déterminé ($m < n$) | $\text{rang}(\mathbf{X}) = m$ | $\mathbf{X}^\top \mathbf{X}$ singulière | $\infty$ solutions ; norme min : $\mathbf{X}^{\dagger}\mathbf{b}$ |
 | Rang déficient | $\text{rang}(\mathbf{X}) = r < \min(m,n)$ | $\mathbf{X}^\top \mathbf{X}$ singulière | $\infty$ solutions ; norme min : $\mathbf{X}^{\dagger}\mathbf{b}$ |
 
-### 3.4 Cas ADL-MCO sur Olivetti Faces
+### Cas ADL-MCO sur Olivetti Faces
 
 Dans notre application, $\mathbf{X}_c \in \mathbb{R}^{300 \times 4096}$
 ($N=300 \ll d=4096$). On est dans le cas **sous-déterminé** : le système

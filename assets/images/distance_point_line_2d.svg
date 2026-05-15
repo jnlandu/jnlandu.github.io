@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" role="img" aria-labelledby="title desc">
+  <title id="title">Distance from a point to a line in two dimensions</title>
+  <desc id="desc">A point P is projected orthogonally onto a line H. The closest point on the line is P star, and the segment from P to P star follows the normal direction a.</desc>
+  <defs>
+    <marker id="axis-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3d4b5f"/>
+    </marker>
+    <marker id="normal-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d62828"/>
+    </marker>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0b1f33" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <rect width="760" height="560" fill="#ffffff"/>
+
+  <g stroke="#e5e7eb" stroke-width="1">
+    <path d="M100 60 L100 500"/>
+    <path d="M212 60 L212 500"/>
+    <path d="M324 60 L324 500"/>
+    <path d="M436 60 L436 500"/>
+    <path d="M548 60 L548 500"/>
+    <path d="M660 60 L660 500"/>
+    <path d="M72 480 L688 480"/>
+    <path d="M72 390 L688 390"/>
+    <path d="M72 300 L688 300"/>
+    <path d="M72 210 L688 210"/>
+    <path d="M72 120 L688 120"/>
+  </g>
+
+  <g stroke="#3d4b5f" stroke-width="2.5" fill="none" marker-end="url(#axis-arrow)">
+    <path d="M72 480 L692 480"/>
+    <path d="M100 508 L100 54"/>
+  </g>
+  <g fill="#3d4b5f" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="600">
+    <text x="700" y="487">x1</text>
+    <text x="84" y="43">x2</text>
+  </g>
+
+  <g filter="url(#soft-shadow)">
+    <path d="M156 498 L492 66" stroke="#0b1f33" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <path d="M156 498 L492 66" stroke="#111827" stroke-width="4" stroke-linecap="round"/>
+
+  <path d="M352 246 L520 300" stroke="#d62828" stroke-width="5" stroke-linecap="round" marker-end="url(#normal-arrow)"/>
+  <path d="M352 246 L520 300" stroke="#d62828" stroke-width="2" stroke-dasharray="8 8" opacity="0.45"/>
+
+  <circle cx="520" cy="300" r="12" fill="#2a9d8f" stroke="#0b645b" stroke-width="3"/>
+  <circle cx="352" cy="246" r="10" fill="#f77f00" stroke="#9b4d00" stroke-width="3"/>
+
+  <path d="M352 246 L397 188 L443 203" fill="none" stroke="#6b7280" stroke-width="2.5" stroke-dasharray="6 6"/>
+
+  <g font-family="Inter, system-ui, -apple-system, sans-serif">
+    <text x="536" y="306" fill="#0b645b" font-size="28" font-weight="700">P</text>
+    <text x="298" y="242" fill="#9b4d00" font-size="27" font-weight="700">P*</text>
+    <text x="424" y="269" fill="#d62828" font-size="28" font-weight="700">a</text>
+    <text x="212" y="132" fill="#111827" font-size="27" font-weight="700">H</text>
+    <text x="232" y="166" fill="#111827" font-size="21">a<tspan baseline-shift="super" font-size="13">T</tspan>x = b</text>
+    <text x="432" y="357" fill="#d62828" font-size="22">d(P, H)</text>
+  </g>
+</svg>
