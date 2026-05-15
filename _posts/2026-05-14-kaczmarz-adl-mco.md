@@ -35,9 +35,9 @@ $O(d)$ opérations — et bien adaptée aux très grandes matrices.
 
 
 
-## 1. La méthode de Kaczmarz classique
+## La méthode de Kaczmarz classique
 
-### 1.1 Géométrie des projections successives
+### Géométrie des projections successives
 
 Considérons le système linéaire
 
@@ -73,7 +73,7 @@ où dans la version **cyclique** on prend $i_k = k \bmod m$, et dans la version
   </figcaption>
 </figure>
 
-### 1.2 Convergence cyclique
+### Convergence cyclique
 
 Pour un système **consistant** ($\mathbf{b} \in \mathcal{R}(A)$), la version
 cyclique converge mais à une vitesse qui dépend des angles entre les hyperplans.
@@ -82,9 +82,9 @@ et la convergence est très lente.
 
 
 
-## 2. Kaczmarz aléatoire (Strohmer & Vershynin, 2009)
+## Kaczmarz aléatoire (Strohmer & Vershynin, 2009)
 
-### 2.1 Tirage proportionnel aux normes
+### Tirage proportionnel aux normes
 
 La version aléatoire tire la rangée $i_k$ avec probabilité
 
@@ -95,7 +95,7 @@ Ce choix est naturel : une rangée $\mathbf{a}_i$ de grande norme définit un
 hyperplan qui contribue davantage à la géométrie du système, et lui donner
 plus de poids accélère la convergence.
 
-### 2.2 Théorème de convergence
+### Théorème de convergence
 
 >**Théorème** (Strohmer & Vershynin, 2009). Soit $A\mathbf{x} = \mathbf{b}$
 >un système consistant, $\mathbf{x}^*$ sa solution de norme minimale, et
@@ -130,7 +130,7 @@ bien conditionné, rangées de normes homogènes), plus la convergence est rapid
 Chaque itération réduit l'erreur d'un facteur **constant**, d'où la convergence
 **exponentielle en espérance**.
 
-### 2.3 Connexion avec la descente de gradient stochastique
+### Connexion avec la descente de gradient stochastique
 
 L'update de Kaczmarz peut se réécrire :
 
@@ -146,9 +146,9 @@ Kaczmarz aléatoire hérite de la robustesse du SGD.
 
 
 
-## 3. Kaczmarz étendu aléatoire (REK) pour les moindres carrés
+## Kaczmarz étendu aléatoire (REK) pour les moindres carrés
 
-### 3.1 Limite du Kaczmarz standard pour les systèmes inconsistants
+### Limite du Kaczmarz standard pour les systèmes inconsistants
 
 Le Kaczmarz standard suppose que le système $A\mathbf{x} = \mathbf{b}$ est
 **consistant**. Dans notre contexte ADL-MCO :
@@ -166,7 +166,7 @@ $$\mathbf{w}^* = \arg\min_{\mathbf{w}} \|\mathbf{X}_c \mathbf{w} - \mathbf{t}\|^
 où $\mathbf{X}_c^{\dagger}$ est la pseudo-inverse de Moore-Penrose. Kaczmarz
 standard oscille sans converger sur un tel système.
 
-### 3.2 Décomposition du second membre
+### Décomposition du second membre
 
 La clé de REK est la décomposition orthogonale :
 
@@ -180,7 +180,7 @@ Le Kaczmarz standard appliqué à $$A\mathbf{x} = \mathbf{b}_{\mathcal{R}}$$
 convergerait, mais $\mathbf{b}_{\mathcal{R}}$ n'est pas connue explicitement.
 REK l'estime simultanément.
 
-### 3.3 Algorithme REK (Zouzias & Freris, 2013)
+### Algorithme REK (Zouzias & Freris, 2013)
 
 REK maintient deux vecteurs : $\mathbf{x}^{(k)} \approx \mathbf{x}^*$ et
 $\mathbf{z}^{(k)} \to \mathbf{b}_{\mathcal{N}}$.
@@ -214,9 +214,9 @@ $A\mathbf{x} = \mathbf{b}_{\mathcal{R}}$.
 
 
 
-## 4. Application au problème ADL-MCO
+## Application au problème ADL-MCO
 
-### 4.1 Structure du système
+### Structure du système
 
 Dans notre formulation, on résout colonne par colonne
 
@@ -230,7 +230,7 @@ La matrice $\mathbf{X}_c$ est **sous-déterminée** ($N \ll d$). Le système
 $\mathbf{X}_c\,\mathbf{w} = \mathbf{t}$ est donc soit inconsistant, soit
 sur-déterminé dans le sens dual — REK est l'outil approprié.
 
-### 4.2 Paramètres des probabilités de tirage
+### Paramètres des probabilités de tirage
 
 Les probabilités de tirage se calculent une seule fois avant les itérations :
 
@@ -243,9 +243,9 @@ Coût de pré-calcul : $O(Nd)$ — identique à un produit matrice-vecteur.
 
 
 
-## 5. Implémentation Python
+## Implémentation Python
 
-### 5.1 Kaczmarz aléatoire standard
+### Kaczmarz aléatoire standard
 
 ```python
 import numpy as np
@@ -287,7 +287,7 @@ def randomized_kaczmarz(A, b, n_iter=None, tol=1e-8, seed=0):
     return x, log
 ```
 
-### 5.2 Kaczmarz étendu aléatoire (REK)
+### Kaczmarz étendu aléatoire (REK)
 
 ```python
 def randomized_extended_kaczmarz(A, b, n_iter=None, tol=1e-8, seed=0):
@@ -331,7 +331,7 @@ def randomized_extended_kaczmarz(A, b, n_iter=None, tol=1e-8, seed=0):
     return x, log
 ```
 
-### 5.3 Application multi-classes au dataset Olivetti
+### Application multi-classes au dataset Olivetti
 
 ```python
 # ── Données ────────────────────────────────────────────────────────────────
@@ -399,7 +399,7 @@ $O(d)$ contre $O(Nd)$ pour LSQR — décisif pour $d \gg N$.
 
 
 
-## 6. Courbes de convergence
+## Courbes de convergence
 
 Traçons la décroissance du résidu $\|\mathbf{X}_c \mathbf{w}^{(k)} - \mathbf{t}\|$
 pour RK, REK et LSQR sur la première colonne de $T$ :
@@ -471,7 +471,7 @@ plt.show()
 
 
 
-## 7. Comparaison des trois solveurs
+## Comparaison des trois solveurs
 
 | Critère | RK | REK | LSQR |
 |---|---|---|---|
@@ -495,9 +495,9 @@ plt.show()
 
 
 
-## 8. Analyse de la vitesse de convergence
+## Analyse de la vitesse de convergence
 
-### 8.1 Le rôle du conditionnement
+### Le rôle du conditionnement
 
 Le taux de convergence $1 - \sigma_{\min}^2 / \|A\|_F^2$ dépend du
 **conditionnement effectif** de $\mathbf{X}_c$.
@@ -512,7 +512,7 @@ Le ratio $\sigma_{\min}^2 / \|A\|_F^2$ est donc potentiellement très petit,
 ce qui peut nécessiter beaucoup d'itérations. **Préconditionner** (par exemple
 normaliser les rangées) améliore ce ratio.
 
-### 8.2 Préconditionnement des rangées
+### Préconditionnement des rangées
 
 Si on normalise chaque rangée à norme unitaire, les probabilités de tirage
 deviennent uniformes ($p_i = 1/m$) et le taux de convergence devient :
@@ -534,7 +534,7 @@ def preconditioned_rek(A, b, **kwargs):
     return randomized_extended_kaczmarz(A_hat, b_hat, **kwargs)
 ```
 
-### 8.3 Block REK : formulation et implémentation
+### Block REK : formulation et implémentation
 
 Au lieu de tirer une seule rangée (ou colonne), on tire un **bloc de $\tau$
 rangées** et on effectue la projection sur l'intersection des $\tau$ hyperplans
@@ -589,7 +589,7 @@ def block_rek(A, b, n_iter, tau=16, seed=0):
     return x
 ```
 
-### 8.4 Benchmark : MSE vs itérations et vs temps
+### Benchmark : MSE vs itérations et vs temps
 
 Nous comparons REK ($\tau=1$) et Block REK ($\tau \in \{8, 32, 64\}$) sur la
 première colonne de $T$ avec 3 000 outer steps chacun.
@@ -643,7 +643,7 @@ première colonne de $T$ avec 3 000 outer steps chacun.
 LSQR     MSE finale = 1.13e-14   wall = 0.14 s   ✓ référence
 ```
 
-### 8.5 Impact sur la précision de classification (40 colonnes)
+### Impact sur la précision de classification (40 colonnes)
 
 ```
 ==========================================================
@@ -661,7 +661,7 @@ plus rapide (10.4 s vs 11.8 s). $\tau=64$ n'apporte pas de gain supplémentaire
 ici car $N=300$ est petit — le système $64 \times 64$ devient dominant ; le
 point idéal se situe autour de $\tau \approx \sqrt{N} \approx 17$ pour ce dataset.
 
-### 8.6 Visualisation des directions discriminantes Block REK
+### Visualisation des directions discriminantes Block REK
 
 Les 40 colonnes de $W_{\text{Block-REK}}$ ($\tau=32$, 500 steps) redimensionnées
 en $64 \times 64$ pixels — les équivalents Block Kaczmarz des Fisherfaces.
@@ -695,7 +695,7 @@ for i, ax in enumerate(axes.ravel()):
   </figcaption>
 </figure>
 
-### 8.7 Projection sur les 2 premières directions Block REK
+### Projection sur les 2 premières directions Block REK
 
 ```python
 X_test_brek = X_test_c @ W_block_rek
@@ -724,7 +724,7 @@ ax.set_ylabel("Block-REK-face 2 (τ=32)")
 
 
 
-## 9. Code complet standalone
+## Code complet standalone
 
 ```python
 import numpy as np

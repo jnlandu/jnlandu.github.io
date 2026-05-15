@@ -28,9 +28,9 @@ from the regression normal equations, and why this equivalence matters in practi
 
 
 
-## 1. Fisher's Linear Discriminant Analysis
+## Fisher's Linear Discriminant Analysis
 
-### 1.1 Setup
+### Setup
 
 Let $$\{\mathbf{x}_n, c_n\}_{n=1}^{N}$# be a labelled dataset in $\mathbb{R}^d$ with
 binary classes $C_1$ and $C_2$, containing $N_1$ and $N_2$ samples respectively
@@ -40,7 +40,7 @@ $$\mathbf{m}_k = \frac{1}{N_k}\sum_{n \in C_k} \mathbf{x}_n, \qquad k = 1, 2,$$
 
 and the overall mean $\mathbf{m} = \frac{1}{N}\sum_{n=1}^{N}\mathbf{x}_n = \frac{N_1}{N}\mathbf{m}_1 + \frac{N_2}{N}\mathbf{m}_2$.
 
-### 1.2 The Fisher Criterion
+### The Fisher Criterion
 
 We seek a direction $\mathbf{w} \in \mathbb{R}^d$ such that the scalar projections
 $y_n = \mathbf{w}^{\top}\mathbf{x}_n$ are well-separated between classes.
@@ -56,7 +56,7 @@ and the **within-class scatter matrix** is
 
 $$S_W = \sum_{k=1}^{2}\sum_{n \in C_k}(\mathbf{x}_n - \mathbf{m}_k)(\mathbf{x}_n - \mathbf{m}_k)^{\top}.$$
 
-### 1.3 The LDA Solution
+### The LDA Solution
 
 Using the method of Lagrange multipliers (or by differentiating $J$ and setting
 the gradient to zero), the optimal direction satisfies the generalised eigenvalue
@@ -74,9 +74,9 @@ class whose projected mean is closest.
 
 
 
-## 2. Ordinary Least Squares: a Regression Perspective
+## Ordinary Least Squares: a Regression Perspective
 
-### 2.1 Encoding Class Labels
+### Encoding Class Labels
 
 The key insight is to replace the discrete labels $c_n \in \{C_1, C_2\}$ with
 real-valued targets
@@ -87,7 +87,7 @@ This encoding is not arbitrary. A key property is that the targets are **zero-me
 
 $$\sum_{n=1}^{N} t_n = N_1 \cdot \frac{N}{N_1} + N_2 \cdot \left(-\frac{N}{N_2}\right) = N - N = 0.$$
 
-### 2.2 The OLS Objective
+### The OLS Objective
 
 We fit an affine model $\hat{y}_n = \mathbf{w}^{\top}\mathbf{x}_n + w_0$ by
 minimising the sum of squared residuals:
@@ -96,9 +96,9 @@ $$E(\mathbf{w}, w_0) = \frac{1}{2}\sum_{n=1}^{N}\left(\mathbf{w}^{\top}\mathbf{x
 
 
 
-## 3. Deriving the Normal Equations
+## Deriving the Normal Equations
 
-### 3.1 Solving for the Bias $w_0$
+### Solving for the Bias $w_0$
 
 Setting $\partial E / \partial w_0 = 0$:
 
@@ -108,7 +108,7 @@ Rearranging and using $\sum_n t_n = 0$ and $\sum_n \mathbf{x}_n = N\mathbf{m}$:
 
 $$N w_0 + \mathbf{w}^{\top}(N\mathbf{m}) = 0 \implies \boxed{w_0 = -\mathbf{w}^{\top}\mathbf{m}.}$$
 
-### 3.2 Solving for the Weight Vector $\mathbf{w}$
+### Solving for the Weight Vector $\mathbf{w}$
 
 Setting $\partial E / \partial \mathbf{w} = 0$:
 
@@ -142,7 +142,7 @@ $$\boxed{S_T\,\mathbf{w} = N(\mathbf{m}_1 - \mathbf{m}_2).}$$
 
 
 
-## 4. Connecting $S_T$ to $S_W$ and $S_B$
+## Connecting $S_T$ to $S_W$ and $S_B$
 
 The total scatter matrix decomposes as
 
@@ -195,7 +195,7 @@ This is precisely the Fisher LDA solution.
 
 
 
-## 5. The Equivalence Theorem
+## The Equivalence Theorem
 
 > **Theorem.** For binary classification with $N_1$ samples in $C_1$ and $N_2$
 > samples in $C_2$, let target values be $t_n = N/N_1$ for $C_1$ and
@@ -211,9 +211,9 @@ a nearest-mean classifier.
 
 
 
-## 6. Matrix Form and Iterative Solvers
+## Matrix Form and Iterative Solvers
 
-### 6.1 Compact Normal Equation
+### Compact Normal Equation
 
 Writing $\mathbf{X} \in \mathbb{R}^{N \times d}$ for the data matrix (rows are
 samples) and $\mathbf{t} \in \mathbb{R}^N$ for the target vector, the OLS
@@ -227,7 +227,7 @@ The normal equation is
 
 $$\tilde{\mathbf{X}}^{\top}\tilde{\mathbf{X}}\,\boldsymbol{\beta} = \tilde{\mathbf{X}}^{\top}\mathbf{t}.$$
 
-### 6.2 Why This Matters: the Door to Iterative Methods
+### Why This Matters: the Door to Iterative Methods
 
 The LDA formula $\mathbf{w} = S_W^{-1}(\mathbf{m}_1 - \mathbf{m}_2)$ is usually
 solved by factorising $S_W$ (e.g., Cholesky decomposition), which costs
@@ -249,7 +249,7 @@ iterative solver like **LSQR** or **CG applied to $S_T$** can converge in far
 fewer than $d$ iterations when the scatter matrix has rapidly decaying
 eigenvalues — a common situation in practice.
 
-### 6.3 The CG Approach Explicitly
+### The CG Approach Explicitly
 
 Applying CG to the system $S_T\,\mathbf{w} = N(\mathbf{m}_1 - \mathbf{m}_2)$:
 
@@ -270,7 +270,7 @@ footprint at $O(Nd)$ rather than $O(d^2)$.
 
 
 
-## 7. Numerical Example (Sketch)
+## Numerical Example (Sketch)
 
 Suppose $d = 2$, $N_1 = N_2 = 50$, and
 
@@ -290,7 +290,7 @@ $S_T\,\mathbf{w} = N(\mathbf{m}_1 - \mathbf{m}_2)$ and using $S_T = S_W + S_B$
 
 
 
-## 8. Summary
+## Summary
 
 The equivalence established here can be stated cleanly:
 

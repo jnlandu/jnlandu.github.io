@@ -5,10 +5,8 @@ toc: true
 author: Jeremie Mabiala
 author_profile: "./assets/static/logo.jpeg"
 summary: >-
-  Nous dérivons la formule de la distance d'un point à un hyperplan par deux
-  approches (projection orthogonale et multiplicateurs de Lagrange), illustrons
-  le cas 2D et 3D, puis montrons comment ce résultat fonde les algorithmes
-  de Kaczmarz, la marge des SVM et la règle de décision de l'ADL.
+  Dans ce post nous allons montrer comment deriver  la formule de la distance d'un point à un hyperplan par deux approches (projection orthogonale et multiplicateurs de Lagrange). Nous illustrons le cas 2D et 3D, puis montrons comment ce résultat fonde des algorithmes utilisés en optimization ou en machine learnining, notamment  la méthode de
+   Kaczmarz, la marge des SVM et la règle de décision de l'ADL.
 tags: [linear-algebra, geometry, machine-learning, fundamentals, python]
 ---
 
@@ -16,36 +14,47 @@ tags: [linear-algebra, geometry, machine-learning, fundamentals, python]
 
 La distance d'un point à un hyperplan est l'un des résultats les plus
 fondamentaux de la géométrie euclidienne. Derrière sa formule apparemment
-simple se cache une structure qui réapparaît dans des domaines très différents :
+simple et lapidaire se cache une idée  qui réapparaît dans des domaines très différents des mathématiques, notamment:
 
-- la **méthode de Kaczmarz** — chaque itération est exactement une projection
-  sur un hyperplan,
-- les **machines à vecteurs de support (SVM)** — la marge d'un SVM est deux
-  fois la distance entre les classes et l'hyperplan séparateur,
-- l'**Analyse Discriminante Linéaire (ADL)** — la frontière de décision est
-  un hyperplan, et la règle d'assignation dépend du côté où se trouve le point.
+- en Optimization algorithmique, la **méthode de Kaczmarz** où chaque itération est exactement une projection sur un hyperplan,
+- en apprentisaaage automatique, **machines à vecteurs de support (SVM)**  où la marge d'un SVM est deux fois la distance entre les classes et l'hyperplan séparateur,
+- et toujours en apprentssage automatique, l'**Analyse Discriminante Linéaire (ADL)**  où la frontière de décision est un hyperplan, et la règle d'assignation dépend du côté où se trouve le point.
 
-Ce billet dérive la formule de façon rigoureuse, en illustrant chaque étape
-géométriquement.
+Les exemples de l'utilisation de cette notion en mathématiques  sont "pléthoriques". Dans ce billet, nous montrons comment  dériver la formule de façon rigoureuse, en illustrant chaque étape géométriquement, et montrons comment elle est liée aux concepts évoqués ci-dessus. Avant de commencer, rappelons d'abord ce que c'est un hyperplan.
 
 
 
-## 1. Rappel : l'hyperplan dans $\mathbb{R}^n$
+## Rappel : l'hyperplan dans $\mathbb{R}^n$
 
-### 1.1 Définition
+### Définition
 
-Un **hyperplan** de $\mathbb{R}^n$ est un sous-espace affin de dimension $n-1$.
+Un **hyperplan** de $\mathbb{R}^n$ est un sous-espace affine de dimension $n-1$.
 Il est entièrement caractérisé par un **vecteur normal** $\mathbf{a} \in \mathbb{R}^n$
-($\mathbf{a} \neq \mathbf{0}$) et un scalaire $b \in \mathbb{R}$ :
+($\mathbf{a} \neq \mathbf{0}$) et un scalaire $b \in \mathbb{R}$. C'est l'ensemble de tous les vecteurs de $\mathbb{R}^n$ dont le produit scalaire avec $\mathbf{a}$ est égal à $b$, i.e.
 
 $$H = \bigl\{\mathbf{x} \in \mathbb{R}^n \;:\; \mathbf{a}^\top \mathbf{x} = b\bigr\}.$$
 
 Le vecteur $\mathbf{a}$ est perpendiculaire à $H$ : pour tout
 $\mathbf{u}, \mathbf{v} \in H$, $\mathbf{a}^\top(\mathbf{u} - \mathbf{v}) = 0$.
 
-### 1.2 Cas particuliers selon la dimension
+Autrement dit, $b$ fixe la position de l'hyperplan, tandis que les points de
+$H$ sont les $\mathbf{x}$ qui vérifient $\mathbf{a}^\top \mathbf{x} = b$.
 
-| Dimension ambiante $n$ | Objet $H$ | Équation | Vecteur normal $\mathbf{a}$ |
+<figure style="text-align:center; margin: 2rem 0;">
+  <img src="{{ '/assets/images/hyperplane_r3_normal.svg' | relative_url }}"
+       alt="Hyperplan dans R³ avec un vecteur normal"
+       style="max-width:720px; width:100%; border-radius:6px;
+              box-shadow:0 2px 12px rgba(0,0,0,.12);">
+  <figcaption style="margin-top:.6rem; font-size:.88rem; color:#666;">
+    En dimension 3, un hyperplan est un plan. Le vecteur normal
+    $\mathbf{a}$ est perpendiculaire à toutes les directions contenues dans
+    $H = \{\mathbf{x} : \mathbf{a}^\top \mathbf{x} = b\}$.
+  </figcaption>
+</figure>
+
+### Cas particuliers selon la dimension
+
+| Dimension ambiante $n$ | $H$  =  | Équation | Vecteur normal $\mathbf{a}$ |
 |---|---|---|---|
 | 2 | Droite | $a_1 x_1 + a_2 x_2 = b$ | $(a_1,\, a_2)^\top \in \mathbb{R}^2$ |
 | 3 | Plan | $a_1 x_1 + a_2 x_2 + a_3 x_3 = b$ | $(a_1,\, a_2,\, a_3)^\top \in \mathbb{R}^3$ |
@@ -56,15 +65,13 @@ dimensions d'un embedding), mais la formule reste la même.
 
 
 
-## 2. Cas 2D : distance d'un point à une droite
+## Cas 2D : distance d'un point à une droite
 
-Avant la formule générale, ancrons l'intuition dans le plan.
+Avant de donner la formule générale, ancrons premiérement l'intuition dans le plan.
 
 Soit la droite $H : a_1 x_1 + a_2 x_2 = b$ et un point $P = (p_1, p_2)$.
 
-Le **pied de la perpendiculaire** — le point $P^*$ de $H$ le plus proche de $P$
-— se trouve en partant de $P$ dans la direction $\mathbf{a} = (a_1, a_2)^\top$
-(le vecteur normal à la droite) :
+Le  point $P^*$ de $H$ est  plus proche de $P$ si il se trouve,  en partant de $P$, dans la  même direction  que $\mathbf{a} = (a_1, a_2)^\top$ (le vecteur normal à la droite) :
 
 $$P^* = P + \lambda^* \mathbf{a}, \quad \lambda^* = \frac{b - \mathbf{a}^\top P}{\|\mathbf{a}\|^2}.$$
 
@@ -73,25 +80,24 @@ La distance est alors le déplacement effectué :
 $$d(P, H) = \|P - P^*\| = |\lambda^*| \cdot \|\mathbf{a}\| = \frac{|a_1 p_1 + a_2 p_2 - b|}{\sqrt{a_1^2 + a_2^2}}.$$
 
 <figure style="text-align:center; margin: 2rem 0;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Distance_from_a_point_to_a_line.svg"
+  <img src="{{ '/assets/images/distance_point_line_2d.svg' | relative_url }}"
        alt="Distance d'un point à une droite dans le plan"
-       style="max-width:500px; width:100%; border-radius:6px;
-              box-shadow:0 2px 12px rgba(0,0,0,.15);">
+       style="max-width:680px; width:100%; border-radius:6px;
+              box-shadow:0 2px 12px rgba(0,0,0,.12);">
   <figcaption style="margin-top:.6rem; font-size:.88rem; color:#666;">
-    Distance d'un point $P$ à une droite $H$ dans $\mathbb{R}^2$. La distance
-    minimale est atteinte au pied de la perpendiculaire $P^*$, et vaut
-    $\|PP^*\| = |\mathbf{a}^\top P - b| / \|\mathbf{a}\|$.
-    <em>Source : <a href="https://commons.wikimedia.org/wiki/File:Distance_from_a_point_to_a_line.svg"
-       target="_blank" rel="noopener">Søren Løvborg, Wikimedia Commons</a>,
-    domaine public (CC0).</em>
+    Dans $\mathbb{R}^2$, l'hyperplan $H$ est une droite. Le point le plus
+    proche de $P$ est sa projection orthogonale $P^*$ sur $H$, obtenue dans la
+    direction du vecteur normal $\mathbf{a}$.
   </figcaption>
 </figure>
 
 
 
-## 3. Dérivation générale dans $\mathbb{R}^n$
 
-### 3.1 Approche géométrique (ligne paramétrique)
+
+## Dérivation générale dans $\mathbb{R}^n$
+
+### Approche géométrique (ligne paramétrique)
 
 Soit $H = \{\mathbf{x} : \mathbf{a}^\top \mathbf{x} = b\}$ et $\mathbf{p} \in \mathbb{R}^n$.
 Le point de $H$ le plus proche de $\mathbf{p}$ se trouve sur la droite passant
@@ -114,7 +120,7 @@ et la **distance** est :
 
 $$\boxed{d(\mathbf{p},\, H) = \|\mathbf{p} - \mathbf{p}^*\| = |\lambda^*|\,\|\mathbf{a}\| = \frac{|\mathbf{a}^\top \mathbf{p} - b|}{\|\mathbf{a}\|}.}$$
 
-### 3.2 Approche variationnelle (multiplicateurs de Lagrange)
+### Approche variationnelle (multiplicateurs de Lagrange)
 
 Le même résultat s'obtient en minimisant $\|\mathbf{p} - \mathbf{x}\|^2$ sous
 la contrainte $\mathbf{a}^\top \mathbf{x} = b$. Le Lagrangien est
@@ -136,7 +142,7 @@ ce qui redonne $\mathbf{x}^* = \mathbf{p}^*$ et la même formule de distance.
 
 
 
-## 4. Distance signée et demi-espaces
+## Distance signée et demi-espaces
 
 La **distance signée** ne prend pas la valeur absolue :
 
@@ -153,7 +159,7 @@ les modèles linéaires : $\hat{y} = \text{sign}(\mathbf{a}^\top \mathbf{p} - b)
 
 
 
-## 5. Cas $\mathbb{R}^3$ : distance à un plan
+## Cas $\mathbb{R}^3$ : distance à un plan
 
 Pour un plan d'équation $ax + by + cz = d$ et un point $P_0 = (x_0, y_0, z_0)$,
 la formule donne directement :
@@ -182,7 +188,7 @@ $$d = \frac{|2\cdot1 - 1\cdot0 + 2\cdot(-1) - 3|}{\sqrt{4+1+4}}
 
 
 
-## 6. Cas normalisé : $\|\mathbf{a}\| = 1$
+## Cas normalisé : $\|\mathbf{a}\| = 1$
 
 Si l'on normalise le vecteur normal ($\hat{\mathbf{a}} = \mathbf{a}/\|\mathbf{a}\|$,
 $\hat{b} = b/\|\mathbf{a}\|$), l'hyperplan s'écrit $\hat{\mathbf{a}}^\top \mathbf{x} = \hat{b}$
@@ -197,7 +203,7 @@ composante de $\mathbf{p}$ selon $\hat{\mathbf{a}}$ au-delà de $\hat{b}$.
 
 
 
-## 7. Lien avec la méthode de Kaczmarz
+## Lien avec la méthode de Kaczmarz
 
 Dans la [méthode de Kaczmarz aléatoire]({{ '/posts/kaczmarz-adl-mco' | relative_url }}),
 chaque itération résout une équation $\mathbf{a}_i^\top \mathbf{x} = b_i$
@@ -229,9 +235,9 @@ les distances aux hyperplans diminuent.
   </figcaption>
 </figure>
 
----
 
-## 8. Lien avec les SVM
+
+## Lien avec les SVM
 
 Dans un **Support Vector Machine** linéaire, l'hyperplan séparateur est
 $H : \mathbf{w}^\top \mathbf{x} + w_0 = 0$ et les hyperplans de marge sont
@@ -248,9 +254,9 @@ Maximiser la marge revient donc à minimiser $\|\mathbf{w}\|$, c'est-à-dire
 à **maximiser la distance** entre les points d'entraînement et l'hyperplan
 séparateur.
 
----
 
-## 9. Lien avec l'ADL
+
+## Lien avec l'ADL
 
 Dans l'[Analyse Discriminante Linéaire]({{ '/posts/analyse-discriminante-lineaire-et-moindres-carrees-ordinaires' | relative_url }}),
 la règle de décision pour deux classes est :
@@ -267,7 +273,7 @@ prédiction (son amplitude).
 
 ---
 
-## 10. Implémentation Python
+## Implémentation Python
 
 ```python
 import numpy as np
@@ -301,7 +307,7 @@ def distance_signee(p: np.ndarray, a: np.ndarray, b: float) -> float:
     return (a @ p - b) / np.linalg.norm(a)
 ```
 
-### 10.1 Exemple en 2D
+### Exemple en 2D
 
 ```python
 # Droite : 2x - y = 1  →  a = [2, -1], b = 1
@@ -356,7 +362,7 @@ mais des **signes opposés** : $P_1$ est du côté de $+\mathbf{a}$ (au-dessus) 
 $P_2$ du côté de $-\mathbf{a}$ (en dessous). $P_3$ est presque trois fois plus
 loin ($\approx 3/\sqrt{5}$).
 
-### 10.2 Visualisation 2D
+### Visualisation 2D
 
 ```python
 fig, ax = plt.subplots(figsize=(7, 6))
@@ -400,7 +406,7 @@ plt.show()
   </figcaption>
 </figure>
 
-### 10.3 Généralisation $n$D — vérification
+### Généralisation $n$D — vérification
 
 ```python
 # Hyperplan en dimension 100 : a^T x = b
@@ -435,9 +441,9 @@ double précision ($\varepsilon_{\text{machine}} \approx 2.2 \times 10^{-16}$
 multiplié par la taille du problème).
 
 
----
 
-## 11. Récapitulatif
+
+## Récapitulatif
 
 $$\boxed{d(\mathbf{p},\, H) = \frac{|\mathbf{a}^\top \mathbf{p} - b|}{\|\mathbf{a}\|},
 \qquad \mathbf{p}^* = \mathbf{p} - \frac{\mathbf{a}^\top \mathbf{p} - b}{\|\mathbf{a}\|^2}\,\mathbf{a}.}$$
@@ -450,7 +456,7 @@ $$\boxed{d(\mathbf{p},\, H) = \frac{|\mathbf{a}^\top \mathbf{p} - b|}{\|\mathbf{
 | Régression logistique | $\sigma(\delta)$ = probabilité de classe positive |
 | Perceptron | Convergence garantie si les classes sont séparables (marge $> 0$) |
 
----
+
 
 ## Conclusion
 
@@ -461,7 +467,7 @@ SVM) et les solveurs itératifs (Kaczmarz). Chaque fois qu'un algorithme
 d'apprentissage linéaire effectue une mise à jour, il se déplace d'une
 quantité proportionnelle à cette distance.
 
----
+
 
 ## Références
 
