@@ -1,0 +1,8 @@
+# Publications shown on the homepage, newest first.
+# Wrap your own name in ** ** to bold it.
+- authors: "M. A. Omondi, J. Nguinabe, J. K. Mutinda, A. K. Langat, L. Sanya, O. A. C. Ballou, **J. N. Mabiala**"
+  year: 2025
+  title: "Interpretable Property Insurance Premium Prediction Using Machine Learning Models"
+  url: https://jaiai.org/archive/interpretable-property-insurance-premium-prediction-using-machine-learning-models
+  venue: "Journal of Artificial Intelligence and Autonomous Intelligence 2(2), 349–370"
+  doi: https://dx.doi.org/10.54364/JAIAI.2024.1121
