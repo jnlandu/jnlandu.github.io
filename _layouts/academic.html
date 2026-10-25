@@ -71,16 +71,16 @@
     <img class="portrait" src="{{ '/assets/profiles/img.jpeg' | relative_url }}" alt="{{ site.profile_alt }}">
     {% include bio.html %}
     <p class="links">
+      {% comment %} Email is written out (not mailto) to keep it away from scrapers. {% endcomment %}
+      <span>jeremie at aims dot ac dot za</span>
       {% for social in site.data.social %}
-        {% if social.title == "Email" %}
-          <a href="mailto:{{ social.url }}">{{ social.title }}</a>
-        {% else %}
+        {% unless social.title == "Email" or social.title == "Twitter" %}
           <a href="{{ social.url }}" target="_blank" rel="noopener">{{ social.title }}</a>
-        {% endif %}
+        {% endunless %}
       {% endfor %}
     </p>
 
-    <h2 id="publications">Publications</h2>
+    <h2 id="publications">Publications &amp; preprints</h2>
     <ul class="plain">
       {% for pub in site.data.publications %}
         <li>

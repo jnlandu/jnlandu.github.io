@@ -85,10 +85,8 @@ sitemap:
 social:
   name: Jeremie Nlandu Mabiala
   links:
-    - https://twitter.com/ValentinMabiala
     - https://www.linkedin.com/in/jeremie-nlandu-mabiala-aa3a1b1b
     - https://github.com/jnlandu
-    - mailto:jnlandu00@gmail.com
 
 # jekyll-seo-tag extras
 logo: /profile.png

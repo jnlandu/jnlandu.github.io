@@ -1,5 +1,11 @@
 # Publications shown on the homepage, newest first.
 # Wrap your own name in ** ** to bold it.
+- authors: "**J. N. Mabiala**, L. Tondji"
+  year: 2026
+  title: "A Tensor Greedy Double-Block Extended Kaczmarz Method for Inconsistent Tensor Linear Systems under the t-product"
+  url: https://arxiv.org/abs/2608.21705
+  venue: "arXiv preprint arXiv:2608.21705"
+
 - authors: "M. A. Omondi, J. Nguinabe, J. K. Mutinda, A. K. Langat, L. Sanya, O. A. C. Ballou, **J. N. Mabiala**"
   year: 2025
   title: "Interpretable Property Insurance Premium Prediction Using Machine Learning Models"
