@@ -2,7 +2,30 @@
 layout: default
 ---
   <img class="portrait" src="{{ '/assets/profiles/img.jpeg' | relative_url }}" alt="{{ site.profile_alt }}">
+  <p class="lang-switch small" role="group" aria-label="Bio language">
+    <button type="button" data-lang="en" aria-pressed="true">English</button> ·
+    <button type="button" data-lang="fr" aria-pressed="false">Français</button>
+  </p>
   {% include bio.html %}
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll('.lang-switch button');
+      function show(lang) {
+        document.querySelector('.bio-en').hidden = lang !== 'en';
+        document.querySelector('.bio-fr').hidden = lang !== 'fr';
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang); });
+      }
+      buttons.forEach(function (b) {
+        b.addEventListener('click', function () {
+          show(b.dataset.lang);
+          try { localStorage.setItem('bio-lang', b.dataset.lang); } catch (e) {}
+        });
+      });
+      var saved = null;
+      try { saved = localStorage.getItem('bio-lang'); } catch (e) {}
+      if (saved === 'fr') show('fr');
+    })();
+  </script>
   <p class="links">
     {% comment %} Email is written out (not mailto) to keep it away from scrapers. {% endcomment %}
     <span>jeremie at aims dot ac dot za</span>

@@ -63,7 +63,11 @@ th, td { border: 1px solid var(--rule); padding: .35rem .6rem; text-align: left;
 /* Home page */
 .portrait { float: right; width: 190px; margin: 0 0 1rem 1.5rem; border-radius: 4px; }
 .bio p { margin: 0 0 1rem; }
-.bio-fr { display: none; }
+.bio [hidden] { display: none; }
+.lang-switch { margin: 0 0 .75rem; }
+.lang-switch button { background: none; border: 0; padding: 0; font: inherit; color: var(--link); cursor: pointer; }
+.lang-switch button[aria-pressed="true"] { color: var(--fg); }
+.lang-switch button:hover { text-decoration: underline; }
 
 /* Article text in posts and news items: typeset like a printed article,
    not a rendered Markdown file (no rules under headings, booktabs tables). */

@@ -90,27 +90,64 @@ Le problème des MCO s'écrit donc
 
 $$\min_{\mathbf{w} \in \mathbb{R}^n} \; \lVert \mathbf{X}\mathbf{w} - \mathbf{b} \rVert^2. \tag{2}$$
 
+Puisque la fonction $f$ est lisse et
+[convexe](https://fr.wikipedia.org/wiki/Fonction_convexe), résoudre le
+problème (2) revient à calculer son gradient et à chercher les points où il
+s'annule.
+
 ## Le calcul : annuler le gradient
 
 ### Une coordonnée à la fois
 
-Dérivons $f$ par rapport à une seule composante $w_j$. Chaque terme de la somme
-est un carré, donc
+Dérivons $f$ par rapport à une seule composante $w_j$, en détaillant chaque
+étape :
 
-$$\frac{\partial f}{\partial w_j}
-  = \sum_{i=1}^{m} 2\left(\mathbf{x}_i^\top \mathbf{w} - b_i\right) x_{ij}.$$
+$$\begin{aligned}
+\frac{\partial f}{\partial w_j}
+  &= \sum_{i=1}^{m} \frac{\partial}{\partial w_j}\left(\mathbf{x}_i^\top \mathbf{w} - b_i\right)^2
+  && \text{(a)} \\
+  &= \sum_{i=1}^{m} 2\left(\mathbf{x}_i^\top \mathbf{w} - b_i\right)
+     \frac{\partial}{\partial w_j}\left(\mathbf{x}_i^\top \mathbf{w} - b_i\right)
+  && \text{(b)} \\
+  &= \sum_{i=1}^{m} 2\left(\mathbf{x}_i^\top \mathbf{w} - b_i\right)
+     \frac{\partial}{\partial w_j}\Big(\sum_{k=1}^{n} x_{ik} w_k - b_i\Big)
+  && \text{(c)} \\
+  &= \sum_{i=1}^{m} 2\left(\mathbf{x}_i^\top \mathbf{w} - b_i\right) x_{ij}
+  && \text{(d)}
+\end{aligned}$$
+
+Étape par étape :
+
+- **(a)** la dérivée d'une somme est la somme des dérivées ;
+- **(b)** on dérive un carré avec la règle $$(u^2)' = 2u\,u'$$ ;
+- **(c)** on écrit le produit scalaire en coordonnées, $$\mathbf{x}_i^\top \mathbf{w} = \sum_{k} x_{ik} w_k$$ ;
+- **(d)** dans cette somme, seul le terme $k = j$ dépend de $w_j$, et sa dérivée vaut $$x_{ij}$$ (le $$b_i$$ est une constante).
 
 Au minimum, toutes ces dérivées sont nulles. Ce qui est agréable, c'est que les
 $n$ équations obtenues se rangent d'elles-mêmes en une seule écriture
-vectorielle. La somme sur $i$ de $x_{ij}$ fois quelque chose, c'est exactement la
-$j$-ième ligne de $\mathbf{X}^\top$ appliquée à ce quelque chose. En empilant les
-$n$ dérivées :
+vectorielle. Il suffit de reconnaître deux choses. D'abord,
+$$\mathbf{x}_i^\top \mathbf{w} - b_i$$ est la $i$-ième composante du vecteur
+$\mathbf{X}\mathbf{w} - \mathbf{b}$. Ensuite, pour un vecteur $\mathbf{v}$
+quelconque, $$\sum_i x_{ij} v_i$$ est la $j$-ième composante de $\mathbf{X}^\top \mathbf{v}$.
+Donc
+
+$$\frac{\partial f}{\partial w_j}
+  = 2 \sum_{i=1}^{m} x_{ij} \left(\mathbf{X}\mathbf{w} - \mathbf{b}\right)_i
+  = 2 \left[\mathbf{X}^\top \left(\mathbf{X}\mathbf{w} - \mathbf{b}\right)\right]_j,$$
+
+et en empilant les $n$ dérivées :
 
 $$\nabla f(\mathbf{w}) = 2\,\mathbf{X}^\top\left(\mathbf{X}\mathbf{w} - \mathbf{b}\right). \tag{3}$$
 
-(On peut aussi le retrouver en développant
+On peut aussi le retrouver sans passer par les coordonnées, en développant
 $f(\mathbf{w}) = \mathbf{w}^\top \mathbf{X}^\top \mathbf{X}\,\mathbf{w} - 2\,\mathbf{b}^\top \mathbf{X}\,\mathbf{w} + \mathbf{b}^\top \mathbf{b}$
-et en dérivant terme à terme.)
+et en dérivant terme à terme. Il suffit de deux règles classiques du calcul
+matriciel : $\nabla_{\mathbf{w}}(\mathbf{w}^\top \mathbf{A}\,\mathbf{w}) = 2\mathbf{A}\mathbf{w}$
+pour $\mathbf{A}$ symétrique (ici $\mathbf{A} = \mathbf{X}^\top \mathbf{X}$), et
+$\nabla_{\mathbf{w}}(\mathbf{c}^\top \mathbf{w}) = \mathbf{c}$. On les trouve, avec
+bien d'autres, dans *The Matrix Cookbook* [4] ou sur la page Wikipédia
+[Matrix calculus](https://en.wikipedia.org/wiki/Matrix_calculus) (en anglais).
+Voir le livre de Magnus et Neudecker [5] pour un exposé plus rigoureux.
 
 ### L'équation normale
 
@@ -118,18 +155,17 @@ En annulant le gradient (3), on obtient
 
 $$\boxed{\mathbf{X}^\top \mathbf{X}\,\mathbf{w}^{\ast} = \mathbf{X}^\top \mathbf{b}.} \tag{4}$$
 
-Voilà l'**équation normale**. Un détail que je trouve agréable : c'est toujours un
+C'est ce qu'on appelle l'**équation normale** (des moindres carrés). Un détail que
+je trouve agréable : c'est toujours un
 système $n \times n$, quel que soit le nombre $m$ de mesures. On peut avoir un
 million de points, le système à résoudre reste de la taille du nombre de
 paramètres.
 
-Et c'est bien un minimum global. La fonction $f$ est convexe (c'est le carré
-d'une norme composé avec une fonction affine), donc tout point où le gradient
-s'annule est un minimum global de (2). Pas de mauvaise surprise possible.
+Toute solution $\mathbf{w}^{\ast}$ de l'équation normale (4) est un minimum global
+de $f$, i.e. une solution du problème (2), puisque $f$ est convexe (c'est le
+carré d'une norme composé avec une fonction affine). Donc résoudre (2) revient à résoudre (4), et réciproquement.
 
-### Retour à nos trois points
-
-Calculons les deux côtés de (4) avec notre exemple :
+Revenons à nos trois points du départ et calculons les deux côtés de (4):
 
 $$\mathbf{X}^\top \mathbf{X}
   = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \end{pmatrix}
@@ -149,7 +185,7 @@ $$\begin{aligned}
 \end{aligned}$$
 
 En soustrayant la première ligne de la seconde, $2D = -6$, donc $D = -3$, puis
-$C = 5$. La meilleure droite est
+$C = 5$. La meilleure droite, appelée **droite des moindres carrées**, est alors
 
 $$b = 5 - 3t.$$
 
@@ -158,21 +194,21 @@ mesuré $6$, $0$ et $0$. Les résidus sont donc
 $\mathbf{r}^{\ast} = (1, -2, 1)^\top$, et l'erreur totale vaut
 $\lVert \mathbf{r}^{\ast} \rVert^2 = 1 + 4 + 1 = 6$. Aucune autre droite ne fait mieux.
 
-## La géométrie : une projection orthogonale
+## Apperçu géométrique : projection orthogonale
 
 Le calcul fonctionne, mais il ne dit pas vraiment *pourquoi* l'équation a cette
 forme. Pour ça, je trouve qu'il faut changer de point de vue : au lieu de penser
 à trois points dans le plan $(t, b)$, pensons à un seul vecteur $\mathbf{b}$ dans
 $\mathbb{R}^3$.
 
-### Ce que X peut atteindre
+<!-- ### Ce que X peut atteindre -->
 
 Quand $\mathbf{w}$ parcourt $\mathbb{R}^n$, le vecteur $\mathbf{X}\mathbf{w}$
 parcourt l'**image** (ou espace colonne) de $\mathbf{X}$ :
 
 $$\mathcal{C}(\mathbf{X}) = \lbrace \mathbf{X}\mathbf{w} : \mathbf{w} \in \mathbb{R}^n \rbrace.$$
 
-Ce sont toutes les combinaisons des colonnes de $\mathbf{X}$. Dans notre exemple,
+C'est l'ensemble de  toutes les combinaisons linéaire des colonnes de $\mathbf{X}$. Dans notre exemple,
 c'est un plan de $\mathbb{R}^3$, engendré par $(1, 1, 1)^\top$ et
 $(0, 1, 2)^\top$. Le système $\mathbf{X}\mathbf{w} = \mathbf{b}$ n'a pas de
 solution précisément parce que $\mathbf{b} = (6, 0, 0)^\top$ n'est pas dans ce
@@ -225,7 +261,7 @@ $\hat{\mathbf{b}} = \mathbf{X}\mathbf{w}^{\ast}$.
 
 ### Le résidu est perpendiculaire
 
-Qui dit projection orthogonale dit résidu perpendiculaire. Le résidu
+En observant la figure ci-dessus, il est clair que le résidu
 $\mathbf{r}^{\ast} = \mathbf{b} - \mathbf{X}\mathbf{w}^{\ast}$ doit être orthogonal à tout
 le plan, donc à chacune des colonnes de $\mathbf{X}$. Écrire « orthogonal à
 chaque colonne », c'est écrire que tous les produits scalaires avec les colonnes
@@ -238,7 +274,7 @@ $$\mathbf{X}^\top \mathbf{r}^{\ast} = \mathbf{0}
 \mathbf{X}^\top \mathbf{X}\,\mathbf{w}^{\ast} = \mathbf{X}^\top \mathbf{b}. \tag{5}$$
 
 On retombe sur l'équation normale (4), sans avoir dérivé quoi que ce soit. C'est
-d'ailleurs de là que vient le nom : le résidu est *normal*, c'est-à-dire
+d'ailleurs de là que vient l'adjectf **nornal**: le résidu est *normal*, c'est-à-dire
 perpendiculaire, à l'espace colonne.
 
 Vérifions-le sur notre exemple. Avec $\mathbf{r}^{\ast} = (1, -2, 1)^\top$ :
@@ -268,8 +304,9 @@ $\lVert \mathbf{r}^{\ast} \rVert^2 = 6$. On a bien $36 = 30 + 6$.
 ## Une seule solution ?
 
 Une solution existe toujours, puisque la projection existe toujours. La vraie
-question est de savoir s'il y en a une seule, et la réponse dépend du rang de
-$\mathbf{X}$.
+question est de savoir s'il y en a une seule, et la réponse dépend du
+[rang](https://fr.wikipedia.org/wiki/Rang_%28alg%C3%A8bre_lin%C3%A9aire%29) de la
+matrice $\mathbf{X}$, i.e. du nombre de ses colonnes linéairement indépendantes.
 
 ### Quand les colonnes sont indépendantes
 
@@ -354,3 +391,6 @@ n'hésitez pas à me le dire dans les commentaires.
 1. Strang, G. (2016). *Introduction to Linear Algebra* (5th ed.). Wellesley-Cambridge Press.
 2. Trefethen, L. N. & Bau, D. (1997). *Numerical Linear Algebra*. SIAM.
 3. Björck, Å. (1996). *Numerical Methods for Least Squares Problems*. SIAM.
+4. Petersen, K. B. & Pedersen, M. S. (2012). *The Matrix Cookbook*. Technical University of Denmark. [PDF](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf).
+5. Magnus, J. R. & Neudecker, H. (2019). *Matrix Differential Calculus with Applications in Statistics and Econometrics* (3rd ed.). Wiley.
+6. Wikipédia, « [Matrix calculus](https://en.wikipedia.org/wiki/Matrix_calculus) » (en anglais).
