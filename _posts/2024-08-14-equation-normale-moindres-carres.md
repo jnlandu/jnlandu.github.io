@@ -11,6 +11,7 @@ summary: >-
 tags: [linear-algebra, optimization, least-squares, mathematics]
 lang: fr
 redirect_from:
+  - /2024/11/14/equation-normale-moindres-carres/
   - /posts/equation-normale-moindres-carres
   - /posts/equation-normale-mco
 giscus_term: posts/equation-normale-mco

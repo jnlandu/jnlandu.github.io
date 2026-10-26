@@ -5,6 +5,9 @@ layout: default
   <h1 class="page-title" itemprop="name headline">{{ page.title | escape }}</h1>
   <p class="meta">
     <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</time>
+    {% if page.last_modified_at %} · {% if page.lang == 'fr' %}Mis à jour en{% else %}Last updated{% endif %}
+      <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%B %Y" }}</time>
+    {% endif %}
     {% if page.tags and page.tags.size > 0 %} ·
       {% for tag in page.tags %}<a href="{{ '/tags/' | append: tag | relative_url }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}
     {% endif %}
