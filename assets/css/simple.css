@@ -8,7 +8,7 @@
 * { box-sizing: border-box; }
 body {
   margin: 0 auto; max-width: 1040px; padding: 2rem 16px 3rem;
-  font: 17px/1.6 Georgia, "Times New Roman", serif;
+  font: 18px/1.6 "Source Serif 4", Georgia, "Times New Roman", serif;
   color: var(--fg); background: var(--bg);
 }
 a { color: var(--link); text-decoration: none; }
@@ -16,6 +16,7 @@ a:hover { text-decoration: underline; }
 img { max-width: 100%; height: auto; }
 
 /* Header and navigation */
+.site-header { text-align: center; }
 .site-header h1 { margin: 0; font-size: 2rem; font-weight: normal; }
 .site-header h1 a { color: inherit; }
 .tagline { margin: .25rem 0 1rem; color: var(--muted); font-style: italic; }

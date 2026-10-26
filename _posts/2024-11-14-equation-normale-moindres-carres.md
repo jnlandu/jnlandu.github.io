@@ -77,7 +77,10 @@ carrés consiste à minimiser la somme de leurs carrés :
 $$f(\mathbf{w}) = \sum_{i=1}^{m} \left(\mathbf{x}_i^\top \mathbf{w} - b_i\right)^2. \tag{1}$$
 
 Pourquoi les carrés plutôt que les valeurs absolues ? Surtout parce que c'est
-lisse et que les calculs restent simples, comme on va le voir. En empilant les
+lisse, c'est-à-dire que la fonction $x \mapsto x^2$ est de classe
+$\mathcal{C}^\infty$, alors que $x \mapsto \lvert x \rvert$ n'est même pas
+dérivable en $0$. On peut donc dériver sans se poser de questions, et les calculs
+restent simples, comme on va le voir. En empilant les
 résidus dans un vecteur $\mathbf{r} = \mathbf{b} - \mathbf{X}\mathbf{w}$, cette
 somme n'est rien d'autre que le carré de sa norme :
 
