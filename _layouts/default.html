@@ -1,583 +1,66 @@
 <!DOCTYPE html>
-
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#0b1220">
-  
-  {# Title and description will be output by jekyll-seo-tag to avoid duplicates #}
-  
-  <!-- Professional CSS -->
-  <link rel="stylesheet" href="{{ '/assets/css/professional-clean.css' | relative_url }}">
-  
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  
-  <!-- Syntax highlighting (dark theme) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
-
-  <!-- KaTeX math rendering -->
-  {% include katex.html %}
-
-  <!-- Analytics  -->
-
-  {%- include google-analytics.html -%}
-
-  <!-- SEO and meta tags -->
   {% seo %}
-  
-  <!-- Feed -->
-  <link type="application/atom+xml" rel="alternate" href="{{ '/feed.xml' | relative_url }}" title="{{ site.title | escape }}">
-
-  <!-- Favicon -->
+  {%- feed_meta -%}
+  {%- include google-analytics.html -%}
   <link rel="icon" href="{{ '/profile2.png' | relative_url }}" type="image/png">
-  <link rel="shortcut icon" href="{{ '/profile2.png' | relative_url }}" type="image/png">
-  <link rel="apple-touch-icon" href="{{ '/profile2.png' | relative_url }}">
+  <script>
+    // Apply the saved theme before paint to avoid a flash.
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="{{ '/assets/css/simple.css' | relative_url }}">
+  {% include katex.html %}
 </head>
-<!-- --error-color: #e53e3e;} -->
 <body>
-    <!-- Site Header -->
-    <header class="site-header">
-      <div class="header-container">
-        <a href="{{ '/' | relative_url }}" class="site-title" style="font-family: 'Georgia', serif; font-size: 2.2rem; font-weight: 300; letter-spacing: 0.5px; font-weight: bold;"> Jérémie  <span class="text-brand" style="font-weight: 600;"> Mabiala </span></a>
-        
-        <div class="header-contact">
-          <span class="contact-item">
-            <a href="https://wa.me/27714435490" class="whatsapp-link" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp" style="display:inline-flex;align-items:center;margin-right:6px;text-decoration:none;">
-              <i class="fab fa-whatsapp" aria-hidden="true" style="color:#25D366;font-size:1.5rem;"></i>
-            </a>
-            <span class="contact-number">+27 71 44 35 490</span>
-          </span>
-          <span class="contact-divider">/</span>
-            <span class="contact-item">
-            <i class="fas fa-envelope" aria-hidden="true" style="color:#007acc;font-size:1.2rem;margin-right:4px;"></i>
-            <span class="contact-email">jeremy at aimsammi dot org </span>
-            </span>
-       
-        </div>
+  <header class="site-header">
+    <h1><a href="{{ '/' | relative_url }}">Jeremie N. Mabiala</a></h1>
+    <p class="tagline">Machine learning, ML infrastructure &amp; MLOps, and optimization</p>
+  </header>
 
-        <button class="nav-toggle" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
+  <nav class="site-nav">
+    <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a>
+    <a href="{{ '/#publications' | relative_url }}">Publications</a>
+    <a href="{{ '/posts/' | relative_url }}" {% if page.url contains '/posts/' or page.url contains '/tags/' %}class="active"{% endif %}>Blog</a>
+    <a href="{{ '/news/' | relative_url }}" {% if page.url contains '/news/' %}class="active"{% endif %}>News</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
+  </nav>
 
-      <!-- Slide-in navigation menu -->
-      <nav class="nav-menu">
-        <button class="close-btn" aria-label="Close menu">&times;</button>
-        <ul>
-          <li><a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">
-            <i class="fas fa-home"></i>
-            Home
-          </a></li>
-          <li><a href="#about" class="{% if page.url contains 'about' %}active{% endif %}">
-            <i class="fas fa-user"></i>
-            About Me
-          </a></li>
-          <!-- <li><a href="{{ '/about/' | relative_url }}#education" class="{% if page.url contains 'about' %}active{% endif %}">
-            <i class="fas fa-graduation-cap"></i>
-            Education
-          </a></li> -->
-           <li><a href="#education" class="{% if page.url contains 'about' %}active{% endif %}">
-            <i class="fas fa-graduation-cap"></i>
-            Education
-          </a></li>
-          <!-- <li><a href="{{ '/about/' | relative_url }}#experience" class="{% if page.url contains 'about' %}active{% endif %}">
-            <i class="fas fa-briefcase"></i>
-            Experience & Skills
-          </a></li> -->
-          <li><a href="#resume" class="{% if page.url contains 'about' %}active{% endif %}">
-            <i class="fas fa-briefcase"></i>
-            Experience & Skills
-          </a></li>
-          <li><a href="{{ '/news/' | relative_url }}" class="{% if page.url contains 'news' %}active{% endif %}">
-            <i class="fas fa-newspaper"></i>
-            News
-          </a></li>
-          <li><a href="{{ '/posts/' | relative_url }}" class="{% if page.url contains 'posts' %}active{% endif %}">
-            <i class="fas fa-edit"></i>
-            Posts
-          </a></li>
-          <li><a href="{{ '/tutorials/' | relative_url }}" class="{% if page.url contains 'tutorials' %}active{% endif %}">
-            <i class="fas fa-book-open"></i>
-            Tutorials
-          </a></li>
-          <li><a href="{{ '/projects/' | relative_url }}" class="{% if page.url contains 'projects' %}active{% endif %}">
-            <i class="fas fa-code"></i>
-            Projects
-          </a></li>
-          <li><a href="{{ '/' | relative_url }}#contact">
-            <i class="fas fa-envelope"></i>
-            Contact
-          </a></li>
-        </ul>
-        <div class="copyright">
-          <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title | default: "Jeremie Mabiala" }}. MIT License.</p>
-        </div>
-      </nav>
-    </header>
-    
+  <main>
+    {{ content }}
+  </main>
 
-    <!-- Main Content -->
-    <main>
-      {{ content }}
-    </main>
+  <footer class="site-footer">
+    © {{ 'now' | date: "%Y" }} Jeremie N. Mabiala · <a href="#">Back to top</a>
+  </footer>
 
-    <!-- Floating Chat Toggle + On-load Tooltip -->
-    <div id="chat-toggle" class="chat-fab" role="button" aria-label="Chat with my AI assistant" title="Chat with my AI assistant">
-      <i class="far fa-comment-dots" aria-hidden="true"></i>
-      <span class="chat-fab-label">Chat</span>
-    </div>
-    <div id="chat-tip" class="chat-tip" aria-live="polite">
-      <strong>Chat with my AI assistant</strong>
-      <div class="chat-tip-actions">
-        <a href="{{ '/chat-with-me.html' | relative_url }}" id="chat-tip-open" class="chat-tip-link">Open chat</a>
-        <button id="chat-tip-dismiss" class="chat-tip-dismiss" aria-label="Dismiss">Dismiss</button>
-      </div>
-    </div>
-    
-    <!-- Embedded Chat Panel -->
-    <div id="chat-embed" class="chat-embed" aria-hidden="true" aria-label="Chat assistant">
-      <div class="chat-embed-header">
-        <strong>AI Assistant</strong>
-        <button id="chat-embed-close" class="chat-embed-close" aria-label="Close chat">&times;</button>
-      </div>
-      <div id="chat-embed-body" class="chat-embed-body">
-        <div id="chat-embed-status" class="chat-embed-status">Click “Start” to enable chat.</div>
-        <div id="chat-embed-box" class="chat-embed-box" aria-live="polite"></div>
-      </div>
-      <div class="chat-embed-actions">
-        <button id="chat-embed-init" class="chat-embed-btn">Start</button>
-        <input id="chat-embed-input" class="chat-embed-input" type="text" placeholder="Ask about Jeremie… e.g., background, interests" aria-label="Type your question" />
-        <button id="chat-embed-send" class="chat-embed-btn" disabled>Send</button>
-      </div>
-      <div class="chat-embed-hint">Answers are formatted as Key: Value lines.</div>
-      <div class="chat-embed-note">Note: We are integrated LLMs.</div>
-    </div>
-    <style>
-      /* Minimal, self-contained styles for chat toggle and tooltip */
-      .chat-fab {
-        position: fixed; left: 16px; bottom: 16px; z-index: 999;
-        display: inline-flex; align-items: center; gap: .5rem;
-        background: #0b1220; color: #fff; border: 1px solid rgba(255,255,255,.12);
-        padding: .6rem .9rem; border-radius: 999px; cursor: pointer;
-        bottom: 32px;
-        box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById('theme-toggle');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+      function isDark() {
+        var t = root.getAttribute('data-theme');
+        return t ? t === 'dark' : prefersDark.matches;
       }
-      .chat-fab .chat-fab-label { font-weight: 600; font-size: .95rem; }
-      .chat-fab .fa-comment-dots { color: #7aa2ff; font-size: 1.1rem; }
-      .chat-tip {
-        position: fixed; left: 16px; bottom: 80px; z-index: 1000;
-        background: #0b1220; color: #fff; border: 1px solid rgba(255,255,255,.12);
-        padding: .85rem 1rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
-        transform: translateY(12px); opacity: 0; pointer-events: none; transition: all .25s ease;
-        max-width: 320px; line-height: 1.35; font-size: .95rem;
+      function render() {
+        btn.textContent = isDark() ? '☀ Light' : '☾ Dark';
+        btn.setAttribute('aria-pressed', isDark());
       }
-      .chat-tip.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
-      .chat-tip-actions { margin-top: .5rem; display: flex; gap: .5rem; align-items: center; }
-      .chat-tip-link { color: #7aa2ff; text-decoration: none; font-weight: 600; }
-      .chat-tip-link:hover { text-decoration: underline; }
-      .chat-tip-dismiss { background: transparent; color: #c7d1e0; border: 1px solid rgba(255,255,255,.16); border-radius: 6px; padding: .25rem .5rem; cursor: pointer; }
-      
-      /* Embedded chat styles */
-      .chat-embed { position: fixed; left: 16px; bottom: 76px; z-index: 1000; width: 360px; background: #0b1220; color: #e6eefc; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,.35); display: none; flex-direction: column; overflow: hidden; }
-      .chat-embed[aria-hidden="false"] { display: flex; }
-      .chat-embed-header { display: flex; align-items: center; justify-content: space-between; padding: .6rem .8rem; background: rgba(255,255,255,.05); }
-      .chat-embed-close { background: transparent; border: 0; color: #c7d1e0; font-size: 1.25rem; cursor: pointer; }
-      .chat-embed-body { max-height: 50vh; overflow: auto; padding: .75rem .75rem 0; }
-      .chat-embed-status { font-size: .9rem; color: #c7d1e0; margin-bottom: .5rem; }
-      .chat-embed-box { display: flex; flex-direction: column; gap: .5rem; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; font-size: .95rem; }
-      .chat-msg { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 8px; padding: .5rem .6rem; white-space: pre-wrap; }
-      .chat-msg.user { border-color: rgba(122,162,255,.35); }
-      .chat-embed-actions { display: grid; grid-template-columns: auto 1fr auto; gap: .5rem; padding: .75rem; align-items: center; }
-      .chat-embed-btn { background: #1b2540; color: #e6eefc; border: 1px solid rgba(255,255,255,.18); border-radius: 8px; padding: .4rem .7rem; cursor: pointer; }
-      .chat-embed-btn:disabled { opacity: .6; cursor: not-allowed; }
-      .chat-embed-input { background: #0e172f; color: #e6eefc; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; padding: .5rem .6rem; }
-  .chat-embed-hint { font-size: .8rem; color: #9fb0ca; padding: 0 .75rem .25rem; }
-  .chat-embed-note { font-size: .8rem; color: #9fb0ca; padding: 0 .75rem .75rem; font-style: italic; }
-      @media (max-width: 480px) {
-        .chat-fab { left: 12px; bottom: 12px; }
-        .chat-tip { left: 12px; right: 12px; bottom: 72px; }
-        .chat-embed { left: 12px; right: 12px; width: auto; }
-      }
-    </style>
-
-    <!-- Footer -->
-    {% include footer.html %}
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-    
-    <!-- Smooth scrolling and other interactions -->
-    <script>
-      function setBioLang(lang) {
-        const en = document.querySelector('.bio-en');
-        const fr = document.querySelector('.bio-fr');
-        const btnEn = document.getElementById('lang-en');
-        const btnFr = document.getElementById('lang-fr');
-        if (!en || !fr) return;
-        en.style.display = lang === 'en' ? '' : 'none';
-        fr.style.display = lang === 'fr' ? '' : 'none';
-        btnEn.classList.toggle('lang-btn-active', lang === 'en');
-        btnFr.classList.toggle('lang-btn-active', lang === 'fr');
-      }
-
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-          });
-        });
+      btn.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        render();
       });
-      
-      // Add fade-in animation to elements when they come into view
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-          }
-        });
-      }, observerOptions);
-      
-      document.querySelectorAll('.card, .post-card, .interest-item').forEach(el => {
-        observer.observe(el);
-      });
-
-      // Stagger-in for any grid when it enters the viewport
-      (function() {
-        const grids = document.querySelectorAll('[data-animate="stagger"]');
-        if (!grids.length) return;
-        const obs = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) {
-              e.target.classList.add('inview');
-              obs.unobserve(e.target);
-            }
-          });
-        }, { threshold: 0.2 });
-        grids.forEach(g => obs.observe(g));
-      })();
-
-      // Cursor-follow glow for pro post cards
-      (function() {
-        const cards = document.querySelectorAll('.post-card.pro');
-        if (!cards.length) return;
-        cards.forEach(card => {
-          card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            card.style.setProperty('--mx', x + '%');
-            card.style.setProperty('--my', y + '%');
-          });
-        });
-      })();
-
-      // Enhanced section navigation with one-click scrolling (home only)
-      (function() {
-        const dotsNav = document.querySelector('.section-dots');
-        if (!dotsNav) return;
-        // Only enable if dots explicitly declare data-target and map to valid sections
-        const dots = Array.from(dotsNav.querySelectorAll('.dot[data-target]'));
-        if (!dots.length) return; // e.g., News page dots use href only -> skip this block
-        const targets = dots
-          .map(d => document.getElementById(d.dataset.target))
-          .filter(Boolean);
-        if (!targets.length || targets.length !== dots.length) return;
-        let lastScrollY = window.scrollY;
-        let currentSectionIndex = 0;
-        let isScrolling = false;
-
-        // Highlight active dot using IntersectionObserver
-        const activeObs = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            const idx = targets.indexOf(entry.target);
-            if (idx === -1) return;
-            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-              dots.forEach(d => d.classList.remove('active'));
-              dots[idx].classList.add('active');
-              currentSectionIndex = idx;
-            }
-          });
-        }, { threshold: [0.5, 0.8] });
-
-        targets.forEach(t => { if (t) activeObs.observe(t); });
-
-        // Resync currentSectionIndex from actual scroll position (the IntersectionObserver
-        // above can go stale on sections taller than the viewport, since it only fires past
-        // 50% visibility — using it alone as the sole source of truth caused jumps to skip
-        // a section). Call this right before deciding where a gesture should jump next.
-        function getCurrentIndexByScroll() {
-          let closest = 0;
-          let closestDist = Infinity;
-          targets.forEach((t, i) => {
-            if (!t) return;
-            const dist = Math.abs(t.getBoundingClientRect().top);
-            if (dist < closestDist) { closestDist = dist; closest = i; }
-          });
-          return closest;
-        }
-
-        // Smooth scroll with directional slide effects
-        function scrollToSection(index, direction = 'down') {
-          if (index < 0 || index >= targets.length || !targets[index] || isScrolling) return;
-          
-          isScrolling = true;
-          const target = targets[index];
-          const currentTarget = targets[currentSectionIndex];
-          
-          // Add slide-out effect to current section
-          if (currentTarget && currentTarget !== target) {
-            const slideOutClass = direction === 'down' ? 'section-slide-out-up' : 'section-slide-out-down';
-            currentTarget.classList.add(slideOutClass);
-            
-            // Remove slide-out class after animation
-            setTimeout(() => {
-              currentTarget.classList.remove(slideOutClass);
-            }, 400);
-          }
-          
-          // Scroll to target with gentle delay
-          setTimeout(() => {
-            target.scrollIntoView({ 
-              behavior: 'auto',
-              block: 'start',
-              inline: 'nearest'
-            });
-            
-            // Add slide-in effect to new section
-            const slideInClass = direction === 'down' ? 'section-slide-in-from-down' : 'section-slide-in-from-up';
-            target.classList.add(slideInClass);
-            
-            // Clean up classes and reset state
-            setTimeout(() => {
-              target.classList.remove(slideInClass);
-              isScrolling = false;
-            }, 600);
-            
-          }, direction === 'instant' ? 0 : 200); // more comfortable delay
-        }
-
-        // Dot click navigation with instant transitions
-        dots.forEach((dot, index) => {
-          dot.addEventListener('click', (e) => {
-            e.preventDefault();
-            const direction = index > currentSectionIndex ? 'down' : 'up';
-            scrollToSection(index, 'instant');
-          });
-        });
-
-        // Keyboard navigation with directional effects
-        document.addEventListener('keydown', (e) => {
-          if (isScrolling) return;
-          
-          switch(e.code) {
-            case 'ArrowDown':
-            case 'Space':
-              e.preventDefault();
-              currentSectionIndex = getCurrentIndexByScroll();
-              scrollToSection(currentSectionIndex + 1, 'down');
-              break;
-            case 'ArrowUp':
-              e.preventDefault();
-              currentSectionIndex = getCurrentIndexByScroll();
-              scrollToSection(currentSectionIndex - 1, 'up');
-              break;
-            case 'Home':
-              e.preventDefault();
-              scrollToSection(0, 'up');
-              break;
-            case 'End':
-              e.preventDefault();
-              scrollToSection(targets.length - 1, 'down');
-              break;
-          }
-        });
-
-        // Smooth wheel-based section scrolling
-        let wheelTimeout;
-        let wheelAccumulator = 0;
-        
-        document.addEventListener('wheel', (e) => {
-          e.preventDefault();
-          
-          if (isScrolling) return;
-          
-          wheelAccumulator += e.deltaY;
-          
-          clearTimeout(wheelTimeout);
-          wheelTimeout = setTimeout(() => {
-            if (Math.abs(wheelAccumulator) > 50) { // higher threshold for more deliberate scrolling
-              currentSectionIndex = getCurrentIndexByScroll();
-              const direction = wheelAccumulator > 0 ? 'down' : 'up';
-              const nextIndex = wheelAccumulator > 0 ?
-                currentSectionIndex + 1 : currentSectionIndex - 1;
-
-              scrollToSection(nextIndex, direction);
-            }
-            wheelAccumulator = 0; // reset
-          }, 150); // slower, more comfortable response time
-  }, { passive: false });
-
-        // Scroll direction -> shift dot rail slightly
-        window.addEventListener('scroll', () => {
-          const curr = window.scrollY || document.documentElement.scrollTop;
-          const dirUp = curr < lastScrollY;
-          dotsNav.classList.toggle('shift-up', dirUp);
-          dotsNav.classList.toggle('shift-down', !dirUp);
-          lastScrollY = curr;
-        }, { passive: true });
-      })();
-
-      // Navigation menu toggle
-      (function() {
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        const closeBtn = document.querySelector('.close-btn');
-
-        function toggleMenu() {
-          navToggle.classList.toggle('active');
-          navMenu.classList.toggle('active');
-          document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-        }
-
-        navToggle.addEventListener('click', toggleMenu);
-        closeBtn.addEventListener('click', toggleMenu);
-
-        // Close menu when clicking outside
-        navMenu.addEventListener('click', (e) => {
-          if (e.target === navMenu) {
-            toggleMenu();
-          }
-        });
-
-        // Close menu when pressing Escape
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-            toggleMenu();
-          }
-        });
-      })();
-
-      // Chat toggle + on-load tip + embedded chat
-      (function() {
-        const btn = document.getElementById('chat-toggle');
-        const tip = document.getElementById('chat-tip');
-        const dismiss = document.getElementById('chat-tip-dismiss');
-        const tipOpen = document.getElementById('chat-tip-open');
-        // Embedded chat elements
-        const panel = document.getElementById('chat-embed');
-        const closeBtn = document.getElementById('chat-embed-close');
-        const initBtn = document.getElementById('chat-embed-init');
-        const sendBtn = document.getElementById('chat-embed-send');
-        const inputEl = document.getElementById('chat-embed-input');
-        const boxEl = document.getElementById('chat-embed-box');
-        const statusEl = document.getElementById('chat-embed-status');
-        if (!btn || !tip) return;
-
-        // Show invite shortly after load on every (re)load
-        function showTip() { tip.classList.add('show'); }
-        function hideTip() { tip.classList.remove('show'); }
-
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', () => setTimeout(showTip, 900), { once: true });
-        } else {
-          setTimeout(showTip, 900);
-        }
-
-        // Auto-hide after a few seconds
-        setTimeout(hideTip, 5000);
-
-        // Dismiss button
-        dismiss && dismiss.addEventListener('click', hideTip);
-
-        function openPanel() {
-          if (!panel) return;
-          panel.setAttribute('aria-hidden', 'false');
-          hideTip();
-          inputEl && inputEl.focus();
-        }
-        function closePanel() { panel && panel.setAttribute('aria-hidden', 'true'); }
-
-        // Click events to open embedded chat
-        btn.addEventListener('click', openPanel);
-        tipOpen && tipOpen.addEventListener('click', (e) => { e.preventDefault(); openPanel(); });
-        closeBtn && closeBtn.addEventListener('click', closePanel);
-
-        // Simple knowledge base to answer in Key: Value lines
-        const KB = {
-          "Name": "Jérémie Nlandu Mabiala",
-          "Program": "AI Master's student (AMMI)",
-          "Institution": "AIMS Senegal",
-          "Degrees": "MSc in Mathematical Sciences (Stellenbosch & AIMS South Africa); BSc in Mathematics (UNIKIN)",
-          "Thesis": "Gaussian Processes for Multivariate Functional Data",
-          "Interests": "Mathematics; Theoretical ML & DL; Mathematical Modeling; Functional Data Analysis; LLMs; Reinforcement Learning",
-          "Contact": "Use the contact page: {{ '/contact/' | relative_url }}"
-        };
-
-        function formatAll() {
-          return Object.entries(KB).map(([k,v]) => `${k}: ${v}`).join('\n');
-        }
-        function answerFor(q) {
-          if (!q) return formatAll();
-          const s = q.toLowerCase();
-          const lines = [];
-          if (/(who|name)/.test(s)) lines.push(`Name: ${KB.Name}`);
-          if (/(program|study|studying|ammi)/.test(s)) lines.push(`Program: ${KB.Program}`);
-          if (/(aims|institution|where)/.test(s)) lines.push(`Institution: ${KB.Institution}`);
-          if (/(degree|degrees|education|msc|bsc)/.test(s)) lines.push(`Degrees: ${KB.Degrees}`);
-          if (/(thesis|research|topic)/.test(s)) lines.push(`Thesis: ${KB.Thesis}`);
-          if (/(interest|interests|focus|areas|skills)/.test(s)) lines.push(`Interests: ${KB.Interests}`);
-          if (/(contact|email|reach)/.test(s)) lines.push(`Contact: ${KB.Contact}`);
-          if (!lines.length) return formatAll();
-          return lines.join('\n');
-        }
-
-        function appendMsg(text, cls) {
-          if (!boxEl) return;
-          const div = document.createElement('div');
-          div.className = `chat-msg${cls ? ' ' + cls : ''}`;
-          div.textContent = text;
-          boxEl.appendChild(div);
-          // Scroll to bottom
-          const body = document.getElementById('chat-embed-body');
-          body && (body.scrollTop = body.scrollHeight);
-        }
-
-        // Initialize chat (enable send)
-        initBtn && initBtn.addEventListener('click', () => {
-          if (sendBtn) sendBtn.disabled = false;
-          if (statusEl) statusEl.textContent = 'Ready. Ask a question about Jeremie.';
-          appendMsg(formatAll(), 'assistant');
-        });
-
-        function sendCurrent() {
-          const q = (inputEl && inputEl.value || '').trim();
-          if (!q) return;
-          appendMsg(q, 'user');
-          const ans = answerFor(q);
-          appendMsg(ans, 'assistant');
-          if (inputEl) inputEl.value = '';
-        }
-        sendBtn && sendBtn.addEventListener('click', sendCurrent);
-        inputEl && inputEl.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') { e.preventDefault(); sendCurrent(); }
-        });
-      })();
-    </script>
+      prefersDark.addEventListener('change', render);
+      render();
+    })();
+  </script>
 </body>
-
 </html>

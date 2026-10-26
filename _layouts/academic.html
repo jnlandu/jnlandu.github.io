@@ -1,158 +1,61 @@
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: 'en' }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% seo %}
-  {%- feed_meta -%}
-  {%- include google-analytics.html -%}
-  <link rel="icon" href="{{ '/profile2.png' | relative_url }}" type="image/png">
-  <script>
-    // Apply the saved theme before paint to avoid a flash.
-    try {
-      var saved = localStorage.getItem('theme');
-      if (saved) document.documentElement.setAttribute('data-theme', saved);
-    } catch (e) {}
-  </script>
-  <style>
-    :root { --fg: #222; --muted: #666; --link: #1a5fb4; --rule: #ddd; --bg: #fff; }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) { --fg: #ddd; --muted: #999; --link: #78aeed; --rule: #333; --bg: #161616; }
-    }
-    :root[data-theme="dark"] { --fg: #ddd; --muted: #999; --link: #78aeed; --rule: #333; --bg: #161616; }
-    nav { display: flex; flex-wrap: wrap; align-items: center; }
-    .theme-toggle {
-      margin-left: auto; background: none; border: 1px solid var(--rule); border-radius: 4px;
-      color: var(--muted); font: inherit; font-size: .85rem; padding: .1rem .6rem; cursor: pointer;
-    }
-    .theme-toggle:hover { color: var(--fg); }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0 auto; max-width: 760px; padding: 2rem 16px 3rem;
-      font: 17px/1.6 Georgia, "Times New Roman", serif;
-      color: var(--fg); background: var(--bg);
-    }
-    a { color: var(--link); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    header h1 { margin: 0; font-size: 2rem; font-weight: normal; }
-    header h1 a { color: inherit; }
-    .tagline { margin: .25rem 0 1rem; color: var(--muted); font-style: italic; }
-    nav { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: .4rem 0; margin-bottom: 2rem; }
-    nav a { margin-right: 1.25rem; }
-    h2 { font-size: 1.3rem; font-weight: normal; border-bottom: 1px solid var(--rule); padding-bottom: .2rem; margin-top: 2.25rem; }
-    .portrait { float: right; width: 190px; margin: 0 0 1rem 1.5rem; border-radius: 4px; }
-    .bio p { margin: 0 0 1rem; }
-    .bio-fr { display: none; }
-    ul.plain { padding-left: 1.2rem; }
-    ul.plain li { margin-bottom: .6rem; }
-    .date { color: var(--muted); font-variant-numeric: tabular-nums; }
-    .links a { margin-right: 1rem; }
-    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
-    @media (max-width: 560px) {
-      .portrait { float: none; display: block; margin: 0 auto 1rem; }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1><a href="{{ '/' | relative_url }}">Jeremie N. Mabiala</a></h1>
-    <p class="tagline">Machine learning, ML infrastructure &amp; MLOps, and optimization</p>
-  </header>
+---
+layout: default
+---
+  <img class="portrait" src="{{ '/assets/profiles/img.jpeg' | relative_url }}" alt="{{ site.profile_alt }}">
+  {% include bio.html %}
+  <p class="links">
+    {% comment %} Email is written out (not mailto) to keep it away from scrapers. {% endcomment %}
+    <span>jeremie at aims dot ac dot za</span>
+    {% for social in site.data.social %}
+      {% unless social.title == "Email" or social.title == "Twitter" %}
+        <a href="{{ social.url }}" target="_blank" rel="noopener">{{ social.title }}</a>
+      {% endunless %}
+    {% endfor %}
+  </p>
 
-  <nav>
-    <a href="{{ '/' | relative_url }}">Home</a>
-    <a href="#publications">Publications</a>
-    <a href="{{ '/posts/' | relative_url }}">Blog</a>
-    <a href="{{ '/news/' | relative_url }}">News</a>
-    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
-  </nav>
+  <h2 id="publications">Publications &amp; preprints</h2>
+  <ul class="plain">
+    {% for pub in site.data.publications %}
+      <li>
+        {{ pub.authors | markdownify | remove: '<p>' | remove: '</p>' | strip }} ({{ pub.year }}).
+        <a href="{{ pub.url }}">{{ pub.title }}</a>.
+        <em>{{ pub.venue }}</em>.
+        {% if pub.preprint %}<a href="{{ pub.preprint }}">[preprint]</a>{% endif %}
+        {% if pub.doi %}<a href="{{ pub.doi }}">[doi]</a>{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
 
-  <main>
-    <img class="portrait" src="{{ '/assets/profiles/img.jpeg' | relative_url }}" alt="{{ site.profile_alt }}">
-    {% include bio.html %}
-    <p class="links">
-      {% comment %} Email is written out (not mailto) to keep it away from scrapers. {% endcomment %}
-      <span>jeremie at aims dot ac dot za</span>
-      {% for social in site.data.social %}
-        {% unless social.title == "Email" or social.title == "Twitter" %}
-          <a href="{{ social.url }}" target="_blank" rel="noopener">{{ social.title }}</a>
-        {% endunless %}
-      {% endfor %}
-    </p>
+  <h2>Education</h2>
+  <ul class="plain">
+    <li>MSc in Artificial Intelligence (AMMI), AIMS Senegal <span class="date">· 2024–2025</span></li>
+    <li>MSc in Mathematical Sciences, Stellenbosch University &amp; AIMS South Africa <span class="date">· 2023–2024</span></li>
+    <li>Licence in Mathematics (five-year degree: Graduat + Licence), University of Kinshasa <span class="date">· 2015–2021</span></li>
+  </ul>
 
-    <h2 id="publications">Publications &amp; preprints</h2>
-    <ul class="plain">
-      {% for pub in site.data.publications %}
-        <li>
-          {{ pub.authors | markdownify | remove: '<p>' | remove: '</p>' | strip }} ({{ pub.year }}).
-          <a href="{{ pub.url }}">{{ pub.title }}</a>.
-          <em>{{ pub.venue }}</em>.
-          {% if pub.preprint %}<a href="{{ pub.preprint }}">[preprint]</a>{% endif %}
-          {% if pub.doi %}<a href="{{ pub.doi }}">[doi]</a>{% endif %}
-        </li>
-      {% endfor %}
-    </ul>
+  <h2>News</h2>
+  <ul class="plain">
+    {% assign news = site.news | sort: 'date' | reverse %}
+    {% for item in news limit: 6 %}
+      <li>
+        <span class="date">{{ item.date | date: "%b %Y" }}</span> —
+        {% if item.inline %}
+          {{ item.content | markdownify | remove: '<p>' | remove: '</p>' | strip }}
+        {% else %}
+          <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
 
-    <h2>Education</h2>
-    <ul class="plain">
-      <li>MSc in Artificial Intelligence (AMMI), AIMS Senegal <span class="date">· 2024–2025</span></li>
-      <li>MSc in Mathematical Sciences, Stellenbosch University &amp; AIMS South Africa <span class="date">· 2023–2024</span></li>
-      <li>Licence in Mathematics (five-year degree: Graduat + Licence), University of Kinshasa <span class="date">· 2015–2021</span></li>
-    </ul>
-
-    <h2>News</h2>
-    <ul class="plain">
-      {% assign news = site.news | sort: 'date' | reverse %}
-      {% for item in news limit: 6 %}
-        <li>
-          <span class="date">{{ item.date | date: "%b %Y" }}</span> —
-          {% if item.inline %}
-            {{ item.content | markdownify | remove: '<p>' | remove: '</p>' | strip }}
-          {% else %}
-            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-
-    {% comment %} Drafts with commented-out front matter have no tags; skip them. {% endcomment %}
-    {% assign posts = site.posts | where_exp: "p", "p.tags.size > 0" %}
-    {% if posts.size > 0 %}
-    <h2>Recent posts</h2>
-    <ul class="plain">
-      {% for post in posts limit: 5 %}
-        <li><span class="date">{{ post.date | date: "%b %Y" }}</span> — <a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
-      {% endfor %}
-    </ul>
-    <p><a href="{{ '/posts/' | relative_url }}">All posts →</a></p>
-    {% endif %}
-  </main>
-
-  <footer>
-    © {{ 'now' | date: "%Y" }} Jeremie N. Mabiala · <a href="#">Back to top</a>
-  </footer>
-  <script>
-    (function () {
-      var root = document.documentElement;
-      var btn = document.getElementById('theme-toggle');
-      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-      function isDark() {
-        var t = root.getAttribute('data-theme');
-        return t ? t === 'dark' : prefersDark.matches;
-      }
-      function render() {
-        btn.textContent = isDark() ? '☀ Light' : '☾ Dark';
-        btn.setAttribute('aria-pressed', isDark());
-      }
-      btn.addEventListener('click', function () {
-        var next = isDark() ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
-        try { localStorage.setItem('theme', next); } catch (e) {}
-        render();
-      });
-      prefersDark.addEventListener('change', render);
-      render();
-    })();
-  </script>
-</body>
-</html>
+  {% comment %} Drafts with commented-out front matter have no tags; skip them. {% endcomment %}
+  {% assign posts = site.posts | where_exp: "p", "p.tags.size > 0" %}
+  {% if posts.size > 0 %}
+  <h2>Recent posts</h2>
+  <ul class="plain">
+    {% for post in posts limit: 5 %}
+      <li><span class="date">{{ post.date | date: "%b %Y" }}</span> — <a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <p><a href="{{ '/posts/' | relative_url }}">All posts →</a></p>
+  {% endif %}

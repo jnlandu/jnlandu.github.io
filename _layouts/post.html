@@ -1,345 +1,48 @@
 ---
 layout: default
 ---
+<article itemscope itemtype="http://schema.org/BlogPosting">
+  <h1 class="page-title" itemprop="name headline">{{ page.title | escape }}</h1>
+  <p class="meta">
+    <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</time>
+    {% if page.tags and page.tags.size > 0 %} ·
+      {% for tag in page.tags %}<a href="{{ '/tags/' | append: tag | relative_url }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}
+    {% endif %}
+  </p>
 
+  {% if page.toc %}<nav class="toc" id="toc" hidden><strong>Contents</strong></nav>{% endif %}
 
-<style>
-/* Force disable scroll-snap immediately for post detail pages */
-html, body, *, .container {
-  scroll-snap-type: none !important;
-  scroll-snap-align: none !important;
-  scroll-snap-stop: normal !important;
-}
-</style>
-
-<article class="post-article" itemscope itemtype="http://schema.org/BlogPosting">
-  <!-- Hero Header Section -->
-  <section class="post-hero">
-    <div class="post-hero-bg">
-      {% if page.image %}
-        <div class="post-hero-image">
-          <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
-          <div class="post-hero-overlay"></div>
-
-        </div>
-      {% endif %}
-    </div>
-    
-    <div class="container">
-      <div class="post-hero-content">
-        <nav class="post-breadcrumb">
-          <a href="{{ '/' | relative_url }}" class="breadcrumb-link">Home</a>
-          <span class="breadcrumb-separator">→</span>
-          <a href="{{ '/posts/' | relative_url }}" class="breadcrumb-link">Posts</a>
-          <span class="breadcrumb-separator">→</span>
-          <span class="breadcrumb-current">{{ page.title | truncate: 30 }}</span>
-        </nav>
-        
-        <header class="post-hero-header">
-          <div class="post-category">
-            {% if page.categories.size > 0 %}
-              <i class="fas fa-folder"></i>
-              <span>{{ page.categories.first | capitalize }}</span>
-            {% else %}
-              <i class="fas fa-file-alt"></i>
-              <span>Blog Post</span>
-            {% endif %}
-          </div>
-          
-          <h1 class="post-hero-title" itemprop="name headline">{{ page.title | escape }}</h1>
-          
-          <div class="post-hero-meta">
-            <div class="post-date-badge">
-              <i class="fas fa-calendar-alt"></i>
-              <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-                {{ page.date | date: "%B %d, %Y" }}
-              </time>
-            </div>
-            
-            {% if page.author %}
-            <div class="post-author-badge">
-              <i class="fas fa-user"></i>
-              <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <span itemprop="name">{{ page.author }}</span>
-              </span>
-            </div>
-            {% endif %}
-            
-            {% if page.tags and page.tags.size > 0 %}
-            <div class="post-tags-hero">
-              {% for tag in page.tags %}
-                <a href="{{ '/tags/' | append: tag | relative_url }}" class="tag-pill">{{ tag }}</a>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </div>
-        </header>
-      </div>
-    </div>
-  </section>
-
-  <!-- Content Section -->
-  <section class="post-content">
-    <div class="container">
-      <div class="post-content-grid">
-        
-        <!-- Main Content -->
-        <main class="post-main-content">
-          <div class="post-content-body content" itemprop="articleBody">
-            {{ content }}
-          </div>
-          
-          <!-- Post Navigation -->
-          <nav class="post-navigation-section">
-            <div class="post-nav-header">
-              <h3>Continue Reading</h3>
-            </div>
-            <div class="post-nav-grid">
-              {% if page.previous %}
-                <div class="post-nav-item prev">
-                  <a href="{{ page.previous.url | relative_url }}" rel="prev">
-                    <div class="post-nav-icon">
-                      <i class="fas fa-arrow-left"></i>
-                    </div>
-                    <div class="post-nav-content">
-                      <span class="post-nav-label">Previous Post</span>
-                      <h4 class="post-nav-title">{{ page.previous.title | truncate: 50 }}</h4>
-                      <span class="post-nav-date">{{ page.previous.date | date: "%b %d, %Y" }}</span>
-                    </div>
-                  </a>
-                </div>
-              {% endif %}
-              
-              {% if page.next %}
-                <div class="post-nav-item next">
-                  <a href="{{ page.next.url | relative_url }}" rel="next">
-                    <div class="post-nav-content">
-                      <span class="post-nav-label">Next Post</span>
-                      <h4 class="post-nav-title">{{ page.next.title | truncate: 50 }}</h4>
-                      <span class="post-nav-date">{{ page.next.date | date: "%b %d, %Y" }}</span>
-                    </div>
-                    <div class="post-nav-icon">
-                      <i class="fas fa-arrow-right"></i>
-                    </div>
-                  </a>
-                </div>
-              {% endif %}
-            </div>
-          </nav>
-        </main>
-        
-        <!-- Sidebar -->
-        <aside class="post-sidebar">
-          <div class="post-sidebar-content">
-            
-            <!-- Article Info -->
-            <div class="sidebar-card article-info">
-              <h4 class="sidebar-title">Article Info</h4>
-              <div class="info-item">
-                <i class="fas fa-calendar-alt"></i>
-                <div>
-                  <strong>Published</strong>
-                  <span>{{ page.date | date: "%B %d, %Y" }}</span>
-                </div>
-              </div>
-              {% if page.author %}
-              <div class="info-item">
-                <i class="fas fa-user"></i>
-                <div>
-                  <strong>Author</strong>
-                  <span>{{ page.author }}</span>
-                </div>
-              </div>
-              {% endif %}
-              {% if page.categories.size > 0 %}
-              <div class="info-item">
-                <i class="fas fa-folder"></i>
-                <div>
-                  <strong>Category</strong>
-                  <div class="sidebar-categories">
-                    {% for category in page.categories %}
-                      <a href="{{ '/categories/' | append: category | relative_url }}" class="sidebar-category">{{ category }}</a>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-              {% if page.tags and page.tags.size > 0 %}
-              <div class="info-item">
-                <i class="fas fa-tags"></i>
-                <div>
-                  <strong>Tags</strong>
-                  <div class="sidebar-tags">
-                    {% for tag in page.tags %}
-                      <a href="{{ '/tags/' | append: tag | relative_url }}" class="sidebar-tag">{{ tag }}</a>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-            </div>
-            
-            <!-- Related Posts -->
-            {% assign related_posts = site.related_posts | limit: 3 %}
-            {% if related_posts.size > 0 %}
-            <div class="sidebar-card related-posts">
-              <h4 class="sidebar-title">Related Posts</h4>
-              <div class="related-posts-list">
-                {% for post in related_posts %}
-                <a href="{{ post.url | relative_url }}" class="related-post-item">
-                  <div class="related-post-icon">
-                    <i class="fas fa-file-alt"></i>
-                  </div>
-                  <div class="related-post-content">
-                    <h5>{{ post.title | truncate: 40 }}</h5>
-                    <span class="related-post-date">{{ post.date | date: "%b %Y" }}</span>
-                  </div>
-                </a>
-                {% endfor %}
-              </div>
-            </div>
-            {% endif %}
-            
-            <!-- Table of Contents (if content has headings) -->
-            <div class="sidebar-card toc-card">
-              <h4 class="sidebar-title">Table of Contents</h4>
-              <div class="post-toc">
-                <!-- This will be populated by JavaScript -->
-              </div>
-            </div>
-            
-            <!-- Share -->
-            <div class="sidebar-card share-card">
-              <h4 class="sidebar-title">Share Article</h4>
-              <div class="share-buttons">
-                <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}" 
-                   target="_blank" class="share-btn twitter">
-                  <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" 
-                   target="_blank" class="share-btn linkedin">
-                  <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="mailto:?subject={{ page.title | url_encode }}&body={{ page.url | absolute_url | url_encode }}" 
-                   class="share-btn email">
-                  <i class="fas fa-envelope"></i>
-                </a>
-              </div>
-            </div>
-            
-          </div>
-        </aside>
-        
-      </div>
-    </div>
-  </section>
-  
-  <!-- Comments Section -->
-  {% if site.disqus.shortname %}
-  <section class="post-comments">
-    <div class="container">
-      <div class="comments-wrapper">
-        {% include disqus_comments.html %}
-      </div>
-    </div>
-  </section>
-  {% endif %}
-  
-  <!-- Navigation Footer -->
-  <section class="post-navigation-footer">
-    <div class="container">
-      <div class="post-nav-footer-content">
-        <a href="{{ '/posts/' | relative_url }}" class="post-back-btn">
-          <i class="fas fa-arrow-left"></i>
-          <span>Back to All Posts</span>
-        </a>
-        
-        <div class="post-nav-actions">
-          <button class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-            <i class="fas fa-arrow-up"></i>
-            <span>Top</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="u-url" href="{{ page.url | relative_url }}" hidden></div>
+  <div itemprop="articleBody">
+    {{ content }}
+  </div>
 </article>
 
+<nav class="post-nav">
+  <span>{% if page.previous %}<a href="{{ page.previous.url | relative_url }}" rel="prev">← {{ page.previous.title }}</a>{% endif %}</span>
+  <span>{% if page.next %}<a href="{{ page.next.url | relative_url }}" rel="next">{{ page.next.title }} →</a>{% endif %}</span>
+</nav>
+
+{% if site.disqus.shortname %}{% include disqus_comments.html %}{% endif %}
+
+{% if page.toc %}
 <script>
-// Disable scroll-snap for post detail pages
-function disableScrollSnap() {
-  // Force disable scroll-snap on all possible containers
-  document.documentElement.style.scrollSnapType = 'none !important';
-  document.body.style.scrollSnapType = 'none !important';
-  document.body.classList.add('post-detail-page');
-  
-  // Find and disable scroll-snap on any containers that might have it
-  const containers = document.querySelectorAll('*');
-  containers.forEach(el => {
-    const computed = window.getComputedStyle(el);
-    if (computed.scrollSnapType && computed.scrollSnapType !== 'none') {
-      el.style.scrollSnapType = 'none !important';
-    }
-  });
-  
-  // Override any CSS that might be setting scroll-snap
-  const style = document.createElement('style');
-  style.textContent = `
-    html, body, * { 
-      scroll-snap-type: none !important; 
-      scroll-snap-align: none !important;
-    }
-    body.post-detail-page {
-      scroll-snap-type: none !important;
-    }
-  `;
-  document.head.appendChild(style);
-}
-
-// Run immediately and after DOM loads
-disableScrollSnap();
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', disableScrollSnap);
-} else {
-  disableScrollSnap();
-}
-
-// Generate Table of Contents
-document.addEventListener('DOMContentLoaded', function() {
-  const contentArea = document.querySelector('.post-content-body');
-  const tocContainer = document.querySelector('.post-toc');
-  
-  if (contentArea && tocContainer) {
-    const headings = contentArea.querySelectorAll('h2, h3, h4');
-    
-    if (headings.length > 0) {
-      const tocList = document.createElement('ul');
-      tocList.className = 'toc-list';
-      
-      headings.forEach((heading, index) => {
-        // Add ID to heading if it doesn't have one
-        if (!heading.id) {
-          heading.id = 'heading-' + index;
-        }
-        
-        const tocItem = document.createElement('li');
-        tocItem.className = 'toc-item toc-' + heading.tagName.toLowerCase();
-        
-        const tocLink = document.createElement('a');
-        tocLink.href = '#' + heading.id;
-        tocLink.textContent = heading.textContent;
-        tocLink.className = 'toc-link';
-        
-        tocItem.appendChild(tocLink);
-        tocList.appendChild(tocItem);
-      });
-      
-      tocContainer.appendChild(tocList);
-    } else {
-      tocContainer.innerHTML = '<p class="toc-empty">No headings found</p>';
-    }
-  }
-});
+  // Build a table of contents from the post's h2/h3 headings.
+  (function () {
+    var toc = document.getElementById('toc');
+    var headings = document.querySelectorAll('[itemprop="articleBody"] h2[id], [itemprop="articleBody"] h3[id]');
+    if (!toc || headings.length === 0) return;
+    var list = document.createElement('ul');
+    headings.forEach(function (h) {
+      var li = document.createElement('li');
+      if (h.tagName === 'H3') li.style.marginLeft = '1rem';
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    toc.appendChild(list);
+    toc.hidden = false;
+  })();
 </script>
+{% endif %}

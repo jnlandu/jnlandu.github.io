@@ -1,19 +1,7 @@
 ---
 layout: default
 ---
+<h1 class="page-title">{{ page.title | escape }}</h1>
+{% if page.description %}<p class="description">{{ page.description }}</p>{% endif %}
 
-
-<div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
-  <article class="card">
-    <header class="card-header">
-      <h1 class="card-title">{{ page.title | escape }}</h1>
-      {% if page.description %}
-        <p class="text-muted">{{ page.description }}</p>
-      {% endif %}
-    </header>
-
-    <div class="content">
-      {{ content }}
-    </div>
-  </article>
-</div>
+{{ content }}
