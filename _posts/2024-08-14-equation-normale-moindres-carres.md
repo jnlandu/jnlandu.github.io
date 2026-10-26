@@ -15,6 +15,7 @@ redirect_from:
   - /posts/equation-normale-moindres-carres
   - /posts/equation-normale-mco
 giscus_term: posts/equation-normale-mco
+last_modified_at: 2025-01-01
 ---
 
 Imaginons qu'on ait fait trois mesures. À l'instant $t = 0$ on lit $6$, à

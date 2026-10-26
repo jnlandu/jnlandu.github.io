@@ -25,8 +25,8 @@ When I first saw that these two methods are secretly solving the same linear
 system, I was surprised. It is a classical fact (you can find it in Bishop's
 book, for instance), but the textbook derivation goes by quickly, and I wanted to
 see every step. So let's slow down and do it properly. The punchline is that, for
-two classes and a carefully chosen encoding of the labels, OLS gives **exactly
-the same projection direction** as Fisher's LDA. Along the way, we will see the
+two classes and a carefully chosen encoding of the labels, OLS gives exactly
+the same projection direction as Fisher's LDA. Along the way, we will see the
 scatter matrices of LDA appear on their own from the regression equations, which
 I find quite satisfying.
 
@@ -649,7 +649,7 @@ real-valued targets
 $$t_n = \begin{cases} \dfrac{N}{N_1} & \text{if } \mathbf{x}_n \in C_1, \\[6pt] -\dfrac{N}{N_2} & \text{if } \mathbf{x}_n \in C_2. \end{cases} \tag{4}$$
 
 This choice looks a bit strange at first, but it is not arbitrary. Its main
-property is that the targets have **zero mean**:
+property is that the targets have zero mean:
 
 $$\sum_{n=1}^{N} t_n = N_1 \cdot \frac{N}{N_1} + N_2 \cdot \left(-\frac{N}{N_2}\right) = N - N = 0.$$
 
@@ -777,21 +777,22 @@ And there it is: exactly the LDA direction (3), recovered from plain least squar
 > $t_n = -N/N_2$ for $C_2$. Then the weight vector $\mathbf{w}^{\ast}$ that minimises
 > $E(\mathbf{w}, w_0) = \frac{1}{2}\lVert \mathbf{X}\mathbf{w} + w_0\mathbf{1} - \mathbf{t}\rVert ^2$
 > satisfies $\mathbf{w}^{\ast} \propto S_W^{-1}(\mathbf{m}_1 - \mathbf{m}_2)$,
-> which is the Fisher LDA direction.
+> which is the Fisher LDA direction. (Here $\mathbf{X}$ stacks the vectors
+> $$\mathbf{x}_n^\top$$ as rows, and $\mathbf{t}$ collects the targets.)
 
-The proof is the derivation above. One honest caveat: the two methods agree on
-the **direction** of $\mathbf{w}$, not on its length or on the intercept. OLS
+The proof is the derivation above. A caveat, though: the two methods agree on
+the *direction* of $\mathbf{w}$, not on its length or on the intercept. OLS
 gives you a specific affine model, while LDA only gives you a direction to use
 with a nearest-mean rule.
 
 ## Why Should We Care?
 
-At this point you might reasonably ask: is this more than a nice exercise? I
-think it is, mainly because of what it lets us do computationally.
+Is this more than a nice exercise? I think so, mainly because of what it lets us
+do computationally.
 
-
-Let $\mathbf{X} \in \mathbb{R}^{N \times d}$ for the data matrix (one sample
-per row) and $\mathbf{t} \in \mathbb{R}^N$ for the targets. The OLS problem is
+To hand the problem to standard solvers, it helps to write it in matrix form. Let
+$\mathbf{X} \in \mathbb{R}^{N \times d}$ be the data matrix (one sample per row)
+and $\mathbf{t} \in \mathbb{R}^N$ the vector of targets. The OLS problem is
 
 $$\min_{\mathbf{w}, w_0}\; \frac{1}{2}\lVert \tilde{\mathbf{X}}\boldsymbol{\beta} - \mathbf{t}\rVert ^2,
 \qquad \tilde{\mathbf{X}} = [\mathbf{X} \;\; \mathbf{1}],
@@ -814,9 +815,9 @@ least squares:
 | Method | Cost | Good for |
 |--------|------|----------|
 | Cholesky (direct) | $O(d^3)$, once | small $d$ |
-| **Conjugate Gradients (CG)** | $O(Nd)$ per iteration | large problems, sparse data |
-| **LSQR** | $O(Nd)$ per iteration | rectangular systems, better stability |
-| **Randomised SVD** | $O(Ndk)$ | approximate, low-rank structure |
+| Conjugate Gradients (CG) | $O(Nd)$ per iteration | large problems, sparse data |
+| LSQR | $O(Nd)$ per iteration | rectangular systems, better stability |
+| Randomised SVD | $O(Ndk)$ | approximate, low-rank structure |
 
 When the feature dimension $d$ is in the thousands, forming and factorising $S_W$
 is exactly what we would like to avoid. Iterative methods like CG and LSQR never
@@ -829,18 +830,6 @@ iterations already captures most of the solution. Adding a small ridge term
 $\lambda I$ helps even more: it lifts all the tiny eigenvalues up to about
 $\lambda$, where they cluster together, and CG converges quickly on clustered
 spectra.
-
-More recently, people have pushed this idea further with *randomised* iterative
-methods, which look at only one row of the data at each step. Chi and Needell [5]
-start from exactly the least-squares formulation of this post and solve it with
-the randomised Kaczmarz method. At each iteration, it picks one equation at random
-and projects the current iterate onto the set of points that satisfy it, so it
-can be read as a form of stochastic gradient descent. They show that the
-resulting classifier can come close to the accuracy of LDA on the full data, and
-they relate the remaining gap to properties of the data, such as its scaled
-condition number and Frobenius norm, and to the step size and number of
-iterations. For datasets too large to fit in memory, that is a very appealing
-alternative.
 
 ### CG, written out
 
@@ -863,6 +852,20 @@ directly from the data as $S_T\,\mathbf{p} = \mathbf{X}_c^{\top}(\mathbf{X}_c\,\
 where $\mathbf{X}_c$ is the mean-centred data matrix. That keeps memory at
 $O(Nd)$ instead of $O(d^2)$.
 
+### Going randomised
+
+More recently, people have pushed this idea further with *randomised* iterative
+methods, which look at only one row of the data at each step. Chi and Needell [5]
+start from exactly the least-squares formulation of this post and solve it with
+the randomised Kaczmarz method. At each iteration, it picks one equation at random
+and projects the current iterate onto the set of points that satisfy it, so it
+can be read as a form of stochastic gradient descent. They show that the
+resulting classifier can come close to the accuracy of LDA on the full data, and
+they relate the remaining gap to properties of the data, such as its scaled
+condition number and Frobenius norm, and to the step size and number of
+iterations. For datasets too large to fit in memory, that is a very appealing
+alternative.
+
 ## A Small Example
 
 Let's check the formula on a toy case. Take $d = 2$, $N_1 = N_2 = 50$, and suppose
@@ -877,29 +880,39 @@ $$\mathbf{w}^{\ast} = S_W^{-1}\begin{pmatrix}1\\0\end{pmatrix}
   = \frac{1}{5}\begin{pmatrix}3\\ -1\end{pmatrix}.$$
 
 **OLS, through the normal equation:** with balanced classes, the encoding
-simplifies to $t_n = +1$ for $C_1$ and $t_n = -1$ for $C_2$. Solving
-$S_T\,\mathbf{w} = N(\mathbf{m}_1 - \mathbf{m}_2)$ with
-$S_T = S_W + \frac{N_1 N_2}{N} S_B$ gives a vector along the same direction
-$(3, -1)^{\top}$, as the theorem promises.
+simplifies to $t_n = +1$ for $C_1$ and $t_n = -1$ for $C_2$. Here $N = 100$ and
+$N_1 N_2 / N = 25$, so by (8)
+
+$$S_T = S_W + 25\,S_B
+  = \begin{pmatrix}2 & 1\\ 1 & 3\end{pmatrix} + 25\begin{pmatrix}1 & 0\\ 0 & 0\end{pmatrix}
+  = \begin{pmatrix}27 & 1\\ 1 & 3\end{pmatrix}.$$
+
+Solving the normal equation (7), $S_T\,\mathbf{w} = 100\,(1, 0)^{\top}$, gives
+
+$$\mathbf{w} = \frac{100}{80}\begin{pmatrix}3 & -1\\ -1 & 27\end{pmatrix}\begin{pmatrix}1\\0\end{pmatrix}
+  = \begin{pmatrix}3.75\\ -1.25\end{pmatrix}
+  = 1.25\begin{pmatrix}3\\ -1\end{pmatrix}.$$
+
+Same direction as LDA, only a different length, exactly as the theorem says.
 
 ---
 
 So the whole story fits in one line:
 
-> **With the right labels, LDA and OLS find the same projection direction.**
+> *With the right labels, LDA and OLS find the same projection direction.*
 
-The whole argument rests on two small facts: the zero-mean encoding
+It all rests on two small facts: the zero-mean encoding
 $t_n = \pm N/N_k$, and the observation that between-class scatter always pushes
 along $(\mathbf{m}_1 - \mathbf{m}_2)$.
 
 What I like about this result is that it is useful, not just pretty:
 
-- It gives **another way to compute LDA**: solve a least-squares problem, with a
+- It gives another way to compute LDA: solve a least-squares problem, with a
   direct or an iterative method.
-- It makes **regularised LDA** natural: adding a ridge term $\lambda I$ to $S_T$
+- It makes regularised LDA natural: adding a ridge term $\lambda I$ to $S_T$
   is just $\ell_2$-regularised regression, which also helps when $d > N$ and the
   scatter matrix is singular.
-- It points towards **kernel LDA**: you can kernelise the regression problem
+- It points towards kernel LDA: you can kernelise the regression problem
   instead of kernelising Fisher's criterion directly.
 
 Kaczmarz methods are close to what I work on, so I'd like to come back to this

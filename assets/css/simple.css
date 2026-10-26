@@ -85,6 +85,8 @@ th, td { border: 1px solid var(--rule); padding: .35rem .6rem; text-align: left;
 .prose hr::after { content: "⁂"; color: var(--muted); font-size: 1.1rem; letter-spacing: .3em; }
 .prose ol, .prose ul { padding-left: 1.4rem; }
 
+.lang-note { background: var(--code-bg); border-radius: 4px; padding: .6rem .9rem; margin: -.75rem 0 1.75rem; }
+
 /* Posts and news items */
 .toc { font-size: .95rem; border-left: 3px solid var(--rule); padding-left: 1rem; margin: 0 0 2rem; }
 .toc ul { padding-left: 1.1rem; margin: .3rem 0; }
