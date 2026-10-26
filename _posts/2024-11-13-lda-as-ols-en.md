@@ -47,7 +47,7 @@ $y_n = \mathbf{w}^{\top}\mathbf{x}_n$ of the two classes are well separated.
 Fisher's idea was to make the class means far apart *relative to* the spread
 inside each class. He wrote this as the ratio
 
-$$J(\mathbf{w}) = \frac{\mathbf{w}^{\top} S_B\, \mathbf{w}}{\mathbf{w}^{\top} S_W\, \mathbf{w}},$$
+$$J(\mathbf{w}) = \frac{\mathbf{w}^{\top} S_B\, \mathbf{w}}{\mathbf{w}^{\top} S_W\, \mathbf{w}}, \tag{1}$$
 
 where the **between-class scatter matrix** is
 
@@ -62,16 +62,16 @@ $$S_W = \sum_{k=1}^{2}\sum_{n \in C_k}(\mathbf{x}_n - \mathbf{m}_k)(\mathbf{x}_n
 Setting the gradient of $J$ to zero (or using Lagrange multipliers) leads to the
 generalised eigenvalue problem
 
-$$S_B\,\mathbf{w} = \lambda\, S_W\,\mathbf{w}.$$
+$$S_B\,\mathbf{w} = \lambda\, S_W\,\mathbf{w}. \tag{2}$$
 
 There is a nice shortcut here. Whatever $\mathbf{w}$ is, $S_B\,\mathbf{w}$ always
 points along $(\mathbf{m}_1 - \mathbf{m}_2)$, because $S_B$ has rank one. So we
 do not need to solve an eigenvalue problem at all:
 
-$$\boxed{\mathbf{w}^{\ast} \propto S_W^{-1}(\mathbf{m}_1 - \mathbf{m}_2).}$$
+$$\boxed{\mathbf{w}^{\ast} \propto S_W^{-1}(\mathbf{m}_1 - \mathbf{m}_2).} \tag{3}$$
 
 To classify a point, we project it onto $\mathbf{w}^{\ast}$ and assign it to the class
-whose projected mean is closest. Keep this formula in mind; we are going to meet
+whose projected mean is closest. Keep formula (3) in mind; we are going to meet
 it again from a very different direction.
 
 ## Now, Least Squares
@@ -81,7 +81,7 @@ it again from a very different direction.
 Here is the trick. Instead of the discrete labels $c_n \in \lbrace C_1, C_2\rbrace $, we use
 real-valued targets
 
-$$t_n = \begin{cases} \dfrac{N}{N_1} & \text{if } \mathbf{x}_n \in C_1, \\[6pt] -\dfrac{N}{N_2} & \text{if } \mathbf{x}_n \in C_2. \end{cases}$$
+$$t_n = \begin{cases} \dfrac{N}{N_1} & \text{if } \mathbf{x}_n \in C_1, \\[6pt] -\dfrac{N}{N_2} & \text{if } \mathbf{x}_n \in C_2. \end{cases} \tag{4}$$
 
 This choice looks a bit strange at first, but it is not arbitrary. Its main
 property is that the targets have **zero mean**:
@@ -95,7 +95,7 @@ We will use this fact in a moment.
 We fit an affine model $\hat{y}_n = \mathbf{w}^{\top}\mathbf{x}_n + w_0$ by
 minimising the sum of squared errors:
 
-$$E(\mathbf{w}, w_0) = \frac{1}{2}\sum_{n=1}^{N}\left(\mathbf{w}^{\top}\mathbf{x}_n + w_0 - t_n\right)^2.$$
+$$E(\mathbf{w}, w_0) = \frac{1}{2}\sum_{n=1}^{N}\left(\mathbf{w}^{\top}\mathbf{x}_n + w_0 - t_n\right)^2. \tag{5}$$
 
 ## Deriving the Normal Equations
 
@@ -110,7 +110,7 @@ $$\sum_{n=1}^{N}\left(\mathbf{w}^{\top}\mathbf{x}_n + w_0 - t_n\right) = 0.$$
 This is where the zero-mean targets pay off. Using $\sum_n t_n = 0$ and
 $\sum_n \mathbf{x}_n = N\mathbf{m}$, we get
 
-$$N w_0 + \mathbf{w}^{\top}(N\mathbf{m}) = 0 \implies \boxed{w_0 = -\mathbf{w}^{\top}\mathbf{m}.}$$
+$$N w_0 + \mathbf{w}^{\top}(N\mathbf{m}) = 0 \implies \boxed{w_0 = -\mathbf{w}^{\top}\mathbf{m}.} \tag{6}$$
 
 In words: the bias simply recentres the data at the overall mean.
 
@@ -144,9 +144,9 @@ $$\sum_{n=1}^{N} t_n \mathbf{x}_n
 
 So the normal equation becomes
 
-$$\boxed{S_T\,\mathbf{w} = N(\mathbf{m}_1 - \mathbf{m}_2).}$$
+$$\boxed{S_T\,\mathbf{w} = N(\mathbf{m}_1 - \mathbf{m}_2).} \tag{7}$$
 
-This already looks a lot like the LDA formula. The only difference is that we have
+This already looks a lot like the LDA formula (3). The only difference is that we have
 $S_T$ where LDA has $S_W$. The next step is to show that this difference does not
 matter for the direction.
 
@@ -154,7 +154,7 @@ matter for the direction.
 
 The total scatter splits into a within-class part and a between-class part:
 
-$$S_T = S_W + S_B^{(\text{full})},$$
+$$S_T = S_W + S_B^{(\text{full})}, \tag{8}$$
 
 where the **full between-class scatter** is
 
@@ -184,13 +184,13 @@ $\frac{N_1 N_2}{N}(\mathbf{m}_1-\mathbf{m}_2)^{\top}\mathbf{w}$. Then
 
 $$S_T\,\mathbf{w} = S_W\,\mathbf{w} + \alpha\,(\mathbf{m}_1 - \mathbf{m}_2).$$
 
-Putting this back into the normal equation,
+Putting this back into (7),
 
 $$S_W\,\mathbf{w} + \alpha\,(\mathbf{m}_1 - \mathbf{m}_2) = N(\mathbf{m}_1 - \mathbf{m}_2),$$
 
 which rearranges to
 
-$$S_W\,\mathbf{w} = (N - \alpha)(\mathbf{m}_1 - \mathbf{m}_2).$$
+$$S_W\,\mathbf{w} = (N - \alpha)(\mathbf{m}_1 - \mathbf{m}_2). \tag{9}$$
 
 The factor $(N - \alpha)$ is just a scalar. As long as it is nonzero (which is
 the case whenever the two class means differ), it only rescales $\mathbf{w}$ and
@@ -198,7 +198,7 @@ possibly flips its sign. It does not change the line we project onto. Therefore
 
 $$\mathbf{w} \propto S_W^{-1}(\mathbf{m}_1 - \mathbf{m}_2).$$
 
-And there it is: Fisher's LDA direction, recovered from plain least squares.
+And there it is: exactly the LDA direction (3), recovered from plain least squares.
 
 ## The Equivalence, Stated Cleanly
 
@@ -230,7 +230,7 @@ $$\min_{\mathbf{w}, w_0}\; \frac{1}{2}\lVert \tilde{\mathbf{X}}\boldsymbol{\beta
 
 with normal equation
 
-$$\tilde{\mathbf{X}}^{\top}\tilde{\mathbf{X}}\,\boldsymbol{\beta} = \tilde{\mathbf{X}}^{\top}\mathbf{t}.$$
+$$\tilde{\mathbf{X}}^{\top}\tilde{\mathbf{X}}\,\boldsymbol{\beta} = \tilde{\mathbf{X}}^{\top}\mathbf{t}. \tag{10}$$
 
 ### A door to iterative solvers
 
@@ -255,8 +255,7 @@ like CG or LSQR can reach a good solution in far fewer than $d$ iterations.
 
 ### CG, written out
 
-To make this concrete, here is CG applied to
-$S_T\,\mathbf{w} = N(\mathbf{m}_1 - \mathbf{m}_2)$:
+To make this concrete, here is CG applied to the normal equation (7):
 
 1. Start with $\mathbf{w}_0 = \mathbf{0}$, residual $\mathbf{r}_0 = N(\mathbf{m}_1 - \mathbf{m}_2)$, and direction $\mathbf{p}_0 = \mathbf{r}_0$.
 2. For $k = 0, 1, 2, \ldots$ until convergence:

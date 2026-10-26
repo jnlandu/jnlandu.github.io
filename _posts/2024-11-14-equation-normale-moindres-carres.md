@@ -32,28 +32,30 @@ tout du long pour vérifier chaque étape avec de vrais nombres.
 ## Des points aux vecteurs
 
 Écrivons ce qu'on *voudrait* avoir : que la droite passe par chacun des points.
-Cela donne un système de 3 équations à deux inconues $C$ et $D$ :
+Cela donne un système de 3 équations à deux inconnues $C$ et $D$ :
 
-$$\begin{aligned}
-C + D \cdot 0 &= 6, \\
-C + D \cdot 1 &= 0, \\
-C + D \cdot 2 &= 0.
-\end{aligned}$$
-
-Trois équations, deux inconnues $C$ et $D$ : le système est sur-déterminé, et
-ici il n'a pas de solution. Les deux dernières équations imposent $C = 0$ et
-$D = 0$, ce qui contredit la première.
-
-Rangeons maintenant ces équations sous forme matricielle. Les inconnues vont dans
-un vecteur $\mathbf{w}$, les mesures dans un vecteur $\mathbf{b}$, et chaque
-ligne de la matrice $\mathbf{X}$ décrit une mesure :
-
-$$\underbrace{\begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{pmatrix}}_{\mathbf{X}}
+$$\left\lbrace
+\begin{aligned}
+C + D \cdot 0 &= 6 \\
+C + D \cdot 1 &= 0 \\
+C + D \cdot 2 &= 0
+\end{aligned}
+\right.
+\qquad\Longleftrightarrow\qquad
+\underbrace{\begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{pmatrix}}_{\mathbf{X}}
 \underbrace{\begin{pmatrix} C \\ D \end{pmatrix}}_{\mathbf{w}}
 = \underbrace{\begin{pmatrix} 6 \\ 0 \\ 0 \end{pmatrix}}_{\mathbf{b}}.$$
 
-La première colonne de $\mathbf{X}$ (que des $1$) correspond à l'ordonnée à
-l'origine $C$, la seconde aux instants $t_i$.
+Les deux écritures disent exactement la même chose. Chaque ligne de la matrice
+$\mathbf{X}$ correspond à une mesure, donc à une équation du système. Le vecteur
+$\mathbf{w} = (C, D)^\top$ contient les deux inconnues, et le vecteur
+$\mathbf{b} = (6, 0, 0)^\top$ les trois valeurs mesurées. La première colonne de
+$\mathbf{X}$, remplie de $1$, multiplie l'ordonnée à l'origine $C$ ; la seconde
+contient les instants $t_i = 0, 1, 2$, qui multiplient la pente $D$.
+
+Ce système est sur-déterminé, c'est-à-dire qu'il a plus d'équations (trois) que
+d'inconnues (deux), et ici il n'a pas de solution. Les deux dernières
+équations imposent $C = 0$ et $D = 0$, ce qui contredit la première.
 
 Rien de tout cela n'est propre aux droites. En général, on a $m$ mesures et $n$
 paramètres. La mesure numéro $i$ est décrite par un vecteur de variables
@@ -72,7 +74,7 @@ $$r_i = b_i - \mathbf{x}_i^\top \mathbf{w}.$$
 On veut que ces résidus soient petits *tous ensemble*. Le choix des moindres
 carrés consiste à minimiser la somme de leurs carrés :
 
-$$f(\mathbf{w}) = \sum_{i=1}^{m} \left(\mathbf{x}_i^\top \mathbf{w} - b_i\right)^2.$$
+$$f(\mathbf{w}) = \sum_{i=1}^{m} \left(\mathbf{x}_i^\top \mathbf{w} - b_i\right)^2. \tag{1}$$
 
 Pourquoi les carrés plutôt que les valeurs absolues ? Surtout parce que c'est
 lisse et que les calculs restent simples, comme on va le voir. En empilant les
@@ -83,7 +85,7 @@ $$f(\mathbf{w}) = \lVert \mathbf{X}\mathbf{w} - \mathbf{b} \rVert^2.$$
 
 Le problème des MCO s'écrit donc
 
-$$\min_{\mathbf{w} \in \mathbb{R}^n} \; \lVert \mathbf{X}\mathbf{w} - \mathbf{b} \rVert^2.$$
+$$\min_{\mathbf{w} \in \mathbb{R}^n} \; \lVert \mathbf{X}\mathbf{w} - \mathbf{b} \rVert^2. \tag{2}$$
 
 ## Le calcul : annuler le gradient
 
@@ -101,7 +103,7 @@ vectorielle. La somme sur $i$ de $x_{ij}$ fois quelque chose, c'est exactement l
 $j$-ième ligne de $\mathbf{X}^\top$ appliquée à ce quelque chose. En empilant les
 $n$ dérivées :
 
-$$\nabla f(\mathbf{w}) = 2\,\mathbf{X}^\top\left(\mathbf{X}\mathbf{w} - \mathbf{b}\right).$$
+$$\nabla f(\mathbf{w}) = 2\,\mathbf{X}^\top\left(\mathbf{X}\mathbf{w} - \mathbf{b}\right). \tag{3}$$
 
 (On peut aussi le retrouver en développant
 $f(\mathbf{w}) = \mathbf{w}^\top \mathbf{X}^\top \mathbf{X}\,\mathbf{w} - 2\,\mathbf{b}^\top \mathbf{X}\,\mathbf{w} + \mathbf{b}^\top \mathbf{b}$
@@ -109,9 +111,9 @@ et en dérivant terme à terme.)
 
 ### L'équation normale
 
-En annulant le gradient, on obtient
+En annulant le gradient (3), on obtient
 
-$$\boxed{\mathbf{X}^\top \mathbf{X}\,\mathbf{w}^{\ast} = \mathbf{X}^\top \mathbf{b}.}$$
+$$\boxed{\mathbf{X}^\top \mathbf{X}\,\mathbf{w}^{\ast} = \mathbf{X}^\top \mathbf{b}.} \tag{4}$$
 
 Voilà l'**équation normale**. Un détail que je trouve agréable : c'est toujours un
 système $n \times n$, quel que soit le nombre $m$ de mesures. On peut avoir un
@@ -120,11 +122,11 @@ paramètres.
 
 Et c'est bien un minimum global. La fonction $f$ est convexe (c'est le carré
 d'une norme composé avec une fonction affine), donc tout point où le gradient
-s'annule est un minimum global. Pas de mauvaise surprise possible.
+s'annule est un minimum global de (2). Pas de mauvaise surprise possible.
 
 ### Retour à nos trois points
 
-Calculons les deux côtés avec notre exemple :
+Calculons les deux côtés de (4) avec notre exemple :
 
 $$\mathbf{X}^\top \mathbf{X}
   = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \end{pmatrix}
@@ -230,9 +232,9 @@ $$\mathbf{X}^\top \mathbf{r}^{\ast} = \mathbf{0}
 \;\;\Longleftrightarrow\;\;
 \mathbf{X}^\top(\mathbf{b} - \mathbf{X}\mathbf{w}^{\ast}) = \mathbf{0}
 \;\;\Longleftrightarrow\;\;
-\mathbf{X}^\top \mathbf{X}\,\mathbf{w}^{\ast} = \mathbf{X}^\top \mathbf{b}.$$
+\mathbf{X}^\top \mathbf{X}\,\mathbf{w}^{\ast} = \mathbf{X}^\top \mathbf{b}. \tag{5}$$
 
-On retombe sur la même équation, sans avoir dérivé quoi que ce soit. C'est
+On retombe sur l'équation normale (4), sans avoir dérivé quoi que ce soit. C'est
 d'ailleurs de là que vient le nom : le résidu est *normal*, c'est-à-dire
 perpendiculaire, à l'espace colonne.
 
@@ -254,7 +256,7 @@ décomposition
 $$\mathbf{b} = \underbrace{\mathbf{X}\mathbf{w}^{\ast}}_{\hat{\mathbf{b}}\;\in\;\mathcal{C}(\mathbf{X})}
   + \underbrace{(\mathbf{b} - \mathbf{X}\mathbf{w}^{\ast})}_{\mathbf{r}^{\ast}\;\perp\;\mathcal{C}(\mathbf{X})},
 \qquad
-\lVert \mathbf{b} \rVert^2 = \lVert \hat{\mathbf{b}} \rVert^2 + \lVert \mathbf{r}^{\ast} \rVert^2.$$
+\lVert \mathbf{b} \rVert^2 = \lVert \hat{\mathbf{b}} \rVert^2 + \lVert \mathbf{r}^{\ast} \rVert^2. \tag{6}$$
 
 Avec nos nombres : $\lVert \mathbf{b} \rVert^2 = 36$,
 $\lVert \hat{\mathbf{b}} \rVert^2 = 25 + 4 + 1 = 30$ et
@@ -277,7 +279,7 @@ $$\mathbf{u}^\top (\mathbf{X}^\top \mathbf{X})\,\mathbf{u}
 
 L'équation normale a alors une **solution unique** :
 
-$$\mathbf{w}^{\ast} = (\mathbf{X}^\top \mathbf{X})^{-1}\,\mathbf{X}^\top \mathbf{b}.$$
+$$\mathbf{w}^{\ast} = (\mathbf{X}^\top \mathbf{X})^{-1}\,\mathbf{X}^\top \mathbf{b}. \tag{7}$$
 
 C'est notre cas : les colonnes $(1, 1, 1)^\top$ et $(0, 1, 2)^\top$ ne sont pas
 proportionnelles, et la matrice $\begin{pmatrix} 3 & 3 \\ 3 & 5 \end{pmatrix}$ a
@@ -297,7 +299,7 @@ diffèrent d'un vecteur du noyau de $\mathbf{X}$.
 Il faut donc en choisir une, et le choix le plus naturel est la **solution de
 norme minimale** :
 
-$$\mathbf{w}^{\ast} = \mathbf{X}^{\dagger}\,\mathbf{b},$$
+$$\mathbf{w}^{\ast} = \mathbf{X}^{\dagger}\,\mathbf{b}, \tag{8}$$
 
 où $\mathbf{X}^{\dagger} = \mathbf{V}\,\boldsymbol{\Sigma}^{\dagger}\,\mathbf{U}^\top$
 est la **pseudo-inverse de Moore-Penrose**. On l'obtient à partir de la
