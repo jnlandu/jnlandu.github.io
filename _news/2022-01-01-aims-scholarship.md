@@ -9,6 +9,7 @@ tags:
   - Mathematics
   - Stellenbosch
 redirect_from:
+  - /news/2022-01-aims-scholarship/
   - /news/2022-01-aims-scholarship.html
 ---
 

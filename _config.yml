@@ -67,7 +67,7 @@ kramdown:
   math_engine_opts: {}
 
 # Permalink settings
-permalink: /posts/:title
+permalink: /:year/:month/:day/:title/
 
 github_repo: https://github.com/jnlandu/jnlandu.github.io/
 
@@ -76,8 +76,8 @@ github_repo: https://github.com/jnlandu/jnlandu.github.io/
 giscus:
   repo: jnlandu/jnlandu.github.io
   repo_id: R_kgDOM1b7nA
-  category: Comments
-  category_id:
+  category: Announcements
+  category_id: DIC_kwDOM1b7nM4DJni1
 
 # Email subscription form in the sidebar. Leave empty to show only the RSS link.
 # For Buttondown: https://buttondown.com/api/emails/embed-subscribe/<username>
@@ -202,7 +202,7 @@ collections:
   news:
     output: true
     sort_by: date
-    permalink: /news/:name/
+    permalink: /:year/:month/:day/:title/
   current_projects:
     output: false
     sort_by: date

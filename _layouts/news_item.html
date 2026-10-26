@@ -8,7 +8,9 @@ layout: default
     {% if page.tags and page.tags.size > 0 %} · {{ page.tags | join: ", " }}{% endif %}
   </p>
 
-  {{ content }}
+  <div class="prose">
+    {{ content }}
+  </div>
 
   {% if page.gallery and page.gallery.size > 0 %}
   <div class="gallery">

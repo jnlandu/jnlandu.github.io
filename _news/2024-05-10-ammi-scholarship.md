@@ -8,6 +8,7 @@ tags:
   - Machine Learning
   - AIMS Senegal
 redirect_from:
+  - /news/2024-01-ammi-scholarship/
   - /news/2024-01-ammi-scholarship.html
   
 gallery:

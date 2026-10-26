@@ -64,6 +64,22 @@ th, td { border: 1px solid var(--rule); padding: .35rem .6rem; text-align: left;
 .bio p { margin: 0 0 1rem; }
 .bio-fr { display: none; }
 
+/* Article text in posts and news items: typeset like a printed article,
+   not a rendered Markdown file (no rules under headings, booktabs tables). */
+.prose h2 { border: 0; padding: 0; font-size: 1.25rem; font-weight: 600; margin: 2.4rem 0 .6rem; }
+.prose h3 { font-size: 1.05rem; font-style: italic; margin: 1.8rem 0 .4rem; }
+.prose table { border: 0; border-top: 1.5px solid var(--fg); border-bottom: 1.5px solid var(--fg); }
+.prose th, .prose td { border: 0; padding: .4rem .75rem; }
+.prose thead th { border-bottom: 1px solid var(--muted); font-weight: 600; }
+.prose blockquote {
+  border: 0; margin: 1.5rem 0; padding: .9rem 1.1rem;
+  background: var(--code-bg); border-radius: 4px; color: var(--fg);
+}
+.prose blockquote p:last-child { margin-bottom: 0; }
+.prose hr { border: 0; text-align: center; margin: 2.5rem 0; }
+.prose hr::after { content: "⁂"; color: var(--muted); font-size: 1.1rem; letter-spacing: .3em; }
+.prose ol, .prose ul { padding-left: 1.4rem; }
+
 /* Posts and news items */
 .toc { font-size: .95rem; border-left: 3px solid var(--rule); padding-left: 1rem; margin: 0 0 2rem; }
 .toc ul { padding-left: 1.1rem; margin: .3rem 0; }

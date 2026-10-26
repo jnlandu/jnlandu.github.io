@@ -8,6 +8,7 @@ tags:
   - Rwanda
   - Probability
 redirect_from:
+  - /news/2024-08-rwanda-conference/
   - /news/2024-08-rwanda-conference.html
 cover_image: /assets/static/img/apic.png
 gallery:

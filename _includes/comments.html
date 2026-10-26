@@ -23,7 +23,13 @@
         'data-repo-id': '{{ site.giscus.repo_id }}',
         'data-category': '{{ site.giscus.category }}',
         'data-category-id': '{{ site.giscus.category_id }}',
+        {%- comment -%} A renamed page keeps its old thread by setting giscus_term in its front matter. {%- endcomment -%}
+        {%- if page.giscus_term %}
+        'data-mapping': 'specific',
+        'data-term': '{{ page.giscus_term }}',
+        {%- else %}
         'data-mapping': 'pathname',
+        {%- endif %}
         'data-strict': '1',
         'data-reactions-enabled': '1',
         'data-emit-metadata': '0',

@@ -8,7 +8,8 @@ tags:
   - Senegal, Dakar
   - Machine Learning
 redirect_from:
-  - /news/2024-08-rwanda-conference.html
+  - /news/2024-09-01-deep-learning-indaba/
+  - /news/2024-09-01-deep-learning-indaba.html
 cover_image: /assets/static/img/apic.png
 # gallery:
   # - /assets/static/img/apic-gal-1.jpg

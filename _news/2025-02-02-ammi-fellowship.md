@@ -9,6 +9,7 @@ tags:
   - Teaching
   - AIMS
 redirect_from:
+  - /news/2025-02-ammi-fellowship/
   - /news/2025-02-ammi-fellowship.html
 gallery:
   - /assets/static/tutor/tutor-1.jpg
