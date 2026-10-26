@@ -28,12 +28,16 @@
     <a href="{{ '/#publications' | relative_url }}">Publications</a>
     <a href="{{ '/posts/' | relative_url }}" {% if page.url contains '/posts/' or page.url contains '/tags/' %}class="active"{% endif %}>Blog</a>
     <a href="{{ '/news/' | relative_url }}" {% if page.url contains '/news/' %}class="active"{% endif %}>News</a>
+    <a href="{{ '/projects/' | relative_url }}" {% if page.url contains '/projects/' %}class="active"{% endif %}>Projects</a>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode"></button>
   </nav>
 
-  <main>
-    {{ content }}
-  </main>
+  <div class="page-grid">
+    <main>
+      {{ content }}
+    </main>
+    {% include aside.html %}
+  </div>
 
   <footer class="site-footer">
     © {{ 'now' | date: "%Y" }} Jeremie N. Mabiala · <a href="#">Back to top</a>

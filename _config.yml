@@ -71,6 +71,19 @@ permalink: /posts/:title
 
 github_repo: https://github.com/jnlandu/jnlandu.github.io/
 
+# Visitor comments on posts and news (giscus, backed by GitHub Discussions).
+# Comments appear once category_id is filled in; get it from https://giscus.app
+giscus:
+  repo: jnlandu/jnlandu.github.io
+  repo_id: R_kgDOM1b7nA
+  category: Comments
+  category_id:
+
+# Email subscription form in the sidebar. Leave empty to show only the RSS link.
+# For Buttondown: https://buttondown.com/api/emails/embed-subscribe/<username>
+subscribe:
+  form_action:
+
 # Pagination settings
 pagination:
   enabled: true

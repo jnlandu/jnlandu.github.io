@@ -11,8 +11,8 @@ redirect_from:
   - /news/2024-08-rwanda-conference.html
 cover_image: /assets/static/img/apic.png
 gallery:
-  - /assets/static/img/apic-gal-1.jpg
-  - /assets/static/img/apic-gal-2.jpg
+  - /assets/static/img/apic-gal-1.JPG
+  - /assets/static/img/apic-gal-2.JPG
 ---
 
 I attended the African Probability, Information Theory and Computing School in Kigali, Rwanda, on a fully funded scholarship covering travel and accommodation.

@@ -1,0 +1,21 @@
+---
+layout: null
+permalink: /search.json
+sitemap: false
+---
+{%- comment -%} Index for the sidebar search box. Drafts (no tags) are skipped. {%- endcomment -%}
+{%- assign posts = site.posts | where_exp: "p", "p.tags.size > 0" -%}
+[
+{%- for post in posts -%}
+  {"title": {{ post.title | jsonify }}, "url": {{ post.url | relative_url | jsonify }}, "type": "Post", "date": {{ post.date | date: "%b %Y" | jsonify }}, "text": {{ post.content | strip_html | strip_newlines | truncatewords: 400 | jsonify }}},
+{%- endfor -%}
+{%- for item in site.news -%}
+  {"title": {{ item.title | default: "News" | jsonify }}, "url": {% if item.inline %}{{ '/news/' | relative_url | jsonify }}{% else %}{{ item.url | relative_url | jsonify }}{% endif %}, "type": "News", "date": {{ item.date | date: "%b %Y" | jsonify }}, "text": {{ item.content | strip_html | strip_newlines | truncatewords: 200 | jsonify }}},
+{%- endfor -%}
+{%- for project in site.projects -%}
+  {"title": {{ project.title | jsonify }}, "url": {{ project.url | relative_url | jsonify }}, "type": "Project", "date": {{ project.date | date: "%Y" | jsonify }}, "text": {{ project.content | strip_html | strip_newlines | truncatewords: 200 | jsonify }}},
+{%- endfor -%}
+{%- for pub in site.data.publications -%}
+  {"title": {{ pub.title | jsonify }}, "url": {{ pub.url | jsonify }}, "type": "Publication", "date": {{ pub.year | jsonify }}, "text": {{ pub.authors | append: " " | append: pub.venue | remove: "*" | jsonify }}}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+]

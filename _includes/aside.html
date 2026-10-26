@@ -1,0 +1,104 @@
+<aside class="site-aside">
+  <section>
+    <h3>Search</h3>
+    <input type="search" id="search-input" placeholder="Search the site…" aria-label="Search the site" autocomplete="off">
+    <ul class="search-results" id="search-results" aria-live="polite"></ul>
+  </section>
+
+  <section>
+    <h3>Subscribe</h3>
+    {% if site.subscribe.form_action %}
+    <p>Get new posts by email.</p>
+    <form class="subscribe" action="{{ site.subscribe.form_action }}" method="post" target="_blank">
+      <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="small">Or follow the <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>.</p>
+    {% else %}
+    <p>Follow new posts with the <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>.</p>
+    {% endif %}
+  </section>
+
+  <section>
+    <h3>Latest news</h3>
+    {% assign latest_news = site.news | sort: 'date' | reverse %}
+    <ul class="recent">
+      {% for item in latest_news limit: 4 %}
+        <li>
+          {% if item.inline %}
+            <a href="{{ '/news/' | relative_url }}">{{ item.content | strip_html | strip_newlines | truncatewords: 9 }}</a>
+          {% else %}
+            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+          {% endif %}
+          <span class="small">· {{ item.date | date: "%b %Y" }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+    <p class="small"><a href="{{ '/news/' | relative_url }}">All news →</a></p>
+  </section>
+
+  <section>
+    <h3>Recent posts</h3>
+    {% comment %} Drafts with commented-out front matter have no tags; skip them. {% endcomment %}
+    {% assign recent = site.posts | where_exp: "p", "p.tags.size > 0" %}
+    {% if recent.size > 0 %}
+    <ul class="recent">
+      {% for post in recent limit: 5 %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="small">No posts yet.</p>
+    {% endif %}
+  </section>
+</aside>
+
+<script>
+  (function () {
+    var input = document.getElementById('search-input');
+    var out = document.getElementById('search-results');
+    var index = null;
+
+    function load() {
+      if (index) return Promise.resolve(index);
+      return fetch('{{ "/search.json" | relative_url }}')
+        .then(function (r) { return r.json(); })
+        .then(function (data) { index = data; return data; });
+    }
+
+    function render(query) {
+      out.textContent = '';
+      var terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+      if (terms.length === 0) return;
+      var hits = index.filter(function (item) {
+        var hay = (item.title + ' ' + item.text).toLowerCase();
+        return terms.every(function (t) { return hay.indexOf(t) !== -1; });
+      }).slice(0, 8);
+      if (hits.length === 0) {
+        var li = document.createElement('li');
+        li.className = 'small';
+        li.textContent = 'No results.';
+        out.appendChild(li);
+        return;
+      }
+      hits.forEach(function (item) {
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = item.url;
+        a.textContent = item.title;
+        var meta = document.createElement('span');
+        meta.className = 'small';
+        meta.textContent = ' · ' + item.type + (item.date ? ', ' + item.date : '');
+        li.appendChild(a);
+        li.appendChild(meta);
+        out.appendChild(li);
+      });
+    }
+
+    input.addEventListener('focus', load, { once: true });
+    input.addEventListener('input', function () {
+      var q = input.value;
+      load().then(function () { render(q); });
+    });
+  })();
+</script>

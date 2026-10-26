@@ -1,0 +1,46 @@
+{%- comment -%}
+  Visitor comments via giscus (GitHub Discussions). Shown only once
+  site.giscus.repo_id and site.giscus.category_id are set in _config.yml.
+{%- endcomment -%}
+{% if site.giscus.repo_id and site.giscus.category_id and page.comments != false %}
+<section class="comments">
+  <h2>Comments</h2>
+  <div class="giscus"></div>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      function theme() {
+        var t = root.getAttribute('data-theme');
+        if (t) return t;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      var s = document.createElement('script');
+      s.src = 'https://giscus.app/client.js';
+      s.async = true;
+      s.crossOrigin = 'anonymous';
+      var attrs = {
+        'data-repo': '{{ site.giscus.repo }}',
+        'data-repo-id': '{{ site.giscus.repo_id }}',
+        'data-category': '{{ site.giscus.category }}',
+        'data-category-id': '{{ site.giscus.category_id }}',
+        'data-mapping': 'pathname',
+        'data-strict': '1',
+        'data-reactions-enabled': '1',
+        'data-emit-metadata': '0',
+        'data-input-position': 'top',
+        'data-lang': '{{ page.lang | default: site.lang | default: "en" }}',
+        'data-loading': 'lazy',
+        'data-theme': theme()
+      };
+      Object.keys(attrs).forEach(function (k) { s.setAttribute(k, attrs[k]); });
+      document.currentScript.parentNode.appendChild(s);
+
+      // Keep the comment box in step with the site's light/dark toggle.
+      new MutationObserver(function () {
+        var frame = document.querySelector('iframe.giscus-frame');
+        if (frame) frame.contentWindow.postMessage({ giscus: { setConfig: { theme: theme() } } }, 'https://giscus.app');
+      }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+    })();
+  </script>
+</section>
+{% endif %}

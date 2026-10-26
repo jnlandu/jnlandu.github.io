@@ -7,7 +7,7 @@
 
 * { box-sizing: border-box; }
 body {
-  margin: 0 auto; max-width: 760px; padding: 2rem 16px 3rem;
+  margin: 0 auto; max-width: 1040px; padding: 2rem 16px 3rem;
   font: 17px/1.6 Georgia, "Times New Roman", serif;
   color: var(--fg); background: var(--bg);
 }
@@ -70,6 +70,29 @@ th, td { border: 1px solid var(--rule); padding: .35rem .6rem; text-align: left;
 .post-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .75rem; }
 .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; }
+
+/* Main column and sidebar (search, subscribe, recent posts) */
+.page-grid { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 3rem; }
+.site-aside { font-size: .92rem; }
+.site-aside section { margin-bottom: 1.75rem; }
+.site-aside h3 { margin: 0 0 .5rem; font-size: 1rem; border-bottom: 1px solid var(--rule); padding-bottom: .2rem; }
+.site-aside p { margin: 0 0 .5rem; }
+.site-aside ul { list-style: none; padding: 0; margin: .5rem 0 0; }
+.site-aside li { margin-bottom: .45rem; line-height: 1.4; }
+.site-aside input, .site-aside button {
+  font: inherit; color: var(--fg); background: var(--bg);
+  border: 1px solid var(--rule); border-radius: 4px; padding: .3rem .5rem;
+}
+.site-aside input { width: 100%; }
+.subscribe { display: flex; flex-direction: column; gap: .4rem; margin-bottom: .5rem; }
+.subscribe button { cursor: pointer; color: var(--link); }
+.small { color: var(--muted); font-size: .85rem; }
+.comments { margin-top: 2.5rem; }
+
+@media (max-width: 860px) {
+  .page-grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .site-aside { border-top: 1px solid var(--rule); padding-top: 1.5rem; }
+}
 
 /* Footer */
 .site-footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
