@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: post
 title: "Deriving Linear Discriminant Analysis as a Least Squares Problem"
 toc: false
@@ -926,4 +926,4 @@ these steps, please tell me in the comments.
 2. Hastie, T., Tibshirani, R., & Friedman, J. (2009). *The Elements of Statistical Learning*, Section 4.3. Springer.
 3. Duda, R. O., Hart, P. E., & Stork, D. G. (2001). *Pattern Classification*, Chapter 3. Wiley.
 4. Paige, C. C. & Saunders, M. A. (1982). LSQR: An algorithm for sparse linear equations and sparse least squares. *ACM Transactions on Mathematical Software*, 8(1), 43–71.
-5. Chi, J. T. & Needell, D. (2025). Linear Discriminant Analysis with the Randomized Kaczmarz Method. *SIAM Journal on Matrix Analysis and Applications*, 46(1), 94–120. [arXiv:2211.05749](https://arxiv.org/abs/2211.05749).
+5. Chi, J. T. & Needell, D. (2025). Linear Discriminant Analysis with the Randomized Kaczmarz Method. *SIAM Journal on Matrix Analysis and Applications*, 46(1), 94–120. [arXiv:2211.05749](https://arxiv.org/abs/2211.05749). -->

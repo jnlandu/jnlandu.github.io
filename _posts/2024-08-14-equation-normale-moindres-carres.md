@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: post
 title: "L'Équation Normale des Moindres Carrés"
 toc: false
@@ -395,4 +395,4 @@ n'hésitez pas à me le dire dans les commentaires.
 3. Björck, Å. (1996). *Numerical Methods for Least Squares Problems*. SIAM.
 4. Petersen, K. B. & Pedersen, M. S. (2012). *The Matrix Cookbook*. Technical University of Denmark. [PDF](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf).
 5. Magnus, J. R. & Neudecker, H. (2019). *Matrix Differential Calculus with Applications in Statistics and Econometrics* (3rd ed.). Wiley.
-6. Wikipédia, « [Matrix calculus](https://en.wikipedia.org/wiki/Matrix_calculus) » (en anglais).
+6. Wikipédia, « [Matrix calculus](https://en.wikipedia.org/wiki/Matrix_calculus) » (en anglais). -->

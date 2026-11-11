@@ -39,9 +39,23 @@ layout: default
   </div>
 </article>
 
+{%- comment -%}
+  page.previous/next include drafts (commented-out front matter, no tags),
+  so find the neighbours among published posts only. site.posts is newest first.
+{%- endcomment -%}
+{%- assign published = site.posts | where_exp: "p", "p.tags.size > 0" -%}
+{%- assign newer = nil -%}{%- assign older = nil -%}
+{%- for p in published -%}
+  {%- if p.url == page.url -%}
+    {%- assign i = forloop.index0 -%}
+    {%- assign j = i | plus: 1 -%}
+    {%- if i > 0 -%}{%- assign k = i | minus: 1 -%}{%- assign newer = published[k] -%}{%- endif -%}
+    {%- assign older = published[j] -%}
+  {%- endif -%}
+{%- endfor -%}
 <nav class="post-nav">
-  <span>{% if page.previous %}<a href="{{ page.previous.url | relative_url }}" rel="prev">← {{ page.previous.title }}</a>{% endif %}</span>
-  <span>{% if page.next %}<a href="{{ page.next.url | relative_url }}" rel="next">{{ page.next.title }} →</a>{% endif %}</span>
+  <span>{% if older %}<a href="{{ older.url | relative_url }}" rel="prev">← {{ older.title }}</a>{% endif %}</span>
+  <span>{% if newer %}<a href="{{ newer.url | relative_url }}" rel="next">{{ newer.title }} →</a>{% endif %}</span>
 </nav>
 
 {% include comments.html %}
